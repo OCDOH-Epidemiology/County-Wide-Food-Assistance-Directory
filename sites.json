@@ -1,0 +1,1742 @@
+[
+  {
+    "id": "chester-community-pantry",
+    "name": "Chester Community Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Chester",
+    "address": "96 Main Street, Chester, New York, 10918",
+    "phone": "914-719-7969",
+    "email": "chestercommunitypantry@gmail.com",
+    "website": "https://www.facebook.com/ChesterPresbyterianPantry/",
+    "contactPerson": null,
+    "residentsServed": "Town of Chester Residents",
+    "idRequired": "unknown",
+    "schedule": "Fourth Thursday of the month, 4:00PM-7:00PM",
+    "days": [
+      "Thu"
+    ],
+    "donationsAccepted": false,
+    "notes": "Also known via Facebook as Chester Presbyterian Pantry; name column obscured by document footer in source PDF",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.3625,
+    "lng": -74.2718
+  },
+  {
+    "id": "florida-community-food-pantry",
+    "name": "Florida Community Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Florida",
+    "address": "9 Glenmere Avenue, Florida, NY 10921",
+    "phone": "845-651-4117",
+    "email": "Floridafoodpantry@gmail.com",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "Florida, Warwick, Pine Island, Chester and Goshen",
+    "idRequired": "proof_of_residence",
+    "schedule": "Thursday, 9:00AM-12:00PM",
+    "days": [
+      "Thu"
+    ],
+    "donationsAccepted": true,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.3328,
+    "lng": -74.3575
+  },
+  {
+    "id": "alamo-community-center-sun-river-health",
+    "name": "Alamo Community Center- Sun River Health",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Goshen",
+    "address": "890 Pulaski Highway, Goshen, NY 10924",
+    "phone": "845-838-7015",
+    "email": "jleon@sunriver.org",
+    "website": null,
+    "contactPerson": "Jobeth Leon",
+    "residentsServed": "Goshen, Pine Island, Warwick, Florida, and New Hampton",
+    "idRequired": "proof_of_residence",
+    "schedule": "Food Pantry: Tuesday, 4:00PM-7:00PM; Thursday 4:00PM-7:00PM; Sunday, 10:30AM-2:30PM",
+    "days": [
+      "Tue",
+      "Thu",
+      "Sun"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.3855,
+    "lng": -74.34
+  },
+  {
+    "id": "goshen-ecumenical-pantry-inc",
+    "name": "Goshen Ecumenical Pantry Inc.",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Goshen",
+    "address": "33 Park Place, Goshen, NY 10924",
+    "phone": "845-294-9004",
+    "email": null,
+    "website": "https://www.facebook.com/GoshenFoodPantry/",
+    "contactPerson": "John Strobl",
+    "residentsServed": "Towns within the Goshen Central School District, and Entire Town of Goshen",
+    "idRequired": "unknown",
+    "schedule": "Second Saturday of every month 9:00AM-10:00AM; Fourth Thursday of every month 6:00PM-7:00PM",
+    "days": [
+      "Sat",
+      "Thu"
+    ],
+    "donationsAccepted": false,
+    "notes": "Housed in Presbyterian Church",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.403,
+    "lng": -74.3248
+  },
+  {
+    "id": "greenwood-lake-food-pantry",
+    "name": "Greenwood Lake Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Greenwood Lake",
+    "address": "41 Windermere Ave, Greenwood Lake, NY 10925",
+    "phone": "845-544-3257",
+    "email": "greenwoodlakefoodpantry@gmail.com",
+    "website": null,
+    "contactPerson": "Pat Nolan",
+    "residentsServed": "Towns within the Greenwood Lake School District",
+    "idRequired": "proof_of_residence",
+    "schedule": "Saturday 9:00AM-12:00PM",
+    "days": [
+      "Sat"
+    ],
+    "donationsAccepted": true,
+    "notes": "Located at Holy Rosary Church; documentation listed as ID/Proof of Residence Required",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.2235,
+    "lng": -74.2935
+  },
+  {
+    "id": "holy-innocents-church-food-pantry",
+    "name": "Holy Innocents Church Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Highland Falls",
+    "address": "401 Main Street, Highland Falls, NY, 10928",
+    "phone": "845-446-0626",
+    "email": "Biblio999@gmail.com",
+    "website": null,
+    "contactPerson": "Carla Burns",
+    "residentsServed": "No Town Limit",
+    "idRequired": "not_required",
+    "schedule": "Second and Fourth Wednesday of the month, 4:00PM-5:30PM",
+    "days": [
+      "Wed"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.3705,
+    "lng": -73.967
+  },
+  {
+    "id": "sacred-heart-of-jesus-food-pantry",
+    "name": "Sacred Heart of Jesus Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Highland Falls",
+    "address": "353 Main Street, Highland Falls, New York, 10928",
+    "phone": "845-446-4609 / 845-446-2343",
+    "email": "sacredheartchurch_secretary@outlook.com",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "No Town Limit",
+    "idRequired": "unknown",
+    "schedule": "First and Third Wednesday of the month, 10:30AM-12:00PM",
+    "days": [
+      "Wed"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.369,
+    "lng": -73.9665
+  },
+  {
+    "id": "kiryas-joel-community-council-food-pantry",
+    "name": "Kiryas Joel Community Council Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Kiryas Joel",
+    "address": "2 Garfield Road, Monroe, NY 10950",
+    "phone": "845-774-4444",
+    "email": null,
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "Kiryas Joel and surrounding towns",
+    "idRequired": "unknown",
+    "schedule": "Call Ahead to Confirm; Monday-Friday, 9:00AM-5:00PM",
+    "days": [],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.3405,
+    "lng": -74.1685
+  },
+  {
+    "id": "marba-lsoiva-soup-kitchen",
+    "name": "Marba Lsoiva Soup Kitchen",
+    "categories": [
+      "soup_kitchen"
+    ],
+    "town": "Kiryas Joel",
+    "address": "51 Forest Rd. Suite #116, Monroe NY 10950",
+    "phone": "845-261-1600",
+    "email": null,
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "No Town Limit",
+    "idRequired": "unknown",
+    "schedule": "7 Days a Week; Breakfast 8:00AM-12:30PM; Lunch 1:00PM-4:00PM; Supper 4:30PM-10:00PM",
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.338,
+    "lng": -74.165
+  },
+  {
+    "id": "centro-cristiano-nueva-vida-food-pantry",
+    "name": "Centro Cristiano Nueva Vida Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Middletown",
+    "address": "193-195 Watkins Ave; Parking at 305 Highland Ave Ext, Middletown, NY",
+    "phone": "845-326-6481",
+    "email": "centrocristianonuevavida@yahoo.com",
+    "website": null,
+    "contactPerson": "Pastor Gilberto",
+    "residentsServed": "No Town Limit",
+    "idRequired": "not_required",
+    "schedule": "Every Wednesday, 1:00PM-3:00PM",
+    "days": [
+      "Wed"
+    ],
+    "donationsAccepted": true,
+    "notes": null,
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.45,
+    "lng": -74.415
+  },
+  {
+    "id": "guild-of-st-margaret-soup-kitchen",
+    "name": "Guild of St. Margaret Soup Kitchen",
+    "categories": [
+      "pantry",
+      "soup_kitchen"
+    ],
+    "town": "Middletown",
+    "address": "12 Depot Street, Middletown, NY, 10940",
+    "phone": "Soup Kitchen: 845-344-0569; Food Pantry: (845) 956-5566",
+    "email": "soupkitchengrace@msn.com",
+    "website": null,
+    "contactPerson": "Carolanne Cusack",
+    "residentsServed": "No Town Limit",
+    "idRequired": "not_required",
+    "schedule": "Soup Kitchen: Monday-Saturday, 11:00AM-12:00PM; Sunday, 3:00PM-4:00PM; Thanksgiving & Christmas, 12:00PM-1:00PM; Fresh Pantry: 3PM-6PM Sat.; 1PM-4PM",
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "donationsAccepted": false,
+    "notes": "Operates both soup kitchen and fresh pantry",
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.4455,
+    "lng": -74.4205
+  },
+  {
+    "id": "harmony-ministry-community-food-pantry",
+    "name": "Harmony Ministry Community Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Middletown",
+    "address": "1790 Route 211 East, Middletown, NY 10940",
+    "phone": "845-692-6113",
+    "email": "harmonychurchny@gmail.com",
+    "website": "https://www.facebook.com/harmonyministriesny/",
+    "contactPerson": null,
+    "residentsServed": "Orange County Residents",
+    "idRequired": "not_required",
+    "schedule": "Third Saturday of the month, 10:00AM-12:00PM",
+    "days": [
+      "Sat"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.445,
+    "lng": -74.385
+  },
+  {
+    "id": "honor-food-pantry",
+    "name": "Honor Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Middletown",
+    "address": "38 Seward Avenue, Middletown, NY, 10940",
+    "phone": "845-343-7115 ext. 316",
+    "email": null,
+    "website": null,
+    "contactPerson": "Heather Parra Zerpa",
+    "residentsServed": "Orange County Residents",
+    "idRequired": "unknown",
+    "schedule": "Monday, Tuesday, Friday 7:00AM-12:00PM; Wednesday, Thursday 2:00PM-7:00PM; Service once every 7 days",
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": "Service once every 7 days",
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.448,
+    "lng": -74.425
+  },
+  {
+    "id": "pathstone-middletown-food-pantry",
+    "name": "Pathstone Middletown Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Middletown",
+    "address": "225 Dolson Ave, Middletown, NY 10940",
+    "phone": "845-341-2012",
+    "email": "info@pathstone.org",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "Orange County Residents",
+    "idRequired": "required",
+    "schedule": "Tuesday/Thursday, 9:00AM-2:00PM; Once served, food available every three months",
+    "days": [
+      "Tue",
+      "Thu"
+    ],
+    "donationsAccepted": false,
+    "notes": "Pantry located on the side of the building, facing the parking lot; Photo ID Required",
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.435,
+    "lng": -74.42
+  },
+  {
+    "id": "recap-food-pantry",
+    "name": "RECAP Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Middletown",
+    "address": "34 Mill St., Middletown, NY 10940",
+    "phone": "845-342-3978 x6200 / 845-421-6200",
+    "email": "dvelasquez@recap.org; gmusumeci@recap.org",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "Orange County Residents",
+    "idRequired": "required",
+    "schedule": "Monday, Wednesday, Friday, 10:00AM-1:00PM",
+    "days": [
+      "Mon",
+      "Wed",
+      "Fri"
+    ],
+    "donationsAccepted": true,
+    "notes": "Requires Proof of Address, Proof of Income, Birth Certificate/Passports, and Picture ID",
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.4465,
+    "lng": -74.4215
+  },
+  {
+    "id": "second-baptist-church-food-pantry",
+    "name": "Second Baptist Church Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Middletown",
+    "address": "125 North St, Middletown, NY 10940",
+    "phone": "845-381-1254",
+    "email": "Secondbaptistny@gmail.com",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Every 3rd Saturday, 12:00PM-3:00PM",
+    "days": [
+      "Sat"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.449,
+    "lng": -74.418
+  },
+  {
+    "id": "st-pauls-umc-mission-food-pantry",
+    "name": "St. Paul's UMC Mission Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Middletown",
+    "address": "58 West Main Street, Middletown, NY 10940",
+    "phone": "845-343-4425",
+    "email": "Stpaulsumcmission@gmail.com",
+    "website": null,
+    "contactPerson": "Milly",
+    "residentsServed": "Middletown and neighboring towns",
+    "idRequired": "unknown",
+    "schedule": "By appointment only; Tuesday & Thursday 8:30AM-12:30PM, Curbside Pickup",
+    "days": [
+      "Tue",
+      "Thu"
+    ],
+    "donationsAccepted": false,
+    "notes": "By appointment only; curbside pickup",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.4458,
+    "lng": -74.4235
+  },
+  {
+    "id": "salvation-army-food-pantry-middletown",
+    "name": "The Salvation Army Food Pantry- Middletown",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Middletown",
+    "address": "80 W Main St. Middletown, NY 10940",
+    "phone": "845-343-0821",
+    "email": "Andrew.allen@use.salvationarmy.org",
+    "website": null,
+    "contactPerson": "Captain Andrew Allen",
+    "residentsServed": "Central Orange County, NY and Sullivan County, NY",
+    "idRequired": "required",
+    "schedule": "By appointment only; Tuesday, 12:00PM-2:00PM; Wednesday, 12:00PM-2:00PM; Thursday, 12:00PM-2:00PM; Friday, 12:00PM-2:00PM",
+    "days": [
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+    ],
+    "donationsAccepted": true,
+    "notes": "Photo ID Required; by appointment only",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.4456,
+    "lng": -74.424
+  },
+  {
+    "id": "touch-nutrition-program-food-pantry",
+    "name": "Touch Nutrition Program, Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Middletown",
+    "address": "6 Orchard Street, Middletown, NY 10940",
+    "phone": "845-343-8086",
+    "email": "tlloyd@touch-ny.org",
+    "website": "https://touchny.org/food-nutrition-program/",
+    "contactPerson": "Tiffany Lloyd",
+    "residentsServed": "Orange and Rockland County Residents",
+    "idRequired": "unknown",
+    "schedule": "By appointment only; Monday-Friday, 9:00AM-5:00PM",
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+    ],
+    "donationsAccepted": true,
+    "notes": "Must be enrolled in the Touch Program (Chronic Illness)",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.447,
+    "lng": -74.419
+  },
+  {
+    "id": "food-pantry-at-holy-cross-catholic-parish",
+    "name": "Food Pantry at Holy Cross Catholic Parish",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Minisink",
+    "address": "626 County Route 22, Middletown, NY 10940",
+    "phone": "845-355-4439",
+    "email": "Papaaltenburg5@gmail.com",
+    "website": null,
+    "contactPerson": "Paul Altenburg",
+    "residentsServed": "Towns within the Minisink School District",
+    "idRequired": "proof_of_residence",
+    "schedule": "First Saturday of the month, 9:00AM-10:00AM",
+    "days": [
+      "Sat"
+    ],
+    "donationsAccepted": true,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.43,
+    "lng": -74.5
+  },
+  {
+    "id": "holy-name-of-jesus-food-pantry",
+    "name": "Holy Name of Jesus Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Minisink",
+    "address": "45 Highland Avenue, Otisville, NY 10963",
+    "phone": "845-386-1320",
+    "email": "hnojotisville@frontiernet.net",
+    "website": null,
+    "contactPerson": "Julie / Maureen",
+    "residentsServed": "Parishioners and neighbors in the Otisville, Mt. Hope, Cuddebackville Area",
+    "idRequired": "unknown",
+    "schedule": "Last Wednesday of every month, 9:00AM-12:00PM",
+    "days": [
+      "Wed"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.474,
+    "lng": -74.537
+  },
+  {
+    "id": "community-emergency-food-pantry-umc",
+    "name": "Community Emergency Food Pantry at United Methodist Church",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Monroe-Woodbury",
+    "address": "47 Maple Ave East, Monroe, NY 10950",
+    "phone": "845-783-6371",
+    "email": null,
+    "website": null,
+    "contactPerson": "Gerri",
+    "residentsServed": "Towns within the MW School District",
+    "idRequired": "proof_of_residence",
+    "schedule": "Second & Fourth Saturday of the month, 9:30AM-11:00AM; 8:30AM-10:10AM in Summer",
+    "days": [
+      "Sat"
+    ],
+    "donationsAccepted": false,
+    "notes": "Summer hours 8:30AM-10:10AM",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.3315,
+    "lng": -74.185
+  },
+  {
+    "id": "earl-reservoir-mini-pantry",
+    "name": "Earl Reservoir Mini-Pantry",
+    "categories": [
+      "mini_pantry"
+    ],
+    "town": "Monroe-Woodbury",
+    "address": "Sid Felter Ln, Highland Mills, NY 10930",
+    "phone": null,
+    "email": "Parks@woodburyny.us",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "Town of Woodbury Residents",
+    "idRequired": "unknown",
+    "schedule": "Open 24/7",
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "donationsAccepted": true,
+    "notes": "Across from the tennis courts",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.348,
+    "lng": -74.13
+  },
+  {
+    "id": "first-presbyterian-church-of-monroe",
+    "name": "First Presbyterian Church of Monroe",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Monroe-Woodbury",
+    "address": "142 Stage Road, Monroe, NY 10950",
+    "phone": "914-588-0787 / 845-783-1632",
+    "email": "montrossrm@gmail.com; fpcmonroeoffice@yahoo.com",
+    "website": null,
+    "contactPerson": "Rich Montross",
+    "residentsServed": "Towns within the MW School District",
+    "idRequired": "required",
+    "schedule": "Food Pantry; First & Third Saturday of the month, 9:00AM-11:30AM",
+    "days": [
+      "Sat"
+    ],
+    "donationsAccepted": true,
+    "notes": "ID, Driver's License or Utility Bill Required",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.328,
+    "lng": -74.19
+  },
+  {
+    "id": "highland-mills-united-methodist-church-food-pantry",
+    "name": "Highland Mills United Methodist Church Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Monroe-Woodbury",
+    "address": "654 Route 32, Highland Mills, NY 10930",
+    "phone": null,
+    "email": null,
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Saturday, 9:00AM-10:00AM",
+    "days": [
+      "Sat"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.347,
+    "lng": -74.128
+  },
+  {
+    "id": "our-fathers-kitchen-food-pantry",
+    "name": "Our Father's Kitchen Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Monroe-Woodbury",
+    "address": "26 Still Road, Monroe, NY, 10950",
+    "phone": "845-783-7840",
+    "email": "parishoutreach@shssparish.org",
+    "website": null,
+    "contactPerson": "Kimberly Gutman",
+    "residentsServed": "Monroe, Central Valley, Harriman, Highland Mills",
+    "idRequired": "not_required",
+    "schedule": "Wednesday, 9:30AM-11:00AM",
+    "days": [
+      "Wed"
+    ],
+    "donationsAccepted": true,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.329,
+    "lng": -74.182
+  },
+  {
+    "id": "ame-zion-church-of-newburgh-food-pantry",
+    "name": "AME Zion Church of Newburgh Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Newburgh",
+    "address": "111 Washington St, Newburgh, NY 12550",
+    "phone": "845-569-8114",
+    "email": "amezionnewburgh@yahoo.com",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "No Town Limit",
+    "idRequired": "required",
+    "schedule": "Thursday, 10:00AM-12:00PM",
+    "days": [
+      "Thu"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.5045,
+    "lng": -74.01
+  },
+  {
+    "id": "catholic-charities-orange-sullivan-ulster",
+    "name": "Catholic Charities of Orange, Sullivan & Ulster",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Newburgh",
+    "address": "280 Broadway, Newburgh, NY 12550 Lower Level",
+    "phone": "845-561-1665 x1930",
+    "email": "Jacqueline.perez@ccsos.org",
+    "website": null,
+    "contactPerson": "Jaqueline Perez",
+    "residentsServed": "Orange, Sullivan and Ulster County Residents",
+    "idRequired": "unknown",
+    "schedule": "Food Pantry; Tuesday, 9:30AM-2:30PM (Closed for Lunch 12:00noon-1:00PM)",
+    "days": [
+      "Tue"
+    ],
+    "donationsAccepted": true,
+    "notes": "Bring a bag",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.502,
+    "lng": -74.0085
+  },
+  {
+    "id": "church-at-the-bridge-friends-and-family-night",
+    "name": "Church at the Bridge hosts \"Friends and Family Night\"",
+    "categories": [
+      "hot_meals"
+    ],
+    "town": "Newburgh",
+    "address": "90 Broadway, Newburgh, NY 12550",
+    "phone": "845-522-8046",
+    "email": "Hannah@ctbny.com",
+    "website": null,
+    "contactPerson": "Hannah",
+    "residentsServed": "No Town Limit",
+    "idRequired": "not_required",
+    "schedule": "Hot Meals; Third Wednesday of the month, 6:00PM-8:00PM",
+    "days": [
+      "Wed"
+    ],
+    "donationsAccepted": true,
+    "notes": null,
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.5035,
+    "lng": -74.009
+  },
+  {
+    "id": "deacon-jack-seymour-food-pantry",
+    "name": "Deacon Jack Seymour Food Pantry of St. Francis of Assisi Church and Sacred Heart Church",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Newburgh",
+    "address": "301 Ann St, Newburgh, New York, 12550",
+    "phone": "845-234-8564 / 845-926-0626",
+    "email": "djsfoodpantry@gmail.com",
+    "website": null,
+    "contactPerson": "Paul and Linda Zalanowski",
+    "residentsServed": "No Town Limit",
+    "idRequired": "required",
+    "schedule": "Friday, 9:00AM-12:00PM & Saturday, 8:30AM-12:00PM",
+    "days": [
+      "Fri",
+      "Sat"
+    ],
+    "donationsAccepted": true,
+    "notes": null,
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.5005,
+    "lng": -74.012
+  },
+  {
+    "id": "food-not-bombs-newburgh",
+    "name": "Food Not Bombs",
+    "categories": [
+      "hot_meals",
+      "pantry"
+    ],
+    "town": "Newburgh",
+    "address": "on Broadway between Johnston St & Lander St, Newburgh, NY",
+    "phone": null,
+    "email": null,
+    "website": "https://www.facebook.com/newburghfnb/",
+    "contactPerson": null,
+    "residentsServed": "City and Town of Newburgh",
+    "idRequired": "unknown",
+    "schedule": "Hot Meals and occasional pantry items; Wednesday 6:30PM-8:00PM",
+    "days": [
+      "Wed"
+    ],
+    "donationsAccepted": true,
+    "notes": "Outdoor/street location on Broadway",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.5058,
+    "lng": -74.0173
+  },
+  {
+    "id": "grace-united-methodist-church-food-closet",
+    "name": "Grace United Methodist Church, Food Closet",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Newburgh",
+    "address": "265 Van Ness St, Newburgh, NY 12550",
+    "phone": null,
+    "email": null,
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Friday, 2:00PM-5:00PM",
+    "days": [
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.505,
+    "lng": -74.015
+  },
+  {
+    "id": "hudson-valley-christian-church",
+    "name": "Hudson Valley Christian Church",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Newburgh",
+    "address": "100 Grand St, Newburgh, NY 12550",
+    "phone": "845-565-8526",
+    "email": "Hudsonvalley100g@gmail.com",
+    "website": null,
+    "contactPerson": "Lorraine Libolt",
+    "residentsServed": "No Town Limit",
+    "idRequired": "required",
+    "schedule": "Food Pantry; Second and Fourth Monday of the month, 1:00PM-2:00PM",
+    "days": [
+      "Mon"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.5055,
+    "lng": -74.008
+  },
+  {
+    "id": "lodger-pantry",
+    "name": "LODGER Pantry",
+    "categories": [
+      "mini_pantry"
+    ],
+    "town": "Newburgh",
+    "address": "188 Liberty St, Newburgh, NY 12550",
+    "phone": null,
+    "email": "lodgernewburgh@gmail.com",
+    "website": null,
+    "contactPerson": "Leon Johnson",
+    "residentsServed": "No Town Limit",
+    "idRequired": "not_required",
+    "schedule": "Mini-Pantry; Open 24/7",
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "donationsAccepted": true,
+    "notes": null,
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.501,
+    "lng": -74.014
+  },
+  {
+    "id": "may-lous-kitchen",
+    "name": "May Lou\u2019s Kitchen",
+    "categories": [
+      "soup_kitchen"
+    ],
+    "town": "Newburgh",
+    "address": "292 Ann St, Newburgh, NY 12550",
+    "phone": "914-295-2245",
+    "email": "Jodom1@live.com",
+    "website": null,
+    "contactPerson": "Beverly Odom",
+    "residentsServed": "City of Newburgh",
+    "idRequired": "not_required",
+    "schedule": "Soup Kitchen; First Saturday of the month",
+    "days": [
+      "Sat"
+    ],
+    "donationsAccepted": true,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.5008,
+    "lng": -74.0125
+  },
+  {
+    "id": "newburgh-free-library-mini-pantry",
+    "name": "Newburgh Free Library",
+    "categories": [
+      "mini_pantry"
+    ],
+    "town": "Newburgh",
+    "address": "124 Grand Street, Newburgh NY",
+    "phone": null,
+    "email": null,
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "No Town Limit",
+    "idRequired": "not_required",
+    "schedule": "Mini-Pantry; Open 24/7",
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.5058,
+    "lng": -74.0075
+  },
+  {
+    "id": "newburgh-tabernacle-food-pantry-kitchen",
+    "name": "Newburgh Tabernacle Food Pantry & Kitchen",
+    "categories": [
+      "pantry",
+      "soup_kitchen"
+    ],
+    "town": "Newburgh",
+    "address": "251-259 Grand St, Newburgh, NY, 12550",
+    "phone": "845-565-5053",
+    "email": "newburghtabsda@gmail.com",
+    "website": null,
+    "contactPerson": "Grantley Nicholas",
+    "residentsServed": "City and Town of Newburgh",
+    "idRequired": "not_required",
+    "schedule": "Sunday, 10:00AM-1:00PM",
+    "days": [
+      "Sun"
+    ],
+    "donationsAccepted": true,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.5065,
+    "lng": -74.007
+  },
+  {
+    "id": "one-accord-christian-church-food-pantry",
+    "name": "One Accord Christian Church Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Newburgh",
+    "address": "88 Lake St, Newburgh, NY 12550",
+    "phone": "845-522-5099",
+    "email": "oneaccordonemind@yahoo.com",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "No Town Limit",
+    "idRequired": "required",
+    "schedule": "Thursday, 4:00PM-6:30 or until supplies run out",
+    "days": [
+      "Thu"
+    ],
+    "donationsAccepted": true,
+    "notes": "ID Required, Bags required",
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.5025,
+    "lng": -74.018
+  },
+  {
+    "id": "salvation-army-newburgh",
+    "name": "Salvation Army",
+    "categories": [
+      "pantry",
+      "soup_kitchen"
+    ],
+    "town": "Newburgh",
+    "address": "234 Van Ness St, Newburgh, NY 12550",
+    "phone": "845-562-0413",
+    "email": "Kelly.Ross@use.salvationarmy.org",
+    "website": null,
+    "contactPerson": "Major Ana Guzman",
+    "residentsServed": "Food Pantry open to Newburgh residents. Soup Kitchen open to all",
+    "idRequired": "proof_of_residence",
+    "schedule": "Food Pantry: First and Third Wednesday of the month, 12:00PM-2:00PM; Soup Kitchen: Monday-Thursday, 11:00AM-12:00PM",
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu"
+    ],
+    "donationsAccepted": true,
+    "notes": "Proof of Residence Required for Food Pantry; No ID required for Soup Kitchen. Source lists pantry time as 12:00AM-2:00PM (likely 12:00PM)",
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.5048,
+    "lng": -74.0155
+  },
+  {
+    "id": "shepherds-kitchen-community-meals",
+    "name": "Shepherd's Kitchen Community Meals/Soup Kitchen",
+    "categories": [
+      "soup_kitchen"
+    ],
+    "town": "Newburgh",
+    "address": "271 Broadway, Newburgh, NY 12550",
+    "phone": null,
+    "email": "padrerigoberto@gmail.com",
+    "website": null,
+    "contactPerson": "Rev. Rigoberto",
+    "residentsServed": "Newburgh, New Windsor, and surrounding areas",
+    "idRequired": "unknown",
+    "schedule": "Saturday & Sunday, 12:00PM-1:00PM",
+    "days": [
+      "Sat",
+      "Sun"
+    ],
+    "donationsAccepted": true,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.5015,
+    "lng": -74.008
+  },
+  {
+    "id": "st-georges-church-food-pantry",
+    "name": "St. George's Church Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Newburgh",
+    "address": "105 Grand St, Newburgh, NY 12550",
+    "phone": "845-561-5355 / 845-234-8908",
+    "email": "Stgeo105@gmail.com; blueMitzi720@gmail.com",
+    "website": null,
+    "contactPerson": "Alan Nucifore",
+    "residentsServed": "City and Town of Newburgh",
+    "idRequired": "required",
+    "schedule": "Wednesday, 10:00AM-11:00AM",
+    "days": [
+      "Wed"
+    ],
+    "donationsAccepted": true,
+    "notes": "I.D, Masks, and Bags required",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.5052,
+    "lng": -74.0082
+  },
+  {
+    "id": "st-marys-outreach-giving-day",
+    "name": "St. Mary's Outreach hosts \"Giving Day\"",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Newburgh",
+    "address": "321 South Williams St, Newburgh, NY 12550",
+    "phone": "845-566-1425",
+    "email": "weekendmag@earthlink.net",
+    "website": null,
+    "contactPerson": "Marietta Allen",
+    "residentsServed": "No Town Limit",
+    "idRequired": "required",
+    "schedule": "Food Pantry; Third Friday of every month, 9:00AM-12:00PM",
+    "days": [
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": "Located at Newburgh Armory; ID and any form of Mail Required; Bring Bags",
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.498,
+    "lng": -74.02
+  },
+  {
+    "id": "trinity-house-food-pantry",
+    "name": "Trinity House Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Newburgh",
+    "address": "1 Owens Rd, Newburgh, New York, 12550",
+    "phone": null,
+    "email": "Trinityh0use@aol.com",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "Town of Newburgh Only",
+    "idRequired": "proof_of_residence",
+    "schedule": "Second Friday of the month, 5:00PM-7:00PM and following Saturday, 9:00AM-12:00PM",
+    "days": [
+      "Fri",
+      "Sat"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.52,
+    "lng": -74.045
+  },
+  {
+    "id": "union-church-food-pantry",
+    "name": "Union Church Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Newburgh",
+    "address": "44 Balmville Rd, Newburgh, NY 12550",
+    "phone": "845-562-0954",
+    "email": "NewburghUnionChurch@gmail.com",
+    "website": null,
+    "contactPerson": "Debby Hill and Kathy Barry",
+    "residentsServed": "City and Town of Newburgh, and surrounding areas",
+    "idRequired": "unknown",
+    "schedule": "Every other week, Monday and Wednesday, 9:30AM-11:30AM",
+    "days": [
+      "Mon",
+      "Wed"
+    ],
+    "donationsAccepted": true,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.53,
+    "lng": -74.015
+  },
+  {
+    "id": "calvary-presbyterian-church",
+    "name": "Calvary Presbyterian Church",
+    "categories": [
+      "hot_meals"
+    ],
+    "town": "Newburgh",
+    "address": "120 South St, Newburgh, NY 12550",
+    "phone": "845-562-8730",
+    "email": "secretary@calvarypresbychurch.org",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "No Town Limit",
+    "idRequired": "unknown",
+    "schedule": "Temporarily Not in Service. Community Dinner once a month, call for dates",
+    "days": [],
+    "donationsAccepted": false,
+    "notes": "Temporarily Not in Service",
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.499,
+    "lng": -74.011
+  },
+  {
+    "id": "st-patricks-soup-kitchen",
+    "name": "St. Patrick\u2019s Soup Kitchen",
+    "categories": [
+      "soup_kitchen"
+    ],
+    "town": "Newburgh",
+    "address": "55 Grand St, Newburgh, NY 12550",
+    "phone": "845-561-5023",
+    "email": "pammypad@aol.com",
+    "website": "https://stpatrickstmary.com/soup-kitchen",
+    "contactPerson": null,
+    "residentsServed": "No Town Limit",
+    "idRequired": "unknown",
+    "schedule": "Temporarily Not in Service. Check Website or call for Information",
+    "days": [],
+    "donationsAccepted": false,
+    "notes": "Temporarily Not in Service",
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.504,
+    "lng": -74.0088
+  },
+  {
+    "id": "otisville-mount-hope-presbyterian-church-food-pantry",
+    "name": "Otisville-Mount Hope Presbyterian Church Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Otisville",
+    "address": "25 Main Street, Otisville, NY 10963",
+    "phone": "845-386-3851",
+    "email": "otisvillepres@hvc.rr.com",
+    "website": null,
+    "contactPerson": "Kathy Card",
+    "residentsServed": "Towns within Minisink and Port Jervis School Districts",
+    "idRequired": "required",
+    "schedule": "1st and 3rd Thursday of each month 11:00AM\u20131:00PM",
+    "days": [
+      "Thu"
+    ],
+    "donationsAccepted": false,
+    "notes": "Please bring bags; Photo Id and Proof of Residence required; located at Otisville-Mount Hope Presbyterian Church",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.4738,
+    "lng": -74.5385
+  },
+  {
+    "id": "charlottes-pantry-mountain-view-umc",
+    "name": "Charlotte\u2019s Pantry at Mountain View UMC",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Pine Bush",
+    "address": "91 Maple Avenue, Pine Bush, NY 12566",
+    "phone": "610-733-0397",
+    "email": "lzelonis@msn.com",
+    "website": null,
+    "contactPerson": "Lisa Zelonis",
+    "residentsServed": "Towns within the Pine Bush Central School District",
+    "idRequired": "unknown",
+    "schedule": "First and Third Friday of the month 10:00AM-10:30AM",
+    "days": [
+      "Fri"
+    ],
+    "donationsAccepted": true,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.609,
+    "lng": -74.2985
+  },
+  {
+    "id": "pine-bush-ecumenical-food-pantry",
+    "name": "Pine Bush Ecumenical Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Pine Bush",
+    "address": "2964 Rt. 52, Pine Bush, NY 12566",
+    "phone": "845-744-3390",
+    "email": "doschiro@yahoo.com",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "Towns within the Pine Bush Central School District",
+    "idRequired": "unknown",
+    "schedule": "Wednesday 10:00AM-12:00PM & Thursday 5:00PM-7:00PM",
+    "days": [
+      "Wed",
+      "Thu"
+    ],
+    "donationsAccepted": false,
+    "notes": "Located at New Prospect Reformed Church",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.61,
+    "lng": -74.295
+  },
+  {
+    "id": "st-pauls-roman-catholic-church-bullville",
+    "name": "St. Paul\u2019s Roman Catholic Church",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Pine Bush",
+    "address": "2800 Route 17K, Bullville, NY 10915",
+    "phone": "845-361-3107",
+    "email": "o389@archny.org",
+    "website": null,
+    "contactPerson": "Deb Botty",
+    "residentsServed": "Middletown and Pine Bush area",
+    "idRequired": "unknown",
+    "schedule": "Food Pantry; Call for Availability",
+    "days": [],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.555,
+    "lng": -74.35
+  },
+  {
+    "id": "easter-seals-food-pantry",
+    "name": "Easter Seals Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Port Jervis",
+    "address": "191 Jersey Avenue, Port Jervis, NY 12771",
+    "phone": "845-858-3869",
+    "email": "bkuczyra@eastersealsny.org",
+    "website": null,
+    "contactPerson": "Barbara Kuczyra",
+    "residentsServed": "No Town Limit",
+    "idRequired": "not_required",
+    "schedule": "Daily Distribution of Emergency Food Boxes; Regular Pantry open 8:30AM, Third Monday of each month",
+    "days": [
+      "Mon"
+    ],
+    "donationsAccepted": false,
+    "notes": "Emergency food boxes available daily; regular pantry third Monday",
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.378,
+    "lng": -74.69
+  },
+  {
+    "id": "helping-hands-food-pantry-hope-center",
+    "name": "Helping Hands Food Pantry, Hope Center Drew United Methodist Church",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Port Jervis",
+    "address": "49 Sussex St, Port Jervis, NY 12771",
+    "phone": "845-856-3423",
+    "email": "drewumcpjny@gmail.com",
+    "website": null,
+    "contactPerson": "Patty Gessner",
+    "residentsServed": "No Town Limit",
+    "idRequired": "not_required",
+    "schedule": "Saturday, 8:30AM-10:00AM",
+    "days": [
+      "Sat"
+    ],
+    "donationsAccepted": true,
+    "notes": null,
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.376,
+    "lng": -74.693
+  },
+  {
+    "id": "faith-tabernacle-international-ministries",
+    "name": "Faith Tabernacle International Ministries",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Port Jervis",
+    "address": "20 Franklin Street, Port Jervis, NY 12771",
+    "phone": "845-313-4496",
+    "email": null,
+    "website": null,
+    "contactPerson": "Izetta Briggs-Bolling",
+    "residentsServed": "Surrounding towns (NY, NJ, PA)",
+    "idRequired": "not_required",
+    "schedule": "Every other Sunday 1:00PM-3:00PM",
+    "days": [
+      "Sun"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.3755,
+    "lng": -74.691
+  },
+  {
+    "id": "fed-by-grace-food-pantry",
+    "name": "Fed by Grace Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Port Jervis",
+    "address": "84 Seward Avenue, Port Jervis, NY 12771",
+    "phone": "845-856-3026",
+    "email": "graceptj@frontiernet.net",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Third Saturday of the month, 10:00AM-11:00AM",
+    "days": [
+      "Sat"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.377,
+    "lng": -74.688
+  },
+  {
+    "id": "salvation-army-of-port-jervis",
+    "name": "Salvation Army of Port Jervis",
+    "categories": [
+      "pantry",
+      "soup_kitchen"
+    ],
+    "town": "Port Jervis",
+    "address": "99 Ball Street, Port Jervis, NY 12771",
+    "phone": "845-856-3214",
+    "email": "Sharon.eagle@use.salvationarmy.org",
+    "website": null,
+    "contactPerson": "Sharon Eagle",
+    "residentsServed": "Orange County Residents",
+    "idRequired": "proof_of_residence",
+    "schedule": "By appointment only; Food Pantry Monday\u2013Friday, 1:30PM-3:00PM; Soup Kitchen Monday-Friday, 11:30AM-12:30PM",
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+    ],
+    "donationsAccepted": true,
+    "notes": "By appointment only",
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.3745,
+    "lng": -74.692
+  },
+  {
+    "id": "seventh-day-adventist-food-pantry-sparrowbush",
+    "name": "Seventh-day Adventist Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Port Jervis",
+    "address": "795 Route 42, Sparrowbush, NY 12780",
+    "phone": null,
+    "email": null,
+    "website": "https://www.facebook.com/SDAFoodPantry/",
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Second Wednesday of the month, 11:00PM-4:00PM; Or contact on Facebook for information",
+    "days": [
+      "Wed"
+    ],
+    "donationsAccepted": false,
+    "notes": "Source lists 11:00PM-4:00PM (likely OCR error for 11:00AM)",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.43,
+    "lng": -74.72
+  },
+  {
+    "id": "st-marys-food-pantry-and-soup-kitchen-port-jervis",
+    "name": "St. Mary\u2019s Food Pantry and Soup Kitchen",
+    "categories": [
+      "pantry",
+      "soup_kitchen"
+    ],
+    "town": "Port Jervis",
+    "address": "Food Pantry: 50 Ball Street, Port Jervis, NY 12771; Soup Kitchen: Church Hall, 48 Ball Street, Port Jervis, NY 12771",
+    "phone": "845-856-8212",
+    "email": "st-marys-rectory@hvc.rr.com",
+    "website": null,
+    "contactPerson": "Gina T.",
+    "residentsServed": "No Town Limit",
+    "idRequired": "required",
+    "schedule": "Food Pantry: Every other Friday, 10:00AM-12:00PM; Soup Kitchen: Second Friday of the month, 5:00PM-7:00PM",
+    "days": [
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": "Proof of Residence Required and I.D",
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.3748,
+    "lng": -74.6925
+  },
+  {
+    "id": "sloatsburg-food-pantry-all-souls",
+    "name": "Sloatsburg Food Pantry, All Souls Community Church",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Tuxedo",
+    "address": "81 Washington Avenue, Suffern, NY 10901",
+    "phone": "845-618-5373",
+    "email": "SloatsburgFoodPantry@gmail.com",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "Tuxedo, Suffern, Hillburn, and Sloatsburg",
+    "idRequired": "required",
+    "schedule": "Appointment Recommended; Second & Fourth Tuesday of the month, 1:00PM-5:30PM & Wednesdays 1:00PM-6:30PM",
+    "days": [
+      "Tue",
+      "Wed"
+    ],
+    "donationsAccepted": true,
+    "notes": "Rockland County location listed under Tuxedo section; Proof of Residence and ID Required",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.1155,
+    "lng": -74.15
+  },
+  {
+    "id": "orange-county-veterans-food-pantry",
+    "name": "Orange County Veterans Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Valley Central",
+    "address": "9 Hawkins Drive, Montgomery, NY 12549",
+    "phone": "845-291-2470 / 845-291-2464",
+    "email": "cfarrell@orangecountygov.com; nrostran@orangecountygov.com",
+    "website": null,
+    "contactPerson": "Christian Farrell; Natalie Rostran",
+    "residentsServed": "Veterans living in Orange County, NY",
+    "idRequired": "unknown",
+    "schedule": "Home Delivery, call or email for application information",
+    "days": [],
+    "donationsAccepted": true,
+    "notes": "Monetary Only Donations Accepted; home delivery",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.5285,
+    "lng": -74.235
+  },
+  {
+    "id": "town-of-montgomery-food-pantry",
+    "name": "Town of Montgomery Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Valley Central",
+    "address": "2200 State Route 208, Montgomery, NY 12549",
+    "phone": "845-778-7669",
+    "email": "jgrid@live.com",
+    "website": null,
+    "contactPerson": "Judy Gridley",
+    "residentsServed": "Towns within the Valley Central School District",
+    "idRequired": "proof_of_residence",
+    "schedule": "Tuesday 10:00AM-12:00PM & Wednesday 6:30PM-8:00PM",
+    "days": [
+      "Tue",
+      "Wed"
+    ],
+    "donationsAccepted": false,
+    "notes": "Proof of residency for all adults 18 and over in household",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.527,
+    "lng": -74.24
+  },
+  {
+    "id": "the-good-samaritan-food-pantry",
+    "name": "The Good Samaritan Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Walden",
+    "address": "12 Scoffield Rd, Walden, NY",
+    "phone": "845-541-8936",
+    "email": null,
+    "website": null,
+    "contactPerson": "Rev Ray Cummings",
+    "residentsServed": "Residents of Zip Code 12586, but no one refused",
+    "idRequired": "not_required",
+    "schedule": "Tuesday 12:00Noon-2:00PM; Wednesday 12:00PM-2:00PM; Thursday 12:00Noon-4:00PM; Friday 11:00AM-1:00PM",
+    "days": [
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+    ],
+    "donationsAccepted": true,
+    "notes": "Monetary Only Donations Accepted; source lists Wednesday as 12:00AM-2:00PM (likely 12:00PM)",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.56,
+    "lng": -74.189
+  },
+  {
+    "id": "his-love-unveiled-food-pantry",
+    "name": "His Love Unveiled Food Pantry at Mid-Hudson Christian Church",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Wallkill",
+    "address": "2393 Rt 300, Wallkill, NY 12589",
+    "phone": "845-895-3006",
+    "email": "Midhudcc@gmail.com",
+    "website": "https://www.facebook.com/mhccwallkill/",
+    "contactPerson": "Julie and Max",
+    "residentsServed": "Towns within the Wallkill Central School District",
+    "idRequired": "unknown",
+    "schedule": "Second & Fourth Tuesday of the month 12:00PM-1:30PM & Second & Fourth Friday of the month 6:30PM-7:30PM",
+    "days": [
+      "Tue",
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.61,
+    "lng": -74.18
+  },
+  {
+    "id": "loaves-and-fishes-food-pantry-wallkill",
+    "name": "Loaves and Fishes Food Pantry at Wallkill Reformed Church",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Wallkill",
+    "address": "45 Bridge Street, Wallkill, NY 12589",
+    "phone": "845-851-4010",
+    "email": "wrclffp@yahoo.com",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "Residents living within the Wallkill Central School District",
+    "idRequired": "proof_of_residence",
+    "schedule": "Thursday 5:30PM-7:30PM & Friday 11:00AM-1:00PM",
+    "days": [
+      "Thu",
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.605,
+    "lng": -74.186
+  },
+  {
+    "id": "new-day-food-pantry",
+    "name": "New Day Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Wallkill",
+    "address": "38 Old Firehouse Road, Wallkill, NY 12568",
+    "phone": "845-566-4441",
+    "email": null,
+    "website": null,
+    "contactPerson": "Phyllis Washington",
+    "residentsServed": "Plattekill and surrounding towns",
+    "idRequired": "required",
+    "schedule": "Wednesday 5:00PM-6:00PM & Saturday 10:00AM-12:00PM",
+    "days": [
+      "Wed",
+      "Sat"
+    ],
+    "donationsAccepted": false,
+    "notes": null,
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.6,
+    "lng": -74.19
+  },
+  {
+    "id": "st-peter-lutheran-church-food-pantry",
+    "name": "St. Peter Lutheran Church Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Warwick",
+    "address": "70 Little York Road, Warwick, NY",
+    "phone": "845-341-3626",
+    "email": "carol_long358@hotmail.com",
+    "website": null,
+    "contactPerson": "Carol Long",
+    "residentsServed": "No Town Limit",
+    "idRequired": "unknown",
+    "schedule": "Last Sunday of the month, 12:00PM-1:30PM",
+    "days": [
+      "Sun"
+    ],
+    "donationsAccepted": true,
+    "notes": null,
+    "openToAll": true,
+    "kind": "site",
+    "lat": 41.26,
+    "lng": -74.35
+  },
+  {
+    "id": "warwick-ecumenical-food-pantry",
+    "name": "Warwick Ecumenical Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Warwick",
+    "address": "135 Forester Avenue, Warwick, NY 10990",
+    "phone": "845-986-8368",
+    "email": "gpdickes@warwick.net",
+    "website": null,
+    "contactPerson": "Glenn P. Dickes",
+    "residentsServed": "Town of Warwick and surrounding towns",
+    "idRequired": "required",
+    "schedule": "Monday & Thursday, 5:00PM-7:00PM",
+    "days": [
+      "Mon",
+      "Thu"
+    ],
+    "donationsAccepted": true,
+    "notes": "ID and Proof of Residence Required",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.256,
+    "lng": -74.358
+  },
+  {
+    "id": "country-kids-4h-food-pantry",
+    "name": "Country Kids 4H Food Pantry",
+    "categories": [
+      "pantry"
+    ],
+    "town": "Washingtonville",
+    "address": "2 Father Tierney Circle, Washingtonville, NY 10992",
+    "phone": "845-496-2119",
+    "email": "countrykidspantry@gmail.com",
+    "website": null,
+    "contactPerson": "John Flores",
+    "residentsServed": "Towns within the Washingtonville Central School District",
+    "idRequired": "required",
+    "schedule": "First & Third Wednesday of every month 2:30PM-6:00PM",
+    "days": [
+      "Wed"
+    ],
+    "donationsAccepted": false,
+    "notes": "ID and Proof of Residence Required",
+    "openToAll": false,
+    "kind": "site",
+    "lat": 41.4275,
+    "lng": -74.166
+  }
+]

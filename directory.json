@@ -1,0 +1,3516 @@
+{
+  "meta": {
+    "title": "Orange County Food Assistance",
+    "subtitle": "County-Wide Food Assistance Directory",
+    "updated": "June 2026",
+    "contactName": "Meg Oakes",
+    "contactEmail": "moakes@orangecountygov.com",
+    "disclaimer": "Information is subject to change due to increases in utilization. Please call the location before you go to confirm availability, hours, and documentation requirements. Most pantries ask for ID, proof of address, and that you bring your own bags."
+  },
+  "programs": [
+    {
+      "id": "snap",
+      "name": "Supplemental Nutrition Assistance Program (SNAP)",
+      "category": "snap",
+      "description": "Household must meet certain income and resource limits, and work requirements to be eligible to receive SNAP benefits. Although not typically eligible for SNAP, students and non-citizens can receive SNAP benefits under specific qualifications. Non-citizens generally must have lived in the U.S. for at least 5 years, be receiving disability-related assistance or benefits, or be children under 18. People experiencing homelessness do not need to meet certain residential requirements. Special rules apply for the elderly or disabled.",
+      "phone": "845-291-2002",
+      "email": null,
+      "website": "https://mybenefits.ny.gov/mybenefits/begin",
+      "address": null,
+      "town": "Orange County",
+      "district": null,
+      "schedule": null,
+      "howToEnroll": "Apply via myBenefits (https://mybenefits.ny.gov/mybenefits/begin), call Orange County Department of Social Services at 845-291-2002, call United Way 211, or contact Cornerstone Family Healthcare Enabling Services at 845-926-3636 / Jduran@cornerstonefh.org.",
+      "links": [
+        {
+          "label": "Students SNAP eligibility",
+          "url": "https://www.fns.usda.gov/snap/students"
+        },
+        {
+          "label": "Elderly or Disabled special rules",
+          "url": "https://www.fns.usda.gov/snap/eligibility/elderly-disabled-special-rules"
+        },
+        {
+          "label": "Federal SNAP eligibility",
+          "url": "https://www.fns.usda.gov/snap/recipient/eligibility"
+        },
+        {
+          "label": "NYS SNAP Q&A",
+          "url": "https://otda.ny.gov/programs/snap/qanda.asp#eligible"
+        },
+        {
+          "label": "myBenefits apply",
+          "url": "https://mybenefits.ny.gov/mybenefits/begin"
+        }
+      ],
+      "locations": [
+        {
+          "name": "United Way of the Dutchess-Orange Region Serving Orange County",
+          "address": "75 Market Street, Poughkeepsie, NY 12601",
+          "phone": "211",
+          "email": null,
+          "schedule": null
+        },
+        {
+          "name": "Orange County Department of Social Services \u2013 Goshen",
+          "address": "11 Quarry Road, Box Z, Goshen, NY 10924",
+          "phone": "845-291-2002",
+          "email": null,
+          "schedule": null
+        },
+        {
+          "name": "Orange County Department of Social Services \u2013 Middletown",
+          "address": "18 Seward Avenue, Middletown, NY 10940",
+          "phone": "845-291-2002",
+          "email": null,
+          "schedule": null
+        },
+        {
+          "name": "Orange County Department of Social Services \u2013 Newburgh",
+          "address": "3 Washington Center, Newburgh, NY 12550",
+          "phone": "845-291-2002",
+          "email": null,
+          "schedule": null
+        },
+        {
+          "name": "Cornerstone Family Healthcare Enabling Services \u2013 Newburgh",
+          "address": "147 Lake Street, Newburgh, NY 12550",
+          "phone": "845-926-3636",
+          "email": "Jduran@cornerstonefh.org",
+          "schedule": null
+        },
+        {
+          "name": "Cornerstone Family Healthcare Enabling Services \u2013 Middletown",
+          "address": "10 Benton Avenue, Middletown, NY 10940",
+          "phone": "845-926-3636",
+          "email": "Jduran@cornerstonefh.org",
+          "schedule": null
+        }
+      ]
+    },
+    {
+      "id": "wic",
+      "name": "Women, Infants, and Children Program (WIC)",
+      "category": "wic",
+      "description": "Applicants must meet all eligibility requirements: Categorical (pregnant women during pregnancy and up to 6 weeks after birth/end of pregnancy; postpartum up to six months after birth; breastfeeding up to infant's first birthday; infants up to first birthday; children up to fifth birthday); Residential (must live in the state of application); Income (at or below state income standard, or automatically income-eligible via SNAP, Medicaid, TANF, etc.); Nutrition Risk (determined by health professional or WIC staff). Non-citizens are eligible if they meet general eligibility requirements.",
+      "phone": "845-568-5473",
+      "email": "Wic@sunriver.org",
+      "website": null,
+      "address": null,
+      "town": "Orange County",
+      "district": null,
+      "schedule": null,
+      "howToEnroll": "Contact a local WIC clinic (Cornerstone Family Healthcare or Sun River Health) to apply. Must meet categorical, residential, income, and nutrition-risk requirements.",
+      "links": [
+        {
+          "label": "Federal WIC eligibility",
+          "url": "https://www.fns.usda.gov/wic/wic-eligibility-requirements"
+        },
+        {
+          "label": "NYS WIC information",
+          "url": "https://www.health.ny.gov/publications/4081/"
+        }
+      ],
+      "locations": [
+        {
+          "name": "Cornerstone Family Healthcare \u2013 Newburgh",
+          "address": "147 Lake Street, Newburgh, NY",
+          "phone": "845-568-5473",
+          "email": null,
+          "schedule": "Monday 10:00a\u20136:00p; Tuesday 8:00a\u20135:00p; Wednesday 8:00a\u20135:00p; Thursday 8:00a\u20134:00p; Friday 8:00a\u20135:00p; 3rd Saturday of the month 9:00a\u20131:00p"
+        },
+        {
+          "name": "Cornerstone Family Healthcare \u2013 Harriman",
+          "address": "33 NY-17M, Harriman, NY",
+          "phone": "845-568-5473",
+          "email": null,
+          "schedule": "Monday 10:00a\u20136:00p; Tuesday & Wednesday 8:00a\u20135:00p; Thursday 8:00a\u20134:00p; Friday 9:00a\u20135:00p; Third Sunday of the month 9:00a\u20131:00p"
+        },
+        {
+          "name": "Cornerstone Family Healthcare \u2013 Port Jervis",
+          "address": "140 Hammond Street, Port Jervis, NY",
+          "phone": "845-568-5473",
+          "email": null,
+          "schedule": "Monday\u2013Wednesday 9:00a\u20135:00p; Thursday 8:00a\u20134:00p; Friday 9:00a\u20135:00p"
+        },
+        {
+          "name": "Sun River Health \u2013 Middletown",
+          "address": "156 Dolson Avenue, Middletown, NY 10940",
+          "phone": "845-640-4480",
+          "email": "Wic@sunriver.org",
+          "schedule": "Monday 10:00a\u20136:00p; Tuesday\u2013Friday 9:00a\u20135:00p"
+        },
+        {
+          "name": "Sun River Health \u2013 Walden",
+          "address": "75 Orange Ave, Walden, NY 12586",
+          "phone": "845-831-7402",
+          "email": null,
+          "schedule": "Monday & Wednesday\u2013Friday 9:00a\u20135:00p; Tuesday 10:00a\u20136:00p"
+        }
+      ]
+    },
+    {
+      "id": "home-delivered-meals",
+      "name": "Home Delivered Meal Program",
+      "category": "senior",
+      "description": "Nutritious noontime meals are distributed to elderly residents in many locations in Orange County, with nutrition education and counseling with a registered dietician provided as needed. Arrangements may be made for weekend service and limited diet modifications. A pre-screening process is required; final approval depends on an in-home assessment. Food delivery once a week after sign-up. Serves all Orange County residents except Village of Warwick.",
+      "phone": "845-615-3710",
+      "email": null,
+      "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+      "address": "40 Matthews Street, 3rd Floor, Suite 305, Goshen, NY",
+      "town": "Orange County (except Village of Warwick)",
+      "district": null,
+      "schedule": "Food delivery once a week after sign-up; weekend service may be arranged",
+      "howToEnroll": "Call Orange County NY Connects at 845-615-3710 to complete a referral for Home Delivered Meals. Pre-screening required; final approval dependent upon in-home assessment.",
+      "links": [
+        {
+          "label": "Senior Dining Program",
+          "url": "https://www.orangecountygov.com/165/Senior-Dining-Program"
+        },
+        {
+          "label": "Winter/Inclement Weather Information",
+          "url": "https://www.orangecountygov.com/DocumentCenter/View/126/Senior-Dining-Program-Winter-Inclement-Weather-Information-PDF?bidId="
+        }
+      ],
+      "locations": [
+        {
+          "name": "Orange County Office for the Aging",
+          "address": "40 Matthews Street, 3rd Floor, Suite 305, Goshen, NY",
+          "phone": "845-615-3700",
+          "email": null,
+          "schedule": null
+        }
+      ]
+    },
+    {
+      "id": "congregate-dining",
+      "name": "Congregate Dining Sites",
+      "category": "senior",
+      "description": "Monday through Friday, seniors gather at different sites throughout Orange County to be served a nutritious noontime meal while enjoying social, health and educational programs, as well as nutrition education and counseling with a registered dietician. Reservations required 24 hours in advance by calling the specific site.",
+      "phone": "845-615-3700",
+      "email": null,
+      "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+      "address": "40 Matthews Street, 3rd Floor, Suite 305, Goshen, NY",
+      "town": "Orange County",
+      "district": null,
+      "schedule": "Noontime meals; days vary by site (see locations)",
+      "howToEnroll": "Reservations required 24 hours in advance by calling the specific site's telephone number.",
+      "links": [
+        {
+          "label": "Senior Dining Program",
+          "url": "https://www.orangecountygov.com/165/Senior-Dining-Program"
+        }
+      ],
+      "locations": [
+        {
+          "name": "Blooming Grove Senior Center",
+          "address": null,
+          "phone": "845-496-4411",
+          "email": null,
+          "schedule": "Tuesday, Thursday and Friday"
+        },
+        {
+          "name": "Chester",
+          "address": null,
+          "phone": "845-469-7000 Ext 3",
+          "email": null,
+          "schedule": "Tuesday and Thursday"
+        },
+        {
+          "name": "Cornwall Senior Center",
+          "address": "Munger Cottage",
+          "phone": "845-534-4500",
+          "email": null,
+          "schedule": "Monday, Thursday, and Friday at Munger Cottage"
+        },
+        {
+          "name": "Greenwood Lake Senior Center",
+          "address": "Greenwood Lake Senior Center",
+          "phone": "845-477-8482",
+          "email": null,
+          "schedule": "Wednesdays and Fridays at the Greenwood Lake Senior Center"
+        },
+        {
+          "name": "Middletown",
+          "address": "St. Paul's Methodist Church, 58 W. Main Street, Middletown",
+          "phone": "845-343-6911",
+          "email": null,
+          "schedule": "Monday through Friday"
+        },
+        {
+          "name": "Montgomery Senior Center",
+          "address": "Montgomery Senior Center",
+          "phone": "845-457-9367",
+          "email": null,
+          "schedule": "Monday, Wednesday, and Friday at the Montgomery Senior Center"
+        }
+      ]
+    },
+    {
+      "id": "meals-on-wheels-newburgh",
+      "name": "Meals on Wheels \u2013 Newburgh and New Windsor",
+      "category": "senior",
+      "description": "Any individual residing in Newburgh or New Windsor who is home-bound and has difficulty cooking\u2014because of age, illness, injury or disability\u2014can apply to receive meals. There is a modest charge for those who are able to pay; participates in most managed long-term care insurance plans; relies on donations to cover remaining costs.",
+      "phone": "845-562-3490",
+      "email": null,
+      "website": "https://www.mealsonwheelsnewburgh.org/how-apply",
+      "address": null,
+      "town": "Newburgh / New Windsor",
+      "district": null,
+      "schedule": null,
+      "howToEnroll": "Apply at https://www.mealsonwheelsnewburgh.org/how-apply or call 845-562-3490.",
+      "links": [
+        {
+          "label": "How to apply",
+          "url": "https://www.mealsonwheelsnewburgh.org/how-apply"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "meals-on-wheels-warwick",
+      "name": "Meals on Wheels \u2013 Town/Village of Warwick",
+      "category": "senior",
+      "description": "Meals provided to homebound and/or elderly individuals who are unable to shop or cook for themselves due to age, illness or disability. Fresh meals prepared daily at Mt. Alverno Center. Hot meals (meat, starch, vegetables, milk or juice, bread and butter, dessert or fruit) and cold meals (sandwich, salad, milk or juice, dessert) available; customized to dietary needs. Modest charge for meals. Deliveries to Village of Warwick and some surrounding areas in the Town of Warwick.",
+      "phone": "845-986-3389",
+      "email": null,
+      "website": "https://www.mealsonwheelsofwarwickny.org/apply-for-meals",
+      "address": null,
+      "town": "Warwick",
+      "district": null,
+      "schedule": "Weekdays Monday\u2013Friday 11:30am\u20131:00pm including holidays",
+      "howToEnroll": "Call Meals on Wheels of Warwick at 845-986-3389 and leave a voicemail. A representative will contact you. Meal delivery starts soon after enrollment. Also apply at https://www.mealsonwheelsofwarwickny.org/apply-for-meals.",
+      "links": [
+        {
+          "label": "Apply for meals",
+          "url": "https://www.mealsonwheelsofwarwickny.org/apply-for-meals"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "summer-ebt",
+      "name": "Summer EBT Food Benefits for New York State",
+      "category": "summer_ebt",
+      "description": "The Summer Electronic Benefit Transfer (EBT) program helps families buy food for their school-aged children during the summer. Families get $120 in food benefits for each eligible child on an EBT card, usable for fruits, vegetables, meat, whole grains, and dairy at authorized retail food stores, farmers' markets, and anywhere SNAP is accepted. Unused benefits expire and are removed 122 days from issuance. Apply before September 8, 2026 deadline for 2026 benefits if no OTDA communication received by mid-June.",
+      "phone": null,
+      "email": null,
+      "website": "https://otda.ny.gov/SummerEBT",
+      "address": null,
+      "town": null,
+      "district": "New York State",
+      "schedule": null,
+      "howToEnroll": "Visit otda.ny.gov/SummerEBT to learn when and how benefits are issued and how to use them. If no communications from NYS OTDA by mid-June, apply before the September 8, 2026 deadline for 2026 benefits.",
+      "links": [
+        {
+          "label": "Summer EBT program",
+          "url": "https://otda.ny.gov/SummerEBT"
+        },
+        {
+          "label": "Summer EBT Flyer (English)",
+          "url": "https://otda.ny.gov/programs/summer-ebt/school-provider-information/Summer-EBT-Flyer.pdf"
+        },
+        {
+          "label": "Summer EBT Flyer (Spanish)",
+          "url": "https://otda.ny.gov/programs/summer-ebt/school-provider-information/Summer-EBT-Flyer-Spanish.pdf"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "chester-ufsd-nslp",
+      "name": "National School Lunch and Breakfast Program",
+      "category": "school",
+      "description": "Chester Academy offers healthy meals every school day. Children may qualify for free or reduced-price meals. Beginning July 1, 2019, NYS students approved for reduced-price meals receive breakfast, lunch, and Afterschool Snack Program snacks at no charge.",
+      "phone": "845-469-2231",
+      "email": "rachel.loftus@chesterufsd.org",
+      "website": "https://www.chesterufsd.org/domain/42",
+      "address": "Food Service Department, Chester UFSD, 64 Hambletonian Ave., Chester, NY 10918",
+      "town": "Chester",
+      "district": "Chester UFSD",
+      "schedule": null,
+      "howToEnroll": "Return the completed application to: Food Service Department, Chester UFSD, 64 Hambletonian Ave., Chester, NY 10918. Contact Rachel Loftus.",
+      "links": [
+        {
+          "label": "Food services",
+          "url": "https://www.chesterufsd.org/domain/42"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "cornwall-csd-backpacks",
+      "name": "Backpacks For Food",
+      "category": "school",
+      "description": "Community-supported outreach providing breakfasts and lunches in backpacks for weekends to elementary, CCMS, and CCHS students receiving free and reduced meal benefits. No charge. Fully funded, volunteer-staffed, confidentially managed. Generic backpack and single-serving packaged foods provided Fridays; empty backpack returned Monday.",
+      "phone": "845-534-8009 x7704",
+      "email": null,
+      "website": "https://www.cornwallschools.com/food-service-home",
+      "address": null,
+      "town": "Cornwall",
+      "district": "Cornwall CSD",
+      "schedule": "Fridays (weekend backpacks); return Monday",
+      "howToEnroll": "Parent/Guardian must fill out Backpacks for Food Application. Call CCSD Food Service Office with questions.",
+      "links": [
+        {
+          "label": "Food service home",
+          "url": "https://www.cornwallschools.com/food-service-home"
+        },
+        {
+          "label": "Donations & sponsorships",
+          "url": "https://www.cornwallbff.org/donations--sponsorships"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "cornwall-csd-nslp",
+      "name": "National School Lunch and Breakfast Program",
+      "category": "school",
+      "description": "All schools within CCSD participate in USDA child nutrition programs, including the National School Lunch Program (NSLP) and the School Breakfast Program (SBP).",
+      "phone": "845-534-8009 x7704",
+      "email": null,
+      "website": "https://www.cornwallschools.com/food-service-home",
+      "address": null,
+      "town": "Cornwall",
+      "district": "Cornwall CSD",
+      "schedule": null,
+      "howToEnroll": "Contact Food Service Office.",
+      "links": [
+        {
+          "label": "Food service home",
+          "url": "https://www.cornwallschools.com/food-service-home"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "florida-ufsd-backpack-snack-attack",
+      "name": "Backpack Snack Attack",
+      "category": "school",
+      "description": "Outreach program of the Warwick Reformed Church providing food for hungry school children to eat at home on weekends during the school year. Provides backpacks and individually sized, ready-to-eat (including microwavable), kid-friendly food items for children and siblings every weekend.",
+      "phone": "845-651-3095 x20030",
+      "email": "kscheuermann@floridaufsd.org",
+      "website": "https://backpacksnackattack.com/",
+      "address": null,
+      "town": "Florida",
+      "district": "Florida UFSD",
+      "schedule": "Weekends during the school year",
+      "howToEnroll": "Contact the School Nurses. Contact person: Kathleen Scheuermann, Golden Hill Elementary School Nurse.",
+      "links": [
+        {
+          "label": "Backpack Snack Attack",
+          "url": "https://backpacksnackattack.com/"
+        },
+        {
+          "label": "Donate",
+          "url": "https://backpacksnackattack.com/donate/"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "florida-ufsd-nslp",
+      "name": "National School Lunch and Breakfast Program",
+      "category": "school",
+      "description": "School Meals Program contributes to a successful academic experience by providing affordable meals that are nutritious, appealing and served by caring professionals in a pleasant environment.",
+      "phone": "845-651-3095 Ext. 20036",
+      "email": null,
+      "website": "https://www.floridaufsd.org/district-departments/food-services/",
+      "address": "Florida UFSD Food Services, P.O. Drawer 757, Florida, NY 10921",
+      "town": "Florida",
+      "district": "Florida UFSD",
+      "schedule": null,
+      "howToEnroll": "Fill out and send in application to: Florida UFSD Food Services, P.O. Drawer 757, Florida, NY 10921.",
+      "links": [
+        {
+          "label": "Food services",
+          "url": "https://www.floridaufsd.org/district-departments/food-services/"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "greenwood-lake-ufsd-backpack-snack-attack",
+      "name": "Backpack Snack Attack",
+      "category": "school",
+      "description": "Outreach program of the Warwick Reformed Church providing food for hungry school children to eat at home on weekends during the school year. Provides backpacks and individually sized, ready-to-eat (including microwavable), kid-friendly food items for children and siblings every weekend.",
+      "phone": "845-782-8678 x52330",
+      "email": "Nburke@gwlusfd.org",
+      "website": "https://backpacksnackattack.com/",
+      "address": null,
+      "town": "Greenwood Lake",
+      "district": "Greenwood Lake UFSD",
+      "schedule": "Weekends during the school year",
+      "howToEnroll": "Contact the School Nurses. Contact person: Nicole Burke, Middle School.",
+      "links": [
+        {
+          "label": "Backpack Snack Attack",
+          "url": "https://backpacksnackattack.com/"
+        },
+        {
+          "label": "Donate",
+          "url": "https://backpacksnackattack.com/donate/"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "greenwood-lake-ufsd-nslp",
+      "name": "National School Lunch and Breakfast Program",
+      "category": "school",
+      "description": "Greenwood Lake UFSD participates in the Community Eligibility Provision (CEP), providing all students free breakfast and lunch. Beginning 2025\u20132026, NYS Universal School Meals Program ensures all students continue to receive breakfast and lunch at no cost.",
+      "phone": "845-782-8678 x52340",
+      "email": "stuechler@gwlufsd.org",
+      "website": "https://www.gwlufsd.org/",
+      "address": "Food Service Department, PO Box 8, Greenwood Lake, NY 10925",
+      "town": "Greenwood Lake",
+      "district": "Greenwood Lake UFSD",
+      "schedule": null,
+      "howToEnroll": "Return the completed application to: Food Service Department, PO Box 8, Greenwood Lake, NY 10925. Contact Samanda Tuechler, Cook Manager.",
+      "links": [
+        {
+          "label": "District website",
+          "url": "https://www.gwlufsd.org/"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "highland-falls-csd-backpack",
+      "name": "Backpack Program",
+      "category": "school",
+      "description": "Backpacks of food distributed on Fridays for the weekend. Staff pack bags Thursday afternoons. Food donated from the Food Bank of the Hudson Valley. Student list based on free/reduced meals plus need/referrals from staff. An opt-out letter is sent with the first bag; if not returned, students continue receiving bags.",
+      "phone": "845-446-4761 x3641",
+      "email": "kelleyanne.lonergan@hffmcsd.org",
+      "website": "https://foodbankofhudsonvalley.org/",
+      "address": null,
+      "town": "Highland Falls",
+      "district": "Highland Falls CSD",
+      "schedule": "Fridays (bags packed Thursday afternoons)",
+      "howToEnroll": "Receive Free/Reduced Meals and/or contact Kelley-Anne Lonegran.",
+      "links": [
+        {
+          "label": "Food Bank of the Hudson Valley",
+          "url": "https://foodbankofhudsonvalley.org/"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "highland-falls-csd-nslp",
+      "name": "National School Lunch and Breakfast Program",
+      "category": "school",
+      "description": "For 2025\u20132026, all enrolled Highland Falls\u2013Fort Montgomery CSD students are eligible for one healthy breakfast and one lunch at no cost each school day. Additional items can be paid from the student account. No fee or meal application required to participate; families are strongly encouraged to complete Free and Reduced-Price application for State/federal funding eligibility. Also has a summer meals program.",
+      "phone": null,
+      "email": "dawn.storms@hffmcsd.org",
+      "website": "https://www.hffmcsd.org/site/Default.aspx?PageID=156",
+      "address": null,
+      "town": "Highland Falls",
+      "district": "Highland Falls CSD",
+      "schedule": null,
+      "howToEnroll": "Return completed applications / fillable forms emailed to Dawn Storms, dawn.storms@hffmcsd.org. CEP Household Income Form available in English and Spanish.",
+      "links": [
+        {
+          "label": "Food services",
+          "url": "https://www.hffmcsd.org/site/Default.aspx?PageID=156"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "middletown-ecsd-middies-meals",
+      "name": "Middies Meals on the Move (National School Lunch and Breakfast Program)",
+      "category": "school",
+      "description": "Middletown City School District provides Pre-fuel (breakfast) and Re-fuel (lunch) for all scholars at no cost under the Community Eligibility Provision. Classroom-friendly Pre-fuel menu; high school and middle school students can also use meal vending machines for Pre-fuel from 7 a.m.\u20139 a.m.",
+      "phone": "845-326-1233",
+      "email": "Lauren.Burr@ecsdm.org",
+      "website": "https://www.middletowncityschools.org/site/Default.aspx?PageID=214",
+      "address": null,
+      "town": "Middletown",
+      "district": "Middletown ECSD",
+      "schedule": "Meal vending machines (HS/MS Pre-fuel): 7 a.m.\u20139 a.m.",
+      "howToEnroll": "No additional requirements. Contact Lauren Burr, Food Service Director.",
+      "links": [
+        {
+          "label": "Food services",
+          "url": "https://www.middletowncityschools.org/site/Default.aspx?PageID=214"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "minisink-valley-csd-backpack",
+      "name": "Minisink Cares Backpack Program",
+      "category": "school",
+      "description": "Grassroots program addressing food insecurity. During every school week, students in the program receive a bag of food for the weekend (breakfast, lunches, snacks, drinks). Longer breaks include more items. Each school-age sibling in the identified family receives a bag even if in a different building. Voluntary\u2014family must agree.",
+      "phone": "845-707-5165",
+      "email": "ebradley@minisink.com",
+      "website": null,
+      "address": null,
+      "town": "Slate Hill / Minisink Valley",
+      "district": "Minisink Valley CSD",
+      "schedule": "Every school week (weekend bags); more items for longer breaks",
+      "howToEnroll": "Contact the school's Social Worker or School Counselor. Most referrals from community members or faculty. Family must agree to the service. Contact Erin Bradley for donations info.",
+      "links": [],
+      "locations": []
+    },
+    {
+      "id": "minisink-valley-csd-nslp",
+      "name": "National School Lunch and Breakfast Program",
+      "category": "school",
+      "description": "District receives state and federal funding to offer free or reduced-cost meals to families meeting income guidelines. Students who qualify for free or reduced-price lunch also qualify for free or reduced breakfast at the same price.",
+      "phone": null,
+      "email": "dsuper@minisink.com",
+      "website": "https://www.minisink.com/departments/food-services/",
+      "address": "Minisink Valley Central School District, Diane Super, School Lunch Program Coordinator, PO BOX 217, Slate Hill, NY 10973",
+      "town": "Slate Hill",
+      "district": "Minisink Valley CSD",
+      "schedule": null,
+      "howToEnroll": "Return completed applications to: Minisink Valley CSD, Diane Super, School Lunch Program Coordinator, PO BOX 217, Slate Hill, NY 10973.",
+      "links": [
+        {
+          "label": "Food services",
+          "url": "https://www.minisink.com/departments/food-services/"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "monroe-woodbury-csd-nslp",
+      "name": "National School Lunch and Breakfast Program",
+      "category": "school",
+      "description": "Free meals for all students\u2014no fee or application required. Every student eligible for healthy breakfast and lunch at no cost each school day. Home-packed lunches can be enhanced at no cost by adding at least three of five offered items. Meals available from first day; all schools offer breakfast at entry and lunch in cafeteria.",
+      "phone": "845-460-6200 ext 10159",
+      "email": "Foodforthought@mw.k12.ny.us",
+      "website": "https://www.mw.k12.ny.us/page/food-services",
+      "address": null,
+      "town": "Monroe / Woodbury",
+      "district": "Monroe-Woodbury CSD",
+      "schedule": null,
+      "howToEnroll": "All meals free for students. No enrollment or application needed\u2014meals available to all students from the first day of school. Contact Lyn Prestia, Director of Food II, SNS.",
+      "links": [
+        {
+          "label": "Food services",
+          "url": "https://www.mw.k12.ny.us/page/food-services"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "newburgh-ecsd-backpack",
+      "name": "NECSD BackPack Program",
+      "category": "school",
+      "description": "Although free and reduced breakfast and lunch help during the school day, many children lack regular meals when school is not in session. The BackPack Program discreetly provides bags of nutritious, easy-to-prepare food every Friday afternoon for the weekend.",
+      "phone": "845-568-6846",
+      "email": "krogers@necsd.net",
+      "website": null,
+      "address": null,
+      "town": "Newburgh",
+      "district": "Newburgh Enlarged CSD",
+      "schedule": "Every Friday afternoon",
+      "howToEnroll": "Referrals based on observation by school staff or direct request from student or parent. Contact Kori Rogers.",
+      "links": [
+        {
+          "label": "Donate via Regional Food Bank",
+          "url": "https://regionalfoodbank.net/donate-money/"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "newburgh-ecsd-pantries",
+      "name": "NECSD School Pantries",
+      "category": "school",
+      "description": "Emergency food assistance for preteens and teens struggling with hunger during the school year. Schools select foods received; students select what they want/can use. Access sporadically or regularly. Nonperishable, fresh, and frozen food as capacity allows. Offered at Meadowhill School and Newburgh Free Academy Main Campus.",
+      "phone": "845-568-6846",
+      "email": "krogers@necsd.net",
+      "website": null,
+      "address": null,
+      "town": "Newburgh",
+      "district": "Newburgh Enlarged CSD",
+      "schedule": null,
+      "howToEnroll": "Referral by school staff and student self-referral. Offered at Meadowhill School and Newburgh Free Academy Main Campus.",
+      "links": [
+        {
+          "label": "Donate via Regional Food Bank",
+          "url": "https://regionalfoodbank.net/donate-money/"
+        }
+      ],
+      "locations": [
+        {
+          "name": "Meadowhill School",
+          "address": null,
+          "phone": "845-568-6846",
+          "email": "krogers@necsd.net",
+          "schedule": null
+        },
+        {
+          "name": "Newburgh Free Academy Main Campus",
+          "address": null,
+          "phone": "845-568-6846",
+          "email": "krogers@necsd.net",
+          "schedule": null
+        }
+      ]
+    },
+    {
+      "id": "newburgh-ecsd-nslp",
+      "name": "National School Lunch Program (NSLP) and School Breakfast Program",
+      "category": "school",
+      "description": "USDA federally funded school meal programs provided at no cost to all NECSD in-district students PK\u201312 under the Community Eligibility Provision.",
+      "phone": "845-563-3424",
+      "email": "chtorres@necsd.net",
+      "website": "https://newburghschools.org/page.php?page=25",
+      "address": null,
+      "town": "Newburgh",
+      "district": "Newburgh Enlarged CSD",
+      "schedule": null,
+      "howToEnroll": "No additional requirements. Contact Christina Torres, Director of School Food Service.",
+      "links": [
+        {
+          "label": "Food services",
+          "url": "https://newburghschools.org/page.php?page=25"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "newburgh-ecsd-sfsp",
+      "name": "Summer Food Service Program",
+      "category": "school",
+      "description": "USDA federally funded program that runs during summer months when school is not in session. All school buildings are eligible sites; program offered each summer in buildings used for Extended School Year. Partners with community organizations, churches, town/city recreation, and Newburgh Free Library to offer meals to all children aged 18 and under at non-school locations.",
+      "phone": "845-563-3424",
+      "email": "chtorres@necsd.net",
+      "website": null,
+      "address": null,
+      "town": "Newburgh",
+      "district": "Newburgh Enlarged CSD",
+      "schedule": "Summer months when school is not in session",
+      "howToEnroll": "Open to children aged 18 and under at participating school and community sites. Contact Christina Torres, Director of School Food Service.",
+      "links": [],
+      "locations": []
+    },
+    {
+      "id": "pine-bush-csd-pantry",
+      "name": "PBHS Food Pantry",
+      "category": "school",
+      "description": "Food pantry available to students, staff and residents of Pine Bush School District. Housed in the high school; food available to any school in the district. Staff will get food for families in need in other buildings. Email to set up pick-up time.",
+      "phone": "845-744-2031 ext. 3683",
+      "email": "food.pantry@pinebushschools.org",
+      "website": "https://www.pinebushschools.org/parent-community/food-pantry-list-middletown-and-pine-bush-area/",
+      "address": "Pine Bush High School",
+      "town": "Pine Bush",
+      "district": "Pine Bush CSD",
+      "schedule": null,
+      "howToEnroll": "Email to set up pick-up time. Patrons provide name & household size and show ID when entering the school. Contact Katie Carson-Decker. Food and monetary donations accepted.",
+      "links": [
+        {
+          "label": "Food pantry list",
+          "url": "https://www.pinebushschools.org/parent-community/food-pantry-list-middletown-and-pine-bush-area/"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "pine-bush-csd-sfsp",
+      "name": "PBCSD SFSP (Summer Food Service Sites)",
+      "category": "school",
+      "description": "No-cost meals at open sites for ages 0 through 18 during summer months. One site at this time: Circleville Church, 890 Goshen Tpke, Circleville, NY 10919.",
+      "phone": "845-744-2031 ext. 2809",
+      "email": "caitlin.lazarski@pinebushschools.org",
+      "website": "https://www.pinebushschools.org/departments/food-services/",
+      "address": "Circleville Church, 890 Goshen Tpke, Circleville, NY 10919",
+      "town": "Circleville / Pine Bush",
+      "district": "Pine Bush CSD",
+      "schedule": "Summer months",
+      "howToEnroll": "No requirements other than age 0 through 18. Text \"Summer Meals\" to 914-342-7744 or call 1-866-348-6479 to find a site. Contact Caitlin Lazarski, Director of School Nutrition.",
+      "links": [
+        {
+          "label": "Meals for Kids",
+          "url": "https://www.fns.usda.gov/meals4kids"
+        },
+        {
+          "label": "Food services",
+          "url": "https://www.pinebushschools.org/departments/food-services/"
+        }
+      ],
+      "locations": [
+        {
+          "name": "Circleville Church",
+          "address": "890 Goshen Tpke, Circleville, NY 10919",
+          "phone": "845-744-2031 ext. 2809",
+          "email": "caitlin.lazarski@pinebushschools.org",
+          "schedule": "Summer months; ages 0\u201318; open site"
+        }
+      ]
+    },
+    {
+      "id": "pine-bush-csd-nslp",
+      "name": "National School Breakfast and Lunch Program",
+      "category": "school",
+      "description": "Pine Bush CSD participates in the National School Breakfast and Lunch Program. Dedicated to students' health, well-being and ability to learn. Provides breakfast and/or lunch every day with healthy, well-balanced, exciting and delicious meals built with quality foods and fresh ingredients.",
+      "phone": "845-744-2031 ext. 2809",
+      "email": "caitlin.lazarski@pinebushschools.org",
+      "website": "https://www.pinebushschools.org/departments/food-services/",
+      "address": "PBCSD School Nutrition Dept., PO BOX 700, Pine Bush NY 12566",
+      "town": "Pine Bush",
+      "district": "Pine Bush CSD",
+      "schedule": null,
+      "howToEnroll": "Return completed paper applications via: (1) send with child (Attention School Nutrition Dept.); (2) Fax 845-744-8795 (Confidential Fax); (3) Email caitlin.lazarski@pinebushschools.org; (4) Mail to PBCSD School Nutrition Dept., PO BOX 700, Pine Bush NY 12566.",
+      "links": [
+        {
+          "label": "Food services",
+          "url": "https://www.pinebushschools.org/departments/food-services/"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "port-jervis-csd-backpack",
+      "name": "Backpack Program",
+      "category": "school",
+      "description": "Provides food to identified families who may need assistance. Port Jervis is part of a grant that receives food for this program. Hudson Valley Food program organizes food collection/donation.",
+      "phone": "845-858-3100 x4645",
+      "email": "kvenetis@pjschools.org",
+      "website": "https://foodbankofhudsonvalley.org/",
+      "address": null,
+      "town": "Port Jervis",
+      "district": "Port Jervis CSD",
+      "schedule": null,
+      "howToEnroll": "Contact school staff; typically the teacher completes the referral form, then social worker or school counselor contacts the family to see if they need/are willing to accept assistance. Donations: contact Troy Martin at TMartin@foodbankofhudsonvalley.org.",
+      "links": [
+        {
+          "label": "Food Bank of the Hudson Valley",
+          "url": "https://foodbankofhudsonvalley.org/"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "port-jervis-csd-nslp",
+      "name": "National School Breakfast and Lunch Program",
+      "category": "school",
+      "description": "Port Jervis City School District participates in Community Eligibility Provision (CEP) or Provision 2 in a non-base year. All children receive meals/milk at no charge regardless of household income or form completion.",
+      "phone": "845-858-3100 ext.3895",
+      "email": "ephelan@pjschools.org",
+      "website": "https://www.pjschools.org/departments/food-service",
+      "address": null,
+      "town": "Port Jervis",
+      "district": "Port Jervis CSD",
+      "schedule": null,
+      "howToEnroll": "No additional requirements. Contact Erin Phelan, School Lunch Director.",
+      "links": [
+        {
+          "label": "Food service",
+          "url": "https://www.pjschools.org/departments/food-service"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "tuxedo-ufsd-healthy-snack",
+      "name": "School Healthy Snack Program",
+      "category": "school",
+      "description": "Participates in School Healthy Snack Program through Sloatsburg Food Pantry. Snacks provided as needed based on number of food-insecure students; also available occasionally to students who forgot a snack. Snacks in ES Health Office (Marie Castricone) and HS Guidance Office (Chris Oliva).",
+      "phone": "845-351-4797 x3106",
+      "email": "MCASTRICONE@tuxedoufsd.org",
+      "website": null,
+      "address": null,
+      "town": "Tuxedo",
+      "district": "Tuxedo UFSD",
+      "schedule": null,
+      "howToEnroll": "Contact Marie Castricone. Donations (monetary or direct snack) can be made to Sloatsburg Food Pantry.",
+      "links": [],
+      "locations": [
+        {
+          "name": "ES Health Office",
+          "address": null,
+          "phone": "845-351-4797 x3106",
+          "email": "MCASTRICONE@tuxedoufsd.org",
+          "schedule": null
+        },
+        {
+          "name": "HS Guidance Office",
+          "address": null,
+          "phone": null,
+          "email": null,
+          "schedule": null
+        }
+      ]
+    },
+    {
+      "id": "tuxedo-ufsd-nslp",
+      "name": "National School Lunch and Breakfast Program",
+      "category": "school",
+      "description": "USDA federally funded school meal program provided at no cost to TUFSD students.",
+      "phone": "845-351-4797 x3106",
+      "email": "MCASTRICONE@tuxedoufsd.org",
+      "website": "https://www.tuxedoufsd.org/page/school-breakfast-and-lunch",
+      "address": "Tuxedo Union Free School District, 1 Tornado Drive, Tuxedo, NY 10987",
+      "town": "Tuxedo",
+      "district": "Tuxedo UFSD",
+      "schedule": null,
+      "howToEnroll": "Return completed applications to: Tuxedo Union Free School District, 1 Tornado Drive, Tuxedo, NY 10987. Contact Marie Castricone.",
+      "links": [
+        {
+          "label": "School breakfast and lunch",
+          "url": "https://www.tuxedoufsd.org/page/school-breakfast-and-lunch"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "valley-central-sd-backpack-snack-attack",
+      "name": "Backpack Snack Attack",
+      "category": "school",
+      "description": "Meal program providing food to Valley Central School District students over weekends when school meals are not available.",
+      "phone": "845-457-2400 x16532",
+      "email": "Barbara.Gravel@vcsdny.org",
+      "website": "https://waldenfirstreformed.org/local-missions/",
+      "address": null,
+      "town": "Montgomery / Walden (Valley Central)",
+      "district": "Valley Central SD",
+      "schedule": "Weekends",
+      "howToEnroll": "Participation reviewed individually by student support teams in each building. If food insecurity is determined, parents/guardians are contacted; verbal approval required. Contact Barbara Gravel, District Coordinator. Financial donations: checks payable to \"Backpack Snack Attack\" mailed to Attn: Backpack Snack Attack, First Reformed Church, 70 Scofield Street, Walden, NY 12586.",
+      "links": [
+        {
+          "label": "Local missions",
+          "url": "https://waldenfirstreformed.org/local-missions/"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "valley-central-sd-nslp",
+      "name": "National School Lunch and Breakfast Program",
+      "category": "school",
+      "description": "Everyone encouraged to fill out Free and Reduced Application. Only one application per household needed. Application may also make child eligible for other free/reduced programs (such as Summer EBT). Beginning July 1, 2019, NYS students approved for reduced-price meals receive breakfast and lunch at no charge.",
+      "phone": "845-457-2400 ext. 16896",
+      "email": "Amy.Bishop@vcsdny.org",
+      "website": "https://www.vcsd.k12.ny.us/departments/food-services/information-on-free-and-reduced-meals/",
+      "address": "Valley Central Middle School, 1189 Route 17K, Montgomery, NY 12549",
+      "town": "Montgomery",
+      "district": "Valley Central SD",
+      "schedule": null,
+      "howToEnroll": "Return completed applications to youngest child's building or fax to (845) 457-3003, or to Valley Central Middle School, 1189 Route 17K, Montgomery, NY 12549. Contact Amy Bishopp, School Food Director.",
+      "links": [
+        {
+          "label": "Free and reduced meals info",
+          "url": "https://www.vcsd.k12.ny.us/departments/food-services/information-on-free-and-reduced-meals/"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "warwick-valley-csd-backpack-snack-attack",
+      "name": "Backpack Snack Attack",
+      "category": "school",
+      "description": "Outreach program of the Warwick Reformed Church providing food for hungry school children to eat at home on weekends during the school year. Provides backpacks and individually sized, ready-to-eat (including microwavable), kid-friendly food items for children and siblings every weekend.",
+      "phone": "845-987-3050 x12895",
+      "email": "jhelmrich@wvcsd.org",
+      "website": "https://backpacksnackattack.com/",
+      "address": null,
+      "town": "Warwick",
+      "district": "Warwick Valley CSD",
+      "schedule": "Weekends during the school year",
+      "howToEnroll": "Parent/Guardian must fill out Backpack Application. Contact Julie Helmrich, Food Service Director.",
+      "links": [
+        {
+          "label": "Backpack Snack Attack",
+          "url": "https://backpacksnackattack.com/"
+        },
+        {
+          "label": "Donate",
+          "url": "https://backpacksnackattack.com/donate/"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "warwick-valley-csd-nslp",
+      "name": "National School Lunch and Breakfast Program",
+      "category": "school",
+      "description": "USDA federally funded school meal program provided at no cost to WVCSD students in the district.",
+      "phone": "845-987-3050 x12895",
+      "email": "jhelmrich@wvcsd.org",
+      "website": "https://www.warwickvalleyschools.com/food-services/free-and-reduced-price-meal-application-facts/",
+      "address": "WVCSD Food Service Department-HS, P.O. Box 595, Warwick, NY 10990",
+      "town": "Warwick",
+      "district": "Warwick Valley CSD",
+      "schedule": null,
+      "howToEnroll": "Return the completed application to: WVCSD Food Service Department-HS, P.O. Box 595, Warwick, NY 10990. Contact Julie Helmrich, Food Service Director.",
+      "links": [
+        {
+          "label": "Free and reduced meal application facts",
+          "url": "https://www.warwickvalleyschools.com/food-services/free-and-reduced-price-meal-application-facts/"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "washingtonville-csd-food-for-kids",
+      "name": "Food For Kids",
+      "category": "school",
+      "description": "Non-profit 501(c)(3) developed by the Washingtonville local community to supply children in need in Washingtonville CSD with easy-to-prepare food for weekends during the school year, with an extension during summer months.",
+      "phone": "845-497-4000 ext 27022",
+      "email": null,
+      "website": "https://foodforkidswvl.org/",
+      "address": null,
+      "town": "Washingtonville",
+      "district": "Washingtonville CSD",
+      "schedule": "Weekends during school year; extension during summer months",
+      "howToEnroll": "Parent of student must fill out form. Contact Barbara Quinn.",
+      "links": [
+        {
+          "label": "Food For Kids",
+          "url": "https://foodforkidswvl.org/"
+        }
+      ],
+      "locations": []
+    },
+    {
+      "id": "washingtonville-csd-nslp",
+      "name": "National School Lunch and Breakfast Program",
+      "category": "school",
+      "description": "Washingtonville CSD offers healthy meals every school day. Under the Community Eligibility Program all students are eligible to receive free meals at this time.",
+      "phone": "845-497-4000 x27122",
+      "email": "RGellman@wcsdk12.org",
+      "website": "https://www.wcsdk12.org/departments/food-services",
+      "address": "Washingtonville CSD Food Service, 54 West Main Street, Washingtonville NY 10992",
+      "town": "Washingtonville",
+      "district": "Washingtonville CSD",
+      "schedule": null,
+      "howToEnroll": "Return completed applications to: Washingtonville CSD Food Service, 54 West Main Street, Washingtonville NY 10992. For possible additional services, complete an income eligibility application online or send to Food Service. Contact Robert Gellman, Food Service Director 2.",
+      "links": [
+        {
+          "label": "Food services",
+          "url": "https://www.wcsdk12.org/departments/food-services"
+        },
+        {
+          "label": "Online income eligibility application",
+          "url": "https://www.nlappscloud.com/Welcome.aspx?api=2c5b5e7978ea3e639087946657cbb683#loaded"
+        }
+      ],
+      "locations": []
+    }
+  ],
+  "sites": [
+    {
+      "id": "chester-community-pantry",
+      "name": "Chester Community Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Chester",
+      "address": "96 Main Street, Chester, New York, 10918",
+      "phone": "914-719-7969",
+      "email": "chestercommunitypantry@gmail.com",
+      "website": "https://www.facebook.com/ChesterPresbyterianPantry/",
+      "contactPerson": null,
+      "residentsServed": "Town of Chester Residents",
+      "idRequired": "unknown",
+      "schedule": "Fourth Thursday of the month, 4:00PM-7:00PM",
+      "days": [
+        "Thu"
+      ],
+      "donationsAccepted": false,
+      "notes": "Also known via Facebook as Chester Presbyterian Pantry; name column obscured by document footer in source PDF",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.3625,
+      "lng": -74.2718
+    },
+    {
+      "id": "florida-community-food-pantry",
+      "name": "Florida Community Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Florida",
+      "address": "9 Glenmere Avenue, Florida, NY 10921",
+      "phone": "845-651-4117",
+      "email": "Floridafoodpantry@gmail.com",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "Florida, Warwick, Pine Island, Chester and Goshen",
+      "idRequired": "proof_of_residence",
+      "schedule": "Thursday, 9:00AM-12:00PM",
+      "days": [
+        "Thu"
+      ],
+      "donationsAccepted": true,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.3328,
+      "lng": -74.3575
+    },
+    {
+      "id": "alamo-community-center-sun-river-health",
+      "name": "Alamo Community Center- Sun River Health",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Goshen",
+      "address": "890 Pulaski Highway, Goshen, NY 10924",
+      "phone": "845-838-7015",
+      "email": "jleon@sunriver.org",
+      "website": null,
+      "contactPerson": "Jobeth Leon",
+      "residentsServed": "Goshen, Pine Island, Warwick, Florida, and New Hampton",
+      "idRequired": "proof_of_residence",
+      "schedule": "Food Pantry: Tuesday, 4:00PM-7:00PM; Thursday 4:00PM-7:00PM; Sunday, 10:30AM-2:30PM",
+      "days": [
+        "Tue",
+        "Thu",
+        "Sun"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.3855,
+      "lng": -74.34
+    },
+    {
+      "id": "goshen-ecumenical-pantry-inc",
+      "name": "Goshen Ecumenical Pantry Inc.",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Goshen",
+      "address": "33 Park Place, Goshen, NY 10924",
+      "phone": "845-294-9004",
+      "email": null,
+      "website": "https://www.facebook.com/GoshenFoodPantry/",
+      "contactPerson": "John Strobl",
+      "residentsServed": "Towns within the Goshen Central School District, and Entire Town of Goshen",
+      "idRequired": "unknown",
+      "schedule": "Second Saturday of every month 9:00AM-10:00AM; Fourth Thursday of every month 6:00PM-7:00PM",
+      "days": [
+        "Sat",
+        "Thu"
+      ],
+      "donationsAccepted": false,
+      "notes": "Housed in Presbyterian Church",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.403,
+      "lng": -74.3248
+    },
+    {
+      "id": "greenwood-lake-food-pantry",
+      "name": "Greenwood Lake Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Greenwood Lake",
+      "address": "41 Windermere Ave, Greenwood Lake, NY 10925",
+      "phone": "845-544-3257",
+      "email": "greenwoodlakefoodpantry@gmail.com",
+      "website": null,
+      "contactPerson": "Pat Nolan",
+      "residentsServed": "Towns within the Greenwood Lake School District",
+      "idRequired": "proof_of_residence",
+      "schedule": "Saturday 9:00AM-12:00PM",
+      "days": [
+        "Sat"
+      ],
+      "donationsAccepted": true,
+      "notes": "Located at Holy Rosary Church; documentation listed as ID/Proof of Residence Required",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.2235,
+      "lng": -74.2935
+    },
+    {
+      "id": "holy-innocents-church-food-pantry",
+      "name": "Holy Innocents Church Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Highland Falls",
+      "address": "401 Main Street, Highland Falls, NY, 10928",
+      "phone": "845-446-0626",
+      "email": "Biblio999@gmail.com",
+      "website": null,
+      "contactPerson": "Carla Burns",
+      "residentsServed": "No Town Limit",
+      "idRequired": "not_required",
+      "schedule": "Second and Fourth Wednesday of the month, 4:00PM-5:30PM",
+      "days": [
+        "Wed"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.3705,
+      "lng": -73.967
+    },
+    {
+      "id": "sacred-heart-of-jesus-food-pantry",
+      "name": "Sacred Heart of Jesus Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Highland Falls",
+      "address": "353 Main Street, Highland Falls, New York, 10928",
+      "phone": "845-446-4609 / 845-446-2343",
+      "email": "sacredheartchurch_secretary@outlook.com",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "No Town Limit",
+      "idRequired": "unknown",
+      "schedule": "First and Third Wednesday of the month, 10:30AM-12:00PM",
+      "days": [
+        "Wed"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.369,
+      "lng": -73.9665
+    },
+    {
+      "id": "kiryas-joel-community-council-food-pantry",
+      "name": "Kiryas Joel Community Council Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Kiryas Joel",
+      "address": "2 Garfield Road, Monroe, NY 10950",
+      "phone": "845-774-4444",
+      "email": null,
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "Kiryas Joel and surrounding towns",
+      "idRequired": "unknown",
+      "schedule": "Call Ahead to Confirm; Monday-Friday, 9:00AM-5:00PM",
+      "days": [],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.3405,
+      "lng": -74.1685
+    },
+    {
+      "id": "marba-lsoiva-soup-kitchen",
+      "name": "Marba Lsoiva Soup Kitchen",
+      "categories": [
+        "soup_kitchen"
+      ],
+      "town": "Kiryas Joel",
+      "address": "51 Forest Rd. Suite #116, Monroe NY 10950",
+      "phone": "845-261-1600",
+      "email": null,
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "No Town Limit",
+      "idRequired": "unknown",
+      "schedule": "7 Days a Week; Breakfast 8:00AM-12:30PM; Lunch 1:00PM-4:00PM; Supper 4:30PM-10:00PM",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.338,
+      "lng": -74.165
+    },
+    {
+      "id": "centro-cristiano-nueva-vida-food-pantry",
+      "name": "Centro Cristiano Nueva Vida Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Middletown",
+      "address": "193-195 Watkins Ave; Parking at 305 Highland Ave Ext, Middletown, NY",
+      "phone": "845-326-6481",
+      "email": "centrocristianonuevavida@yahoo.com",
+      "website": null,
+      "contactPerson": "Pastor Gilberto",
+      "residentsServed": "No Town Limit",
+      "idRequired": "not_required",
+      "schedule": "Every Wednesday, 1:00PM-3:00PM",
+      "days": [
+        "Wed"
+      ],
+      "donationsAccepted": true,
+      "notes": null,
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.45,
+      "lng": -74.415
+    },
+    {
+      "id": "guild-of-st-margaret-soup-kitchen",
+      "name": "Guild of St. Margaret Soup Kitchen",
+      "categories": [
+        "pantry",
+        "soup_kitchen"
+      ],
+      "town": "Middletown",
+      "address": "12 Depot Street, Middletown, NY, 10940",
+      "phone": "Soup Kitchen: 845-344-0569; Food Pantry: (845) 956-5566",
+      "email": "soupkitchengrace@msn.com",
+      "website": null,
+      "contactPerson": "Carolanne Cusack",
+      "residentsServed": "No Town Limit",
+      "idRequired": "not_required",
+      "schedule": "Soup Kitchen: Monday-Saturday, 11:00AM-12:00PM; Sunday, 3:00PM-4:00PM; Thanksgiving & Christmas, 12:00PM-1:00PM; Fresh Pantry: 3PM-6PM Sat.; 1PM-4PM",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "donationsAccepted": false,
+      "notes": "Operates both soup kitchen and fresh pantry",
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.4455,
+      "lng": -74.4205
+    },
+    {
+      "id": "harmony-ministry-community-food-pantry",
+      "name": "Harmony Ministry Community Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Middletown",
+      "address": "1790 Route 211 East, Middletown, NY 10940",
+      "phone": "845-692-6113",
+      "email": "harmonychurchny@gmail.com",
+      "website": "https://www.facebook.com/harmonyministriesny/",
+      "contactPerson": null,
+      "residentsServed": "Orange County Residents",
+      "idRequired": "not_required",
+      "schedule": "Third Saturday of the month, 10:00AM-12:00PM",
+      "days": [
+        "Sat"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.445,
+      "lng": -74.385
+    },
+    {
+      "id": "honor-food-pantry",
+      "name": "Honor Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Middletown",
+      "address": "38 Seward Avenue, Middletown, NY, 10940",
+      "phone": "845-343-7115 ext. 316",
+      "email": null,
+      "website": null,
+      "contactPerson": "Heather Parra Zerpa",
+      "residentsServed": "Orange County Residents",
+      "idRequired": "unknown",
+      "schedule": "Monday, Tuesday, Friday 7:00AM-12:00PM; Wednesday, Thursday 2:00PM-7:00PM; Service once every 7 days",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": "Service once every 7 days",
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.448,
+      "lng": -74.425
+    },
+    {
+      "id": "pathstone-middletown-food-pantry",
+      "name": "Pathstone Middletown Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Middletown",
+      "address": "225 Dolson Ave, Middletown, NY 10940",
+      "phone": "845-341-2012",
+      "email": "info@pathstone.org",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "Orange County Residents",
+      "idRequired": "required",
+      "schedule": "Tuesday/Thursday, 9:00AM-2:00PM; Once served, food available every three months",
+      "days": [
+        "Tue",
+        "Thu"
+      ],
+      "donationsAccepted": false,
+      "notes": "Pantry located on the side of the building, facing the parking lot; Photo ID Required",
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.435,
+      "lng": -74.42
+    },
+    {
+      "id": "recap-food-pantry",
+      "name": "RECAP Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Middletown",
+      "address": "34 Mill St., Middletown, NY 10940",
+      "phone": "845-342-3978 x6200 / 845-421-6200",
+      "email": "dvelasquez@recap.org; gmusumeci@recap.org",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "Orange County Residents",
+      "idRequired": "required",
+      "schedule": "Monday, Wednesday, Friday, 10:00AM-1:00PM",
+      "days": [
+        "Mon",
+        "Wed",
+        "Fri"
+      ],
+      "donationsAccepted": true,
+      "notes": "Requires Proof of Address, Proof of Income, Birth Certificate/Passports, and Picture ID",
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.4465,
+      "lng": -74.4215
+    },
+    {
+      "id": "second-baptist-church-food-pantry",
+      "name": "Second Baptist Church Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Middletown",
+      "address": "125 North St, Middletown, NY 10940",
+      "phone": "845-381-1254",
+      "email": "Secondbaptistny@gmail.com",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Every 3rd Saturday, 12:00PM-3:00PM",
+      "days": [
+        "Sat"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.449,
+      "lng": -74.418
+    },
+    {
+      "id": "st-pauls-umc-mission-food-pantry",
+      "name": "St. Paul's UMC Mission Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Middletown",
+      "address": "58 West Main Street, Middletown, NY 10940",
+      "phone": "845-343-4425",
+      "email": "Stpaulsumcmission@gmail.com",
+      "website": null,
+      "contactPerson": "Milly",
+      "residentsServed": "Middletown and neighboring towns",
+      "idRequired": "unknown",
+      "schedule": "By appointment only; Tuesday & Thursday 8:30AM-12:30PM, Curbside Pickup",
+      "days": [
+        "Tue",
+        "Thu"
+      ],
+      "donationsAccepted": false,
+      "notes": "By appointment only; curbside pickup",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.4458,
+      "lng": -74.4235
+    },
+    {
+      "id": "salvation-army-food-pantry-middletown",
+      "name": "The Salvation Army Food Pantry- Middletown",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Middletown",
+      "address": "80 W Main St. Middletown, NY 10940",
+      "phone": "845-343-0821",
+      "email": "Andrew.allen@use.salvationarmy.org",
+      "website": null,
+      "contactPerson": "Captain Andrew Allen",
+      "residentsServed": "Central Orange County, NY and Sullivan County, NY",
+      "idRequired": "required",
+      "schedule": "By appointment only; Tuesday, 12:00PM-2:00PM; Wednesday, 12:00PM-2:00PM; Thursday, 12:00PM-2:00PM; Friday, 12:00PM-2:00PM",
+      "days": [
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri"
+      ],
+      "donationsAccepted": true,
+      "notes": "Photo ID Required; by appointment only",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.4456,
+      "lng": -74.424
+    },
+    {
+      "id": "touch-nutrition-program-food-pantry",
+      "name": "Touch Nutrition Program, Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Middletown",
+      "address": "6 Orchard Street, Middletown, NY 10940",
+      "phone": "845-343-8086",
+      "email": "tlloyd@touch-ny.org",
+      "website": "https://touchny.org/food-nutrition-program/",
+      "contactPerson": "Tiffany Lloyd",
+      "residentsServed": "Orange and Rockland County Residents",
+      "idRequired": "unknown",
+      "schedule": "By appointment only; Monday-Friday, 9:00AM-5:00PM",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri"
+      ],
+      "donationsAccepted": true,
+      "notes": "Must be enrolled in the Touch Program (Chronic Illness)",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.447,
+      "lng": -74.419
+    },
+    {
+      "id": "food-pantry-at-holy-cross-catholic-parish",
+      "name": "Food Pantry at Holy Cross Catholic Parish",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Minisink",
+      "address": "626 County Route 22, Middletown, NY 10940",
+      "phone": "845-355-4439",
+      "email": "Papaaltenburg5@gmail.com",
+      "website": null,
+      "contactPerson": "Paul Altenburg",
+      "residentsServed": "Towns within the Minisink School District",
+      "idRequired": "proof_of_residence",
+      "schedule": "First Saturday of the month, 9:00AM-10:00AM",
+      "days": [
+        "Sat"
+      ],
+      "donationsAccepted": true,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.43,
+      "lng": -74.5
+    },
+    {
+      "id": "holy-name-of-jesus-food-pantry",
+      "name": "Holy Name of Jesus Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Minisink",
+      "address": "45 Highland Avenue, Otisville, NY 10963",
+      "phone": "845-386-1320",
+      "email": "hnojotisville@frontiernet.net",
+      "website": null,
+      "contactPerson": "Julie / Maureen",
+      "residentsServed": "Parishioners and neighbors in the Otisville, Mt. Hope, Cuddebackville Area",
+      "idRequired": "unknown",
+      "schedule": "Last Wednesday of every month, 9:00AM-12:00PM",
+      "days": [
+        "Wed"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.474,
+      "lng": -74.537
+    },
+    {
+      "id": "community-emergency-food-pantry-umc",
+      "name": "Community Emergency Food Pantry at United Methodist Church",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Monroe-Woodbury",
+      "address": "47 Maple Ave East, Monroe, NY 10950",
+      "phone": "845-783-6371",
+      "email": null,
+      "website": null,
+      "contactPerson": "Gerri",
+      "residentsServed": "Towns within the MW School District",
+      "idRequired": "proof_of_residence",
+      "schedule": "Second & Fourth Saturday of the month, 9:30AM-11:00AM; 8:30AM-10:10AM in Summer",
+      "days": [
+        "Sat"
+      ],
+      "donationsAccepted": false,
+      "notes": "Summer hours 8:30AM-10:10AM",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.3315,
+      "lng": -74.185
+    },
+    {
+      "id": "earl-reservoir-mini-pantry",
+      "name": "Earl Reservoir Mini-Pantry",
+      "categories": [
+        "mini_pantry"
+      ],
+      "town": "Monroe-Woodbury",
+      "address": "Sid Felter Ln, Highland Mills, NY 10930",
+      "phone": null,
+      "email": "Parks@woodburyny.us",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "Town of Woodbury Residents",
+      "idRequired": "unknown",
+      "schedule": "Open 24/7",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "donationsAccepted": true,
+      "notes": "Across from the tennis courts",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.348,
+      "lng": -74.13
+    },
+    {
+      "id": "first-presbyterian-church-of-monroe",
+      "name": "First Presbyterian Church of Monroe",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Monroe-Woodbury",
+      "address": "142 Stage Road, Monroe, NY 10950",
+      "phone": "914-588-0787 / 845-783-1632",
+      "email": "montrossrm@gmail.com; fpcmonroeoffice@yahoo.com",
+      "website": null,
+      "contactPerson": "Rich Montross",
+      "residentsServed": "Towns within the MW School District",
+      "idRequired": "required",
+      "schedule": "Food Pantry; First & Third Saturday of the month, 9:00AM-11:30AM",
+      "days": [
+        "Sat"
+      ],
+      "donationsAccepted": true,
+      "notes": "ID, Driver's License or Utility Bill Required",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.328,
+      "lng": -74.19
+    },
+    {
+      "id": "highland-mills-united-methodist-church-food-pantry",
+      "name": "Highland Mills United Methodist Church Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Monroe-Woodbury",
+      "address": "654 Route 32, Highland Mills, NY 10930",
+      "phone": null,
+      "email": null,
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Saturday, 9:00AM-10:00AM",
+      "days": [
+        "Sat"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.347,
+      "lng": -74.128
+    },
+    {
+      "id": "our-fathers-kitchen-food-pantry",
+      "name": "Our Father's Kitchen Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Monroe-Woodbury",
+      "address": "26 Still Road, Monroe, NY, 10950",
+      "phone": "845-783-7840",
+      "email": "parishoutreach@shssparish.org",
+      "website": null,
+      "contactPerson": "Kimberly Gutman",
+      "residentsServed": "Monroe, Central Valley, Harriman, Highland Mills",
+      "idRequired": "not_required",
+      "schedule": "Wednesday, 9:30AM-11:00AM",
+      "days": [
+        "Wed"
+      ],
+      "donationsAccepted": true,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.329,
+      "lng": -74.182
+    },
+    {
+      "id": "ame-zion-church-of-newburgh-food-pantry",
+      "name": "AME Zion Church of Newburgh Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Newburgh",
+      "address": "111 Washington St, Newburgh, NY 12550",
+      "phone": "845-569-8114",
+      "email": "amezionnewburgh@yahoo.com",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "No Town Limit",
+      "idRequired": "required",
+      "schedule": "Thursday, 10:00AM-12:00PM",
+      "days": [
+        "Thu"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.5045,
+      "lng": -74.01
+    },
+    {
+      "id": "catholic-charities-orange-sullivan-ulster",
+      "name": "Catholic Charities of Orange, Sullivan & Ulster",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Newburgh",
+      "address": "280 Broadway, Newburgh, NY 12550 Lower Level",
+      "phone": "845-561-1665 x1930",
+      "email": "Jacqueline.perez@ccsos.org",
+      "website": null,
+      "contactPerson": "Jaqueline Perez",
+      "residentsServed": "Orange, Sullivan and Ulster County Residents",
+      "idRequired": "unknown",
+      "schedule": "Food Pantry; Tuesday, 9:30AM-2:30PM (Closed for Lunch 12:00noon-1:00PM)",
+      "days": [
+        "Tue"
+      ],
+      "donationsAccepted": true,
+      "notes": "Bring a bag",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.502,
+      "lng": -74.0085
+    },
+    {
+      "id": "church-at-the-bridge-friends-and-family-night",
+      "name": "Church at the Bridge hosts \"Friends and Family Night\"",
+      "categories": [
+        "hot_meals"
+      ],
+      "town": "Newburgh",
+      "address": "90 Broadway, Newburgh, NY 12550",
+      "phone": "845-522-8046",
+      "email": "Hannah@ctbny.com",
+      "website": null,
+      "contactPerson": "Hannah",
+      "residentsServed": "No Town Limit",
+      "idRequired": "not_required",
+      "schedule": "Hot Meals; Third Wednesday of the month, 6:00PM-8:00PM",
+      "days": [
+        "Wed"
+      ],
+      "donationsAccepted": true,
+      "notes": null,
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.5035,
+      "lng": -74.009
+    },
+    {
+      "id": "deacon-jack-seymour-food-pantry",
+      "name": "Deacon Jack Seymour Food Pantry of St. Francis of Assisi Church and Sacred Heart Church",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Newburgh",
+      "address": "301 Ann St, Newburgh, New York, 12550",
+      "phone": "845-234-8564 / 845-926-0626",
+      "email": "djsfoodpantry@gmail.com",
+      "website": null,
+      "contactPerson": "Paul and Linda Zalanowski",
+      "residentsServed": "No Town Limit",
+      "idRequired": "required",
+      "schedule": "Friday, 9:00AM-12:00PM & Saturday, 8:30AM-12:00PM",
+      "days": [
+        "Fri",
+        "Sat"
+      ],
+      "donationsAccepted": true,
+      "notes": null,
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.5005,
+      "lng": -74.012
+    },
+    {
+      "id": "food-not-bombs-newburgh",
+      "name": "Food Not Bombs",
+      "categories": [
+        "hot_meals",
+        "pantry"
+      ],
+      "town": "Newburgh",
+      "address": "on Broadway between Johnston St & Lander St, Newburgh, NY",
+      "phone": null,
+      "email": null,
+      "website": "https://www.facebook.com/newburghfnb/",
+      "contactPerson": null,
+      "residentsServed": "City and Town of Newburgh",
+      "idRequired": "unknown",
+      "schedule": "Hot Meals and occasional pantry items; Wednesday 6:30PM-8:00PM",
+      "days": [
+        "Wed"
+      ],
+      "donationsAccepted": true,
+      "notes": "Outdoor/street location on Broadway",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.5058,
+      "lng": -74.0173
+    },
+    {
+      "id": "grace-united-methodist-church-food-closet",
+      "name": "Grace United Methodist Church, Food Closet",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Newburgh",
+      "address": "265 Van Ness St, Newburgh, NY 12550",
+      "phone": null,
+      "email": null,
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Friday, 2:00PM-5:00PM",
+      "days": [
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.505,
+      "lng": -74.015
+    },
+    {
+      "id": "hudson-valley-christian-church",
+      "name": "Hudson Valley Christian Church",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Newburgh",
+      "address": "100 Grand St, Newburgh, NY 12550",
+      "phone": "845-565-8526",
+      "email": "Hudsonvalley100g@gmail.com",
+      "website": null,
+      "contactPerson": "Lorraine Libolt",
+      "residentsServed": "No Town Limit",
+      "idRequired": "required",
+      "schedule": "Food Pantry; Second and Fourth Monday of the month, 1:00PM-2:00PM",
+      "days": [
+        "Mon"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.5055,
+      "lng": -74.008
+    },
+    {
+      "id": "lodger-pantry",
+      "name": "LODGER Pantry",
+      "categories": [
+        "mini_pantry"
+      ],
+      "town": "Newburgh",
+      "address": "188 Liberty St, Newburgh, NY 12550",
+      "phone": null,
+      "email": "lodgernewburgh@gmail.com",
+      "website": null,
+      "contactPerson": "Leon Johnson",
+      "residentsServed": "No Town Limit",
+      "idRequired": "not_required",
+      "schedule": "Mini-Pantry; Open 24/7",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "donationsAccepted": true,
+      "notes": null,
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.501,
+      "lng": -74.014
+    },
+    {
+      "id": "may-lous-kitchen",
+      "name": "May Lou\u2019s Kitchen",
+      "categories": [
+        "soup_kitchen"
+      ],
+      "town": "Newburgh",
+      "address": "292 Ann St, Newburgh, NY 12550",
+      "phone": "914-295-2245",
+      "email": "Jodom1@live.com",
+      "website": null,
+      "contactPerson": "Beverly Odom",
+      "residentsServed": "City of Newburgh",
+      "idRequired": "not_required",
+      "schedule": "Soup Kitchen; First Saturday of the month",
+      "days": [
+        "Sat"
+      ],
+      "donationsAccepted": true,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.5008,
+      "lng": -74.0125
+    },
+    {
+      "id": "newburgh-free-library-mini-pantry",
+      "name": "Newburgh Free Library",
+      "categories": [
+        "mini_pantry"
+      ],
+      "town": "Newburgh",
+      "address": "124 Grand Street, Newburgh NY",
+      "phone": null,
+      "email": null,
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "No Town Limit",
+      "idRequired": "not_required",
+      "schedule": "Mini-Pantry; Open 24/7",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.5058,
+      "lng": -74.0075
+    },
+    {
+      "id": "newburgh-tabernacle-food-pantry-kitchen",
+      "name": "Newburgh Tabernacle Food Pantry & Kitchen",
+      "categories": [
+        "pantry",
+        "soup_kitchen"
+      ],
+      "town": "Newburgh",
+      "address": "251-259 Grand St, Newburgh, NY, 12550",
+      "phone": "845-565-5053",
+      "email": "newburghtabsda@gmail.com",
+      "website": null,
+      "contactPerson": "Grantley Nicholas",
+      "residentsServed": "City and Town of Newburgh",
+      "idRequired": "not_required",
+      "schedule": "Sunday, 10:00AM-1:00PM",
+      "days": [
+        "Sun"
+      ],
+      "donationsAccepted": true,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.5065,
+      "lng": -74.007
+    },
+    {
+      "id": "one-accord-christian-church-food-pantry",
+      "name": "One Accord Christian Church Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Newburgh",
+      "address": "88 Lake St, Newburgh, NY 12550",
+      "phone": "845-522-5099",
+      "email": "oneaccordonemind@yahoo.com",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "No Town Limit",
+      "idRequired": "required",
+      "schedule": "Thursday, 4:00PM-6:30 or until supplies run out",
+      "days": [
+        "Thu"
+      ],
+      "donationsAccepted": true,
+      "notes": "ID Required, Bags required",
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.5025,
+      "lng": -74.018
+    },
+    {
+      "id": "salvation-army-newburgh",
+      "name": "Salvation Army",
+      "categories": [
+        "pantry",
+        "soup_kitchen"
+      ],
+      "town": "Newburgh",
+      "address": "234 Van Ness St, Newburgh, NY 12550",
+      "phone": "845-562-0413",
+      "email": "Kelly.Ross@use.salvationarmy.org",
+      "website": null,
+      "contactPerson": "Major Ana Guzman",
+      "residentsServed": "Food Pantry open to Newburgh residents. Soup Kitchen open to all",
+      "idRequired": "proof_of_residence",
+      "schedule": "Food Pantry: First and Third Wednesday of the month, 12:00PM-2:00PM; Soup Kitchen: Monday-Thursday, 11:00AM-12:00PM",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu"
+      ],
+      "donationsAccepted": true,
+      "notes": "Proof of Residence Required for Food Pantry; No ID required for Soup Kitchen. Source lists pantry time as 12:00AM-2:00PM (likely 12:00PM)",
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.5048,
+      "lng": -74.0155
+    },
+    {
+      "id": "shepherds-kitchen-community-meals",
+      "name": "Shepherd's Kitchen Community Meals/Soup Kitchen",
+      "categories": [
+        "soup_kitchen"
+      ],
+      "town": "Newburgh",
+      "address": "271 Broadway, Newburgh, NY 12550",
+      "phone": null,
+      "email": "padrerigoberto@gmail.com",
+      "website": null,
+      "contactPerson": "Rev. Rigoberto",
+      "residentsServed": "Newburgh, New Windsor, and surrounding areas",
+      "idRequired": "unknown",
+      "schedule": "Saturday & Sunday, 12:00PM-1:00PM",
+      "days": [
+        "Sat",
+        "Sun"
+      ],
+      "donationsAccepted": true,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.5015,
+      "lng": -74.008
+    },
+    {
+      "id": "st-georges-church-food-pantry",
+      "name": "St. George's Church Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Newburgh",
+      "address": "105 Grand St, Newburgh, NY 12550",
+      "phone": "845-561-5355 / 845-234-8908",
+      "email": "Stgeo105@gmail.com; blueMitzi720@gmail.com",
+      "website": null,
+      "contactPerson": "Alan Nucifore",
+      "residentsServed": "City and Town of Newburgh",
+      "idRequired": "required",
+      "schedule": "Wednesday, 10:00AM-11:00AM",
+      "days": [
+        "Wed"
+      ],
+      "donationsAccepted": true,
+      "notes": "I.D, Masks, and Bags required",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.5052,
+      "lng": -74.0082
+    },
+    {
+      "id": "st-marys-outreach-giving-day",
+      "name": "St. Mary's Outreach hosts \"Giving Day\"",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Newburgh",
+      "address": "321 South Williams St, Newburgh, NY 12550",
+      "phone": "845-566-1425",
+      "email": "weekendmag@earthlink.net",
+      "website": null,
+      "contactPerson": "Marietta Allen",
+      "residentsServed": "No Town Limit",
+      "idRequired": "required",
+      "schedule": "Food Pantry; Third Friday of every month, 9:00AM-12:00PM",
+      "days": [
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": "Located at Newburgh Armory; ID and any form of Mail Required; Bring Bags",
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.498,
+      "lng": -74.02
+    },
+    {
+      "id": "trinity-house-food-pantry",
+      "name": "Trinity House Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Newburgh",
+      "address": "1 Owens Rd, Newburgh, New York, 12550",
+      "phone": null,
+      "email": "Trinityh0use@aol.com",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "Town of Newburgh Only",
+      "idRequired": "proof_of_residence",
+      "schedule": "Second Friday of the month, 5:00PM-7:00PM and following Saturday, 9:00AM-12:00PM",
+      "days": [
+        "Fri",
+        "Sat"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.52,
+      "lng": -74.045
+    },
+    {
+      "id": "union-church-food-pantry",
+      "name": "Union Church Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Newburgh",
+      "address": "44 Balmville Rd, Newburgh, NY 12550",
+      "phone": "845-562-0954",
+      "email": "NewburghUnionChurch@gmail.com",
+      "website": null,
+      "contactPerson": "Debby Hill and Kathy Barry",
+      "residentsServed": "City and Town of Newburgh, and surrounding areas",
+      "idRequired": "unknown",
+      "schedule": "Every other week, Monday and Wednesday, 9:30AM-11:30AM",
+      "days": [
+        "Mon",
+        "Wed"
+      ],
+      "donationsAccepted": true,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.53,
+      "lng": -74.015
+    },
+    {
+      "id": "calvary-presbyterian-church",
+      "name": "Calvary Presbyterian Church",
+      "categories": [
+        "hot_meals"
+      ],
+      "town": "Newburgh",
+      "address": "120 South St, Newburgh, NY 12550",
+      "phone": "845-562-8730",
+      "email": "secretary@calvarypresbychurch.org",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "No Town Limit",
+      "idRequired": "unknown",
+      "schedule": "Temporarily Not in Service. Community Dinner once a month, call for dates",
+      "days": [],
+      "donationsAccepted": false,
+      "notes": "Temporarily Not in Service",
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.499,
+      "lng": -74.011
+    },
+    {
+      "id": "st-patricks-soup-kitchen",
+      "name": "St. Patrick\u2019s Soup Kitchen",
+      "categories": [
+        "soup_kitchen"
+      ],
+      "town": "Newburgh",
+      "address": "55 Grand St, Newburgh, NY 12550",
+      "phone": "845-561-5023",
+      "email": "pammypad@aol.com",
+      "website": "https://stpatrickstmary.com/soup-kitchen",
+      "contactPerson": null,
+      "residentsServed": "No Town Limit",
+      "idRequired": "unknown",
+      "schedule": "Temporarily Not in Service. Check Website or call for Information",
+      "days": [],
+      "donationsAccepted": false,
+      "notes": "Temporarily Not in Service",
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.504,
+      "lng": -74.0088
+    },
+    {
+      "id": "otisville-mount-hope-presbyterian-church-food-pantry",
+      "name": "Otisville-Mount Hope Presbyterian Church Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Otisville",
+      "address": "25 Main Street, Otisville, NY 10963",
+      "phone": "845-386-3851",
+      "email": "otisvillepres@hvc.rr.com",
+      "website": null,
+      "contactPerson": "Kathy Card",
+      "residentsServed": "Towns within Minisink and Port Jervis School Districts",
+      "idRequired": "required",
+      "schedule": "1st and 3rd Thursday of each month 11:00AM\u20131:00PM",
+      "days": [
+        "Thu"
+      ],
+      "donationsAccepted": false,
+      "notes": "Please bring bags; Photo Id and Proof of Residence required; located at Otisville-Mount Hope Presbyterian Church",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.4738,
+      "lng": -74.5385
+    },
+    {
+      "id": "charlottes-pantry-mountain-view-umc",
+      "name": "Charlotte\u2019s Pantry at Mountain View UMC",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Pine Bush",
+      "address": "91 Maple Avenue, Pine Bush, NY 12566",
+      "phone": "610-733-0397",
+      "email": "lzelonis@msn.com",
+      "website": null,
+      "contactPerson": "Lisa Zelonis",
+      "residentsServed": "Towns within the Pine Bush Central School District",
+      "idRequired": "unknown",
+      "schedule": "First and Third Friday of the month 10:00AM-10:30AM",
+      "days": [
+        "Fri"
+      ],
+      "donationsAccepted": true,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.609,
+      "lng": -74.2985
+    },
+    {
+      "id": "pine-bush-ecumenical-food-pantry",
+      "name": "Pine Bush Ecumenical Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Pine Bush",
+      "address": "2964 Rt. 52, Pine Bush, NY 12566",
+      "phone": "845-744-3390",
+      "email": "doschiro@yahoo.com",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "Towns within the Pine Bush Central School District",
+      "idRequired": "unknown",
+      "schedule": "Wednesday 10:00AM-12:00PM & Thursday 5:00PM-7:00PM",
+      "days": [
+        "Wed",
+        "Thu"
+      ],
+      "donationsAccepted": false,
+      "notes": "Located at New Prospect Reformed Church",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.61,
+      "lng": -74.295
+    },
+    {
+      "id": "st-pauls-roman-catholic-church-bullville",
+      "name": "St. Paul\u2019s Roman Catholic Church",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Pine Bush",
+      "address": "2800 Route 17K, Bullville, NY 10915",
+      "phone": "845-361-3107",
+      "email": "o389@archny.org",
+      "website": null,
+      "contactPerson": "Deb Botty",
+      "residentsServed": "Middletown and Pine Bush area",
+      "idRequired": "unknown",
+      "schedule": "Food Pantry; Call for Availability",
+      "days": [],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.555,
+      "lng": -74.35
+    },
+    {
+      "id": "easter-seals-food-pantry",
+      "name": "Easter Seals Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Port Jervis",
+      "address": "191 Jersey Avenue, Port Jervis, NY 12771",
+      "phone": "845-858-3869",
+      "email": "bkuczyra@eastersealsny.org",
+      "website": null,
+      "contactPerson": "Barbara Kuczyra",
+      "residentsServed": "No Town Limit",
+      "idRequired": "not_required",
+      "schedule": "Daily Distribution of Emergency Food Boxes; Regular Pantry open 8:30AM, Third Monday of each month",
+      "days": [
+        "Mon"
+      ],
+      "donationsAccepted": false,
+      "notes": "Emergency food boxes available daily; regular pantry third Monday",
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.378,
+      "lng": -74.69
+    },
+    {
+      "id": "helping-hands-food-pantry-hope-center",
+      "name": "Helping Hands Food Pantry, Hope Center Drew United Methodist Church",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Port Jervis",
+      "address": "49 Sussex St, Port Jervis, NY 12771",
+      "phone": "845-856-3423",
+      "email": "drewumcpjny@gmail.com",
+      "website": null,
+      "contactPerson": "Patty Gessner",
+      "residentsServed": "No Town Limit",
+      "idRequired": "not_required",
+      "schedule": "Saturday, 8:30AM-10:00AM",
+      "days": [
+        "Sat"
+      ],
+      "donationsAccepted": true,
+      "notes": null,
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.376,
+      "lng": -74.693
+    },
+    {
+      "id": "faith-tabernacle-international-ministries",
+      "name": "Faith Tabernacle International Ministries",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Port Jervis",
+      "address": "20 Franklin Street, Port Jervis, NY 12771",
+      "phone": "845-313-4496",
+      "email": null,
+      "website": null,
+      "contactPerson": "Izetta Briggs-Bolling",
+      "residentsServed": "Surrounding towns (NY, NJ, PA)",
+      "idRequired": "not_required",
+      "schedule": "Every other Sunday 1:00PM-3:00PM",
+      "days": [
+        "Sun"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.3755,
+      "lng": -74.691
+    },
+    {
+      "id": "fed-by-grace-food-pantry",
+      "name": "Fed by Grace Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Port Jervis",
+      "address": "84 Seward Avenue, Port Jervis, NY 12771",
+      "phone": "845-856-3026",
+      "email": "graceptj@frontiernet.net",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Third Saturday of the month, 10:00AM-11:00AM",
+      "days": [
+        "Sat"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.377,
+      "lng": -74.688
+    },
+    {
+      "id": "salvation-army-of-port-jervis",
+      "name": "Salvation Army of Port Jervis",
+      "categories": [
+        "pantry",
+        "soup_kitchen"
+      ],
+      "town": "Port Jervis",
+      "address": "99 Ball Street, Port Jervis, NY 12771",
+      "phone": "845-856-3214",
+      "email": "Sharon.eagle@use.salvationarmy.org",
+      "website": null,
+      "contactPerson": "Sharon Eagle",
+      "residentsServed": "Orange County Residents",
+      "idRequired": "proof_of_residence",
+      "schedule": "By appointment only; Food Pantry Monday\u2013Friday, 1:30PM-3:00PM; Soup Kitchen Monday-Friday, 11:30AM-12:30PM",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri"
+      ],
+      "donationsAccepted": true,
+      "notes": "By appointment only",
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.3745,
+      "lng": -74.692
+    },
+    {
+      "id": "seventh-day-adventist-food-pantry-sparrowbush",
+      "name": "Seventh-day Adventist Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Port Jervis",
+      "address": "795 Route 42, Sparrowbush, NY 12780",
+      "phone": null,
+      "email": null,
+      "website": "https://www.facebook.com/SDAFoodPantry/",
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Second Wednesday of the month, 11:00PM-4:00PM; Or contact on Facebook for information",
+      "days": [
+        "Wed"
+      ],
+      "donationsAccepted": false,
+      "notes": "Source lists 11:00PM-4:00PM (likely OCR error for 11:00AM)",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.43,
+      "lng": -74.72
+    },
+    {
+      "id": "st-marys-food-pantry-and-soup-kitchen-port-jervis",
+      "name": "St. Mary\u2019s Food Pantry and Soup Kitchen",
+      "categories": [
+        "pantry",
+        "soup_kitchen"
+      ],
+      "town": "Port Jervis",
+      "address": "Food Pantry: 50 Ball Street, Port Jervis, NY 12771; Soup Kitchen: Church Hall, 48 Ball Street, Port Jervis, NY 12771",
+      "phone": "845-856-8212",
+      "email": "st-marys-rectory@hvc.rr.com",
+      "website": null,
+      "contactPerson": "Gina T.",
+      "residentsServed": "No Town Limit",
+      "idRequired": "required",
+      "schedule": "Food Pantry: Every other Friday, 10:00AM-12:00PM; Soup Kitchen: Second Friday of the month, 5:00PM-7:00PM",
+      "days": [
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": "Proof of Residence Required and I.D",
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.3748,
+      "lng": -74.6925
+    },
+    {
+      "id": "sloatsburg-food-pantry-all-souls",
+      "name": "Sloatsburg Food Pantry, All Souls Community Church",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Tuxedo",
+      "address": "81 Washington Avenue, Suffern, NY 10901",
+      "phone": "845-618-5373",
+      "email": "SloatsburgFoodPantry@gmail.com",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "Tuxedo, Suffern, Hillburn, and Sloatsburg",
+      "idRequired": "required",
+      "schedule": "Appointment Recommended; Second & Fourth Tuesday of the month, 1:00PM-5:30PM & Wednesdays 1:00PM-6:30PM",
+      "days": [
+        "Tue",
+        "Wed"
+      ],
+      "donationsAccepted": true,
+      "notes": "Rockland County location listed under Tuxedo section; Proof of Residence and ID Required",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.1155,
+      "lng": -74.15
+    },
+    {
+      "id": "orange-county-veterans-food-pantry",
+      "name": "Orange County Veterans Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Valley Central",
+      "address": "9 Hawkins Drive, Montgomery, NY 12549",
+      "phone": "845-291-2470 / 845-291-2464",
+      "email": "cfarrell@orangecountygov.com; nrostran@orangecountygov.com",
+      "website": null,
+      "contactPerson": "Christian Farrell; Natalie Rostran",
+      "residentsServed": "Veterans living in Orange County, NY",
+      "idRequired": "unknown",
+      "schedule": "Home Delivery, call or email for application information",
+      "days": [],
+      "donationsAccepted": true,
+      "notes": "Monetary Only Donations Accepted; home delivery",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.5285,
+      "lng": -74.235
+    },
+    {
+      "id": "town-of-montgomery-food-pantry",
+      "name": "Town of Montgomery Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Valley Central",
+      "address": "2200 State Route 208, Montgomery, NY 12549",
+      "phone": "845-778-7669",
+      "email": "jgrid@live.com",
+      "website": null,
+      "contactPerson": "Judy Gridley",
+      "residentsServed": "Towns within the Valley Central School District",
+      "idRequired": "proof_of_residence",
+      "schedule": "Tuesday 10:00AM-12:00PM & Wednesday 6:30PM-8:00PM",
+      "days": [
+        "Tue",
+        "Wed"
+      ],
+      "donationsAccepted": false,
+      "notes": "Proof of residency for all adults 18 and over in household",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.527,
+      "lng": -74.24
+    },
+    {
+      "id": "the-good-samaritan-food-pantry",
+      "name": "The Good Samaritan Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Walden",
+      "address": "12 Scoffield Rd, Walden, NY",
+      "phone": "845-541-8936",
+      "email": null,
+      "website": null,
+      "contactPerson": "Rev Ray Cummings",
+      "residentsServed": "Residents of Zip Code 12586, but no one refused",
+      "idRequired": "not_required",
+      "schedule": "Tuesday 12:00Noon-2:00PM; Wednesday 12:00PM-2:00PM; Thursday 12:00Noon-4:00PM; Friday 11:00AM-1:00PM",
+      "days": [
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri"
+      ],
+      "donationsAccepted": true,
+      "notes": "Monetary Only Donations Accepted; source lists Wednesday as 12:00AM-2:00PM (likely 12:00PM)",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.56,
+      "lng": -74.189
+    },
+    {
+      "id": "his-love-unveiled-food-pantry",
+      "name": "His Love Unveiled Food Pantry at Mid-Hudson Christian Church",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Wallkill",
+      "address": "2393 Rt 300, Wallkill, NY 12589",
+      "phone": "845-895-3006",
+      "email": "Midhudcc@gmail.com",
+      "website": "https://www.facebook.com/mhccwallkill/",
+      "contactPerson": "Julie and Max",
+      "residentsServed": "Towns within the Wallkill Central School District",
+      "idRequired": "unknown",
+      "schedule": "Second & Fourth Tuesday of the month 12:00PM-1:30PM & Second & Fourth Friday of the month 6:30PM-7:30PM",
+      "days": [
+        "Tue",
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.61,
+      "lng": -74.18
+    },
+    {
+      "id": "loaves-and-fishes-food-pantry-wallkill",
+      "name": "Loaves and Fishes Food Pantry at Wallkill Reformed Church",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Wallkill",
+      "address": "45 Bridge Street, Wallkill, NY 12589",
+      "phone": "845-851-4010",
+      "email": "wrclffp@yahoo.com",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "Residents living within the Wallkill Central School District",
+      "idRequired": "proof_of_residence",
+      "schedule": "Thursday 5:30PM-7:30PM & Friday 11:00AM-1:00PM",
+      "days": [
+        "Thu",
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.605,
+      "lng": -74.186
+    },
+    {
+      "id": "new-day-food-pantry",
+      "name": "New Day Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Wallkill",
+      "address": "38 Old Firehouse Road, Wallkill, NY 12568",
+      "phone": "845-566-4441",
+      "email": null,
+      "website": null,
+      "contactPerson": "Phyllis Washington",
+      "residentsServed": "Plattekill and surrounding towns",
+      "idRequired": "required",
+      "schedule": "Wednesday 5:00PM-6:00PM & Saturday 10:00AM-12:00PM",
+      "days": [
+        "Wed",
+        "Sat"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.6,
+      "lng": -74.19
+    },
+    {
+      "id": "st-peter-lutheran-church-food-pantry",
+      "name": "St. Peter Lutheran Church Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Warwick",
+      "address": "70 Little York Road, Warwick, NY",
+      "phone": "845-341-3626",
+      "email": "carol_long358@hotmail.com",
+      "website": null,
+      "contactPerson": "Carol Long",
+      "residentsServed": "No Town Limit",
+      "idRequired": "unknown",
+      "schedule": "Last Sunday of the month, 12:00PM-1:30PM",
+      "days": [
+        "Sun"
+      ],
+      "donationsAccepted": true,
+      "notes": null,
+      "openToAll": true,
+      "kind": "site",
+      "lat": 41.26,
+      "lng": -74.35
+    },
+    {
+      "id": "warwick-ecumenical-food-pantry",
+      "name": "Warwick Ecumenical Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Warwick",
+      "address": "135 Forester Avenue, Warwick, NY 10990",
+      "phone": "845-986-8368",
+      "email": "gpdickes@warwick.net",
+      "website": null,
+      "contactPerson": "Glenn P. Dickes",
+      "residentsServed": "Town of Warwick and surrounding towns",
+      "idRequired": "required",
+      "schedule": "Monday & Thursday, 5:00PM-7:00PM",
+      "days": [
+        "Mon",
+        "Thu"
+      ],
+      "donationsAccepted": true,
+      "notes": "ID and Proof of Residence Required",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.256,
+      "lng": -74.358
+    },
+    {
+      "id": "country-kids-4h-food-pantry",
+      "name": "Country Kids 4H Food Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Washingtonville",
+      "address": "2 Father Tierney Circle, Washingtonville, NY 10992",
+      "phone": "845-496-2119",
+      "email": "countrykidspantry@gmail.com",
+      "website": null,
+      "contactPerson": "John Flores",
+      "residentsServed": "Towns within the Washingtonville Central School District",
+      "idRequired": "required",
+      "schedule": "First & Third Wednesday of every month 2:30PM-6:00PM",
+      "days": [
+        "Wed"
+      ],
+      "donationsAccepted": false,
+      "notes": "ID and Proof of Residence Required",
+      "openToAll": false,
+      "kind": "site",
+      "lat": 41.4275,
+      "lng": -74.166
+    },
+    {
+      "id": "healthy-orange-farmers-market",
+      "name": "Healthy Orange Farmers Market",
+      "address": "Broadway (between Johnston St and Lander St), Newburgh, NY 12550",
+      "schedule": "Tuesdays, June\u2013October, 10:00AM\u20132:00PM",
+      "contact": "Meg Oakes",
+      "phone": null,
+      "email": "moakes@orangecountygov.com",
+      "website": "http://www.healthyorange.com/farmers-markets/",
+      "accepts": [
+        "SNAP EBT",
+        "Fresh Connect",
+        "Senior & WIC FMNP",
+        "Double Up Food Bucks"
+      ],
+      "town": "Newburgh",
+      "lat": 41.504,
+      "lng": -74.0085,
+      "kind": "market",
+      "categories": [
+        "market"
+      ],
+      "days": [
+        "Tue"
+      ],
+      "idRequired": "unknown",
+      "openToAll": true,
+      "donationsAccepted": false,
+      "residentsServed": "SNAP EBT, Fresh Connect, Senior & WIC FMNP, Double Up Food Bucks",
+      "notes": "Accepts: SNAP EBT, Fresh Connect, Senior & WIC FMNP, Double Up Food Bucks",
+      "contactPerson": "Meg Oakes"
+    },
+    {
+      "id": "newburgh-farmers-market",
+      "name": "Newburgh Farmers' Market",
+      "address": "Winter: Lobby at the Ritz, 107 Broadway, Newburgh NY 12550; Summer: Safe Harbors Green, 97 Broadway, Newburgh NY 12550",
+      "schedule": "Winter Market: Saturdays, December\u2013April, 10:00AM\u20132:00PM; Summer Market: Saturdays, May\u2013November, 10:00AM\u20133:00PM",
+      "contact": "Ilyana Campos",
+      "phone": "845-231-4424",
+      "email": null,
+      "website": "https://www.newburghnyfarmersmarket.org/",
+      "accepts": [
+        "SNAP EBT",
+        "Fresh Connect",
+        "Senior & WIC FMNP",
+        "Double Up Food Bucks",
+        "Greens4Greens"
+      ],
+      "town": "Newburgh",
+      "lat": 41.5038,
+      "lng": -74.0092,
+      "kind": "market",
+      "categories": [
+        "market"
+      ],
+      "days": [
+        "Sat"
+      ],
+      "idRequired": "unknown",
+      "openToAll": true,
+      "donationsAccepted": false,
+      "residentsServed": "SNAP EBT, Fresh Connect, Senior & WIC FMNP, Double Up Food Bucks, Greens4Greens",
+      "notes": "Accepts: SNAP EBT, Fresh Connect, Senior & WIC FMNP, Double Up Food Bucks, Greens4Greens",
+      "contactPerson": "Ilyana Campos"
+    },
+    {
+      "id": "tuxedo-farmers-market",
+      "name": "Tuxedo Farmers Market",
+      "address": "240 Rt 17, Tuxedo, NY 10987",
+      "schedule": "Saturdays, June 17\u2013October 27, 9:00AM\u20132:00PM",
+      "contact": "Tuxedo Chamber of Commerce",
+      "phone": "845-351-4791",
+      "email": "tuxedofarmersmarket@gmail.com",
+      "website": "https://tuxedofarmersmarket.com/",
+      "accepts": [
+        "Senior & WIC FMNP",
+        "Fresh Connect"
+      ],
+      "town": "Tuxedo",
+      "lat": 41.195,
+      "lng": -74.187,
+      "kind": "market",
+      "categories": [
+        "market"
+      ],
+      "days": [
+        "Sat"
+      ],
+      "idRequired": "unknown",
+      "openToAll": true,
+      "donationsAccepted": false,
+      "residentsServed": "Senior & WIC FMNP, Fresh Connect",
+      "notes": "Accepts: Senior & WIC FMNP, Fresh Connect",
+      "contactPerson": "Tuxedo Chamber of Commerce"
+    },
+    {
+      "id": "port-jervis-farmers-market",
+      "name": "Port Jervis Farmers Market",
+      "address": "Orange Square Veterans Memorial Park, Port Jervis, NY 12771",
+      "schedule": "Saturdays, 10:00AM\u20131:00PM, May 9\u2013September 26",
+      "contact": "Arina Soler",
+      "phone": null,
+      "email": "pjfarmersmarket@gmail.com",
+      "website": "http://www.pjfarmmarket.com/",
+      "accepts": [
+        "SNAP EBT with FreshConnect",
+        "Fresh Connect",
+        "Senior & WIC FMNP"
+      ],
+      "town": "Port Jervis",
+      "lat": 41.3755,
+      "lng": -74.6925,
+      "kind": "market",
+      "categories": [
+        "market"
+      ],
+      "days": [
+        "Sat"
+      ],
+      "idRequired": "unknown",
+      "openToAll": true,
+      "donationsAccepted": false,
+      "residentsServed": "SNAP EBT with FreshConnect, Fresh Connect, Senior & WIC FMNP",
+      "notes": "Accepts: SNAP EBT with FreshConnect, Fresh Connect, Senior & WIC FMNP",
+      "contactPerson": "Arina Soler"
+    },
+    {
+      "id": "soons-orchard-farm-market",
+      "name": "Soons Orchard Farm Market Store",
+      "address": "23 Soons Circle, New Hampton, NY 10958",
+      "schedule": "Seven days a week, 9:00AM\u20136:00PM",
+      "contact": null,
+      "phone": "845-374-5471",
+      "email": "soonsorchards@gmail.com",
+      "website": "https://www.soonsorchards.com/market",
+      "accepts": [
+        "Senior & WIC FMNP"
+      ],
+      "town": "New Hampton",
+      "lat": 41.389,
+      "lng": -74.421,
+      "kind": "market",
+      "categories": [
+        "market"
+      ],
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "idRequired": "unknown",
+      "openToAll": true,
+      "donationsAccepted": false,
+      "residentsServed": "Senior & WIC FMNP",
+      "notes": "Accepts: Senior & WIC FMNP",
+      "contactPerson": null
+    },
+    {
+      "id": "snap-united-way-of-the-dutchess-orange-region",
+      "name": "United Way of the Dutchess-Orange Region Serving Orange County",
+      "categories": [
+        "snap"
+      ],
+      "town": "Orange County",
+      "address": "75 Market Street, Poughkeepsie, NY 12601",
+      "phone": "211",
+      "email": null,
+      "website": "https://mybenefits.ny.gov/mybenefits/begin",
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "",
+      "days": [],
+      "donationsAccepted": false,
+      "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "snap",
+      "lat": 41.704,
+      "lng": -73.921
+    },
+    {
+      "id": "snap-orange-county-department-of-social-servi",
+      "name": "Orange County Department of Social Services \u2013 Goshen",
+      "categories": [
+        "snap"
+      ],
+      "town": "Orange County",
+      "address": "11 Quarry Road, Box Z, Goshen, NY 10924",
+      "phone": "845-291-2002",
+      "email": null,
+      "website": "https://mybenefits.ny.gov/mybenefits/begin",
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "",
+      "days": [],
+      "donationsAccepted": false,
+      "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "snap",
+      "lat": 41.4,
+      "lng": -74.325
+    },
+    {
+      "id": "snap-orange-county-department-of-social-servi",
+      "name": "Orange County Department of Social Services \u2013 Middletown",
+      "categories": [
+        "snap"
+      ],
+      "town": "Orange County",
+      "address": "18 Seward Avenue, Middletown, NY 10940",
+      "phone": "845-291-2002",
+      "email": null,
+      "website": "https://mybenefits.ny.gov/mybenefits/begin",
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "",
+      "days": [],
+      "donationsAccepted": false,
+      "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "snap",
+      "lat": 41.4485,
+      "lng": -74.4255
+    },
+    {
+      "id": "snap-orange-county-department-of-social-servi",
+      "name": "Orange County Department of Social Services \u2013 Newburgh",
+      "categories": [
+        "snap"
+      ],
+      "town": "Orange County",
+      "address": "3 Washington Center, Newburgh, NY 12550",
+      "phone": "845-291-2002",
+      "email": null,
+      "website": "https://mybenefits.ny.gov/mybenefits/begin",
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "",
+      "days": [],
+      "donationsAccepted": false,
+      "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "snap",
+      "lat": 41.503,
+      "lng": -74.0115
+    },
+    {
+      "id": "snap-cornerstone-family-healthcare-enabling-s",
+      "name": "Cornerstone Family Healthcare Enabling Services \u2013 Newburgh",
+      "categories": [
+        "snap"
+      ],
+      "town": "Orange County",
+      "address": "147 Lake Street, Newburgh, NY 12550",
+      "phone": "845-926-3636",
+      "email": "Jduran@cornerstonefh.org",
+      "website": "https://mybenefits.ny.gov/mybenefits/begin",
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "",
+      "days": [],
+      "donationsAccepted": false,
+      "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "snap",
+      "lat": 41.508,
+      "lng": -74.02
+    },
+    {
+      "id": "snap-cornerstone-family-healthcare-enabling-s",
+      "name": "Cornerstone Family Healthcare Enabling Services \u2013 Middletown",
+      "categories": [
+        "snap"
+      ],
+      "town": "Orange County",
+      "address": "10 Benton Avenue, Middletown, NY 10940",
+      "phone": "845-926-3636",
+      "email": "Jduran@cornerstonefh.org",
+      "website": "https://mybenefits.ny.gov/mybenefits/begin",
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "",
+      "days": [],
+      "donationsAccepted": false,
+      "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "snap",
+      "lat": 41.446,
+      "lng": -74.43
+    },
+    {
+      "id": "wic-cornerstone-family-healthcare-newburgh",
+      "name": "Cornerstone Family Healthcare \u2013 Newburgh",
+      "categories": [
+        "wic"
+      ],
+      "town": "Orange County",
+      "address": "147 Lake Street, Newburgh, NY",
+      "phone": "845-568-5473",
+      "email": "Wic@sunriver.org",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Monday 10:00a\u20136:00p; Tuesday 8:00a\u20135:00p; Wednesday 8:00a\u20135:00p; Thursday 8:00a\u20134:00p; Friday 8:00a\u20135:00p; 3rd Saturday of the month 9:00a\u20131:00p",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ],
+      "donationsAccepted": false,
+      "notes": "Part of Women, Infants, and Children Program (WIC)",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "wic",
+      "lat": 41.508,
+      "lng": -74.02
+    },
+    {
+      "id": "wic-cornerstone-family-healthcare-harriman",
+      "name": "Cornerstone Family Healthcare \u2013 Harriman",
+      "categories": [
+        "wic"
+      ],
+      "town": "Orange County",
+      "address": "33 NY-17M, Harriman, NY",
+      "phone": "845-568-5473",
+      "email": "Wic@sunriver.org",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Monday 10:00a\u20136:00p; Tuesday & Wednesday 8:00a\u20135:00p; Thursday 8:00a\u20134:00p; Friday 9:00a\u20135:00p; Third Sunday of the month 9:00a\u20131:00p",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sun"
+      ],
+      "donationsAccepted": false,
+      "notes": "Part of Women, Infants, and Children Program (WIC)",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "wic",
+      "lat": 41.3084,
+      "lng": -74.1446
+    },
+    {
+      "id": "wic-cornerstone-family-healthcare-port-jervi",
+      "name": "Cornerstone Family Healthcare \u2013 Port Jervis",
+      "categories": [
+        "wic"
+      ],
+      "town": "Orange County",
+      "address": "140 Hammond Street, Port Jervis, NY",
+      "phone": "845-568-5473",
+      "email": "Wic@sunriver.org",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Monday\u2013Wednesday 9:00a\u20135:00p; Thursday 8:00a\u20134:00p; Friday 9:00a\u20135:00p",
+      "days": [
+        "Mon",
+        "Wed",
+        "Thu",
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": "Part of Women, Infants, and Children Program (WIC)",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "wic",
+      "lat": 41.3765,
+      "lng": -74.695
+    },
+    {
+      "id": "wic-sun-river-health-middletown",
+      "name": "Sun River Health \u2013 Middletown",
+      "categories": [
+        "wic"
+      ],
+      "town": "Orange County",
+      "address": "156 Dolson Avenue, Middletown, NY 10940",
+      "phone": "845-640-4480",
+      "email": "Wic@sunriver.org",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Monday 10:00a\u20136:00p; Tuesday\u2013Friday 9:00a\u20135:00p",
+      "days": [
+        "Mon",
+        "Tue",
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": "Part of Women, Infants, and Children Program (WIC)",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "wic",
+      "lat": 41.434,
+      "lng": -74.419
+    },
+    {
+      "id": "wic-sun-river-health-walden",
+      "name": "Sun River Health \u2013 Walden",
+      "categories": [
+        "wic"
+      ],
+      "town": "Orange County",
+      "address": "75 Orange Ave, Walden, NY 12586",
+      "phone": "845-831-7402",
+      "email": "Wic@sunriver.org",
+      "website": null,
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Monday & Wednesday\u2013Friday 9:00a\u20135:00p; Tuesday 10:00a\u20136:00p",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": "Part of Women, Infants, and Children Program (WIC)",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "wic",
+      "lat": 41.5605,
+      "lng": -74.187
+    },
+    {
+      "id": "home-delivered-meals-orange-county-office-for-the-aging",
+      "name": "Orange County Office for the Aging",
+      "categories": [
+        "senior"
+      ],
+      "town": "Orange County (except Village of Warwick)",
+      "address": "40 Matthews Street, 3rd Floor, Suite 305, Goshen, NY",
+      "phone": "845-615-3700",
+      "email": null,
+      "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Food delivery once a week after sign-up; weekend service may be arranged",
+      "days": [],
+      "donationsAccepted": false,
+      "notes": "Part of Home Delivered Meal Program",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "home-delivered-meals",
+      "lat": 41.4035,
+      "lng": -74.323
+    },
+    {
+      "id": "congregate-dining-cornwall-senior-center",
+      "name": "Cornwall Senior Center",
+      "categories": [
+        "senior"
+      ],
+      "town": "Orange County",
+      "address": "Munger Cottage",
+      "phone": "845-534-4500",
+      "email": null,
+      "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Monday, Thursday, and Friday at Munger Cottage",
+      "days": [
+        "Mon",
+        "Thu",
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": "Part of Congregate Dining Sites",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "congregate-dining",
+      "lat": 41.3922,
+      "lng": -74.3043
+    },
+    {
+      "id": "congregate-dining-greenwood-lake-senior-center",
+      "name": "Greenwood Lake Senior Center",
+      "categories": [
+        "senior"
+      ],
+      "town": "Orange County",
+      "address": "Greenwood Lake Senior Center",
+      "phone": "845-477-8482",
+      "email": null,
+      "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Wednesdays and Fridays at the Greenwood Lake Senior Center",
+      "days": [
+        "Wed",
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": "Part of Congregate Dining Sites",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "congregate-dining",
+      "lat": 41.3946,
+      "lng": -74.3074
+    },
+    {
+      "id": "congregate-dining-middletown",
+      "name": "Middletown",
+      "categories": [
+        "senior"
+      ],
+      "town": "Orange County",
+      "address": "St. Paul's Methodist Church, 58 W. Main Street, Middletown",
+      "phone": "845-343-6911",
+      "email": null,
+      "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Monday through Friday",
+      "days": [
+        "Mon",
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": "Part of Congregate Dining Sites",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "congregate-dining",
+      "lat": 41.4458,
+      "lng": -74.4235
+    },
+    {
+      "id": "congregate-dining-montgomery-senior-center",
+      "name": "Montgomery Senior Center",
+      "categories": [
+        "senior"
+      ],
+      "town": "Orange County",
+      "address": "Montgomery Senior Center",
+      "phone": "845-457-9367",
+      "email": null,
+      "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Monday, Wednesday, and Friday at the Montgomery Senior Center",
+      "days": [
+        "Mon",
+        "Wed",
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": "Part of Congregate Dining Sites",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "congregate-dining",
+      "lat": 41.3966,
+      "lng": -74.319
+    },
+    {
+      "id": "pine-bush-csd-sfsp-circleville-church",
+      "name": "Circleville Church",
+      "categories": [
+        "school"
+      ],
+      "town": "Circleville / Pine Bush",
+      "address": "890 Goshen Tpke, Circleville, NY 10919",
+      "phone": "845-744-2031 ext. 2809",
+      "email": "caitlin.lazarski@pinebushschools.org",
+      "website": "https://www.pinebushschools.org/departments/food-services/",
+      "contactPerson": null,
+      "residentsServed": "",
+      "idRequired": "unknown",
+      "schedule": "Summer months; ages 0\u201318; open site",
+      "days": [],
+      "donationsAccepted": false,
+      "notes": "Part of PBCSD SFSP (Summer Food Service Sites)",
+      "openToAll": true,
+      "kind": "program_location",
+      "programId": "pine-bush-csd-sfsp",
+      "lat": 41.535,
+      "lng": -74.328
+    },
+    {
+      "id": "congregate-blooming-grove-senior-center",
+      "name": "Congregate Dining \u2013 Blooming Grove Senior Center",
+      "categories": [
+        "senior"
+      ],
+      "town": "Blooming Grove",
+      "address": "Tuesday, Thursday and Friday",
+      "phone": "845-496-4411",
+      "email": null,
+      "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+      "contactPerson": null,
+      "residentsServed": "Seniors; reservations required 24 hours in advance",
+      "idRequired": "unknown",
+      "schedule": "Tuesday, Thursday and Friday",
+      "days": [
+        "Tue",
+        "Thu",
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": "Call site to reserve 24 hours in advance.",
+      "openToAll": false,
+      "kind": "program_location",
+      "programId": "congregate-dining",
+      "lat": 41.414,
+      "lng": -74.1806
+    },
+    {
+      "id": "congregate-chester",
+      "name": "Congregate Dining \u2013 Chester",
+      "categories": [
+        "senior"
+      ],
+      "town": "Chester",
+      "address": "Tuesday and Thursday",
+      "phone": "845-469-7000 Ext 3",
+      "email": null,
+      "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+      "contactPerson": null,
+      "residentsServed": "Seniors; reservations required 24 hours in advance",
+      "idRequired": "unknown",
+      "schedule": "Tuesday and Thursday",
+      "days": [
+        "Tue",
+        "Thu"
+      ],
+      "donationsAccepted": false,
+      "notes": "Call site to reserve 24 hours in advance.",
+      "openToAll": false,
+      "kind": "program_location",
+      "programId": "congregate-dining",
+      "lat": 41.3549,
+      "lng": -74.2789
+    },
+    {
+      "id": "congregate-cornwall-senior-center",
+      "name": "Congregate Dining \u2013 Cornwall Senior Center",
+      "categories": [
+        "senior"
+      ],
+      "town": "Cornwall",
+      "address": "Monday, Thursday, and Friday at Munger cottage",
+      "phone": "845-534-4500",
+      "email": null,
+      "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+      "contactPerson": null,
+      "residentsServed": "Seniors; reservations required 24 hours in advance",
+      "idRequired": "unknown",
+      "schedule": "Monday, Thursday, and Friday at Munger cottage",
+      "days": [
+        "Mon",
+        "Thu",
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": "Call site to reserve 24 hours in advance.",
+      "openToAll": false,
+      "kind": "program_location",
+      "programId": "congregate-dining",
+      "lat": 41.4533,
+      "lng": -74.0212
+    },
+    {
+      "id": "congregate-greenwood-lake-senior-center",
+      "name": "Congregate Dining \u2013 Greenwood Lake Senior Center",
+      "categories": [
+        "senior"
+      ],
+      "town": "Greenwood Lake",
+      "address": "Wednesdays and Fridays at the Greenwood Lake Senior Center",
+      "phone": "845-477-8482",
+      "email": null,
+      "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+      "contactPerson": null,
+      "residentsServed": "Seniors; reservations required 24 hours in advance",
+      "idRequired": "unknown",
+      "schedule": "Wednesdays and Fridays at the Greenwood Lake Senior Center",
+      "days": [
+        "Wed",
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": "Call site to reserve 24 hours in advance.",
+      "openToAll": false,
+      "kind": "program_location",
+      "programId": "congregate-dining",
+      "lat": 41.2179,
+      "lng": -74.2915
+    },
+    {
+      "id": "congregate-middletown",
+      "name": "Congregate Dining \u2013 Middletown",
+      "categories": [
+        "senior"
+      ],
+      "town": "Middletown",
+      "address": "Monday through Friday, St. Paul's Methodist Church, 58 W. Main Street, Middletown",
+      "phone": "845-343-6911",
+      "email": null,
+      "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+      "contactPerson": null,
+      "residentsServed": "Seniors; reservations required 24 hours in advance",
+      "idRequired": "unknown",
+      "schedule": "Monday through Friday, St. Paul's Methodist Church, 58 W. Main Street, Middletown",
+      "days": [
+        "Mon",
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": "Call site to reserve 24 hours in advance.",
+      "openToAll": false,
+      "kind": "program_location",
+      "programId": "congregate-dining",
+      "lat": 41.4458,
+      "lng": -74.4235
+    },
+    {
+      "id": "congregate-montgomery-senior-center",
+      "name": "Congregate Dining \u2013 Montgomery Senior Center",
+      "categories": [
+        "senior"
+      ],
+      "town": "Montgomery",
+      "address": "Monday, Wednesday, and Friday at the Montgomery Senior Center",
+      "phone": "845-457-9367",
+      "email": null,
+      "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+      "contactPerson": null,
+      "residentsServed": "Seniors; reservations required 24 hours in advance",
+      "idRequired": "unknown",
+      "schedule": "Monday, Wednesday, and Friday at the Montgomery Senior Center",
+      "days": [
+        "Mon",
+        "Wed",
+        "Fri"
+      ],
+      "donationsAccepted": false,
+      "notes": "Call site to reserve 24 hours in advance.",
+      "openToAll": false,
+      "kind": "program_location",
+      "programId": "congregate-dining",
+      "lat": 41.5295,
+      "lng": -74.2362
+    }
+  ]
+}

@@ -1,0 +1,617 @@
+[
+  {
+    "id": "snap-united-way-of-the-dutchess-orange-region",
+    "name": "United Way of the Dutchess-Orange Region Serving Orange County",
+    "categories": [
+      "snap"
+    ],
+    "town": "Orange County",
+    "address": "75 Market Street, Poughkeepsie, NY 12601",
+    "phone": "211",
+    "email": null,
+    "website": "https://mybenefits.ny.gov/mybenefits/begin",
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "",
+    "days": [],
+    "donationsAccepted": false,
+    "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "snap",
+    "lat": 41.704,
+    "lng": -73.921
+  },
+  {
+    "id": "snap-orange-county-department-of-social-servi",
+    "name": "Orange County Department of Social Services \u2013 Goshen",
+    "categories": [
+      "snap"
+    ],
+    "town": "Orange County",
+    "address": "11 Quarry Road, Box Z, Goshen, NY 10924",
+    "phone": "845-291-2002",
+    "email": null,
+    "website": "https://mybenefits.ny.gov/mybenefits/begin",
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "",
+    "days": [],
+    "donationsAccepted": false,
+    "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "snap",
+    "lat": 41.4,
+    "lng": -74.325
+  },
+  {
+    "id": "snap-orange-county-department-of-social-servi",
+    "name": "Orange County Department of Social Services \u2013 Middletown",
+    "categories": [
+      "snap"
+    ],
+    "town": "Orange County",
+    "address": "18 Seward Avenue, Middletown, NY 10940",
+    "phone": "845-291-2002",
+    "email": null,
+    "website": "https://mybenefits.ny.gov/mybenefits/begin",
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "",
+    "days": [],
+    "donationsAccepted": false,
+    "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "snap",
+    "lat": 41.4485,
+    "lng": -74.4255
+  },
+  {
+    "id": "snap-orange-county-department-of-social-servi",
+    "name": "Orange County Department of Social Services \u2013 Newburgh",
+    "categories": [
+      "snap"
+    ],
+    "town": "Orange County",
+    "address": "3 Washington Center, Newburgh, NY 12550",
+    "phone": "845-291-2002",
+    "email": null,
+    "website": "https://mybenefits.ny.gov/mybenefits/begin",
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "",
+    "days": [],
+    "donationsAccepted": false,
+    "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "snap",
+    "lat": 41.503,
+    "lng": -74.0115
+  },
+  {
+    "id": "snap-cornerstone-family-healthcare-enabling-s",
+    "name": "Cornerstone Family Healthcare Enabling Services \u2013 Newburgh",
+    "categories": [
+      "snap"
+    ],
+    "town": "Orange County",
+    "address": "147 Lake Street, Newburgh, NY 12550",
+    "phone": "845-926-3636",
+    "email": "Jduran@cornerstonefh.org",
+    "website": "https://mybenefits.ny.gov/mybenefits/begin",
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "",
+    "days": [],
+    "donationsAccepted": false,
+    "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "snap",
+    "lat": 41.508,
+    "lng": -74.02
+  },
+  {
+    "id": "snap-cornerstone-family-healthcare-enabling-s",
+    "name": "Cornerstone Family Healthcare Enabling Services \u2013 Middletown",
+    "categories": [
+      "snap"
+    ],
+    "town": "Orange County",
+    "address": "10 Benton Avenue, Middletown, NY 10940",
+    "phone": "845-926-3636",
+    "email": "Jduran@cornerstonefh.org",
+    "website": "https://mybenefits.ny.gov/mybenefits/begin",
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "",
+    "days": [],
+    "donationsAccepted": false,
+    "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "snap",
+    "lat": 41.446,
+    "lng": -74.43
+  },
+  {
+    "id": "wic-cornerstone-family-healthcare-newburgh",
+    "name": "Cornerstone Family Healthcare \u2013 Newburgh",
+    "categories": [
+      "wic"
+    ],
+    "town": "Orange County",
+    "address": "147 Lake Street, Newburgh, NY",
+    "phone": "845-568-5473",
+    "email": "Wic@sunriver.org",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Monday 10:00a\u20136:00p; Tuesday 8:00a\u20135:00p; Wednesday 8:00a\u20135:00p; Thursday 8:00a\u20134:00p; Friday 8:00a\u20135:00p; 3rd Saturday of the month 9:00a\u20131:00p",
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "donationsAccepted": false,
+    "notes": "Part of Women, Infants, and Children Program (WIC)",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "wic",
+    "lat": 41.508,
+    "lng": -74.02
+  },
+  {
+    "id": "wic-cornerstone-family-healthcare-harriman",
+    "name": "Cornerstone Family Healthcare \u2013 Harriman",
+    "categories": [
+      "wic"
+    ],
+    "town": "Orange County",
+    "address": "33 NY-17M, Harriman, NY",
+    "phone": "845-568-5473",
+    "email": "Wic@sunriver.org",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Monday 10:00a\u20136:00p; Tuesday & Wednesday 8:00a\u20135:00p; Thursday 8:00a\u20134:00p; Friday 9:00a\u20135:00p; Third Sunday of the month 9:00a\u20131:00p",
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sun"
+    ],
+    "donationsAccepted": false,
+    "notes": "Part of Women, Infants, and Children Program (WIC)",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "wic",
+    "lat": 41.3084,
+    "lng": -74.1446
+  },
+  {
+    "id": "wic-cornerstone-family-healthcare-port-jervi",
+    "name": "Cornerstone Family Healthcare \u2013 Port Jervis",
+    "categories": [
+      "wic"
+    ],
+    "town": "Orange County",
+    "address": "140 Hammond Street, Port Jervis, NY",
+    "phone": "845-568-5473",
+    "email": "Wic@sunriver.org",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Monday\u2013Wednesday 9:00a\u20135:00p; Thursday 8:00a\u20134:00p; Friday 9:00a\u20135:00p",
+    "days": [
+      "Mon",
+      "Wed",
+      "Thu",
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": "Part of Women, Infants, and Children Program (WIC)",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "wic",
+    "lat": 41.3765,
+    "lng": -74.695
+  },
+  {
+    "id": "wic-sun-river-health-middletown",
+    "name": "Sun River Health \u2013 Middletown",
+    "categories": [
+      "wic"
+    ],
+    "town": "Orange County",
+    "address": "156 Dolson Avenue, Middletown, NY 10940",
+    "phone": "845-640-4480",
+    "email": "Wic@sunriver.org",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Monday 10:00a\u20136:00p; Tuesday\u2013Friday 9:00a\u20135:00p",
+    "days": [
+      "Mon",
+      "Tue",
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": "Part of Women, Infants, and Children Program (WIC)",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "wic",
+    "lat": 41.434,
+    "lng": -74.419
+  },
+  {
+    "id": "wic-sun-river-health-walden",
+    "name": "Sun River Health \u2013 Walden",
+    "categories": [
+      "wic"
+    ],
+    "town": "Orange County",
+    "address": "75 Orange Ave, Walden, NY 12586",
+    "phone": "845-831-7402",
+    "email": "Wic@sunriver.org",
+    "website": null,
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Monday & Wednesday\u2013Friday 9:00a\u20135:00p; Tuesday 10:00a\u20136:00p",
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": "Part of Women, Infants, and Children Program (WIC)",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "wic",
+    "lat": 41.5605,
+    "lng": -74.187
+  },
+  {
+    "id": "home-delivered-meals-orange-county-office-for-the-aging",
+    "name": "Orange County Office for the Aging",
+    "categories": [
+      "senior"
+    ],
+    "town": "Orange County (except Village of Warwick)",
+    "address": "40 Matthews Street, 3rd Floor, Suite 305, Goshen, NY",
+    "phone": "845-615-3700",
+    "email": null,
+    "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Food delivery once a week after sign-up; weekend service may be arranged",
+    "days": [],
+    "donationsAccepted": false,
+    "notes": "Part of Home Delivered Meal Program",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "home-delivered-meals",
+    "lat": 41.4035,
+    "lng": -74.323
+  },
+  {
+    "id": "congregate-dining-cornwall-senior-center",
+    "name": "Cornwall Senior Center",
+    "categories": [
+      "senior"
+    ],
+    "town": "Orange County",
+    "address": "Munger Cottage",
+    "phone": "845-534-4500",
+    "email": null,
+    "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Monday, Thursday, and Friday at Munger Cottage",
+    "days": [
+      "Mon",
+      "Thu",
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": "Part of Congregate Dining Sites",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "congregate-dining",
+    "lat": 41.3922,
+    "lng": -74.3043
+  },
+  {
+    "id": "congregate-dining-greenwood-lake-senior-center",
+    "name": "Greenwood Lake Senior Center",
+    "categories": [
+      "senior"
+    ],
+    "town": "Orange County",
+    "address": "Greenwood Lake Senior Center",
+    "phone": "845-477-8482",
+    "email": null,
+    "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Wednesdays and Fridays at the Greenwood Lake Senior Center",
+    "days": [
+      "Wed",
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": "Part of Congregate Dining Sites",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "congregate-dining",
+    "lat": 41.3946,
+    "lng": -74.3074
+  },
+  {
+    "id": "congregate-dining-middletown",
+    "name": "Middletown",
+    "categories": [
+      "senior"
+    ],
+    "town": "Orange County",
+    "address": "St. Paul's Methodist Church, 58 W. Main Street, Middletown",
+    "phone": "845-343-6911",
+    "email": null,
+    "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Monday through Friday",
+    "days": [
+      "Mon",
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": "Part of Congregate Dining Sites",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "congregate-dining",
+    "lat": 41.4458,
+    "lng": -74.4235
+  },
+  {
+    "id": "congregate-dining-montgomery-senior-center",
+    "name": "Montgomery Senior Center",
+    "categories": [
+      "senior"
+    ],
+    "town": "Orange County",
+    "address": "Montgomery Senior Center",
+    "phone": "845-457-9367",
+    "email": null,
+    "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Monday, Wednesday, and Friday at the Montgomery Senior Center",
+    "days": [
+      "Mon",
+      "Wed",
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": "Part of Congregate Dining Sites",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "congregate-dining",
+    "lat": 41.3966,
+    "lng": -74.319
+  },
+  {
+    "id": "pine-bush-csd-sfsp-circleville-church",
+    "name": "Circleville Church",
+    "categories": [
+      "school"
+    ],
+    "town": "Circleville / Pine Bush",
+    "address": "890 Goshen Tpke, Circleville, NY 10919",
+    "phone": "845-744-2031 ext. 2809",
+    "email": "caitlin.lazarski@pinebushschools.org",
+    "website": "https://www.pinebushschools.org/departments/food-services/",
+    "contactPerson": null,
+    "residentsServed": "",
+    "idRequired": "unknown",
+    "schedule": "Summer months; ages 0\u201318; open site",
+    "days": [],
+    "donationsAccepted": false,
+    "notes": "Part of PBCSD SFSP (Summer Food Service Sites)",
+    "openToAll": true,
+    "kind": "program_location",
+    "programId": "pine-bush-csd-sfsp",
+    "lat": 41.535,
+    "lng": -74.328
+  },
+  {
+    "id": "congregate-blooming-grove-senior-center",
+    "name": "Congregate Dining \u2013 Blooming Grove Senior Center",
+    "categories": [
+      "senior"
+    ],
+    "town": "Blooming Grove",
+    "address": "Tuesday, Thursday and Friday",
+    "phone": "845-496-4411",
+    "email": null,
+    "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+    "contactPerson": null,
+    "residentsServed": "Seniors; reservations required 24 hours in advance",
+    "idRequired": "unknown",
+    "schedule": "Tuesday, Thursday and Friday",
+    "days": [
+      "Tue",
+      "Thu",
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": "Call site to reserve 24 hours in advance.",
+    "openToAll": false,
+    "kind": "program_location",
+    "programId": "congregate-dining",
+    "lat": 41.414,
+    "lng": -74.1806
+  },
+  {
+    "id": "congregate-chester",
+    "name": "Congregate Dining \u2013 Chester",
+    "categories": [
+      "senior"
+    ],
+    "town": "Chester",
+    "address": "Tuesday and Thursday",
+    "phone": "845-469-7000 Ext 3",
+    "email": null,
+    "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+    "contactPerson": null,
+    "residentsServed": "Seniors; reservations required 24 hours in advance",
+    "idRequired": "unknown",
+    "schedule": "Tuesday and Thursday",
+    "days": [
+      "Tue",
+      "Thu"
+    ],
+    "donationsAccepted": false,
+    "notes": "Call site to reserve 24 hours in advance.",
+    "openToAll": false,
+    "kind": "program_location",
+    "programId": "congregate-dining",
+    "lat": 41.3549,
+    "lng": -74.2789
+  },
+  {
+    "id": "congregate-cornwall-senior-center",
+    "name": "Congregate Dining \u2013 Cornwall Senior Center",
+    "categories": [
+      "senior"
+    ],
+    "town": "Cornwall",
+    "address": "Monday, Thursday, and Friday at Munger cottage",
+    "phone": "845-534-4500",
+    "email": null,
+    "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+    "contactPerson": null,
+    "residentsServed": "Seniors; reservations required 24 hours in advance",
+    "idRequired": "unknown",
+    "schedule": "Monday, Thursday, and Friday at Munger cottage",
+    "days": [
+      "Mon",
+      "Thu",
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": "Call site to reserve 24 hours in advance.",
+    "openToAll": false,
+    "kind": "program_location",
+    "programId": "congregate-dining",
+    "lat": 41.4533,
+    "lng": -74.0212
+  },
+  {
+    "id": "congregate-greenwood-lake-senior-center",
+    "name": "Congregate Dining \u2013 Greenwood Lake Senior Center",
+    "categories": [
+      "senior"
+    ],
+    "town": "Greenwood Lake",
+    "address": "Wednesdays and Fridays at the Greenwood Lake Senior Center",
+    "phone": "845-477-8482",
+    "email": null,
+    "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+    "contactPerson": null,
+    "residentsServed": "Seniors; reservations required 24 hours in advance",
+    "idRequired": "unknown",
+    "schedule": "Wednesdays and Fridays at the Greenwood Lake Senior Center",
+    "days": [
+      "Wed",
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": "Call site to reserve 24 hours in advance.",
+    "openToAll": false,
+    "kind": "program_location",
+    "programId": "congregate-dining",
+    "lat": 41.2179,
+    "lng": -74.2915
+  },
+  {
+    "id": "congregate-middletown",
+    "name": "Congregate Dining \u2013 Middletown",
+    "categories": [
+      "senior"
+    ],
+    "town": "Middletown",
+    "address": "Monday through Friday, St. Paul's Methodist Church, 58 W. Main Street, Middletown",
+    "phone": "845-343-6911",
+    "email": null,
+    "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+    "contactPerson": null,
+    "residentsServed": "Seniors; reservations required 24 hours in advance",
+    "idRequired": "unknown",
+    "schedule": "Monday through Friday, St. Paul's Methodist Church, 58 W. Main Street, Middletown",
+    "days": [
+      "Mon",
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": "Call site to reserve 24 hours in advance.",
+    "openToAll": false,
+    "kind": "program_location",
+    "programId": "congregate-dining",
+    "lat": 41.4458,
+    "lng": -74.4235
+  },
+  {
+    "id": "congregate-montgomery-senior-center",
+    "name": "Congregate Dining \u2013 Montgomery Senior Center",
+    "categories": [
+      "senior"
+    ],
+    "town": "Montgomery",
+    "address": "Monday, Wednesday, and Friday at the Montgomery Senior Center",
+    "phone": "845-457-9367",
+    "email": null,
+    "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
+    "contactPerson": null,
+    "residentsServed": "Seniors; reservations required 24 hours in advance",
+    "idRequired": "unknown",
+    "schedule": "Monday, Wednesday, and Friday at the Montgomery Senior Center",
+    "days": [
+      "Mon",
+      "Wed",
+      "Fri"
+    ],
+    "donationsAccepted": false,
+    "notes": "Call site to reserve 24 hours in advance.",
+    "openToAll": false,
+    "kind": "program_location",
+    "programId": "congregate-dining",
+    "lat": 41.5295,
+    "lng": -74.2362
+  }
+]

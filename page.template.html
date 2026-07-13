@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Orange County Food Assistance Directory</title>
+<meta name="author" content="Dayquan Crandell" />
+<meta name="creator" content="Dayquan Crandell · Orange County Department of Health Epidemiology" />
+<!--
+  Orange County Food Assistance Directory
+  Designed & developed by Dayquan Crandell
+  Portfolio / related work: https://github.com/OCDOH-Epidemiology
+  Built for public use with Orange County, NY food assistance data (June 2026).
+-->
+<meta name="description" content="Find food pantries, soup kitchens, SNAP, WIC, senior meals, school programs, and farmers markets across Orange County, NY." />
+<meta name="theme-color" content="#1f5c45" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<style>
+:root {
+  --ink: #1a2a22; --muted: #5a6b62; --paper: #f3f6f2; --surface: #ffffff;
+  --line: #c9d5cc; --forest: #1f5c45; --forest-d: #143d2e; --leaf: #2f8f65;
+  --gold: #c9a227; --gold-s: #f3e6b0; --warn: #9a4a1c; --sky: #dfece6;
+  --shadow: 0 1px 2px rgba(20,40,30,.06), 0 10px 28px rgba(20,40,30,.08);
+  --radius: 14px; --font: "Source Sans 3", system-ui, sans-serif; --display: "Fraunces", Georgia, serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--font); color: var(--ink); background: var(--paper); line-height: 1.5; min-height: 100vh; }
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+  background: linear-gradient(180deg, #eef3ef 0%, var(--paper) 40%, #f5f7f4 100%);
+}
+body.low-bw::before { background: var(--paper); }
+body.low-bw .hero-bg { background-image: none !important; background: linear-gradient(160deg, #143d2e, #1f5c45) !important; animation: none; }
+body.low-bw { --font: system-ui, sans-serif; --display: Georgia, serif; }
+img { max-width: 100%; display: block; }
+a { color: var(--forest); }
+button, input, select { font: inherit; }
+.wrap { width: min(1180px, calc(100% - 2rem)); margin-inline: auto; }
+.skip-link { position: absolute; left: -999px; top: 0; background: var(--forest); color: #fff; padding: .6rem 1rem; z-index: 100; border-radius: 0 0 8px 0; font-weight: 700; }
+.skip-link:focus { left: 0; }
+.hero { position: relative; min-height: min(68vh, 580px); display: grid; align-items: end; color: #f7fbf8; overflow: hidden; isolation: isolate; }
+.hero-bg {
+  position: absolute; inset: 0; z-index: -2;
+  background:
+    linear-gradient(180deg, rgba(12,32,24,.35) 0%, rgba(12,32,24,.72) 55%, rgba(12,32,24,.92) 100%),
+    url("https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+  transform: scale(1.02); animation: heroIn 1.4s ease-out both;
+}
+.hero-pattern { position: absolute; inset: 0; z-index: -1; opacity: .18; background-image: radial-gradient(rgba(255,255,255,.35) .6px, transparent .7px); background-size: 18px 18px; }
+@keyframes heroIn { from { transform: scale(1.08); opacity: .7; } to { transform: scale(1.02); opacity: 1; } }
+.hero-inner { padding: 2.25rem 0 2.5rem; animation: rise .8s ease-out .15s both; }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.hero-top { display: flex; justify-content: flex-end; gap: .5rem; margin-bottom: 1rem; }
+
+.lang-select-wrap { display: flex; align-items: center; gap: .4rem; }
+.lang-select-wrap label { font-size: .78rem; font-weight: 700; letter-spacing: .04em; color: #fff; text-transform: uppercase; text-shadow: 0 1px 2px rgba(0,0,0,.45); }
+.lang-select-wrap select {
+  border: 1px solid rgba(255,255,255,.55); background: rgba(12,32,24,.55); color: #fff;
+  border-radius: 999px; padding: .45rem .9rem; font-weight: 600; backdrop-filter: blur(8px);
+  max-width: 13.5rem;
+}
+.lang-select-wrap select option { color: #1a2a22; background: #fff; }
+.bw-toggle {
+  display: inline-flex; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.3);
+  border-radius: 999px; padding: .15rem; backdrop-filter: blur(6px);
+}
+.bw-toggle button {
+  border: 0; background: transparent; color: #e8f2ec; border-radius: 999px;
+  padding: .35rem .7rem; font-weight: 700; cursor: pointer; font-size: .85rem;
+}
+.bw-toggle button[aria-pressed="true"] { background: var(--gold); color: #1a1808; }
+.brand { font-family: var(--display); font-size: clamp(2.4rem, 7vw, 4.4rem); line-height: .98; letter-spacing: -.02em; margin: 0 0 .75rem; max-width: 14ch; text-shadow: 0 2px 24px rgba(0,0,0,.35); }
+.hero-lead { margin: 0 0 1.25rem; max-width: 40ch; font-size: clamp(1.05rem, 2.2vw, 1.25rem); color: #dce9e1; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+.btn { appearance: none; border: 0; border-radius: 999px; padding: .7rem 1.2rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: .45rem; transition: transform .15s ease, filter .15s ease; }
+.btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+.btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.btn-primary { background: var(--gold); color: #1a1808; }
+.btn-ghost { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(6px); }
+.meta-pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.15rem; }
+.pill { font-size: .82rem; font-weight: 600; padding: .35rem .75rem; border-radius: 999px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); }
+.banner { background: #fff8e6; border-bottom: 1px solid #e6d59a; color: #5c4810; padding: .85rem 0; font-size: .95rem; }
+.banner strong { color: #3f320c; }
+.toolbar { position: sticky; top: 0; z-index: 40; background: rgba(243,246,242,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); padding: .85rem 0; }
+.toolbar-row { display: grid; gap: .75rem; grid-template-columns: 1fr; }
+@media (min-width: 980px) {
+  .toolbar-row { grid-template-columns: 1.35fr repeat(4, minmax(0, 1fr)) auto; align-items: end; }
+}
+.field { display: grid; gap: .3rem; }
+.field label { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.field input, .field select { width: 100%; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: .65rem .75rem; color: var(--ink); }
+.field input:focus, .field select:focus { outline: 2px solid var(--leaf); outline-offset: 1px; border-color: var(--leaf); }
+.chip-row { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .75rem; }
+.chip { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: .35rem .8rem; font-size: .88rem; font-weight: 600; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--forest); border-color: var(--forest); color: #fff; }
+.chip:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.view-toggle { display: inline-flex; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: .2rem; gap: .15rem; }
+.view-toggle button { border: 0; background: transparent; border-radius: 999px; padding: .5rem .95rem; font-weight: 700; cursor: pointer; color: var(--muted); }
+.view-toggle button[aria-pressed="true"] { background: var(--forest); color: #fff; }
+.results-bar { display: flex; flex-wrap: wrap; gap: .85rem 1rem; align-items: flex-end; justify-content: space-between; margin: 1.25rem 0 .85rem; }
+.results-bar h2 { margin: 0; font-family: var(--display); font-size: 1.35rem; font-weight: 600; }
+.count { color: var(--muted); font-weight: 600; }
+.action-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .5rem;
+  width: min(100%, 42rem);
+  align-items: end;
+}
+@media (max-width: 720px) {
+  .action-row { grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+}
+.action-control {
+  display: grid;
+  gap: .28rem;
+  min-width: 0;
+}
+.action-control label,
+.action-spacer {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.2;
+  min-height: 1rem;
+  display: block;
+}
+.action-spacer { visibility: hidden; }
+.action-control select,
+.loc-btn,
+.tool-btn {
+  box-sizing: border-box;
+  width: 100%;
+  height: 2.75rem;
+  margin: 0;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 0 .7rem;
+  font: inherit;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: normal;
+  line-height: 1.15;
+}
+.action-control select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%215a6b62' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right .75rem center;
+  padding-right: 2rem;
+  text-align: left;
+  justify-content: flex-start;
+}
+.loc-btn:hover, .tool-btn:hover, .action-control select:hover { border-color: var(--leaf); color: var(--forest); }
+.loc-btn:focus-visible, .tool-btn:focus-visible, .action-control select:focus-visible {
+  outline: 2px solid var(--leaf); outline-offset: 1px;
+}
+.loc-btn.on { background: var(--forest); color: #fff; border-color: var(--forest); }
+.main { padding: 0 0 3.5rem; }
+.layout { display: grid; gap: 1.25rem; }
+@media (min-width: 980px) { .layout.has-detail { grid-template-columns: 1fr 360px; } }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+#list-panel { min-height: 420px; }
+#map-panel { display: none; min-height: 520px; overflow: hidden; }
+body.view-map #list-panel { display: none; }
+body.view-map #map-panel { display: block; }
+body.low-bw.view-map #map-panel::after {
+  content: attr(data-map-note); display: block; padding: .75rem 1rem; background: #fff8e6; color: #5c4810; font-size: .9rem; border-top: 1px solid #e6d59a;
+}
+#map { height: min(70vh, 640px); width: 100%; }
+.cards { display: grid; gap: .85rem; padding: 1rem; }
+.card {
+  border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.05rem;
+  background: linear-gradient(180deg, #fff, #f8fbf8); cursor: pointer;
+  transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+  animation: cardIn .35s ease both;
+}
+@keyframes cardIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.card:hover, .card:focus-within, .card.active { border-color: var(--leaf); box-shadow: 0 8px 22px rgba(31,92,69,.12); transform: translateY(-1px); }
+.card-top { display: flex; gap: .75rem; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; }
+.card h3 { margin: 0; font-family: var(--display); font-size: 1.15rem; font-weight: 600; line-height: 1.3; flex: 1 1 12rem; min-width: 0; }
+.card-top-right { display: flex; flex-wrap: wrap; gap: .45rem; align-items: center; justify-content: flex-end; }
+.fav-btn {
+  flex: 0 0 auto; border: 1px solid #c2b280; background: #fffdf6; border-radius: 999px;
+  width: 2.35rem; height: 2.35rem; display: inline-grid; place-items: center;
+  font-size: 1.15rem; cursor: pointer; line-height: 1; color: #8a7418; padding: 0;
+  box-shadow: 0 1px 2px rgba(20,40,30,.06);
+}
+.fav-btn:hover { border-color: var(--gold); background: var(--gold-s); }
+.fav-btn[aria-pressed="true"] { color: #6e5a10; background: var(--gold-s); border-color: #c9a227; }
+.fav-btn:focus-visible { outline: 2px solid var(--leaf); outline-offset: 2px; }
+.badges { display: flex; flex-wrap: wrap; gap: .35rem; align-items: center; justify-content: flex-end; max-width: 100%; }
+.badge { font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: .22rem .5rem; border-radius: 999px; background: var(--sky); color: var(--forest-d); }
+.badge.pantry { background: #e5f3ea; }
+.badge.soup_kitchen, .badge.hot_meals { background: #fde8d8; color: var(--warn); }
+.badge.mini_pantry { background: #e8eef8; color: #2a4a7a; }
+.badge.market { background: var(--gold-s); color: #6a5608; }
+.badge.wic, .badge.snap, .badge.senior, .badge.school, .badge.summer_ebt { background: #e7f0ff; color: #23406b; }
+.badge.open { background: #d8f5e4; color: #0f5c38; }
+.badge.approx { background: #f3efe2; color: #6a5608; }
+.card-meta { margin: .55rem 0 0; color: var(--muted); font-size: .95rem; }
+.card-meta p { margin: .2rem 0; }
+.card-actions { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .75rem; }
+.card-actions a, .card-actions button {
+  text-decoration: none; border: 1px solid var(--line); background: #fff; color: var(--forest-d);
+  border-radius: 999px; padding: .35rem .75rem; font-size: .88rem; font-weight: 600; cursor: pointer;
+}
+.card-actions a:hover, .card-actions button:hover { border-color: var(--leaf); background: var(--sky); }
+.dist { font-weight: 700; color: var(--forest); font-size: .85rem; }
+.programs { margin: 1.5rem 0 .25rem; }
+.programs h2 { font-family: var(--display); font-size: 1.5rem; margin: 0 0 .35rem; }
+.programs-lead { margin: 0 0 1rem; color: var(--muted); }
+.program-grid { display: grid; gap: .85rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.program-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.05rem; box-shadow: var(--shadow); }
+.program-card h3 { margin: 0 0 .4rem; font-family: var(--display); font-size: 1.1rem; }
+.program-card p { margin: 0; color: var(--muted); font-size: .92rem; }
+.program-card details { margin-top: .65rem; }
+.program-card summary { cursor: pointer; font-weight: 700; color: var(--forest); }
+.program-card .links { margin: .5rem 0 0; padding-left: 1.1rem; }
+#detail { display: none; position: sticky; top: 6.5rem; align-self: start; max-height: calc(100vh - 7rem); overflow: auto; }
+body.has-selection #detail { display: block; }
+.detail-inner { padding: 1.15rem 1.2rem 1.4rem; }
+.detail-inner h2 { font-family: var(--display); font-size: 1.45rem; margin: .35rem 0 .5rem; line-height: 1.2; }
+.close-detail { float: right; border: 0; background: transparent; font-size: 1.4rem; line-height: 1; cursor: pointer; color: var(--muted); }
+.detail-section { margin-top: .9rem; }
+.detail-section h4 { margin: 0 0 .25rem; font-size: .75rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
+.detail-section p { margin: 0; }
+.empty { padding: 2.5rem 1.25rem; text-align: center; color: var(--muted); }
+.empty strong { display: block; color: var(--ink); font-family: var(--display); font-size: 1.3rem; margin-bottom: .35rem; }
+.toast {
+  position: fixed; bottom: 1.25rem; left: 50%; transform: translateX(-50%) translateY(140%);
+  background: var(--forest-d); color: #fff; padding: .7rem 1.1rem; border-radius: 999px;
+  font-weight: 600; z-index: 80; transition: transform .25s ease, opacity .2s ease;
+  max-width: calc(100% - 2rem); text-align: center;
+  opacity: 0; visibility: hidden; pointer-events: none; display: none;
+}
+.toast.show { display: block; transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; }
+.offline-banner {
+  display: none; background: #23406b; color: #fff; text-align: center; padding: .45rem .75rem; font-size: .9rem; font-weight: 600;
+}
+body.is-offline .offline-banner { display: block; }
+footer { border-top: 1px solid var(--line); padding: 2rem 0 2.5rem; color: var(--muted); font-size: .92rem; }
+footer a { font-weight: 600; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+@media (max-width: 700px) {
+  .brand { max-width: none; }
+  #detail {
+    position: fixed; inset: auto 0 0 0; top: auto; max-height: 55vh; z-index: 50;
+    border-radius: 18px 18px 0 0; box-shadow: 0 -10px 40px rgba(0,0,0,.18);
+  }
+  body.has-selection #detail { display: block; }
+}
+@media print {
+  body::before, .hero, .banner, .toolbar, .hero-top, .view-toggle, .chip-row,
+  .action-row, #map-panel, #detail, .programs, footer, .skip-link, .offline-banner, .toast, .fav-btn { display: none !important; }
+  body { background: #fff; color: #000; }
+  .main { padding: 0; }
+  .panel { box-shadow: none; border: 0; }
+  .cards { padding: 0; gap: .6rem; }
+  .card { break-inside: avoid; border: 1px solid #999; box-shadow: none; cursor: default; transform: none; animation: none; }
+  .card-actions { display: none; }
+  .print-only { display: block !important; margin: 0 0 1rem; }
+  #list-panel { display: block !important; }
+}
+.print-only { display: none; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#directory" data-i18n="skip">Skip to directory</a>
+<div class="offline-banner" data-i18n="offline">You're offline — showing saved directory data.</div>
+<header class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-pattern" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-top">
+      <div class="lang-select-wrap">
+        <label for="lang-select" data-i18n="language">Language</label>
+        <select id="lang-select" aria-label="Language">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="yi">ייִדיש · Yiddish</option>
+          <option value="zh">中文 · Chinese</option>
+          <option value="ht">Kreyòl Ayisyen</option>
+          <option value="ar">العربية · Arabic</option>
+          <option value="he">עברית · Hebrew</option>
+          <option value="ru">Русский · Russian</option>
+        </select>
+      </div>
+      <div class="bw-toggle" role="group">
+        <button type="button" id="low-bw" aria-pressed="false" data-i18n="lowBw">Low data</button>
+      </div>
+    </div>
+    <h1 class="brand" data-i18n="brand">Orange County Food Assistance</h1>
+    <p class="hero-lead" data-i18n="lead">Find pantries, meals, benefits, and markets near you — filter by town, day, and program type.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#directory" data-i18n="browse">Browse directory</a>
+      <a class="btn btn-ghost" href="#programs" data-i18n="benefits">Benefits &amp; programs</a>
+    </div>
+    <div class="meta-pills">
+      <span class="pill" data-i18n="updated">Updated June 2026</span>
+      <span class="pill">Orange County, NY</span>
+      <span class="pill" data-i18n="listMap">List + Map</span>
+    </div>
+  </div>
+</header>
+
+<div class="banner">
+  <div class="wrap"><strong data-i18n="callAheadStrong">Please call ahead.</strong> <span data-i18n="callAhead">Hours and availability change. Confirm before you go, and bring bags when visiting pantries.</span></div>
+</div>
+
+<section class="toolbar" id="directory" aria-label="Directory filters">
+  <div class="wrap">
+    <div class="toolbar-row">
+      <div class="field">
+        <label for="q" data-i18n="search">Search</label>
+        <input id="q" type="search" data-i18n-placeholder="searchPh" placeholder="Name, address, notes…" autocomplete="off" />
+      </div>
+      <div class="field">
+        <label for="town" data-i18n="town">Town / area</label>
+        <select id="town"><option value="" data-i18n="allTowns">All towns</option></select>
+      </div>
+      <div class="field">
+        <label for="type" data-i18n="type">Program type</label>
+        <select id="type">
+          <option value="" data-i18n="allTypes">All types</option>
+          <option value="pantry" data-i18n="optPantry">Food pantry</option>
+          <option value="soup_kitchen" data-i18n="optSoup">Soup kitchen</option>
+          <option value="mini_pantry" data-i18n="optMini">Mini-pantry</option>
+          <option value="hot_meals" data-i18n="optHot">Hot meals</option>
+          <option value="market" data-i18n="optMarket">Farmers market</option>
+          <option value="snap">SNAP</option>
+          <option value="wic">WIC</option>
+          <option value="senior" data-i18n="optSenior">Senior meals</option>
+          <option value="school" data-i18n="optSchool">School program</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="day" data-i18n="openOn">Open on</label>
+        <select id="day">
+          <option value="" data-i18n="anyDay">Any day</option>
+          <option value="today" data-i18n="openToday">Open today</option>
+          <option value="open_now" data-i18n="openNow">Open now</option>
+          <option value="Mon" data-i18n="mon">Monday</option>
+          <option value="Tue" data-i18n="tue">Tuesday</option>
+          <option value="Wed" data-i18n="wed">Wednesday</option>
+          <option value="Thu" data-i18n="thu">Thursday</option>
+          <option value="Fri" data-i18n="fri">Friday</option>
+          <option value="Sat" data-i18n="sat">Saturday</option>
+          <option value="Sun" data-i18n="sun">Sunday</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="docs" data-i18n="docs">Documentation</label>
+        <select id="docs">
+          <option value="" data-i18n="any">Any</option>
+          <option value="not_required" data-i18n="noId">No ID required</option>
+          <option value="open_to_all" data-i18n="openAll">Open to all / no town limit</option>
+          <option value="required" data-i18n="idReq">ID or proof required</option>
+          <option value="favorites" data-i18n="myPlaces">My places</option>
+        </select>
+      </div>
+      <div class="field">
+        <label data-i18n="view">View</label>
+        <div class="view-toggle" role="group" aria-label="List or map view">
+          <button type="button" id="view-list" aria-pressed="true" data-i18n="list">List</button>
+          <button type="button" id="view-map" aria-pressed="false" data-i18n="map">Map</button>
+        </div>
+      </div>
+    </div>
+    <div class="chip-row" aria-label="Quick filters">
+      <button type="button" class="chip" data-quick="open_now" aria-pressed="false" data-i18n="openNow">Open now</button>
+      <button type="button" class="chip" data-quick="today" aria-pressed="false" data-i18n="openToday">Open today</button>
+      <button type="button" class="chip" data-quick="pantry" aria-pressed="false" data-i18n="pantries">Pantries</button>
+      <button type="button" class="chip" data-quick="soup_kitchen" aria-pressed="false" data-i18n="soups">Soup kitchens</button>
+      <button type="button" class="chip" data-quick="open_to_all" aria-pressed="false" data-i18n="openAll">Open to all</button>
+      <button type="button" class="chip" data-quick="favorites" aria-pressed="false" data-i18n="myPlaces">My places</button>
+      <button type="button" class="chip" data-quick="market" aria-pressed="false" data-i18n="markets">Markets</button>
+      <button type="button" class="chip" data-quick="clear" aria-pressed="false" data-i18n="clear">Clear filters</button>
+    </div>
+  </div>
+</section>
+
+<main class="main">
+  <div class="wrap">
+    <div class="results-bar">
+      <div>
+        <h2 data-i18n="locations">Locations</h2>
+        <div class="count" id="result-count">…</div>
+      </div>
+      <div class="action-row">
+        <div class="action-control">
+          <label for="radius" data-i18n="within">Within</label>
+          <select id="radius" aria-label="Within">
+            <option value="">—</option>
+            <option value="5">5 mi</option>
+            <option value="10">10 mi</option>
+            <option value="25">25 mi</option>
+          </select>
+        </div>
+        <div class="action-control action-control-btn">
+          <span class="action-spacer" aria-hidden="true"></span>
+          <button type="button" class="loc-btn" id="near-me" data-i18n="nearMe">Use my location</button>
+        </div>
+        <div class="action-control action-control-btn">
+          <span class="action-spacer" aria-hidden="true"></span>
+          <button type="button" class="tool-btn" id="share-btn" data-i18n="share">Share list</button>
+        </div>
+        <div class="action-control action-control-btn">
+          <span class="action-spacer" aria-hidden="true"></span>
+          <button type="button" class="tool-btn" id="print-btn" data-i18n="print">Print list</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="print-only" id="print-header"></p>
+
+    <div class="layout" id="layout">
+      <div>
+        <div class="panel" id="list-panel"><div class="cards" id="cards"></div></div>
+        <div class="panel" id="map-panel" data-map-note="Map tiles need a network connection. List view works offline.">
+          <div id="map" role="application" aria-label="Map of food assistance locations"></div>
+        </div>
+      </div>
+      <aside class="panel" id="detail" aria-live="polite"></aside>
+    </div>
+
+    <section class="programs" id="programs">
+      <h2 data-i18n="programsTitle">Benefits &amp; programs</h2>
+      <p class="programs-lead" data-i18n="programsLead">SNAP, WIC, senior dining, school meals, Summer EBT, and more — expand a card for eligibility and how to enroll.</p>
+      <div class="program-grid" id="program-grid"></div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p data-i18n="mapNote">Map pins are approximate by address/town. Always confirm location details by phone.</p>
+    <p data-i18n="source">Source: County-Wide Food Assistance Directory Programs by Town, Orange County NY — <strong>Last updated June 2026</strong>.</p>
+    <p data-i18n="contact">Questions about this directory: <a href="mailto:moakes@orangecountygov.com">Meg Oakes, moakes@orangecountygov.com</a> · Call <a href="tel:211">211</a> for local help.</p>
+    <p data-i18n="favNote">My places are saved only on this device/browser.</p>
+    <p><a href="#top" data-i18n="top">Back to top</a></p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+const DIRECTORY = __DATA__;
+const FAV_KEY = "oc-food-favorites-v1";
+const LANG_KEY = "oc-food-lang-v1";
+const BW_KEY = "oc-food-lowbw-v1";
+const DAY_NAMES = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const ORDINAL = { first: 1, second: 2, third: 3, fourth: 4, "1st": 1, "2nd": 2, "3rd": 3, "4th": 4, last: -1 };
+
+const I18N = {
+  "en": {
+    "language": "Language",
+    "skip": "Skip to directory",
+    "offline": "You're offline — showing saved directory data.",
+    "brand": "Orange County Food Assistance",
+    "lead": "Find pantries, meals, benefits, and markets near you — filter by town, day, and program type.",
+    "browse": "Browse directory",
+    "benefits": "Benefits & programs",
+    "updated": "Updated June 2026",
+    "listMap": "List + Map",
+    "lowBw": "Low data",
+    "callAheadStrong": "Please call ahead.",
+    "callAhead": "Hours and availability change. Confirm before you go, and bring bags when visiting pantries.",
+    "search": "Search",
+    "searchPh": "Name, address, notes…",
+    "town": "Town / area",
+    "allTowns": "All towns",
+    "type": "Program type",
+    "allTypes": "All types",
+    "optPantry": "Food pantry",
+    "optSoup": "Soup kitchen",
+    "optMini": "Mini-pantry",
+    "optHot": "Hot meals",
+    "optMarket": "Farmers market",
+    "optSenior": "Senior meals",
+    "optSchool": "School program",
+    "openOn": "Open on",
+    "anyDay": "Any day",
+    "openToday": "Open today",
+    "openNow": "Open now",
+    "mon": "Monday",
+    "tue": "Tuesday",
+    "wed": "Wednesday",
+    "thu": "Thursday",
+    "fri": "Friday",
+    "sat": "Saturday",
+    "sun": "Sunday",
+    "docs": "Documentation",
+    "any": "Any",
+    "noId": "No ID required",
+    "openAll": "Open to all / no town limit",
+    "idReq": "ID or proof required",
+    "myPlaces": "My places",
+    "view": "View",
+    "list": "List",
+    "map": "Map",
+    "pantries": "Pantries",
+    "soups": "Soup kitchens",
+    "markets": "Markets",
+    "clear": "Clear filters",
+    "locations": "Locations",
+    "within": "Within",
+    "nearMe": "Use my location",
+    "nearMeOn": "Location on",
+    "locating": "Locating…",
+    "share": "Share list",
+    "print": "Print list",
+    "programsTitle": "Benefits & programs",
+    "programsLead": "SNAP, WIC, senior dining, school meals, Summer EBT, and more — expand a card for eligibility and how to enroll.",
+    "mapNote": "Map pins are approximate by address/town. Always confirm location details by phone.",
+    "mapOfflineNote": "Map tiles need a network connection. List view works offline.",
+    "source": "Source: County-Wide Food Assistance Directory Programs by Town, Orange County NY — <strong>Last updated June 2026</strong>.",
+    "contact": "Questions about this directory: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · Call <a href=\"tel:211\">211</a> for local help.",
+    "favNote": "My places are saved only on this device/browser.",
+    "top": "Back to top",
+    "call": "Call",
+    "email": "Email",
+    "directions": "Directions",
+    "website": "Website",
+    "details": "Details",
+    "copyText": "Copy for text",
+    "save": "Save",
+    "saved": "Saved",
+    "address": "Address",
+    "schedule": "Schedule",
+    "residents": "Residents served",
+    "documentation": "Documentation",
+    "contactLabel": "Contact",
+    "phone": "Phone",
+    "notes": "Notes",
+    "donations": "Donations",
+    "donationsYes": "Donations accepted — contact the location for details.",
+    "reminder": "Reminder",
+    "noMatches": "No matches",
+    "noMatchesHint": "Try another town, day, or clear filters.",
+    "emptyFav": "No saved places yet",
+    "emptyFavHint": "Tap the star on any location to save it here.",
+    "locCount": "{n} location",
+    "locCountPlural": "{n} locations",
+    "sortedDist": " · sorted by distance",
+    "openBadge": "Open now",
+    "approxOpen": "Likely open",
+    "copied": "Copied for texting",
+    "shared": "Link copied",
+    "shareFailed": "Could not copy link",
+    "geoFail": "Could not get your location. Check browser permissions.",
+    "geoUnsupported": "Geolocation is not supported in this browser.",
+    "askDocs": "Ask location about documentation",
+    "idRequired": "ID required",
+    "proofReq": "Proof of residence required",
+    "noIdReq": "No ID required",
+    "openToAllTag": " · Open to all / no town limit",
+    "howEnroll": "How to enroll:",
+    "eligibility": "Eligibility & how to enroll",
+    "programSites": "Locations",
+    "cats": {
+      "pantry": "Pantry",
+      "soup_kitchen": "Soup kitchen",
+      "mini_pantry": "Mini-pantry",
+      "hot_meals": "Hot meals",
+      "market": "Market",
+      "snap": "SNAP",
+      "wic": "WIC",
+      "senior": "Senior",
+      "school": "School",
+      "summer_ebt": "Summer EBT"
+    }
+  },
+  "es": {
+    "language": "Idioma",
+    "skip": "Ir al directorio",
+    "offline": "Sin conexión — mostrando datos guardados del directorio.",
+    "brand": "Asistencia Alimentaria del Condado de Orange",
+    "lead": "Encuentre despensas, comidas, beneficios y mercados cerca de usted — filtre por pueblo, día y tipo de programa.",
+    "browse": "Ver directorio",
+    "benefits": "Beneficios y programas",
+    "updated": "Actualizado junio 2026",
+    "listMap": "Lista + Mapa",
+    "lowBw": "Pocos datos",
+    "callAheadStrong": "Llame antes de ir.",
+    "callAhead": "Los horarios y la disponibilidad cambian. Confirme antes de ir y lleve bolsas a las despensas.",
+    "search": "Buscar",
+    "searchPh": "Nombre, dirección, notas…",
+    "town": "Pueblo / área",
+    "allTowns": "Todos los pueblos",
+    "type": "Tipo de programa",
+    "allTypes": "Todos los tipos",
+    "optPantry": "Despensa",
+    "optSoup": "Comedor",
+    "optMini": "Mini-despensa",
+    "optHot": "Comidas calientes",
+    "optMarket": "Mercado agrícola",
+    "optSenior": "Comidas para adultos mayores",
+    "optSchool": "Programa escolar",
+    "openOn": "Abierto",
+    "anyDay": "Cualquier día",
+    "openToday": "Abierto hoy",
+    "openNow": "Abierto ahora",
+    "mon": "Lunes",
+    "tue": "Martes",
+    "wed": "Miércoles",
+    "thu": "Jueves",
+    "fri": "Viernes",
+    "sat": "Sábado",
+    "sun": "Domingo",
+    "docs": "Documentación",
+    "any": "Cualquiera",
+    "noId": "Sin ID requerido",
+    "openAll": "Abierto a todos / sin límite de pueblo",
+    "idReq": "ID o prueba requerida",
+    "myPlaces": "Mis lugares",
+    "view": "Vista",
+    "list": "Lista",
+    "map": "Mapa",
+    "pantries": "Despensas",
+    "soups": "Comedores",
+    "markets": "Mercados",
+    "clear": "Borrar filtros",
+    "locations": "Ubicaciones",
+    "within": "Dentro de",
+    "nearMe": "Usar mi ubicación",
+    "nearMeOn": "Ubicación activa",
+    "locating": "Localizando…",
+    "share": "Compartir lista",
+    "print": "Imprimir lista",
+    "programsTitle": "Beneficios y programas",
+    "programsLead": "SNAP, WIC, comidas para adultos mayores, programas escolares, Summer EBT y más — abra una tarjeta para elegibilidad e inscripción.",
+    "mapNote": "Los pines del mapa son aproximados por dirección/pueblo. Confirme siempre por teléfono.",
+    "mapOfflineNote": "Las baldosas del mapa necesitan conexión. La lista funciona sin conexión.",
+    "source": "Fuente: Directorio de Asistencia Alimentaria del Condado de Orange — <strong>Actualizado junio 2026</strong>.",
+    "contact": "Preguntas sobre este directorio: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · Llame al <a href=\"tel:211\">211</a> para ayuda local.",
+    "favNote": "Mis lugares se guardan solo en este dispositivo/navegador.",
+    "top": "Volver arriba",
+    "call": "Llamar",
+    "email": "Correo",
+    "directions": "Direcciones",
+    "website": "Sitio web",
+    "details": "Detalles",
+    "copyText": "Copiar para SMS",
+    "save": "Guardar",
+    "saved": "Guardado",
+    "address": "Dirección",
+    "schedule": "Horario",
+    "residents": "Residentes atendidos",
+    "documentation": "Documentación",
+    "contactLabel": "Contacto",
+    "phone": "Teléfono",
+    "notes": "Notas",
+    "donations": "Donaciones",
+    "donationsYes": "Se aceptan donaciones — contacte al lugar para detalles.",
+    "reminder": "Recordatorio",
+    "noMatches": "Sin resultados",
+    "noMatchesHint": "Pruebe otro pueblo, día o borre los filtros.",
+    "emptyFav": "Aún no hay lugares guardados",
+    "emptyFavHint": "Toque la estrella en cualquier lugar para guardarlo aquí.",
+    "locCount": "{n} ubicación",
+    "locCountPlural": "{n} ubicaciones",
+    "sortedDist": " · ordenado por distancia",
+    "openBadge": "Abierto ahora",
+    "approxOpen": "Probablemente abierto",
+    "copied": "Copiado para enviar",
+    "shared": "Enlace copiado",
+    "shareFailed": "No se pudo copiar el enlace",
+    "geoFail": "No se pudo obtener su ubicación. Revise los permisos del navegador.",
+    "geoUnsupported": "La geolocalización no es compatible con este navegador.",
+    "askDocs": "Pregunte al lugar sobre la documentación",
+    "idRequired": "Se requiere ID",
+    "proofReq": "Se requiere prueba de residencia",
+    "noIdReq": "No se requiere ID",
+    "openToAllTag": " · Abierto a todos / sin límite de pueblo",
+    "howEnroll": "Cómo inscribirse:",
+    "eligibility": "Elegibilidad y cómo inscribirse",
+    "programSites": "Ubicaciones",
+    "cats": {
+      "pantry": "Despensa",
+      "soup_kitchen": "Comedor",
+      "mini_pantry": "Mini-despensa",
+      "hot_meals": "Comidas calientes",
+      "market": "Mercado",
+      "snap": "SNAP",
+      "wic": "WIC",
+      "senior": "Adultos mayores",
+      "school": "Escolar",
+      "summer_ebt": "Summer EBT"
+    }
+  },
+  "yi": {
+    "language": "שפּראַך",
+    "skip": "גיין צום וועגווייַזער",
+    "offline": "אָן אינטערנעץ — ווייַזן אָפּגעהיטע אינפֿאָרמאַציע.",
+    "brand": "אָראַנדזש קאַונטי עסן הילף",
+    "lead": "געפֿינט עסן פּאַנטריס, מאָלצייַטן, בענעפֿיטן און מאַרקן נאָענט צו אײַך.",
+    "browse": "זעט דעם וועגווייַזער",
+    "benefits": "בענעפֿיטן און פּראָגראַמען",
+    "updated": "דערהײַנט יוני 2026",
+    "listMap": "ליסטע + מאַפּע",
+    "lowBw": "ווייניק דאַטן",
+    "callAheadStrong": "רופֿט פֿריִער.",
+    "callAhead": "שעהען און פֿאַראַנענקייט קענען זיך ענדערן. באַשטעטיקט פֿאַר איר גייט, און ברענגט זעקלעך.",
+    "search": "זוכן",
+    "searchPh": "נאָמען, אַדרעס, נאָטיצן…",
+    "town": "שטאָט / געגנט",
+    "allTowns": "אַלע שטעט",
+    "type": "פּראָגראַם־סאָרט",
+    "allTypes": "אַלע סאָרטן",
+    "optPantry": "עסן פּאַנטרי",
+    "optSoup": "זופּ־קיך",
+    "optMini": "מיני־פּאַנטרי",
+    "optHot": "הייסע מאָלצייַטן",
+    "optMarket": "פֿאַרמערס מאַרק",
+    "optSenior": "עלטערע מאָלצייַטן",
+    "optSchool": "שול־פּראָגראַם",
+    "openOn": "אָפֿן אויף",
+    "anyDay": "יעדן טאָג",
+    "openToday": "אָפֿן הײַנט",
+    "openNow": "אָפֿן איצט",
+    "mon": "מאָנטיק",
+    "tue": "דינסטיק",
+    "wed": "מיטוואָך",
+    "thu": "דאָנערשטיק",
+    "fri": "פֿרײַטיק",
+    "sat": "שבת",
+    "sun": "זונטיק",
+    "docs": "דאָקומענטן",
+    "any": "וואָס נישט איז",
+    "noId": "קיין ID נישט נויטיק",
+    "openAll": "אָפֿן פֿאַר אַלע",
+    "idReq": "ID אָדער בּאַווײַז נויטיק",
+    "myPlaces": "מײַנע ערטער",
+    "view": "קוק",
+    "list": "ליסטע",
+    "map": "מאַפּע",
+    "pantries": "פּאַנטריס",
+    "soups": "זופּ־קיכן",
+    "markets": "מאַרקן",
+    "clear": "רייניקן פֿילטערס",
+    "locations": "ערטער",
+    "within": "אינעווייניק",
+    "nearMe": "ניץ מײַן אָרט",
+    "nearMeOn": "אָרט אָן",
+    "locating": "זוכן אָרט…",
+    "share": "טיילן ליסטע",
+    "print": "דרוקן ליסטע",
+    "programsTitle": "בענעפֿיטן און פּראָגראַמען",
+    "programsLead": "SNAP, WIC, עלטערע מאָלצייַטן, שול־פּראָגראַמען און מער — עפֿנט אַ קאַרטל פֿאַר דעטאַלן.",
+    "mapNote": "מאַפּע־פּינס זענען בערך. באַשטעטיקט שטענדיק דעם אָרט מיט אַ טעלעפֿאָן־רוף.",
+    "mapOfflineNote": "די מאַפּע דאַרף אינטערנעץ. די ליסטע אַרבעט אָן אינטערנעץ.",
+    "source": "מקור: אָראַנדזש קאַונטי עסן־הילף וועגווייַזער — <strong>דערהײַנט יוני 2026</strong>.",
+    "contact": "פֿראַגעס: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · רופֿט <a href=\"tel:211\">211</a>.",
+    "favNote": "מײַנע ערטער ווערן געהאַלטן נאָר אויף דעם אַפּאַראַט/בראַוזער.",
+    "top": "צוריק אַרויף",
+    "call": "רופֿן",
+    "email": "אימעיל",
+    "directions": "וועגווײַזער",
+    "website": "וועבזײַטל",
+    "details": "דעטאַלן",
+    "copyText": "קאָפּירן פֿאַר טעקסט",
+    "save": "היט אויף",
+    "saved": "אָפּגעהיט",
+    "address": "אַדרעס",
+    "schedule": "שעהען",
+    "residents": "ווער מען באַדינט",
+    "documentation": "דאָקומענטן",
+    "contactLabel": "קאָנטאַקט",
+    "phone": "טעלעפֿאָן",
+    "notes": "נאָטיצן",
+    "donations": "נדבֿות",
+    "donationsYes": "מען נעמט אָן נדבֿות — רופֿט דעם אָרט.",
+    "reminder": "דערמאָנונג",
+    "noMatches": "קיין רעזולטאַטן",
+    "noMatchesHint": "פּרוּווט אַן אַנדער שטאָט אָדער טאָג.",
+    "emptyFav": "נאָך נישט קיין אָפּגעהיטע ערטער",
+    "emptyFavHint": "דרוקט די שטערן צו היטן אַן אָרט.",
+    "locCount": "{n} אָרט",
+    "locCountPlural": "{n} ערטער",
+    "sortedDist": " · סאָרטירט לויט ווײַטקייט",
+    "openBadge": "אָפֿן איצט",
+    "approxOpen": "מסתּמא אָפֿן",
+    "copied": "קאָפּירט",
+    "shared": "לינק קאָפּירט",
+    "shareFailed": "נישט געקענט קאָפּירן",
+    "geoFail": "נישט געקענט געפֿינען אײַער אָרט.",
+    "geoUnsupported": "אָרט־זוכן נישט געשטיצט.",
+    "askDocs": "פֿרעגט וועגן דאָקומענטן",
+    "idRequired": "ID נויטיק",
+    "proofReq": "וווינונג־באַווײַ נויטיק",
+    "noIdReq": "קיין ID נישט נויטיק",
+    "openToAllTag": " · אָפֿן פֿאַר אַלע",
+    "howEnroll": "ווי אַזוי זיך אַרײַנשרייבן:",
+    "eligibility": "באַרעכטיקונג און אַרײַנשרייבונג",
+    "programSites": "ערטער",
+    "cats": {
+      "pantry": "פּאַנטרי",
+      "soup_kitchen": "זופּ־קיך",
+      "mini_pantry": "מיני־פּאַנטרי",
+      "hot_meals": "הייסע מאָלצייַטן",
+      "market": "מאַרק",
+      "snap": "SNAP",
+      "wic": "WIC",
+      "senior": "עלטערע",
+      "school": "שול",
+      "summer_ebt": "Summer EBT"
+    }
+  },
+  "zh": {
+    "language": "语言",
+    "skip": "跳到目录",
+    "offline": "您处于离线状态 — 显示已保存的目录数据。",
+    "brand": "奥兰治县食品援助",
+    "lead": "查找附近的食品分发点、餐食、福利项目和市场 — 可按城镇、日期和类型筛选。",
+    "browse": "浏览目录",
+    "benefits": "福利与项目",
+    "updated": "更新于 2026年6月",
+    "listMap": "列表 + 地图",
+    "lowBw": "省流量",
+    "callAheadStrong": "请先致电确认。",
+    "callAhead": "开放时间可能变化。前往前请确认，并自备袋子。",
+    "search": "搜索",
+    "searchPh": "名称、地址、备注…",
+    "town": "城镇 / 地区",
+    "allTowns": "所有城镇",
+    "type": "项目类型",
+    "allTypes": "所有类型",
+    "optPantry": "食品分发点",
+    "optSoup": "施粥处",
+    "optMini": "迷你分发点",
+    "optHot": "热餐",
+    "optMarket": "农贸市场",
+    "optSenior": "老年餐食",
+    "optSchool": "学校项目",
+    "openOn": "开放日",
+    "anyDay": "任何一天",
+    "openToday": "今日开放",
+    "openNow": "现在开放",
+    "mon": "星期一",
+    "tue": "星期二",
+    "wed": "星期三",
+    "thu": "星期四",
+    "fri": "星期五",
+    "sat": "星期六",
+    "sun": "星期日",
+    "docs": "证件要求",
+    "any": "任意",
+    "noId": "无需身份证",
+    "openAll": "对所有人开放",
+    "idReq": "需要身份证或证明",
+    "myPlaces": "我的地点",
+    "view": "视图",
+    "list": "列表",
+    "map": "地图",
+    "pantries": "分发点",
+    "soups": "施粥处",
+    "markets": "市场",
+    "clear": "清除筛选",
+    "locations": "地点",
+    "within": "范围内",
+    "nearMe": "使用我的位置",
+    "nearMeOn": "已开启定位",
+    "locating": "定位中…",
+    "share": "分享列表",
+    "print": "打印列表",
+    "programsTitle": "福利与项目",
+    "programsLead": "SNAP、WIC、老年用餐、学校餐食、Summer EBT 等 — 展开卡片查看资格与申请方式。",
+    "mapNote": "地图标记为大致位置。请务必电话确认。",
+    "mapOfflineNote": "地图需要网络。列表可离线使用。",
+    "source": "来源：奥兰治县食品援助目录 — <strong>更新于 2026年6月</strong>。",
+    "contact": "目录相关问题：<a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · 拨打 <a href=\"tel:211\">211</a>。",
+    "favNote": "“我的地点”仅保存在此设备/浏览器。",
+    "top": "回到顶部",
+    "call": "电话",
+    "email": "电子邮件",
+    "directions": "导航",
+    "website": "网站",
+    "details": "详情",
+    "copyText": "复制以便短信",
+    "save": "收藏",
+    "saved": "已收藏",
+    "address": "地址",
+    "schedule": "时间",
+    "residents": "服务对象",
+    "documentation": "证件",
+    "contactLabel": "联系人",
+    "phone": "电话",
+    "notes": "备注",
+    "donations": "捐赠",
+    "donationsYes": "接受捐赠 — 请联系该地点了解详情。",
+    "reminder": "提醒",
+    "noMatches": "无匹配结果",
+    "noMatchesHint": "请尝试其他城镇或日期，或清除筛选。",
+    "emptyFav": "还没有收藏",
+    "emptyFavHint": "点击星标即可保存地点。",
+    "locCount": "{n} 个地点",
+    "locCountPlural": "{n} 个地点",
+    "sortedDist": " · 按距离排序",
+    "openBadge": "现在开放",
+    "approxOpen": "可能开放",
+    "copied": "已复制",
+    "shared": "链接已复制",
+    "shareFailed": "无法复制链接",
+    "geoFail": "无法获取位置。请检查浏览器权限。",
+    "geoUnsupported": "此浏览器不支持定位。",
+    "askDocs": "请向该地点询问证件要求",
+    "idRequired": "需要身份证",
+    "proofReq": "需要住址证明",
+    "noIdReq": "无需身份证",
+    "openToAllTag": " · 对所有人开放",
+    "howEnroll": "如何申请：",
+    "eligibility": "资格与申请方式",
+    "programSites": "地点",
+    "cats": {
+      "pantry": "分发点",
+      "soup_kitchen": "施粥处",
+      "mini_pantry": "迷你分发点",
+      "hot_meals": "热餐",
+      "market": "市场",
+      "snap": "SNAP",
+      "wic": "WIC",
+      "senior": "老年",
+      "school": "学校",
+      "summer_ebt": "Summer EBT"
+    }
+  },
+  "ht": {
+    "language": "Lang",
+    "skip": "Ale nan anyè a",
+    "offline": "Ou offline — n ap montre done anyè ki sove.",
+    "brand": "Asistans Manje Orange County",
+    "lead": "Jwenn depo manje, repa, benefis ak mache tou pre ou — filtre pa vil, jou, ak kalite pwogram.",
+    "browse": "Gade anyè a",
+    "benefits": "Benefis ak pwogram",
+    "updated": "Mizajou jen 2026",
+    "listMap": "Lis + Kat",
+    "lowBw": "Ti done",
+    "callAheadStrong": "Tanpri rele anvan.",
+    "callAhead": "Orè yo ka chanje. Konfime anvan ou ale, epi pote sak.",
+    "search": "Chèche",
+    "searchPh": "Non, adrès, nòt…",
+    "town": "Vil / zòn",
+    "allTowns": "Tout vil",
+    "type": "Kalite pwogram",
+    "allTypes": "Tout kalite",
+    "optPantry": "Depo manje",
+    "optSoup": "Kwizin soup",
+    "optMini": "Mini-depo",
+    "optHot": "Repa cho",
+    "optMarket": "Mache fèmye",
+    "optSenior": "Repa pou granmoun",
+    "optSchool": "Pwogram lekòl",
+    "openOn": "Louvri",
+    "anyDay": "Nenpòt jou",
+    "openToday": "Louvri jodi a",
+    "openNow": "Louvri kounye a",
+    "mon": "Lendi",
+    "tue": "Madi",
+    "wed": "Mèkredi",
+    "thu": "Jedi",
+    "fri": "Vandredi",
+    "sat": "Samdi",
+    "sun": "Dimanch",
+    "docs": "Dokiman",
+    "any": "Nenpòt",
+    "noId": "Pa bezwen ID",
+    "openAll": "Louvri pou tout moun",
+    "idReq": "Bezwen ID oswa prèv",
+    "myPlaces": "Kote mwen",
+    "view": "View",
+    "list": "Lis",
+    "map": "Kat",
+    "pantries": "Depo manje",
+    "soups": "Kwizin soup",
+    "markets": "Mache",
+    "clear": "Efase filtè",
+    "locations": "Kote",
+    "within": "Nan",
+    "nearMe": "Sèvi ak lokalizasyon mwen",
+    "nearMeOn": "Lokalizasyon aktif",
+    "locating": "Ap lokalize…",
+    "share": "Pataje lis",
+    "print": "Enprime lis",
+    "programsTitle": "Benefis ak pwogram",
+    "programsLead": "SNAP, WIC, repa pou granmoun, pwogram lekòl, Summer EBT ak plis — louvri yon kat pou detay.",
+    "mapNote": "Pwen sou kat yo apwoksimatif. Toujou konfime pa telefòn.",
+    "mapOfflineNote": "Kat la bezwen entènèt. Lis la mache san entènèt.",
+    "source": "Sous: Anyè Asistans Manje Orange County — <strong>Mizajou jen 2026</strong>.",
+    "contact": "Kesyon: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · Rele <a href=\"tel:211\">211</a>.",
+    "favNote": "Kote mwen sove sèlman sou aparèy/navigatè sa a.",
+    "top": "Tounen anwo",
+    "call": "Rele",
+    "email": "Imèl",
+    "directions": "Direksyon",
+    "website": "Sit wèb",
+    "details": "Detay",
+    "copyText": "Kopye pou SMS",
+    "save": "Sove",
+    "saved": "Sove",
+    "address": "Adrès",
+    "schedule": "Orè",
+    "residents": "Moun yo sèvi",
+    "documentation": "Dokiman",
+    "contactLabel": "Kontak",
+    "phone": "Telefòn",
+    "notes": "Nòt",
+    "donations": "Donasyon",
+    "donationsYes": "Yo aksepte donasyon — kontakte kote a.",
+    "reminder": "Rapèl",
+    "noMatches": "Pa gen rezilta",
+    "noMatchesHint": "Eseye yon lòt vil oswa jou, oswa efase filtè yo.",
+    "emptyFav": "Pokòs gen kote sove",
+    "emptyFavHint": "Peze zetwal la pou sove yon kote.",
+    "locCount": "{n} kote",
+    "locCountPlural": "{n} kote",
+    "sortedDist": " · klase pa distans",
+    "openBadge": "Louvri kounye a",
+    "approxOpen": "Petèt louvri",
+    "copied": "Kopi fèt",
+    "shared": "Lyen kopi",
+    "shareFailed": "Pa t kapab kopye lyen an",
+    "geoFail": "Pa t kapab jwenn lokalizasyon ou.",
+    "geoUnsupported": "Navigatè a pa sipòte lokalizasyon.",
+    "askDocs": "Mande sou dokiman",
+    "idRequired": "Bezwen ID",
+    "proofReq": "Bezwen prèv rezidans",
+    "noIdReq": "Pa bezwen ID",
+    "openToAllTag": " · Louvri pou tout moun",
+    "howEnroll": "Ki jan pou enskri:",
+    "eligibility": "Eligibilite ak enskripsyon",
+    "programSites": "Kote",
+    "cats": {
+      "pantry": "Depo",
+      "soup_kitchen": "Kwizin soup",
+      "mini_pantry": "Mini-depo",
+      "hot_meals": "Repa cho",
+      "market": "Mache",
+      "snap": "SNAP",
+      "wic": "WIC",
+      "senior": "Granmoun",
+      "school": "Lekòl",
+      "summer_ebt": "Summer EBT"
+    }
+  },
+  "ar": {
+    "language": "اللغة",
+    "skip": "انتقل إلى الدليل",
+    "offline": "أنت غير متصل — عرض بيانات الدليل المحفوظة.",
+    "brand": "المساعدة الغذائية في مقاطعة أورانج",
+    "lead": "ابحث عن بنوك الطعام والوجبات والمزايا والأسواق بالقرب منك — صفِّ حسب البلدة واليوم ونوع البرنامج.",
+    "browse": "تصفح الدليل",
+    "benefits": "المزايا والبرامج",
+    "updated": "محدَّث يونيو 2026",
+    "listMap": "قائمة + خريطة",
+    "lowBw": "بيانات منخفضة",
+    "callAheadStrong": "يُرجى الاتصال مسبقًا.",
+    "callAhead": "قد تتغير المواعيد والتوفر. أكّد قبل الذهاب وأحضر أكياسًا.",
+    "search": "بحث",
+    "searchPh": "الاسم، العنوان، ملاحظات…",
+    "town": "البلدة / المنطقة",
+    "allTowns": "كل البلدات",
+    "type": "نوع البرنامج",
+    "allTypes": "كل الأنواع",
+    "optPantry": "بنك طعام",
+    "optSoup": "مطبخ شوربة",
+    "optMini": "بنك صغير",
+    "optHot": "وجبات ساخنة",
+    "optMarket": "سوق مزارعين",
+    "optSenior": "وجبات كبار السن",
+    "optSchool": "برنامج مدرسي",
+    "openOn": "مفتوح في",
+    "anyDay": "أي يوم",
+    "openToday": "مفتوح اليوم",
+    "openNow": "مفتوح الآن",
+    "mon": "الاثنين",
+    "tue": "الثلاثاء",
+    "wed": "الأربعاء",
+    "thu": "الخميس",
+    "fri": "الجمعة",
+    "sat": "السبت",
+    "sun": "الأحد",
+    "docs": "الوثائق",
+    "any": "أي",
+    "noId": "لا حاجة لهوية",
+    "openAll": "مفتوح للجميع",
+    "idReq": "مطلوب هوية أو إثبات",
+    "myPlaces": "أماكني",
+    "view": "العرض",
+    "list": "قائمة",
+    "map": "خريطة",
+    "pantries": "بنوك الطعام",
+    "soups": "مطابخ الشوربة",
+    "markets": "الأسواق",
+    "clear": "مسح عوامل التصفية",
+    "locations": "المواقع",
+    "within": "ضمن",
+    "nearMe": "استخدم موقعي",
+    "nearMeOn": "الموقع مفعّل",
+    "locating": "جارٍ تحديد الموقع…",
+    "share": "مشاركة القائمة",
+    "print": "طباعة القائمة",
+    "programsTitle": "المزايا والبرامج",
+    "programsLead": "SNAP وWIC ووجبات كبار السن وبرامج المدارس وSummer EBT والمزيد — افتح البطاقة للتفاصيل.",
+    "mapNote": "علامات الخريطة تقريبية. أكّد دائمًا عبر الهاتف.",
+    "mapOfflineNote": "الخريطة تحتاج اتصالاً. القائمة تعمل دون اتصال.",
+    "source": "المصدر: دليل المساعدة الغذائية لمقاطعة أورانج — <strong>محدَّث يونيو 2026</strong>.",
+    "contact": "أسئلة حول الدليل: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · اتصل بـ <a href=\"tel:211\">211</a>.",
+    "favNote": "تُحفظ أماكني على هذا الجهاز/المتصفح فقط.",
+    "top": "العودة للأعلى",
+    "call": "اتصال",
+    "email": "بريد",
+    "directions": "الاتجاهات",
+    "website": "الموقع",
+    "details": "التفاصيل",
+    "copyText": "نسخ للرسائل",
+    "save": "حفظ",
+    "saved": "محفوظ",
+    "address": "العنوان",
+    "schedule": "المواعيد",
+    "residents": "من يُخدم",
+    "documentation": "الوثائق",
+    "contactLabel": "جهة الاتصال",
+    "phone": "الهاتف",
+    "notes": "ملاحظات",
+    "donations": "التبرعات",
+    "donationsYes": "تُقبل التبرعات — تواصل مع الموقع.",
+    "reminder": "تذكير",
+    "noMatches": "لا نتائج",
+    "noMatchesHint": "جرّب بلدة أو يومًا آخر أو امسح عوامل التصفية.",
+    "emptyFav": "لا أماكن محفوظة بعد",
+    "emptyFavHint": "اضغط النجمة لحفظ موقع.",
+    "locCount": "موقع {n}",
+    "locCountPlural": "{n} مواقع",
+    "sortedDist": " · مرتّب حسب المسافة",
+    "openBadge": "مفتوح الآن",
+    "approxOpen": "مفتوح على الأرجح",
+    "copied": "تم النسخ",
+    "shared": "تم نسخ الرابط",
+    "shareFailed": "تعذّر نسخ الرابط",
+    "geoFail": "تعذّر الحصول على موقعك.",
+    "geoUnsupported": "المتصفح لا يدعم تحديد الموقع.",
+    "askDocs": "اسأل عن الوثائق",
+    "idRequired": "مطلوب هوية",
+    "proofReq": "مطلوب إثبات سكن",
+    "noIdReq": "لا حاجة لهوية",
+    "openToAllTag": " · مفتوح للجميع",
+    "howEnroll": "كيفية التسجيل:",
+    "eligibility": "الأهلية والتسجيل",
+    "programSites": "المواقع",
+    "cats": {
+      "pantry": "بنك طعام",
+      "soup_kitchen": "مطبخ شوربة",
+      "mini_pantry": "بنك صغير",
+      "hot_meals": "وجبات ساخنة",
+      "market": "سوق",
+      "snap": "SNAP",
+      "wic": "WIC",
+      "senior": "كبار السن",
+      "school": "مدرسة",
+      "summer_ebt": "Summer EBT"
+    }
+  },
+  "he": {
+    "language": "שפה",
+    "skip": "דלג למדריך",
+    "offline": "אין חיבור — מציגים נתונים שמורים.",
+    "brand": "סיוע במזון במחוז אורנג׳",
+    "lead": "מצאו מזווה מזון, ארוחות, הטבות ושווקים לידכם — סננו לפי יישוב, יום וסוג תוכנית.",
+    "browse": "עיון במדריך",
+    "benefits": "הטבות ותוכניות",
+    "updated": "עודכן יוני 2026",
+    "listMap": "רשימה + מפה",
+    "lowBw": "חיסכון בנתונים",
+    "callAheadStrong": "נא להתקשר מראש.",
+    "callAhead": "שעות וזמינות עשויות להשתנות. אשרו לפני ההגעה והביאו שקיות.",
+    "search": "חיפוש",
+    "searchPh": "שם, כתובת, הערות…",
+    "town": "יישוב / אזור",
+    "allTowns": "כל היישובים",
+    "type": "סוג תוכנית",
+    "allTypes": "כל הסוגים",
+    "optPantry": "מזווה מזון",
+    "optSoup": "מטבח מרק",
+    "optMini": "מזווה קטן",
+    "optHot": "ארוחות חמות",
+    "optMarket": "שוק חקלאים",
+    "optSenior": "ארוחות לגיל השלישי",
+    "optSchool": "תוכנית בית ספר",
+    "openOn": "פתוח ב",
+    "anyDay": "כל יום",
+    "openToday": "פתוח היום",
+    "openNow": "פתוח עכשיו",
+    "mon": "שני",
+    "tue": "שלישי",
+    "wed": "רביעי",
+    "thu": "חמישי",
+    "fri": "שישי",
+    "sat": "שבת",
+    "sun": "ראשון",
+    "docs": "מסמכים",
+    "any": "הכל",
+    "noId": "אין צורך בתעודה",
+    "openAll": "פתוח לכולם",
+    "idReq": "נדרשת תעודה או הוכחה",
+    "myPlaces": "המקומות שלי",
+    "view": "תצוגה",
+    "list": "רשימה",
+    "map": "מפה",
+    "pantries": "מזווים",
+    "soups": "מטבחי מרק",
+    "markets": "שווקים",
+    "clear": "נקה מסננים",
+    "locations": "מיקומים",
+    "within": "בטווח",
+    "nearMe": "השתמש במיקום שלי",
+    "nearMeOn": "מיקום פעיל",
+    "locating": "מאתר…",
+    "share": "שתף רשימה",
+    "print": "הדפס רשימה",
+    "programsTitle": "הטבות ותוכניות",
+    "programsLead": "SNAP, WIC, ארוחות לגיל השלישי, תוכניות בית ספר, Summer EBT ועוד — פתחו כרטיס לפרטים.",
+    "mapNote": "סימוני המפה משוערים. תמיד אשרו בטלפון.",
+    "mapOfflineNote": "המפה דורשת רשת. הרשימה עובדת ללא רשת.",
+    "source": "מקור: מדריך סיוע במזון במחוז אורנג׳ — <strong>עודכן יוני 2026</strong>.",
+    "contact": "שאלות: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · התקשרו ל־<a href=\"tel:211\">211</a>.",
+    "favNote": "המקומות שלי נשמרים רק במכשיר/דפדפן זה.",
+    "top": "חזרה למעלה",
+    "call": "התקשר",
+    "email": "אימייל",
+    "directions": "ניווט",
+    "website": "אתר",
+    "details": "פרטים",
+    "copyText": "העתק להודעה",
+    "save": "שמור",
+    "saved": "נשמר",
+    "address": "כתובת",
+    "schedule": "שעות",
+    "residents": "מי מקבל שירות",
+    "documentation": "מסמכים",
+    "contactLabel": "איש קשר",
+    "phone": "טלפון",
+    "notes": "הערות",
+    "donations": "תרומות",
+    "donationsYes": "מתקבלות תרומות — פנו למקום.",
+    "reminder": "תזכורת",
+    "noMatches": "אין תוצאות",
+    "noMatchesHint": "נסו יישוב או יום אחר, או נקו מסננים.",
+    "emptyFav": "אין מקומות שמורים עדיין",
+    "emptyFavHint": "לחצו על הכוכב כדי לשמור מקום.",
+    "locCount": "מיקום {n}",
+    "locCountPlural": "{n} מיקומים",
+    "sortedDist": " · ממוין לפי מרחק",
+    "openBadge": "פתוח עכשיו",
+    "approxOpen": "כנראה פתוח",
+    "copied": "הועתק",
+    "shared": "הקישור הועתק",
+    "shareFailed": "לא ניתן להעתיק קישור",
+    "geoFail": "לא ניתן לקבל את המיקום שלכם.",
+    "geoUnsupported": "הדפדפן אינו תומך במיקום.",
+    "askDocs": "שאלו לגבי מסמכים",
+    "idRequired": "נדרשת תעודה",
+    "proofReq": "נדרשת הוכחת מגורים",
+    "noIdReq": "אין צורך בתעודה",
+    "openToAllTag": " · פתוח לכולם",
+    "howEnroll": "איך נרשמים:",
+    "eligibility": "זכאות והרשמה",
+    "programSites": "מיקומים",
+    "cats": {
+      "pantry": "מזווה",
+      "soup_kitchen": "מטבח מרק",
+      "mini_pantry": "מזווה קטן",
+      "hot_meals": "ארוחות חמות",
+      "market": "שוק",
+      "snap": "SNAP",
+      "wic": "WIC",
+      "senior": "גיל שלישי",
+      "school": "בית ספר",
+      "summer_ebt": "Summer EBT"
+    }
+  },
+  "ru": {
+    "language": "Язык",
+    "skip": "Перейти к справочнику",
+    "offline": "Нет сети — показаны сохранённые данные.",
+    "brand": "Продовольственная помощь округа Ориндж",
+    "lead": "Найдите продовольственные пункты, питание, пособия и рынки рядом — фильтруйте по городу, дню и типу программы.",
+    "browse": "Открыть справочник",
+    "benefits": "Пособия и программы",
+    "updated": "Обновлено: июнь 2026",
+    "listMap": "Список + карта",
+    "lowBw": "Экономия трафика",
+    "callAheadStrong": "Пожалуйста, позвоните заранее.",
+    "callAhead": "Часы работы могут меняться. Уточните перед визитом и возьмите сумки.",
+    "search": "Поиск",
+    "searchPh": "Название, адрес, заметки…",
+    "town": "Город / район",
+    "allTowns": "Все города",
+    "type": "Тип программы",
+    "allTypes": "Все типы",
+    "optPantry": "Продовольственный пункт",
+    "optSoup": "Бесплатная кухня",
+    "optMini": "Мини-пункт",
+    "optHot": "Горячие обеды",
+    "optMarket": "Фермерский рынок",
+    "optSenior": "Питание для пожилых",
+    "optSchool": "Школьная программа",
+    "openOn": "Открыто",
+    "anyDay": "Любой день",
+    "openToday": "Открыто сегодня",
+    "openNow": "Открыто сейчас",
+    "mon": "Понедельник",
+    "tue": "Вторник",
+    "wed": "Среда",
+    "thu": "Четверг",
+    "fri": "Пятница",
+    "sat": "Суббота",
+    "sun": "Воскресенье",
+    "docs": "Документы",
+    "any": "Любые",
+    "noId": "ID не требуется",
+    "openAll": "Открыто для всех",
+    "idReq": "Требуется ID или подтверждение",
+    "myPlaces": "Мои места",
+    "view": "Вид",
+    "list": "Список",
+    "map": "Карта",
+    "pantries": "Пункты",
+    "soups": "Кухни",
+    "markets": "Рынки",
+    "clear": "Сбросить фильтры",
+    "locations": "Места",
+    "within": "В пределах",
+    "nearMe": "Использовать моё местоположение",
+    "nearMeOn": "Геолокация включена",
+    "locating": "Определение…",
+    "share": "Поделиться списком",
+    "print": "Печать списка",
+    "programsTitle": "Пособия и программы",
+    "programsLead": "SNAP, WIC, питание для пожилых, школьные программы, Summer EBT и другое — откройте карточку для деталей.",
+    "mapNote": "Метки на карте приблизительные. Всегда подтверждайте по телефону.",
+    "mapOfflineNote": "Карте нужен интернет. Список работает офлайн.",
+    "source": "Источник: справочник продовольственной помощи округа Ориндж — <strong>обновлено июнь 2026</strong>.",
+    "contact": "Вопросы: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · Звоните <a href=\"tel:211\">211</a>.",
+    "favNote": "«Мои места» сохраняются только на этом устройстве/в браузере.",
+    "top": "Наверх",
+    "call": "Позвонить",
+    "email": "Email",
+    "directions": "Маршрут",
+    "website": "Сайт",
+    "details": "Подробнее",
+    "copyText": "Копировать для SMS",
+    "save": "Сохранить",
+    "saved": "Сохранено",
+    "address": "Адрес",
+    "schedule": "Часы",
+    "residents": "Кому помогают",
+    "documentation": "Документы",
+    "contactLabel": "Контакт",
+    "phone": "Телефон",
+    "notes": "Заметки",
+    "donations": "Пожертвования",
+    "donationsYes": "Принимают пожертвования — свяжитесь с пунктом.",
+    "reminder": "Напоминание",
+    "noMatches": "Нет результатов",
+    "noMatchesHint": "Попробуйте другой город или день либо сбросьте фильтры.",
+    "emptyFav": "Пока нет сохранённых мест",
+    "emptyFavHint": "Нажмите звезду, чтобы сохранить место.",
+    "locCount": "{n} место",
+    "locCountPlural": "{n} мест",
+    "sortedDist": " · по расстоянию",
+    "openBadge": "Открыто сейчас",
+    "approxOpen": "Вероятно открыто",
+    "copied": "Скопировано",
+    "shared": "Ссылка скопирована",
+    "shareFailed": "Не удалось скопировать ссылку",
+    "geoFail": "Не удалось определить местоположение.",
+    "geoUnsupported": "Браузер не поддерживает геолокацию.",
+    "askDocs": "Уточните документы на месте",
+    "idRequired": "Требуется ID",
+    "proofReq": "Требуется подтверждение адреса",
+    "noIdReq": "ID не требуется",
+    "openToAllTag": " · открыто для всех",
+    "howEnroll": "Как записаться:",
+    "eligibility": "Право и запись",
+    "programSites": "Места",
+    "cats": {
+      "pantry": "Пункт",
+      "soup_kitchen": "Кухня",
+      "mini_pantry": "Мини-пункт",
+      "hot_meals": "Горячие обеды",
+      "market": "Рынок",
+      "snap": "SNAP",
+      "wic": "WIC",
+      "senior": "Пожилые",
+      "school": "Школа",
+      "summer_ebt": "Summer EBT"
+    }
+  }
+};
+const state = {
+  view: "list", selectedId: null, userLoc: null, markers: {}, map: null, markerLayer: null,
+  lang: localStorage.getItem(LANG_KEY) || "en",
+  favorites: new Set(JSON.parse(localStorage.getItem(FAV_KEY) || "[]")),
+  syncingUrl: false,
+};
+
+function t(key) {
+  const pack = I18N[state.lang] || I18N.en;
+  return pack[key] ?? I18N.en[key] ?? key;
+}
+function catLabel(c) {
+  return (I18N[state.lang].cats || I18N.en.cats)[c] || c;
+}
+function todayAbbr() { return DAY_NAMES[new Date().getDay()]; }
+function categoriesOf(item) { return item.categories || (item.category ? [item.category] : []); }
+function phoneHref(phone) {
+  if (!phone) return null;
+  const first = String(phone).split(/[;/]/)[0].replace(/[^\d+]/g, "");
+  return first ? `tel:${first}` : null;
+}
+function mapsUrl(item) {
+  if (!item.address) return null;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.address)}`;
+}
+function haversine(a, b, c, d) {
+  const R = 3958.8, toRad = (x) => (x * Math.PI) / 180;
+  const dLat = toRad(c - a), dLon = toRad(d - b);
+  const lat1 = toRad(a), lat2 = toRad(c);
+  const h = Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLon/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+function toast(msg) {
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => el.classList.remove("show"), 2200);
+}
+function saveFavorites() {
+  localStorage.setItem(FAV_KEY, JSON.stringify([...state.favorites]));
+}
+function toggleFavorite(id, ev) {
+  if (ev) ev.stopPropagation();
+  if (state.favorites.has(id)) state.favorites.delete(id);
+  else state.favorites.add(id);
+  saveFavorites();
+  render();
+  if (state.selectedId === id) selectItem(id, true);
+}
+
+/* ---- Open now parsing ---- */
+function parseTimeToMinutes(str) {
+  const m = String(str).trim().match(/^(\d{1,2})(?::(\d{2}))?\s*(a|p|am|pm)?\.?$/i);
+  if (!m) return null;
+  let h = parseInt(m[1], 10);
+  const min = m[2] ? parseInt(m[2], 10) : 0;
+  const ap = (m[3] || "").toLowerCase();
+  if (ap.startsWith("p") && h < 12) h += 12;
+  if (ap.startsWith("a") && h === 12) h = 0;
+  if (!ap && h <= 7) h += 12; // bare "4:00-7:00" often means PM for pantries
+  return h * 60 + min;
+}
+function extractTimeRanges(schedule) {
+  const s = schedule || "";
+  const ranges = [];
+  const re = /(\d{1,2}(?::\d{2})?\s*(?:a|p|am|pm)?\.?)\s*[-–—to]+\s*(\d{1,2}(?::\d{2})?\s*(?:a|p|am|pm)?\.?)/gi;
+  let m;
+  while ((m = re.exec(s))) {
+    let a = parseTimeToMinutes(m[1]);
+    let b = parseTimeToMinutes(m[2]);
+    if (a == null || b == null) continue;
+    // If end looks earlier and both lack meridian, assume end is PM
+    if (b <= a && b < 12 * 60) b += 12 * 60;
+    if (a > 24*60) a -= 12*60;
+    ranges.push([a, b]);
+  }
+  return ranges;
+}
+function nthWeekdayOfMonth(year, month, weekday, n) {
+  // weekday: 0=Sun..6=Sat; n=-1 last
+  if (n === -1) {
+    const last = new Date(year, month + 1, 0);
+    const diff = (last.getDay() - weekday + 7) % 7;
+    return new Date(year, month, last.getDate() - diff);
+  }
+  const first = new Date(year, month, 1);
+  const diff = (weekday - first.getDay() + 7) % 7;
+  const day = 1 + diff + (n - 1) * 7;
+  const d = new Date(year, month, day);
+  return d.getMonth() === month ? d : null;
+}
+function scheduleMatchesTodayPattern(schedule, now = new Date()) {
+  const s = (schedule || "").toLowerCase();
+  if (!s) return { dayMatch: false, confidence: "none" };
+  if (/24\/7|open 24|seven days|7 days a week/.test(s)) return { dayMatch: true, confidence: "high", allDay: true };
+
+  const dayAbbr = DAY_NAMES[now.getDay()];
+  const dayFull = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"][now.getDay()];
+  const dayIdx = now.getDay();
+
+  // Ordinal patterns: first/second/third/fourth/last + weekday
+  const ordRe = /\b(first|second|third|fourth|last|1st|2nd|3rd|4th)\s+(sunday|monday|tuesday|wednesday|thursday|friday|saturday)\b/gi;
+  let ordHit = false, ordMatch = false;
+  let om;
+  while ((om = ordRe.exec(s))) {
+    ordHit = true;
+    const n = ORDINAL[om[1].toLowerCase()];
+    const wd = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"].indexOf(om[2].toLowerCase());
+    const target = nthWeekdayOfMonth(now.getFullYear(), now.getMonth(), wd, n);
+    if (target && target.toDateString() === now.toDateString()) ordMatch = true;
+  }
+  if (ordHit) return { dayMatch: ordMatch, confidence: ordMatch ? "high" : "none" };
+
+  // every other — approximate: treat as day match but low confidence
+  const everyOther = /every other/.test(s);
+
+  // Day ranges Mon-Fri etc
+  const range = s.match(/\b(monday|mon)\s*[-–—to]+\s*(friday|fri)\b/);
+  if (range && dayIdx >= 1 && dayIdx <= 5) return { dayMatch: true, confidence: everyOther ? "low" : "high" };
+
+  const days = [];
+  const map = { sunday:"Sun", sun:"Sun", monday:"Mon", mon:"Mon", tuesday:"Tue", tue:"Tue", wednesday:"Wed", wed:"Wed", thursday:"Thu", thu:"Thu", friday:"Fri", fri:"Fri", saturday:"Sat", sat:"Sat" };
+  for (const [k,v] of Object.entries(map)) {
+    if (new RegExp(`\\b${k}\\b`, "i").test(s)) days.push(v);
+  }
+  // Also use structured days array preference outside
+
+  if (days.includes(dayAbbr) || s.includes(dayFull)) {
+    return { dayMatch: true, confidence: everyOther ? "low" : "medium" };
+  }
+  return { dayMatch: false, confidence: "none" };
+}
+function openStatus(item, now = new Date()) {
+  const schedule = item.schedule || "";
+  const sLower = schedule.toLowerCase();
+  if (/temporarily not in service|not in service/.test(sLower)) return null;
+
+  const structuredDays = item.days || [];
+  const dayAbbr = DAY_NAMES[now.getDay()];
+  const pattern = scheduleMatchesTodayPattern(schedule, now);
+
+  let dayOk = false;
+  let confidence = "none";
+  if (pattern.dayMatch) { dayOk = true; confidence = pattern.confidence; }
+  else if (structuredDays.includes(dayAbbr) && !/\b(first|second|third|fourth|last|1st|2nd|3rd|4th)\b/i.test(schedule)) {
+    dayOk = true; confidence = "medium";
+  }
+  if (!dayOk) return null;
+
+  if (pattern.allDay || /24\/7|open 24/.test(sLower)) return { open: true, confidence: "high" };
+
+  const ranges = extractTimeRanges(schedule);
+  const mins = now.getHours() * 60 + now.getMinutes();
+  if (!ranges.length) {
+    // Day matches but no times — "likely open" if confidence high enough and daytime
+    if (confidence !== "none" && mins >= 8*60 && mins <= 20*60) return { open: true, confidence: "low" };
+    return null;
+  }
+  for (const [a,b] of ranges) {
+    if (mins >= a && mins <= b) return { open: true, confidence: confidence === "low" ? "low" : "high" };
+  }
+  return null;
+}
+
+function applyI18n() {
+  document.documentElement.lang = state.lang;
+  document.documentElement.dir = ["ar", "he"].includes(state.lang) ? "rtl" : "ltr";
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    const val = t(key);
+    if (typeof val === "string" && val.includes("<")) el.innerHTML = val;
+    else el.textContent = val;
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    el.placeholder = t(el.getAttribute("data-i18n-placeholder"));
+  });
+  const langSel = document.getElementById("lang-select");
+  if (langSel) langSel.value = state.lang;
+  const low = document.body.classList.contains("low-bw");
+  document.getElementById("low-bw").setAttribute("aria-pressed", low ? "true" : "false");
+  document.getElementById("map-panel").setAttribute("data-map-note", t("mapOfflineNote"));
+}
+
+function populateTowns() {
+  const sel = document.getElementById("town");
+  const current = sel.value;
+  const first = sel.querySelector("option[value='']");
+  sel.innerHTML = "";
+  sel.appendChild(first || new Option(t("allTowns"), ""));
+  if (!first) sel.options[0].textContent = t("allTowns");
+  else sel.options[0].textContent = t("allTowns");
+  const towns = [...new Set(DIRECTORY.sites.map((s) => s.town).filter(Boolean))].sort((a,b) => a.localeCompare(b));
+  for (const town of towns) {
+    const opt = document.createElement("option");
+    opt.value = town; opt.textContent = town;
+    sel.appendChild(opt);
+  }
+  sel.value = current;
+}
+
+function getFilters() {
+  return {
+    q: document.getElementById("q").value.trim().toLowerCase(),
+    town: document.getElementById("town").value,
+    type: document.getElementById("type").value,
+    day: document.getElementById("day").value,
+    docs: document.getElementById("docs").value,
+    radius: document.getElementById("radius").value,
+  };
+}
+
+function matches(item, f) {
+  if (f.docs === "favorites" && !state.favorites.has(item.id)) return false;
+  if (f.town && item.town !== f.town) return false;
+  const cats = categoriesOf(item);
+  if (f.type && !cats.includes(f.type)) return false;
+
+  if (f.day === "open_now") {
+    if (!openStatus(item)) return false;
+  } else if (f.day === "today") {
+    const day = todayAbbr();
+    const days = item.days || [];
+    const pattern = scheduleMatchesTodayPattern(item.schedule || "");
+    if (!(pattern.dayMatch || days.includes(day))) return false;
+  } else if (f.day) {
+    const days = item.days || [];
+    if (!days.length || !days.includes(f.day)) return false;
+  }
+
+  if (f.docs === "not_required" && item.idRequired !== "not_required") return false;
+  if (f.docs === "open_to_all" && !item.openToAll) return false;
+  if (f.docs === "required" && !(item.idRequired === "required" || item.idRequired === "proof_of_residence")) return false;
+
+  if (f.q) {
+    const blob = [item.name, item.address, item.town, item.schedule, item.notes, item.residentsServed, item.contactPerson, ...cats]
+      .filter(Boolean).join(" ").toLowerCase();
+    if (!blob.includes(f.q)) return false;
+  }
+
+  if (f.radius && state.userLoc && item.lat != null) {
+    const miles = haversine(state.userLoc.lat, state.userLoc.lng, item.lat, item.lng);
+    if (miles > Number(f.radius)) return false;
+  }
+  return true;
+}
+
+function kindRank(s) {
+  const cats = categoriesOf(s);
+  if (cats.some((c) => ["pantry","soup_kitchen","mini_pantry","hot_meals"].includes(c))) return 0;
+  if (cats.includes("market")) return 1;
+  if (cats.some((c) => ["wic","snap","senior"].includes(c))) return 2;
+  return 3;
+}
+
+function filteredSites() {
+  const f = getFilters();
+  let list = DIRECTORY.sites.filter((s) => matches(s, f)).map((s) => {
+    const copy = { ...s };
+    copy._open = openStatus(s);
+    if (state.userLoc && s.lat != null) copy._miles = haversine(state.userLoc.lat, state.userLoc.lng, s.lat, s.lng);
+    return copy;
+  });
+  if (state.userLoc) list.sort((a, b) => (a._miles ?? 9999) - (b._miles ?? 9999));
+  else list.sort((a, b) => kindRank(a) - kindRank(b) || (a.town || "").localeCompare(b.town || "") || a.name.localeCompare(b.name));
+  return list;
+}
+
+function badgeHtml(cats, open) {
+  const bits = cats.map((c) => `<span class="badge ${c}">${catLabel(c)}</span>`);
+  if (open) bits.unshift(`<span class="badge ${open.confidence === "low" ? "approx" : "open"}">${open.confidence === "low" ? t("approxOpen") : t("openBadge")}</span>`);
+  return bits.join("");
+}
+
+function smsText(item) {
+  const lines = [
+    item.name,
+    item.address || "",
+    item.town ? `Town: ${item.town}` : "",
+    item.schedule ? `Hours: ${item.schedule}` : "",
+    item.phone ? `Phone: ${item.phone}` : "",
+    item.website || "",
+  ].filter(Boolean);
+  return lines.join("\n");
+}
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    toast(t("copied"));
+  } catch {
+    const ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); ta.remove();
+    toast(t("copied"));
+  }
+}
+
+function cardHtml(item) {
+  const cats = categoriesOf(item);
+  const fav = state.favorites.has(item.id);
+  const dist = item._miles != null ? `<span class="dist">${item._miles.toFixed(1)} mi</span>` : "";
+  const phone = phoneHref(item.phone);
+  const maps = mapsUrl(item);
+  return `
+    <article class="card${state.selectedId === item.id ? " active" : ""}" data-id="${item.id}" tabindex="0" role="button" aria-label="${item.name}">
+      <div class="card-top">
+        <h3>${item.name}</h3>
+        <div class="card-top-right">
+          <button type="button" class="fav-btn" data-fav="${item.id}" aria-pressed="${fav}" title="${fav ? t("saved") : t("save")}" aria-label="${fav ? t("saved") : t("save")}">${fav ? "★" : "☆"}</button>
+          <div class="badges">${badgeHtml(cats, item._open)}${dist}</div>
+        </div>
+      </div>
+      <div class="card-meta">
+        ${item.town ? `<p><strong>${item.town}</strong>${item.address ? " · " + item.address : ""}</p>` : (item.address ? `<p>${item.address}</p>` : "")}
+        ${item.schedule ? `<p>${item.schedule}</p>` : ""}
+      </div>
+      <div class="card-actions">
+        ${phone ? `<a href="${phone}" onclick="event.stopPropagation()">${t("call")}</a>` : ""}
+        ${item.email ? `<a href="mailto:${item.email}" onclick="event.stopPropagation()">${t("email")}</a>` : ""}
+        ${maps ? `<a href="${maps}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${t("directions")}</a>` : ""}
+        ${item.website ? `<a href="${item.website}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${t("website")}</a>` : ""}
+        <button type="button" data-copy="${item.id}">${t("copyText")}</button>
+        <button type="button" data-detail="${item.id}">${t("details")}</button>
+      </div>
+    </article>`;
+}
+
+function detailHtml(item) {
+  const cats = categoriesOf(item);
+  const phone = phoneHref(item.phone);
+  const maps = mapsUrl(item);
+  const fav = state.favorites.has(item.id);
+  const idLabel = {
+    required: t("idRequired"),
+    proof_of_residence: t("proofReq"),
+    not_required: t("noIdReq"),
+    unknown: t("askDocs"),
+  }[item.idRequired] || t("askDocs");
+  const open = openStatus(item);
+  return `
+    <div class="detail-inner">
+      <button type="button" class="close-detail" id="close-detail" aria-label="Close">&times;</button>
+      <div class="badges">${badgeHtml(cats, open)}</div>
+      <h2>${item.name}</h2>
+      ${item.town ? `<p><strong>${item.town}</strong></p>` : ""}
+      <div class="card-actions" style="margin:.6rem 0 0">
+        <button type="button" data-fav="${item.id}" aria-pressed="${fav}">${fav ? "★ " + t("saved") : "☆ " + t("save")}</button>
+        ${phone ? `<a href="${phone}">${t("call")}</a>` : ""}
+        ${item.email ? `<a href="mailto:${item.email}">${t("email")}</a>` : ""}
+        ${maps ? `<a href="${maps}" target="_blank" rel="noopener">${t("directions")}</a>` : ""}
+        ${item.website ? `<a href="${item.website}" target="_blank" rel="noopener">${t("website")}</a>` : ""}
+        <button type="button" data-copy="${item.id}">${t("copyText")}</button>
+      </div>
+      ${item.address ? `<div class="detail-section"><h4>${t("address")}</h4><p>${item.address}</p></div>` : ""}
+      ${item.schedule ? `<div class="detail-section"><h4>${t("schedule")}</h4><p>${item.schedule}</p></div>` : ""}
+      ${item.residentsServed ? `<div class="detail-section"><h4>${t("residents")}</h4><p>${item.residentsServed}</p></div>` : ""}
+      <div class="detail-section"><h4>${t("documentation")}</h4><p>${idLabel}${item.openToAll ? t("openToAllTag") : ""}</p></div>
+      ${item.contactPerson ? `<div class="detail-section"><h4>${t("contactLabel")}</h4><p>${item.contactPerson}${item.phone ? " · " + item.phone : ""}</p></div>` : (item.phone ? `<div class="detail-section"><h4>${t("phone")}</h4><p>${item.phone}</p></div>` : "")}
+      ${item.notes ? `<div class="detail-section"><h4>${t("notes")}</h4><p>${item.notes}</p></div>` : ""}
+      ${item.donationsAccepted ? `<div class="detail-section"><h4>${t("donations")}</h4><p>${t("donationsYes")}</p></div>` : ""}
+      <div class="detail-section"><h4>${t("reminder")}</h4><p>${DIRECTORY.meta.disclaimer}</p></div>
+    </div>`;
+}
+
+function selectItem(id, fromMap) {
+  const item = DIRECTORY.sites.find((s) => s.id === id);
+  if (!item) return;
+  state.selectedId = id;
+  document.body.classList.add("has-selection");
+  document.getElementById("layout").classList.add("has-detail");
+  document.getElementById("detail").innerHTML = detailHtml(item);
+  wireDetailActions();
+  document.querySelectorAll(".card").forEach((c) => c.classList.toggle("active", c.dataset.id === id));
+  if (state.map && item.lat != null) {
+    const m = state.markers[id];
+    if (m) {
+      if (!fromMap) state.map.setView([item.lat, item.lng], Math.max(state.map.getZoom(), 13), { animate: true });
+      m.openPopup();
+    }
+  }
+}
+function clearSelection() {
+  state.selectedId = null;
+  document.body.classList.remove("has-selection");
+  document.getElementById("layout").classList.remove("has-detail");
+  document.getElementById("detail").innerHTML = "";
+}
+function wireDetailActions() {
+  document.getElementById("close-detail")?.addEventListener("click", clearSelection);
+  document.querySelectorAll("#detail [data-fav]").forEach((btn) => {
+    btn.addEventListener("click", (e) => toggleFavorite(btn.getAttribute("data-fav"), e));
+  });
+  document.querySelectorAll("#detail [data-copy]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = DIRECTORY.sites.find((s) => s.id === btn.getAttribute("data-copy"));
+      if (item) copyText(smsText(item));
+    });
+  });
+}
+
+function renderList() {
+  const list = filteredSites();
+  const el = document.getElementById("cards");
+  const n = list.length;
+  const label = (n === 1 ? t("locCount") : t("locCountPlural")).replace("{n}", n);
+  document.getElementById("result-count").textContent = label + (state.userLoc ? t("sortedDist") : "");
+  document.getElementById("print-header").textContent =
+    `${t("brand")} — ${label}` + (getFilters().town ? ` · ${getFilters().town}` : "");
+
+  if (!list.length) {
+    const favMode = getFilters().docs === "favorites";
+    el.innerHTML = `<div class="empty"><strong>${favMode ? t("emptyFav") : t("noMatches")}</strong>${favMode ? t("emptyFavHint") : t("noMatchesHint")}</div>`;
+    return;
+  }
+  el.innerHTML = list.map(cardHtml).join("");
+  el.querySelectorAll(".card").forEach((card) => {
+    const open = () => selectItem(card.dataset.id, false);
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("a,button")) return;
+      open();
+    });
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+    });
+  });
+  el.querySelectorAll("[data-fav]").forEach((btn) => {
+    btn.addEventListener("click", (e) => toggleFavorite(btn.getAttribute("data-fav"), e));
+  });
+  el.querySelectorAll("[data-detail]").forEach((btn) => {
+    btn.addEventListener("click", (e) => { e.stopPropagation(); selectItem(btn.getAttribute("data-detail"), false); });
+  });
+  el.querySelectorAll("[data-copy]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const item = DIRECTORY.sites.find((s) => s.id === btn.getAttribute("data-copy"));
+      if (item) copyText(smsText(item));
+    });
+  });
+}
+
+function ensureMap() {
+  if (state.map) { state.map.invalidateSize(); return; }
+  state.map = L.map("map", { scrollWheelZoom: true }).setView([41.42, -74.28], 10);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  }).addTo(state.map);
+  state.markerLayer = L.layerGroup().addTo(state.map);
+}
+
+function renderMap() {
+  ensureMap();
+  state.markerLayer.clearLayers();
+  state.markers = {};
+  const list = filteredSites().filter((s) => s.lat != null && s.lng != null);
+  const bounds = [];
+  for (const item of list) {
+    const cats = categoriesOf(item);
+    const marker = L.marker([item.lat, item.lng]);
+    marker.bindPopup(`<strong>${item.name}</strong><br>${item.town || ""}<br><em>${cats.map(catLabel).join(", ")}</em>`);
+    marker.on("click", () => selectItem(item.id, true));
+    marker.addTo(state.markerLayer);
+    state.markers[item.id] = marker;
+    bounds.push([item.lat, item.lng]);
+  }
+  if (state.userLoc) {
+    L.circleMarker([state.userLoc.lat, state.userLoc.lng], {
+      radius: 8, color: "#c9a227", fillColor: "#c9a227", fillOpacity: 0.9, weight: 2,
+    }).addTo(state.markerLayer).bindPopup(t("nearMeOn"));
+    bounds.push([state.userLoc.lat, state.userLoc.lng]);
+  }
+  if (bounds.length === 1) state.map.setView(bounds[0], 13);
+  else if (bounds.length > 1) state.map.fitBounds(bounds, { padding: [36, 36], maxZoom: 12 });
+  else state.map.setView([41.42, -74.28], 10);
+  setTimeout(() => state.map.invalidateSize(), 80);
+}
+
+function renderPrograms() {
+  const core = DIRECTORY.programs.filter((p) => ["snap", "wic", "senior", "summer_ebt"].includes(p.category));
+  const schools = DIRECTORY.programs.filter((p) => p.category === "school");
+  const grid = document.getElementById("program-grid");
+  grid.innerHTML = [...core, ...schools].map((p) => {
+    const links = (p.links || []).map((l) => `<li><a href="${l.url}" target="_blank" rel="noopener">${l.label}</a></li>`).join("");
+    const locs = (p.locations || []).filter((l) => l.address || l.phone).slice(0, 6)
+      .map((l) => `<li>${l.name}${l.phone ? " — " + l.phone : ""}${l.address ? "<br>" + l.address : ""}${l.schedule ? "<br>" + l.schedule : ""}</li>`).join("");
+    return `
+      <article class="program-card">
+        <span class="badge ${p.category}">${catLabel(p.category)}</span>
+        <h3>${p.name}</h3>
+        ${p.district ? `<p>${p.district}${p.town ? " · " + p.town : ""}</p>` : (p.town ? `<p>${p.town}</p>` : "")}
+        <p>${(p.description || "").slice(0, 160)}${(p.description || "").length > 160 ? "…" : ""}</p>
+        <details>
+          <summary>${t("eligibility")}</summary>
+          <p style="margin-top:.5rem">${p.description || ""}</p>
+          ${p.howToEnroll ? `<p style="margin-top:.5rem"><strong>${t("howEnroll")}</strong> ${p.howToEnroll}</p>` : ""}
+          ${p.phone ? `<p style="margin-top:.4rem"><strong>${t("phone")}:</strong> <a href="${phoneHref(p.phone) || "#"}">${p.phone}</a></p>` : ""}
+          ${p.website ? `<p><a href="${p.website}" target="_blank" rel="noopener">${t("website")}</a></p>` : ""}
+          ${links ? `<ul class="links">${links}</ul>` : ""}
+          ${locs ? `<p style="margin-top:.5rem"><strong>${t("programSites")}</strong></p><ul class="links">${locs}</ul>` : ""}
+        </details>
+      </article>`;
+  }).join("");
+}
+
+function setView(view) {
+  state.view = view;
+  document.body.classList.toggle("view-map", view === "map");
+  document.getElementById("view-list").setAttribute("aria-pressed", view === "list" ? "true" : "false");
+  document.getElementById("view-map").setAttribute("aria-pressed", view === "map" ? "true" : "false");
+  syncUrl();
+  render();
+}
+
+function syncUrl() {
+  if (state.syncingUrl) return;
+  const f = getFilters();
+  const params = new URLSearchParams();
+  if (f.q) params.set("q", f.q);
+  if (f.town) params.set("town", f.town);
+  if (f.type) params.set("type", f.type);
+  if (f.day) params.set("day", f.day);
+  if (f.docs) params.set("docs", f.docs);
+  if (f.radius) params.set("radius", f.radius);
+  if (state.view === "map") params.set("view", "map");
+  if (state.lang !== "en") params.set("lang", state.lang);
+  if (document.body.classList.contains("low-bw")) params.set("bw", "1");
+  const qs = params.toString();
+  const url = qs ? `${location.pathname}?${qs}${location.hash && location.hash !== "#directory" ? location.hash : ""}` : location.pathname;
+  history.replaceState(null, "", url + (location.hash === "#directory" || location.hash === "#programs" || location.hash === "#top" ? location.hash : ""));
+}
+
+function loadFromUrl() {
+  state.syncingUrl = true;
+  const p = new URLSearchParams(location.search);
+  if (p.get("q")) document.getElementById("q").value = p.get("q");
+  if (p.get("town")) document.getElementById("town").value = p.get("town");
+  if (p.get("type")) document.getElementById("type").value = p.get("type");
+  if (p.get("day")) document.getElementById("day").value = p.get("day");
+  if (p.get("docs")) document.getElementById("docs").value = p.get("docs");
+  if (p.get("radius")) document.getElementById("radius").value = p.get("radius");
+  const allowed = ["en","es","yi","zh","ht","ar","he","ru"];
+  if (allowed.includes(p.get("lang"))) {
+    state.lang = p.get("lang");
+    localStorage.setItem(LANG_KEY, state.lang);
+  }
+  if (p.get("bw") === "1" || localStorage.getItem(BW_KEY) === "1") {
+    document.body.classList.add("low-bw");
+    localStorage.setItem(BW_KEY, "1");
+  }
+  if (p.get("view") === "map") state.view = "map";
+  state.syncingUrl = false;
+}
+
+function render() {
+  applyI18n();
+  renderList();
+  renderPrograms();
+  if (state.view === "map") renderMap();
+  document.body.classList.toggle("view-map", state.view === "map");
+  document.getElementById("view-list").setAttribute("aria-pressed", state.view === "list" ? "true" : "false");
+  document.getElementById("view-map").setAttribute("aria-pressed", state.view === "map" ? "true" : "false");
+  const near = document.getElementById("near-me");
+  near.textContent = state.userLoc ? t("nearMeOn") : t("nearMe");
+  near.classList.toggle("on", !!state.userLoc);
+  syncUrl();
+}
+
+async function shareList() {
+  syncUrl();
+  const url = location.href.split("#")[0];
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: t("brand"), text: t("lead"), url });
+    } catch (_) { /* user cancelled */ }
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(url);
+    toast(t("shared"));
+  } catch {
+    toast(t("shareFailed"));
+  }
+}
+
+function wireFilters() {
+  ["q","town","type","day","docs","radius"].forEach((id) => {
+    document.getElementById(id).addEventListener("input", render);
+    document.getElementById(id).addEventListener("change", render);
+  });
+  document.getElementById("view-list").addEventListener("click", () => setView("list"));
+  document.getElementById("view-map").addEventListener("click", () => setView("map"));
+  document.getElementById("share-btn").addEventListener("click", shareList);
+  document.getElementById("print-btn").addEventListener("click", () => window.print());
+  document.getElementById("lang-select").addEventListener("change", (e) => {
+    state.lang = e.target.value || "en";
+    localStorage.setItem(LANG_KEY, state.lang);
+    populateTowns();
+    render();
+  });
+  document.getElementById("low-bw").addEventListener("click", () => {
+    const on = document.body.classList.toggle("low-bw");
+    localStorage.setItem(BW_KEY, on ? "1" : "0");
+    applyI18n();
+    syncUrl();
+  });
+  document.querySelectorAll(".chip[data-quick]").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const q = chip.dataset.quick;
+      if (q === "clear") {
+        document.getElementById("q").value = "";
+        document.getElementById("town").value = "";
+        document.getElementById("type").value = "";
+        document.getElementById("day").value = "";
+        document.getElementById("docs").value = "";
+        document.getElementById("radius").value = "";
+        document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
+      } else if (q === "favorites") {
+        document.getElementById("docs").value = "favorites";
+        document.getElementById("day").value = "";
+        document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
+        chip.setAttribute("aria-pressed", "true");
+      } else if (q === "open_now") {
+        document.getElementById("day").value = "open_now";
+        document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
+        chip.setAttribute("aria-pressed", "true");
+      } else if (q === "today") {
+        document.getElementById("day").value = "today";
+        document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
+        chip.setAttribute("aria-pressed", "true");
+      } else if (q === "open_to_all") {
+        document.getElementById("docs").value = "open_to_all";
+        chip.setAttribute("aria-pressed", "true");
+      } else {
+        document.getElementById("type").value = q;
+        chip.setAttribute("aria-pressed", "true");
+      }
+      render();
+    });
+  });
+  document.getElementById("near-me").addEventListener("click", () => {
+    if (!navigator.geolocation) { alert(t("geoUnsupported")); return; }
+    const btn = document.getElementById("near-me");
+    btn.textContent = t("locating");
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        state.userLoc = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        if (!document.getElementById("radius").value) document.getElementById("radius").value = "10";
+        render();
+      },
+      () => { btn.textContent = t("nearMe"); alert(t("geoFail")); },
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  });
+}
+
+function updateOnline() {
+  document.body.classList.toggle("is-offline", !navigator.onLine);
+}
+window.addEventListener("online", updateOnline);
+window.addEventListener("offline", updateOnline);
+updateOnline();
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
+  });
+}
+
+populateTowns();
+loadFromUrl();
+wireFilters();
+applyI18n();
+render();
+</script>
+</body>
+</html>

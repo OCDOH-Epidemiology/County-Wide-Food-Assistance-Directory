@@ -3,21 +3,14 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Orange County Food Assistance Directory</title>
+<title>Benefits &amp; Programs · Orange County Food Assistance</title>
 <meta name="author" content="Dayquan Crandell" />
 <meta name="creator" content="Dayquan Crandell · Orange County Department of Health Epidemiology" />
-<!--
-  Orange County Food Assistance Directory
-  Designed & developed by Dayquan Crandell
-  Portfolio / related work: https://github.com/OCDOH-Epidemiology
-  Built for public use with Orange County, NY food assistance data (June 2026).
--->
-<meta name="description" content="Find food pantries, soup kitchens, SNAP, WIC, senior meals, school programs, and farmers markets across Orange County, NY." />
+<meta name="description" content="SNAP, WIC, senior meals, Summer EBT, and school food programs across Orange County, NY — eligibility, enrollment, and contacts." />
 <meta name="theme-color" content="#1f5c45" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
 :root {
   --ink: #1a2a22; --muted: #5a6b62; --paper: #f3f6f2; --surface: #ffffff;
@@ -31,212 +24,137 @@ html { scroll-behavior: smooth; }
 body { margin: 0; font-family: var(--font); color: var(--ink); background: var(--paper); line-height: 1.5; min-height: 100vh; }
 body::before {
   content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
-  background: linear-gradient(180deg, #eef3ef 0%, var(--paper) 40%, #f5f7f4 100%);
+  background:
+    radial-gradient(ellipse 80% 50% at 10% -10%, rgba(47,143,101,.12), transparent 55%),
+    linear-gradient(180deg, #e8efe9 0%, var(--paper) 38%, #f5f7f4 100%);
 }
 body.low-bw::before { background: var(--paper); }
-body.low-bw .hero-bg { background-image: none !important; background: linear-gradient(160deg, #143d2e, #1f5c45) !important; animation: none; }
 body.low-bw { --font: system-ui, sans-serif; --display: Georgia, serif; }
 img { max-width: 100%; display: block; }
 a { color: var(--forest); }
 button, input, select { font: inherit; }
-.wrap { width: min(1180px, calc(100% - 2rem)); margin-inline: auto; }
+.wrap { width: min(980px, calc(100% - 2rem)); margin-inline: auto; }
 .skip-link { position: absolute; left: -999px; top: 0; background: var(--forest); color: #fff; padding: .6rem 1rem; z-index: 100; border-radius: 0 0 8px 0; font-weight: 700; }
 .skip-link:focus { left: 0; }
-.hero { position: relative; min-height: min(68vh, 580px); display: grid; align-items: end; color: #f7fbf8; overflow: hidden; isolation: isolate; }
-.hero-bg {
-  position: absolute; inset: 0; z-index: -2;
-  background:
-    linear-gradient(180deg, rgba(12,32,24,.35) 0%, rgba(12,32,24,.72) 55%, rgba(12,32,24,.92) 100%),
-    url("https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
-  transform: scale(1.02); animation: heroIn 1.4s ease-out both;
+.site-header {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(20,61,46,.94); color: #f4faf6;
+  backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.12);
 }
-.hero-pattern { position: absolute; inset: 0; z-index: -1; opacity: .18; background-image: radial-gradient(rgba(255,255,255,.35) .6px, transparent .7px); background-size: 18px 18px; }
-@keyframes heroIn { from { transform: scale(1.08); opacity: .7; } to { transform: scale(1.02); opacity: 1; } }
-.hero-inner { padding: 2.25rem 0 2.5rem; animation: rise .8s ease-out .15s both; }
-@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-.hero-top { display: flex; justify-content: flex-end; gap: .5rem; margin-bottom: 1rem; }
-
+.site-header .wrap { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; align-items: center; justify-content: space-between; padding: .85rem 0; }
+.brand-lockup { display: grid; gap: .15rem; min-width: 0; }
+.brand-lockup a { color: inherit; text-decoration: none; }
+.brand-name { font-family: var(--display); font-size: clamp(1.15rem, 2.8vw, 1.55rem); font-weight: 700; line-height: 1.15; letter-spacing: -.01em; }
+.brand-sub { font-size: .82rem; color: #c5d9ce; font-weight: 600; }
+.header-controls { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
 .lang-select-wrap { display: flex; align-items: center; gap: .4rem; }
-.lang-select-wrap label { font-size: .78rem; font-weight: 700; letter-spacing: .04em; color: #fff; text-transform: uppercase; text-shadow: 0 1px 2px rgba(0,0,0,.45); }
+.lang-select-wrap label { font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #dce9e1; }
 .lang-select-wrap select {
-  border: 1px solid rgba(255,255,255,.55); background: rgba(12,32,24,.55); color: #fff;
-  border-radius: 999px; padding: .45rem .9rem; font-weight: 600; backdrop-filter: blur(8px);
-  max-width: 13.5rem;
+  border: 1px solid rgba(255,255,255,.45); background: rgba(12,32,24,.45); color: #fff;
+  border-radius: 999px; padding: .4rem .8rem; font-weight: 600; max-width: 13rem;
 }
 .lang-select-wrap select option { color: #1a2a22; background: #fff; }
 .bw-toggle {
-  display: inline-flex; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.3);
-  border-radius: 999px; padding: .15rem; backdrop-filter: blur(6px);
+  display: inline-flex; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.28);
+  border-radius: 999px; padding: .12rem;
 }
 .bw-toggle button {
   border: 0; background: transparent; color: #e8f2ec; border-radius: 999px;
   padding: .35rem .7rem; font-weight: 700; cursor: pointer; font-size: .85rem;
 }
 .bw-toggle button[aria-pressed="true"] { background: var(--gold); color: #1a1808; }
-.brand { font-family: var(--display); font-size: clamp(2.4rem, 7vw, 4.4rem); line-height: .98; letter-spacing: -.02em; margin: 0 0 .75rem; max-width: 14ch; text-shadow: 0 2px 24px rgba(0,0,0,.35); }
-.hero-lead { margin: 0 0 1.25rem; max-width: 40ch; font-size: clamp(1.05rem, 2.2vw, 1.25rem); color: #dce9e1; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
-.btn { appearance: none; border: 0; border-radius: 999px; padding: .7rem 1.2rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: .45rem; transition: transform .15s ease, filter .15s ease; }
+.btn { appearance: none; border: 0; border-radius: 999px; padding: .55rem 1rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: .4rem; transition: transform .15s ease, filter .15s ease; }
 .btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
 .btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
-.btn-primary { background: var(--gold); color: #1a1808; }
-.btn-ghost { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(6px); }
-.meta-pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.15rem; }
-.pill { font-size: .82rem; font-weight: 600; padding: .35rem .75rem; border-radius: 999px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); }
-.banner { background: #fff8e6; border-bottom: 1px solid #e6d59a; color: #5c4810; padding: .85rem 0; font-size: .95rem; }
-.banner strong { color: #3f320c; }
-.toolbar { position: sticky; top: 0; z-index: 40; background: rgba(243,246,242,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); padding: .85rem 0; }
-.toolbar-row { display: grid; gap: .75rem; grid-template-columns: 1fr; }
-@media (min-width: 980px) {
-  .toolbar-row { grid-template-columns: 1.35fr repeat(4, minmax(0, 1fr)) auto; align-items: end; }
+.btn-back { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.35); }
+.page-hero { padding: 2rem 0 1.25rem; animation: rise .7s ease-out both; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.page-hero h1 { font-family: var(--display); font-size: clamp(2rem, 5vw, 3rem); line-height: 1.05; letter-spacing: -.02em; margin: 0 0 .65rem; max-width: 16ch; color: var(--forest-d); }
+.page-hero p { margin: 0; max-width: 48ch; color: var(--muted); font-size: 1.05rem; }
+.jump-nav {
+  display: flex; flex-wrap: wrap; gap: .45rem; align-items: center;
+  margin: 1.25rem 0 0; padding: .85rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.jump-nav .jump-label { font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-inline-end: .25rem; }
+.jump-nav a {
+  text-decoration: none; color: var(--forest-d); font-weight: 600; font-size: .9rem;
+  padding: .35rem .75rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
+}
+.jump-nav a:hover { border-color: var(--leaf); background: var(--sky); }
+.section-head { margin: 2rem 0 1rem; }
+.section-head h2 { font-family: var(--display); font-size: clamp(1.45rem, 3vw, 1.85rem); margin: 0 0 .35rem; color: var(--forest-d); }
+.section-head p { margin: 0; color: var(--muted); max-width: 52ch; }
+.benefit-block {
+  padding: 1.5rem 0 1.75rem;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 5rem;
+  animation: rise .55s ease-out both;
+}
+.benefit-block:last-of-type { border-bottom: 0; }
+.benefit-kicker { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-bottom: .55rem; }
+.badge {
+  display: inline-flex; align-items: center; font-size: .72rem; font-weight: 700;
+  letter-spacing: .04em; text-transform: uppercase; padding: .28rem .55rem; border-radius: 999px;
+}
+.badge.snap, .badge.wic, .badge.senior, .badge.school, .badge.summer_ebt { background: #e7f0ff; color: #23406b; }
+.benefit-block h3 { font-family: var(--display); font-size: clamp(1.25rem, 2.6vw, 1.6rem); margin: 0 0 .85rem; line-height: 1.2; }
+.benefit-layout {
+  display: grid; gap: 1.25rem 2rem;
+}
+@media (min-width: 820px) {
+  .benefit-layout { grid-template-columns: minmax(0, 1.5fr) minmax(14rem, .85fr); align-items: start; }
+}
+.benefit-copy h4, .benefit-aside h4, .benefit-sites h4 {
+  margin: 0 0 .35rem; font-size: .72rem; font-weight: 700; letter-spacing: .07em;
+  text-transform: uppercase; color: var(--muted);
+}
+.benefit-copy > * + h4, .benefit-aside > * + h4 { margin-top: 1rem; }
+.benefit-copy p, .benefit-aside p { margin: 0; }
+.benefit-copy p + p { margin-top: .65rem; }
+.benefit-aside {
+  padding: 1rem 0 0;
+  border-top: 1px dashed var(--line);
+}
+@media (min-width: 820px) {
+  .benefit-aside { padding: 0 0 0 1.25rem; border-top: 0; border-inline-start: 1px solid var(--line); }
+}
+.benefit-aside ul, .benefit-sites ul { margin: .35rem 0 0; padding-left: 1.1rem; }
+.benefit-aside li, .benefit-sites li { margin: .25rem 0; }
+.benefit-sites { margin-top: 1.15rem; }
+.school-toolbar {
+  position: sticky; top: 3.6rem; z-index: 30;
+  display: grid; gap: .75rem; grid-template-columns: 1fr;
+  background: rgba(243,246,242,.94); backdrop-filter: blur(10px);
+  padding: .85rem 0; margin: 0 0 .5rem; border-bottom: 1px solid var(--line);
+}
+@media (min-width: 700px) {
+  .school-toolbar { grid-template-columns: 1.4fr 1fr auto; align-items: end; }
 }
 .field { display: grid; gap: .3rem; }
-.field label { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
-.field input, .field select { width: 100%; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: .65rem .75rem; color: var(--ink); }
+.field label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.field input, .field select {
+  width: 100%; border: 1px solid var(--line); background: var(--surface);
+  border-radius: 10px; padding: .65rem .75rem; color: var(--ink);
+}
 .field input:focus, .field select:focus { outline: 2px solid var(--leaf); outline-offset: 1px; border-color: var(--leaf); }
-.chip-row { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .75rem; }
-.chip { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: .35rem .8rem; font-size: .88rem; font-weight: 600; cursor: pointer; }
-.chip[aria-pressed="true"] { background: var(--forest); border-color: var(--forest); color: #fff; }
-.chip:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
-.view-toggle { display: inline-flex; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: .2rem; gap: .15rem; }
-.view-toggle button { border: 0; background: transparent; border-radius: 999px; padding: .5rem .95rem; font-weight: 700; cursor: pointer; color: var(--muted); }
-.view-toggle button[aria-pressed="true"] { background: var(--forest); color: #fff; }
-.results-bar { display: flex; flex-wrap: wrap; gap: .85rem 1rem; align-items: flex-end; justify-content: space-between; margin: 1.25rem 0 .85rem; }
-.results-bar h2 { margin: 0; font-family: var(--display); font-size: 1.35rem; font-weight: 600; }
-.count { color: var(--muted); font-weight: 600; }
-.action-row {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: .5rem;
-  width: min(100%, 42rem);
-  align-items: end;
+.school-count { color: var(--muted); font-weight: 600; font-size: .92rem; align-self: center; padding-bottom: .35rem; }
+.school-list { display: grid; gap: 0; margin: 0 0 2rem; }
+.school-row {
+  padding: 1.15rem 0; border-bottom: 1px solid var(--line);
+  scroll-margin-top: 8rem;
 }
-@media (max-width: 720px) {
-  .action-row { grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
-}
-.action-control {
-  display: grid;
-  gap: .28rem;
-  min-width: 0;
-}
-.action-control label,
-.action-spacer {
-  font-size: .72rem;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  line-height: 1.2;
-  min-height: 1rem;
-  display: block;
-}
-.action-spacer { visibility: hidden; }
-.action-control select,
-.loc-btn,
-.tool-btn {
-  box-sizing: border-box;
-  width: 100%;
-  height: 2.75rem;
-  margin: 0;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  border-radius: 10px;
-  padding: 0 .7rem;
-  font: inherit;
-  font-size: .88rem;
-  font-weight: 600;
-  color: var(--ink);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  white-space: normal;
-  line-height: 1.15;
-}
-.action-control select {
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%215a6b62' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right .75rem center;
-  padding-right: 2rem;
-  text-align: left;
-  justify-content: flex-start;
-}
-.loc-btn:hover, .tool-btn:hover, .action-control select:hover { border-color: var(--leaf); color: var(--forest); }
-.loc-btn:focus-visible, .tool-btn:focus-visible, .action-control select:focus-visible {
-  outline: 2px solid var(--leaf); outline-offset: 1px;
-}
-.loc-btn.on { background: var(--forest); color: #fff; border-color: var(--forest); }
-.main { padding: 0 0 3.5rem; }
-.layout { display: grid; gap: 1.25rem; }
-@media (min-width: 980px) { .layout.has-detail { grid-template-columns: 1fr 360px; } }
-.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-#list-panel { min-height: 420px; }
-#map-panel { display: none; min-height: 520px; overflow: hidden; }
-body.view-map #list-panel { display: none; }
-body.view-map #map-panel { display: block; }
-body.low-bw.view-map #map-panel::after {
-  content: attr(data-map-note); display: block; padding: .75rem 1rem; background: #fff8e6; color: #5c4810; font-size: .9rem; border-top: 1px solid #e6d59a;
-}
-#map { height: min(70vh, 640px); width: 100%; }
-.cards { display: grid; gap: .85rem; padding: 1rem; }
-.card {
-  border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.05rem;
-  background: linear-gradient(180deg, #fff, #f8fbf8); cursor: pointer;
-  transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
-  animation: cardIn .35s ease both;
-}
-@keyframes cardIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-.card:hover, .card:focus-within, .card.active { border-color: var(--leaf); box-shadow: 0 8px 22px rgba(31,92,69,.12); transform: translateY(-1px); }
-.card-top { display: flex; gap: .75rem; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; }
-.card h3 { margin: 0; font-family: var(--display); font-size: 1.15rem; font-weight: 600; line-height: 1.3; flex: 1 1 12rem; min-width: 0; }
-.card-top-right { display: flex; flex-wrap: wrap; gap: .45rem; align-items: center; justify-content: flex-end; }
-.fav-btn {
-  flex: 0 0 auto; border: 1px solid #c2b280; background: #fffdf6; border-radius: 999px;
-  width: 2.35rem; height: 2.35rem; display: inline-grid; place-items: center;
-  font-size: 1.15rem; cursor: pointer; line-height: 1; color: #8a7418; padding: 0;
-  box-shadow: 0 1px 2px rgba(20,40,30,.06);
-}
-.fav-btn:hover { border-color: var(--gold); background: var(--gold-s); }
-.fav-btn[aria-pressed="true"] { color: #6e5a10; background: var(--gold-s); border-color: #c9a227; }
-.fav-btn:focus-visible { outline: 2px solid var(--leaf); outline-offset: 2px; }
-.badges { display: flex; flex-wrap: wrap; gap: .35rem; align-items: center; justify-content: flex-end; max-width: 100%; }
-.badge { font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: .22rem .5rem; border-radius: 999px; background: var(--sky); color: var(--forest-d); }
-.badge.pantry { background: #e5f3ea; }
-.badge.soup_kitchen, .badge.hot_meals { background: #fde8d8; color: var(--warn); }
-.badge.mini_pantry { background: #e8eef8; color: #2a4a7a; }
-.badge.market { background: var(--gold-s); color: #6a5608; }
-.badge.wic, .badge.snap, .badge.senior, .badge.school, .badge.summer_ebt { background: #e7f0ff; color: #23406b; }
-.badge.open { background: #d8f5e4; color: #0f5c38; }
-.badge.approx { background: #f3efe2; color: #6a5608; }
-.card-meta { margin: .55rem 0 0; color: var(--muted); font-size: .95rem; }
-.card-meta p { margin: .2rem 0; }
-.card-actions { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .75rem; }
-.card-actions a, .card-actions button {
+.school-row h3 { font-family: var(--display); font-size: 1.15rem; margin: 0 0 .25rem; line-height: 1.25; }
+.school-meta { color: var(--muted); font-size: .92rem; margin: 0 0 .55rem; font-weight: 600; }
+.school-row p { margin: 0; }
+.school-row p + p { margin-top: .5rem; }
+.school-actions { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .7rem; }
+.school-actions a {
   text-decoration: none; border: 1px solid var(--line); background: #fff; color: var(--forest-d);
-  border-radius: 999px; padding: .35rem .75rem; font-size: .88rem; font-weight: 600; cursor: pointer;
+  border-radius: 999px; padding: .35rem .75rem; font-size: .88rem; font-weight: 600;
 }
-.card-actions a:hover, .card-actions button:hover { border-color: var(--leaf); background: var(--sky); }
-.dist { font-weight: 700; color: var(--forest); font-size: .85rem; }
-#detail { display: none; position: sticky; top: 6.5rem; align-self: start; max-height: calc(100vh - 7rem); overflow: auto; }
-body.has-selection #detail { display: block; }
-.detail-inner { padding: 1.15rem 1.2rem 1.4rem; }
-.detail-inner h2 { font-family: var(--display); font-size: 1.45rem; margin: .35rem 0 .5rem; line-height: 1.2; }
-.close-detail { float: right; border: 0; background: transparent; font-size: 1.4rem; line-height: 1; cursor: pointer; color: var(--muted); }
-.detail-section { margin-top: .9rem; }
-.detail-section h4 { margin: 0 0 .25rem; font-size: .75rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
-.detail-section p { margin: 0; }
-.empty { padding: 2.5rem 1.25rem; text-align: center; color: var(--muted); }
-.empty strong { display: block; color: var(--ink); font-family: var(--display); font-size: 1.3rem; margin-bottom: .35rem; }
-.toast {
-  position: fixed; bottom: 1.25rem; left: 50%; transform: translateX(-50%) translateY(140%);
-  background: var(--forest-d); color: #fff; padding: .7rem 1.1rem; border-radius: 999px;
-  font-weight: 600; z-index: 80; transition: transform .25s ease, opacity .2s ease;
-  max-width: calc(100% - 2rem); text-align: center;
-  opacity: 0; visibility: hidden; pointer-events: none; display: none;
-}
-.toast.show { display: block; transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; }
+.school-actions a:hover { border-color: var(--leaf); background: var(--sky); }
+.empty { padding: 2rem 0; color: var(--muted); }
+.empty strong { display: block; color: var(--ink); font-family: var(--display); font-size: 1.25rem; margin-bottom: .35rem; }
 .offline-banner {
   display: none; background: #23406b; color: #fff; text-align: center; padding: .45rem .75rem; font-size: .9rem; font-weight: 600;
 }
@@ -246,45 +164,29 @@ footer a { font-weight: 600; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
-@media (max-width: 700px) {
-  .brand { max-width: none; }
-  #detail {
-    position: fixed; inset: auto 0 0 0; top: auto; max-height: 55vh; z-index: 50;
-    border-radius: 18px 18px 0 0; box-shadow: 0 -10px 40px rgba(0,0,0,.18);
-  }
-  body.has-selection #detail { display: block; }
-}
-@media print {
-  body::before, .hero, .banner, .toolbar, .hero-top, .view-toggle, .chip-row,
-  .action-row, #map-panel, #detail, footer, .skip-link, .offline-banner, .toast, .fav-btn { display: none !important; }
-  body { background: #fff; color: #000; }
-  .main { padding: 0; }
-  .panel { box-shadow: none; border: 0; }
-  .cards { padding: 0; gap: .6rem; }
-  .card { break-inside: avoid; border: 1px solid #999; box-shadow: none; cursor: default; transform: none; animation: none; }
-  .card-actions { display: none; }
-  .print-only { display: block !important; margin: 0 0 1rem; }
-  #list-panel { display: block !important; }
-}
-.print-only { display: none; }
 </style>
 </head>
 <body>
-<a class="skip-link" href="#directory" data-i18n="skip">Skip to directory</a>
+<a class="skip-link" href="#main" data-i18n="skipBenefits">Skip to benefits</a>
 <div class="offline-banner" data-i18n="offline">You're offline — showing saved directory data.</div>
-<header class="hero" id="top">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-pattern" aria-hidden="true"></div>
-  <div class="wrap hero-inner">
-    <div class="hero-top">
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand-lockup">
+      <a href="index.html" id="directory-link">
+        <div class="brand-name" data-i18n="brand">Orange County Food Assistance</div>
+        <div class="brand-sub" data-i18n="pageTitle">Benefits &amp; programs</div>
+      </a>
+    </div>
+    <div class="header-controls">
       <div class="lang-select-wrap">
         <label for="lang-select" data-i18n="language">Language</label>
         <select id="lang-select" aria-label="Language">
           <option value="en">English</option>
-          <option value="es">Español</option>
+          <option value="es">Español · Spanish</option>
           <option value="yi">ייִדיש · Yiddish</option>
           <option value="zh">中文 · Chinese</option>
-          <option value="ht">Kreyòl Ayisyen</option>
+          <option value="ht">Kreyòl Ayisyen · Haitian Creole</option>
           <option value="ar">العربية · Arabic</option>
           <option value="he">עברית · Hebrew</option>
           <option value="ru">Русский · Russian</option>
@@ -293,163 +195,63 @@ footer a { font-weight: 600; }
       <div class="bw-toggle" role="group">
         <button type="button" id="low-bw" aria-pressed="false" data-i18n="lowBw">Low data</button>
       </div>
-    </div>
-    <h1 class="brand" data-i18n="brand">Orange County Food Assistance</h1>
-    <p class="hero-lead" data-i18n="lead">Find pantries, meals, benefits, and markets near you — filter by town, day, and program type.</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="#directory" data-i18n="browse">Browse directory</a>
-      <a class="btn btn-ghost" id="benefits-link" href="benefits.html" data-i18n="benefits">Benefits &amp; programs</a>
-    </div>
-    <div class="meta-pills">
-      <span class="pill" data-i18n="updated">Updated June 2026</span>
-      <span class="pill">Orange County, NY</span>
-      <span class="pill" data-i18n="listMap">List + Map</span>
+      <a class="btn btn-back" id="directory-cta" href="index.html" data-i18n="backDirectory">Back to directory</a>
     </div>
   </div>
 </header>
 
-<div class="banner">
-  <div class="wrap"><strong data-i18n="callAheadStrong">Please call ahead.</strong> <span data-i18n="callAhead">Hours and availability change. Confirm before you go, and bring bags when visiting pantries.</span></div>
-</div>
-
-<section class="toolbar" id="directory" aria-label="Directory filters">
+<main id="main">
   <div class="wrap">
-    <div class="toolbar-row">
-      <div class="field">
-        <label for="q" data-i18n="search">Search</label>
-        <input id="q" type="search" data-i18n-placeholder="searchPh" placeholder="Name, address, notes…" autocomplete="off" />
-      </div>
-      <div class="field">
-        <label for="town" data-i18n="town">Town / area</label>
-        <select id="town"><option value="" data-i18n="allTowns">All towns</option></select>
-      </div>
-      <div class="field">
-        <label for="type" data-i18n="type">Program type</label>
-        <select id="type">
-          <option value="" data-i18n="allTypes">All types</option>
-          <option value="pantry" data-i18n="optPantry">Food pantry</option>
-          <option value="soup_kitchen" data-i18n="optSoup">Soup kitchen</option>
-          <option value="mini_pantry" data-i18n="optMini">Mini-pantry</option>
-          <option value="hot_meals" data-i18n="optHot">Hot meals</option>
-          <option value="market" data-i18n="optMarket">Farmers market</option>
-          <option value="snap">SNAP</option>
-          <option value="wic">WIC</option>
-          <option value="senior" data-i18n="optSenior">Senior meals</option>
-          <option value="school" data-i18n="optSchool">School program</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="day" data-i18n="openOn">Open on</label>
-        <select id="day">
-          <option value="" data-i18n="anyDay">Any day</option>
-          <option value="today" data-i18n="openToday">Open today</option>
-          <option value="open_now" data-i18n="openNow">Open now</option>
-          <option value="Mon" data-i18n="mon">Monday</option>
-          <option value="Tue" data-i18n="tue">Tuesday</option>
-          <option value="Wed" data-i18n="wed">Wednesday</option>
-          <option value="Thu" data-i18n="thu">Thursday</option>
-          <option value="Fri" data-i18n="fri">Friday</option>
-          <option value="Sat" data-i18n="sat">Saturday</option>
-          <option value="Sun" data-i18n="sun">Sunday</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="docs" data-i18n="docs">Documentation</label>
-        <select id="docs">
-          <option value="" data-i18n="any">Any</option>
-          <option value="not_required" data-i18n="noId">No ID required</option>
-          <option value="open_to_all" data-i18n="openAll">Open to all / no town limit</option>
-          <option value="required" data-i18n="idReq">ID or proof required</option>
-          <option value="favorites" data-i18n="myPlaces">My places</option>
-        </select>
-      </div>
-      <div class="field">
-        <label data-i18n="view">View</label>
-        <div class="view-toggle" role="group" aria-label="List or map view">
-          <button type="button" id="view-list" aria-pressed="true" data-i18n="list">List</button>
-          <button type="button" id="view-map" aria-pressed="false" data-i18n="map">Map</button>
-        </div>
-      </div>
-    </div>
-    <div class="chip-row" aria-label="Quick filters">
-      <button type="button" class="chip" data-quick="open_now" aria-pressed="false" data-i18n="openNow">Open now</button>
-      <button type="button" class="chip" data-quick="today" aria-pressed="false" data-i18n="openToday">Open today</button>
-      <button type="button" class="chip" data-quick="pantry" aria-pressed="false" data-i18n="pantries">Pantries</button>
-      <button type="button" class="chip" data-quick="soup_kitchen" aria-pressed="false" data-i18n="soups">Soup kitchens</button>
-      <button type="button" class="chip" data-quick="open_to_all" aria-pressed="false" data-i18n="openAll">Open to all</button>
-      <button type="button" class="chip" data-quick="favorites" aria-pressed="false" data-i18n="myPlaces">My places</button>
-      <button type="button" class="chip" data-quick="market" aria-pressed="false" data-i18n="markets">Markets</button>
-      <button type="button" class="chip" data-quick="clear" aria-pressed="false" data-i18n="clear">Clear filters</button>
-    </div>
-  </div>
-</section>
+    <header class="page-hero">
+      <h1 data-i18n="pageTitle">Benefits &amp; programs</h1>
+      <p data-i18n="pageLead">County food benefits and school meal programs — eligibility, enrollment, and contacts in one place.</p>
+      <nav class="jump-nav" aria-label="Section shortcuts">
+        <span class="jump-label" data-i18n="jumpTo">Jump to</span>
+        <a href="#snap" data-i18n="jumpSnap">SNAP</a>
+        <a href="#wic" data-i18n="jumpWic">WIC</a>
+        <a href="#summer-ebt" data-i18n="jumpSummer">Summer EBT</a>
+        <a href="#senior" data-i18n="jumpSenior">Senior meals</a>
+        <a href="#schools" data-i18n="jumpSchools">School programs</a>
+      </nav>
+    </header>
 
-<main class="main">
-  <div class="wrap">
-    <div class="results-bar">
-      <div>
-        <h2 data-i18n="locations">Locations</h2>
-        <div class="count" id="result-count">…</div>
-      </div>
-      <div class="action-row">
-        <div class="action-control">
-          <label for="radius" data-i18n="within">Within</label>
-          <select id="radius" aria-label="Within">
-            <option value="">—</option>
-            <option value="5">5 mi</option>
-            <option value="10">10 mi</option>
-            <option value="25">25 mi</option>
-          </select>
-        </div>
-        <div class="action-control action-control-btn">
-          <span class="action-spacer" aria-hidden="true"></span>
-          <button type="button" class="loc-btn" id="near-me" data-i18n="nearMe">Use my location</button>
-        </div>
-        <div class="action-control action-control-btn">
-          <span class="action-spacer" aria-hidden="true"></span>
-          <button type="button" class="tool-btn" id="share-btn" data-i18n="share">Share list</button>
-        </div>
-        <div class="action-control action-control-btn">
-          <span class="action-spacer" aria-hidden="true"></span>
-          <button type="button" class="tool-btn" id="print-btn" data-i18n="print">Print list</button>
-        </div>
-      </div>
-    </div>
+    <section class="section-head" id="county" aria-labelledby="county-heading">
+      <h2 id="county-heading" data-i18n="countyTitle">County benefits</h2>
+      <p data-i18n="programsLead">SNAP, WIC, senior dining, school meals, Summer EBT, and more — eligibility and how to enroll.</p>
+    </section>
+    <div id="benefits-sections"></div>
 
-    <p class="print-only" id="print-header"></p>
-
-    <div class="layout" id="layout">
-      <div>
-        <div class="panel" id="list-panel"><div class="cards" id="cards"></div></div>
-        <div class="panel" id="map-panel" data-map-note="Map tiles need a network connection. List view works offline.">
-          <div id="map" role="application" aria-label="Map of food assistance locations"></div>
-        </div>
+    <section class="section-head" id="schools" aria-labelledby="schools-heading">
+      <h2 id="schools-heading" data-i18n="schoolsTitle">School programs</h2>
+      <p data-i18n="schoolsLead">Free and reduced meals, backpack programs, and summer food by school district.</p>
+    </section>
+    <div class="school-toolbar" id="school-filter">
+      <div class="field">
+        <label for="school-q" data-i18n="searchSchools">Search schools</label>
+        <input id="school-q" type="search" data-i18n-placeholder="searchSchoolsPh" placeholder="Program, district, town…" autocomplete="off" />
       </div>
-      <aside class="panel" id="detail" aria-live="polite"></aside>
+      <div class="field">
+        <label for="school-district" data-i18n="district">District</label>
+        <select id="school-district"><option value="" data-i18n="allDistricts">All districts</option></select>
+      </div>
+      <div class="school-count" id="school-count">…</div>
     </div>
+    <div class="school-list" id="school-list"></div>
   </div>
 </main>
 
 <footer>
   <div class="wrap">
-    <p data-i18n="mapNote">Map pins are approximate by address/town. Always confirm location details by phone.</p>
     <p data-i18n="source">Source: County-Wide Food Assistance Directory Programs by Town, Orange County NY — <strong>Last updated June 2026</strong>.</p>
     <p data-i18n="contact">Questions about this directory: <a href="mailto:moakes@orangecountygov.com">Meg Oakes, moakes@orangecountygov.com</a> · Call <a href="tel:211">211</a> for local help.</p>
-    <p data-i18n="favNote">My places are saved only on this device/browser.</p>
-    <p><a href="#top" data-i18n="top">Back to top</a></p>
+    <p><a href="index.html" id="directory-footer" data-i18n="backDirectory">Back to directory</a> · <a href="#main" data-i18n="top">Back to top</a></p>
   </div>
 </footer>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 const DIRECTORY = {"meta":{"title":"Orange County Food Assistance","subtitle":"County-Wide Food Assistance Directory","updated":"June 2026","contactName":"Meg Oakes","contactEmail":"moakes@orangecountygov.com","disclaimer":"Information is subject to change due to increases in utilization. Please call the location before you go to confirm availability, hours, and documentation requirements. Most pantries ask for ID, proof of address, and that you bring your own bags."},"programs":[{"id":"snap","name":"Supplemental Nutrition Assistance Program (SNAP)","category":"snap","description":"Household must meet certain income and resource limits, and work requirements to be eligible to receive SNAP benefits. Although not typically eligible for SNAP, students and non-citizens can receive SNAP benefits under specific qualifications. Non-citizens generally must have lived in the U.S. for at least 5 years, be receiving disability-related assistance or benefits, or be children under 18. People experiencing homelessness do not need to meet certain residential requirements. Special rules apply for the elderly or disabled.","phone":"845-291-2002","email":null,"website":"https://mybenefits.ny.gov/mybenefits/begin","address":null,"town":"Orange County","district":null,"schedule":null,"howToEnroll":"Apply via myBenefits (https://mybenefits.ny.gov/mybenefits/begin), call Orange County Department of Social Services at 845-291-2002, call United Way 211, or contact Cornerstone Family Healthcare Enabling Services at 845-926-3636 / Jduran@cornerstonefh.org.","links":[{"label":"Students SNAP eligibility","url":"https://www.fns.usda.gov/snap/students"},{"label":"Elderly or Disabled special rules","url":"https://www.fns.usda.gov/snap/eligibility/elderly-disabled-special-rules"},{"label":"Federal SNAP eligibility","url":"https://www.fns.usda.gov/snap/recipient/eligibility"},{"label":"NYS SNAP Q&A","url":"https://otda.ny.gov/programs/snap/qanda.asp#eligible"},{"label":"myBenefits apply","url":"https://mybenefits.ny.gov/mybenefits/begin"}],"locations":[{"name":"United Way of the Dutchess-Orange Region Serving Orange County","address":"75 Market Street, Poughkeepsie, NY 12601","phone":"211","email":null,"schedule":null},{"name":"Orange County Department of Social Services – Goshen","address":"11 Quarry Road, Box Z, Goshen, NY 10924","phone":"845-291-2002","email":null,"schedule":null},{"name":"Orange County Department of Social Services – Middletown","address":"18 Seward Avenue, Middletown, NY 10940","phone":"845-291-2002","email":null,"schedule":null},{"name":"Orange County Department of Social Services – Newburgh","address":"3 Washington Center, Newburgh, NY 12550","phone":"845-291-2002","email":null,"schedule":null},{"name":"Cornerstone Family Healthcare Enabling Services – Newburgh","address":"147 Lake Street, Newburgh, NY 12550","phone":"845-926-3636","email":"Jduran@cornerstonefh.org","schedule":null},{"name":"Cornerstone Family Healthcare Enabling Services – Middletown","address":"10 Benton Avenue, Middletown, NY 10940","phone":"845-926-3636","email":"Jduran@cornerstonefh.org","schedule":null}]},{"id":"wic","name":"Women, Infants, and Children Program (WIC)","category":"wic","description":"Applicants must meet all eligibility requirements: Categorical (pregnant women during pregnancy and up to 6 weeks after birth/end of pregnancy; postpartum up to six months after birth; breastfeeding up to infant's first birthday; infants up to first birthday; children up to fifth birthday); Residential (must live in the state of application); Income (at or below state income standard, or automatically income-eligible via SNAP, Medicaid, TANF, etc.); Nutrition Risk (determined by health professional or WIC staff). Non-citizens are eligible if they meet general eligibility requirements.","phone":"845-568-5473","email":"Wic@sunriver.org","website":null,"address":null,"town":"Orange County","district":null,"schedule":null,"howToEnroll":"Contact a local WIC clinic (Cornerstone Family Healthcare or Sun River Health) to apply. Must meet categorical, residential, income, and nutrition-risk requirements.","links":[{"label":"Federal WIC eligibility","url":"https://www.fns.usda.gov/wic/wic-eligibility-requirements"},{"label":"NYS WIC information","url":"https://www.health.ny.gov/publications/4081/"}],"locations":[{"name":"Cornerstone Family Healthcare – Newburgh","address":"147 Lake Street, Newburgh, NY","phone":"845-568-5473","email":null,"schedule":"Monday 10:00a–6:00p; Tuesday 8:00a–5:00p; Wednesday 8:00a–5:00p; Thursday 8:00a–4:00p; Friday 8:00a–5:00p; 3rd Saturday of the month 9:00a–1:00p"},{"name":"Cornerstone Family Healthcare – Harriman","address":"33 NY-17M, Harriman, NY","phone":"845-568-5473","email":null,"schedule":"Monday 10:00a–6:00p; Tuesday & Wednesday 8:00a–5:00p; Thursday 8:00a–4:00p; Friday 9:00a–5:00p; Third Sunday of the month 9:00a–1:00p"},{"name":"Cornerstone Family Healthcare – Port Jervis","address":"140 Hammond Street, Port Jervis, NY","phone":"845-568-5473","email":null,"schedule":"Monday–Wednesday 9:00a–5:00p; Thursday 8:00a–4:00p; Friday 9:00a–5:00p"},{"name":"Sun River Health – Middletown","address":"156 Dolson Avenue, Middletown, NY 10940","phone":"845-640-4480","email":"Wic@sunriver.org","schedule":"Monday 10:00a–6:00p; Tuesday–Friday 9:00a–5:00p"},{"name":"Sun River Health – Walden","address":"75 Orange Ave, Walden, NY 12586","phone":"845-831-7402","email":null,"schedule":"Monday & Wednesday–Friday 9:00a–5:00p; Tuesday 10:00a–6:00p"}]},{"id":"home-delivered-meals","name":"Home Delivered Meal Program","category":"senior","description":"Nutritious noontime meals are distributed to elderly residents in many locations in Orange County, with nutrition education and counseling with a registered dietician provided as needed. Arrangements may be made for weekend service and limited diet modifications. A pre-screening process is required; final approval depends on an in-home assessment. Food delivery once a week after sign-up. Serves all Orange County residents except Village of Warwick.","phone":"845-615-3710","email":null,"website":"https://www.orangecountygov.com/165/Senior-Dining-Program","address":"40 Matthews Street, 3rd Floor, Suite 305, Goshen, NY","town":"Orange County (except Village of Warwick)","district":null,"schedule":"Food delivery once a week after sign-up; weekend service may be arranged","howToEnroll":"Call Orange County NY Connects at 845-615-3710 to complete a referral for Home Delivered Meals. Pre-screening required; final approval dependent upon in-home assessment.","links":[{"label":"Senior Dining Program","url":"https://www.orangecountygov.com/165/Senior-Dining-Program"},{"label":"Winter/Inclement Weather Information","url":"https://www.orangecountygov.com/DocumentCenter/View/126/Senior-Dining-Program-Winter-Inclement-Weather-Information-PDF?bidId="}],"locations":[{"name":"Orange County Office for the Aging","address":"40 Matthews Street, 3rd Floor, Suite 305, Goshen, NY","phone":"845-615-3700","email":null,"schedule":null}]},{"id":"congregate-dining","name":"Congregate Dining Sites","category":"senior","description":"Monday through Friday, seniors gather at different sites throughout Orange County to be served a nutritious noontime meal while enjoying social, health and educational programs, as well as nutrition education and counseling with a registered dietician. Reservations required 24 hours in advance by calling the specific site.","phone":"845-615-3700","email":null,"website":"https://www.orangecountygov.com/165/Senior-Dining-Program","address":"40 Matthews Street, 3rd Floor, Suite 305, Goshen, NY","town":"Orange County","district":null,"schedule":"Noontime meals; days vary by site (see locations)","howToEnroll":"Reservations required 24 hours in advance by calling the specific site's telephone number.","links":[{"label":"Senior Dining Program","url":"https://www.orangecountygov.com/165/Senior-Dining-Program"}],"locations":[{"name":"Blooming Grove Senior Center","address":null,"phone":"845-496-4411","email":null,"schedule":"Tuesday, Thursday and Friday"},{"name":"Chester","address":null,"phone":"845-469-7000 Ext 3","email":null,"schedule":"Tuesday and Thursday"},{"name":"Cornwall Senior Center","address":"Munger Cottage","phone":"845-534-4500","email":null,"schedule":"Monday, Thursday, and Friday at Munger Cottage"},{"name":"Greenwood Lake Senior Center","address":"Greenwood Lake Senior Center","phone":"845-477-8482","email":null,"schedule":"Wednesdays and Fridays at the Greenwood Lake Senior Center"},{"name":"Middletown","address":"St. Paul's Methodist Church, 58 W. Main Street, Middletown","phone":"845-343-6911","email":null,"schedule":"Monday through Friday"},{"name":"Montgomery Senior Center","address":"Montgomery Senior Center","phone":"845-457-9367","email":null,"schedule":"Monday, Wednesday, and Friday at the Montgomery Senior Center"}]},{"id":"meals-on-wheels-newburgh","name":"Meals on Wheels – Newburgh and New Windsor","category":"senior","description":"Any individual residing in Newburgh or New Windsor who is home-bound and has difficulty cooking—because of age, illness, injury or disability—can apply to receive meals. There is a modest charge for those who are able to pay; participates in most managed long-term care insurance plans; relies on donations to cover remaining costs.","phone":"845-562-3490","email":null,"website":"https://www.mealsonwheelsnewburgh.org/how-apply","address":null,"town":"Newburgh / New Windsor","district":null,"schedule":null,"howToEnroll":"Apply at https://www.mealsonwheelsnewburgh.org/how-apply or call 845-562-3490.","links":[{"label":"How to apply","url":"https://www.mealsonwheelsnewburgh.org/how-apply"}],"locations":[]},{"id":"meals-on-wheels-warwick","name":"Meals on Wheels – Town/Village of Warwick","category":"senior","description":"Meals provided to homebound and/or elderly individuals who are unable to shop or cook for themselves due to age, illness or disability. Fresh meals prepared daily at Mt. Alverno Center. Hot meals (meat, starch, vegetables, milk or juice, bread and butter, dessert or fruit) and cold meals (sandwich, salad, milk or juice, dessert) available; customized to dietary needs. Modest charge for meals. Deliveries to Village of Warwick and some surrounding areas in the Town of Warwick.","phone":"845-986-3389","email":null,"website":"https://www.mealsonwheelsofwarwickny.org/apply-for-meals","address":null,"town":"Warwick","district":null,"schedule":"Weekdays Monday–Friday 11:30am–1:00pm including holidays","howToEnroll":"Call Meals on Wheels of Warwick at 845-986-3389 and leave a voicemail. A representative will contact you. Meal delivery starts soon after enrollment. Also apply at https://www.mealsonwheelsofwarwickny.org/apply-for-meals.","links":[{"label":"Apply for meals","url":"https://www.mealsonwheelsofwarwickny.org/apply-for-meals"}],"locations":[]},{"id":"summer-ebt","name":"Summer EBT Food Benefits for New York State","category":"summer_ebt","description":"The Summer Electronic Benefit Transfer (EBT) program helps families buy food for their school-aged children during the summer. Families get $120 in food benefits for each eligible child on an EBT card, usable for fruits, vegetables, meat, whole grains, and dairy at authorized retail food stores, farmers' markets, and anywhere SNAP is accepted. Unused benefits expire and are removed 122 days from issuance. Apply before September 8, 2026 deadline for 2026 benefits if no OTDA communication received by mid-June.","phone":null,"email":null,"website":"https://otda.ny.gov/SummerEBT","address":null,"town":null,"district":"New York State","schedule":null,"howToEnroll":"Visit otda.ny.gov/SummerEBT to learn when and how benefits are issued and how to use them. If no communications from NYS OTDA by mid-June, apply before the September 8, 2026 deadline for 2026 benefits.","links":[{"label":"Summer EBT program","url":"https://otda.ny.gov/SummerEBT"},{"label":"Summer EBT Flyer (English)","url":"https://otda.ny.gov/programs/summer-ebt/school-provider-information/Summer-EBT-Flyer.pdf"},{"label":"Summer EBT Flyer (Spanish)","url":"https://otda.ny.gov/programs/summer-ebt/school-provider-information/Summer-EBT-Flyer-Spanish.pdf"}],"locations":[]},{"id":"chester-ufsd-nslp","name":"National School Lunch and Breakfast Program","category":"school","description":"Chester Academy offers healthy meals every school day. Children may qualify for free or reduced-price meals. Beginning July 1, 2019, NYS students approved for reduced-price meals receive breakfast, lunch, and Afterschool Snack Program snacks at no charge.","phone":"845-469-2231","email":"rachel.loftus@chesterufsd.org","website":"https://www.chesterufsd.org/domain/42","address":"Food Service Department, Chester UFSD, 64 Hambletonian Ave., Chester, NY 10918","town":"Chester","district":"Chester UFSD","schedule":null,"howToEnroll":"Return the completed application to: Food Service Department, Chester UFSD, 64 Hambletonian Ave., Chester, NY 10918. Contact Rachel Loftus.","links":[{"label":"Food services","url":"https://www.chesterufsd.org/domain/42"}],"locations":[]},{"id":"cornwall-csd-backpacks","name":"Backpacks For Food","category":"school","description":"Community-supported outreach providing breakfasts and lunches in backpacks for weekends to elementary, CCMS, and CCHS students receiving free and reduced meal benefits. No charge. Fully funded, volunteer-staffed, confidentially managed. Generic backpack and single-serving packaged foods provided Fridays; empty backpack returned Monday.","phone":"845-534-8009 x7704","email":null,"website":"https://www.cornwallschools.com/food-service-home","address":null,"town":"Cornwall","district":"Cornwall CSD","schedule":"Fridays (weekend backpacks); return Monday","howToEnroll":"Parent/Guardian must fill out Backpacks for Food Application. Call CCSD Food Service Office with questions.","links":[{"label":"Food service home","url":"https://www.cornwallschools.com/food-service-home"},{"label":"Donations & sponsorships","url":"https://www.cornwallbff.org/donations--sponsorships"}],"locations":[]},{"id":"cornwall-csd-nslp","name":"National School Lunch and Breakfast Program","category":"school","description":"All schools within CCSD participate in USDA child nutrition programs, including the National School Lunch Program (NSLP) and the School Breakfast Program (SBP).","phone":"845-534-8009 x7704","email":null,"website":"https://www.cornwallschools.com/food-service-home","address":null,"town":"Cornwall","district":"Cornwall CSD","schedule":null,"howToEnroll":"Contact Food Service Office.","links":[{"label":"Food service home","url":"https://www.cornwallschools.com/food-service-home"}],"locations":[]},{"id":"florida-ufsd-backpack-snack-attack","name":"Backpack Snack Attack","category":"school","description":"Outreach program of the Warwick Reformed Church providing food for hungry school children to eat at home on weekends during the school year. Provides backpacks and individually sized, ready-to-eat (including microwavable), kid-friendly food items for children and siblings every weekend.","phone":"845-651-3095 x20030","email":"kscheuermann@floridaufsd.org","website":"https://backpacksnackattack.com/","address":null,"town":"Florida","district":"Florida UFSD","schedule":"Weekends during the school year","howToEnroll":"Contact the School Nurses. Contact person: Kathleen Scheuermann, Golden Hill Elementary School Nurse.","links":[{"label":"Backpack Snack Attack","url":"https://backpacksnackattack.com/"},{"label":"Donate","url":"https://backpacksnackattack.com/donate/"}],"locations":[]},{"id":"florida-ufsd-nslp","name":"National School Lunch and Breakfast Program","category":"school","description":"School Meals Program contributes to a successful academic experience by providing affordable meals that are nutritious, appealing and served by caring professionals in a pleasant environment.","phone":"845-651-3095 Ext. 20036","email":null,"website":"https://www.floridaufsd.org/district-departments/food-services/","address":"Florida UFSD Food Services, P.O. Drawer 757, Florida, NY 10921","town":"Florida","district":"Florida UFSD","schedule":null,"howToEnroll":"Fill out and send in application to: Florida UFSD Food Services, P.O. Drawer 757, Florida, NY 10921.","links":[{"label":"Food services","url":"https://www.floridaufsd.org/district-departments/food-services/"}],"locations":[]},{"id":"greenwood-lake-ufsd-backpack-snack-attack","name":"Backpack Snack Attack","category":"school","description":"Outreach program of the Warwick Reformed Church providing food for hungry school children to eat at home on weekends during the school year. Provides backpacks and individually sized, ready-to-eat (including microwavable), kid-friendly food items for children and siblings every weekend.","phone":"845-782-8678 x52330","email":"Nburke@gwlusfd.org","website":"https://backpacksnackattack.com/","address":null,"town":"Greenwood Lake","district":"Greenwood Lake UFSD","schedule":"Weekends during the school year","howToEnroll":"Contact the School Nurses. Contact person: Nicole Burke, Middle School.","links":[{"label":"Backpack Snack Attack","url":"https://backpacksnackattack.com/"},{"label":"Donate","url":"https://backpacksnackattack.com/donate/"}],"locations":[]},{"id":"greenwood-lake-ufsd-nslp","name":"National School Lunch and Breakfast Program","category":"school","description":"Greenwood Lake UFSD participates in the Community Eligibility Provision (CEP), providing all students free breakfast and lunch. Beginning 2025–2026, NYS Universal School Meals Program ensures all students continue to receive breakfast and lunch at no cost.","phone":"845-782-8678 x52340","email":"stuechler@gwlufsd.org","website":"https://www.gwlufsd.org/","address":"Food Service Department, PO Box 8, Greenwood Lake, NY 10925","town":"Greenwood Lake","district":"Greenwood Lake UFSD","schedule":null,"howToEnroll":"Return the completed application to: Food Service Department, PO Box 8, Greenwood Lake, NY 10925. Contact Samanda Tuechler, Cook Manager.","links":[{"label":"District website","url":"https://www.gwlufsd.org/"}],"locations":[]},{"id":"highland-falls-csd-backpack","name":"Backpack Program","category":"school","description":"Backpacks of food distributed on Fridays for the weekend. Staff pack bags Thursday afternoons. Food donated from the Food Bank of the Hudson Valley. Student list based on free/reduced meals plus need/referrals from staff. An opt-out letter is sent with the first bag; if not returned, students continue receiving bags.","phone":"845-446-4761 x3641","email":"kelleyanne.lonergan@hffmcsd.org","website":"https://foodbankofhudsonvalley.org/","address":null,"town":"Highland Falls","district":"Highland Falls CSD","schedule":"Fridays (bags packed Thursday afternoons)","howToEnroll":"Receive Free/Reduced Meals and/or contact Kelley-Anne Lonegran.","links":[{"label":"Food Bank of the Hudson Valley","url":"https://foodbankofhudsonvalley.org/"}],"locations":[]},{"id":"highland-falls-csd-nslp","name":"National School Lunch and Breakfast Program","category":"school","description":"For 2025–2026, all enrolled Highland Falls–Fort Montgomery CSD students are eligible for one healthy breakfast and one lunch at no cost each school day. Additional items can be paid from the student account. No fee or meal application required to participate; families are strongly encouraged to complete Free and Reduced-Price application for State/federal funding eligibility. Also has a summer meals program.","phone":null,"email":"dawn.storms@hffmcsd.org","website":"https://www.hffmcsd.org/site/Default.aspx?PageID=156","address":null,"town":"Highland Falls","district":"Highland Falls CSD","schedule":null,"howToEnroll":"Return completed applications / fillable forms emailed to Dawn Storms, dawn.storms@hffmcsd.org. CEP Household Income Form available in English and Spanish.","links":[{"label":"Food services","url":"https://www.hffmcsd.org/site/Default.aspx?PageID=156"}],"locations":[]},{"id":"middletown-ecsd-middies-meals","name":"Middies Meals on the Move (National School Lunch and Breakfast Program)","category":"school","description":"Middletown City School District provides Pre-fuel (breakfast) and Re-fuel (lunch) for all scholars at no cost under the Community Eligibility Provision. Classroom-friendly Pre-fuel menu; high school and middle school students can also use meal vending machines for Pre-fuel from 7 a.m.–9 a.m.","phone":"845-326-1233","email":"Lauren.Burr@ecsdm.org","website":"https://www.middletowncityschools.org/site/Default.aspx?PageID=214","address":null,"town":"Middletown","district":"Middletown ECSD","schedule":"Meal vending machines (HS/MS Pre-fuel): 7 a.m.–9 a.m.","howToEnroll":"No additional requirements. Contact Lauren Burr, Food Service Director.","links":[{"label":"Food services","url":"https://www.middletowncityschools.org/site/Default.aspx?PageID=214"}],"locations":[]},{"id":"minisink-valley-csd-backpack","name":"Minisink Cares Backpack Program","category":"school","description":"Grassroots program addressing food insecurity. During every school week, students in the program receive a bag of food for the weekend (breakfast, lunches, snacks, drinks). Longer breaks include more items. Each school-age sibling in the identified family receives a bag even if in a different building. Voluntary—family must agree.","phone":"845-707-5165","email":"ebradley@minisink.com","website":null,"address":null,"town":"Slate Hill / Minisink Valley","district":"Minisink Valley CSD","schedule":"Every school week (weekend bags); more items for longer breaks","howToEnroll":"Contact the school's Social Worker or School Counselor. Most referrals from community members or faculty. Family must agree to the service. Contact Erin Bradley for donations info.","links":[],"locations":[]},{"id":"minisink-valley-csd-nslp","name":"National School Lunch and Breakfast Program","category":"school","description":"District receives state and federal funding to offer free or reduced-cost meals to families meeting income guidelines. Students who qualify for free or reduced-price lunch also qualify for free or reduced breakfast at the same price.","phone":null,"email":"dsuper@minisink.com","website":"https://www.minisink.com/departments/food-services/","address":"Minisink Valley Central School District, Diane Super, School Lunch Program Coordinator, PO BOX 217, Slate Hill, NY 10973","town":"Slate Hill","district":"Minisink Valley CSD","schedule":null,"howToEnroll":"Return completed applications to: Minisink Valley CSD, Diane Super, School Lunch Program Coordinator, PO BOX 217, Slate Hill, NY 10973.","links":[{"label":"Food services","url":"https://www.minisink.com/departments/food-services/"}],"locations":[]},{"id":"monroe-woodbury-csd-nslp","name":"National School Lunch and Breakfast Program","category":"school","description":"Free meals for all students—no fee or application required. Every student eligible for healthy breakfast and lunch at no cost each school day. Home-packed lunches can be enhanced at no cost by adding at least three of five offered items. Meals available from first day; all schools offer breakfast at entry and lunch in cafeteria.","phone":"845-460-6200 ext 10159","email":"Foodforthought@mw.k12.ny.us","website":"https://www.mw.k12.ny.us/page/food-services","address":null,"town":"Monroe / Woodbury","district":"Monroe-Woodbury CSD","schedule":null,"howToEnroll":"All meals free for students. No enrollment or application needed—meals available to all students from the first day of school. Contact Lyn Prestia, Director of Food II, SNS.","links":[{"label":"Food services","url":"https://www.mw.k12.ny.us/page/food-services"}],"locations":[]},{"id":"newburgh-ecsd-backpack","name":"NECSD BackPack Program","category":"school","description":"Although free and reduced breakfast and lunch help during the school day, many children lack regular meals when school is not in session. The BackPack Program discreetly provides bags of nutritious, easy-to-prepare food every Friday afternoon for the weekend.","phone":"845-568-6846","email":"krogers@necsd.net","website":null,"address":null,"town":"Newburgh","district":"Newburgh Enlarged CSD","schedule":"Every Friday afternoon","howToEnroll":"Referrals based on observation by school staff or direct request from student or parent. Contact Kori Rogers.","links":[{"label":"Donate via Regional Food Bank","url":"https://regionalfoodbank.net/donate-money/"}],"locations":[]},{"id":"newburgh-ecsd-pantries","name":"NECSD School Pantries","category":"school","description":"Emergency food assistance for preteens and teens struggling with hunger during the school year. Schools select foods received; students select what they want/can use. Access sporadically or regularly. Nonperishable, fresh, and frozen food as capacity allows. Offered at Meadowhill School and Newburgh Free Academy Main Campus.","phone":"845-568-6846","email":"krogers@necsd.net","website":null,"address":null,"town":"Newburgh","district":"Newburgh Enlarged CSD","schedule":null,"howToEnroll":"Referral by school staff and student self-referral. Offered at Meadowhill School and Newburgh Free Academy Main Campus.","links":[{"label":"Donate via Regional Food Bank","url":"https://regionalfoodbank.net/donate-money/"}],"locations":[{"name":"Meadowhill School","address":null,"phone":"845-568-6846","email":"krogers@necsd.net","schedule":null},{"name":"Newburgh Free Academy Main Campus","address":null,"phone":"845-568-6846","email":"krogers@necsd.net","schedule":null}]},{"id":"newburgh-ecsd-nslp","name":"National School Lunch Program (NSLP) and School Breakfast Program","category":"school","description":"USDA federally funded school meal programs provided at no cost to all NECSD in-district students PK–12 under the Community Eligibility Provision.","phone":"845-563-3424","email":"chtorres@necsd.net","website":"https://newburghschools.org/page.php?page=25","address":null,"town":"Newburgh","district":"Newburgh Enlarged CSD","schedule":null,"howToEnroll":"No additional requirements. Contact Christina Torres, Director of School Food Service.","links":[{"label":"Food services","url":"https://newburghschools.org/page.php?page=25"}],"locations":[]},{"id":"newburgh-ecsd-sfsp","name":"Summer Food Service Program","category":"school","description":"USDA federally funded program that runs during summer months when school is not in session. All school buildings are eligible sites; program offered each summer in buildings used for Extended School Year. Partners with community organizations, churches, town/city recreation, and Newburgh Free Library to offer meals to all children aged 18 and under at non-school locations.","phone":"845-563-3424","email":"chtorres@necsd.net","website":null,"address":null,"town":"Newburgh","district":"Newburgh Enlarged CSD","schedule":"Summer months when school is not in session","howToEnroll":"Open to children aged 18 and under at participating school and community sites. Contact Christina Torres, Director of School Food Service.","links":[],"locations":[]},{"id":"pine-bush-csd-pantry","name":"PBHS Food Pantry","category":"school","description":"Food pantry available to students, staff and residents of Pine Bush School District. Housed in the high school; food available to any school in the district. Staff will get food for families in need in other buildings. Email to set up pick-up time.","phone":"845-744-2031 ext. 3683","email":"food.pantry@pinebushschools.org","website":"https://www.pinebushschools.org/parent-community/food-pantry-list-middletown-and-pine-bush-area/","address":"Pine Bush High School","town":"Pine Bush","district":"Pine Bush CSD","schedule":null,"howToEnroll":"Email to set up pick-up time. Patrons provide name & household size and show ID when entering the school. Contact Katie Carson-Decker. Food and monetary donations accepted.","links":[{"label":"Food pantry list","url":"https://www.pinebushschools.org/parent-community/food-pantry-list-middletown-and-pine-bush-area/"}],"locations":[]},{"id":"pine-bush-csd-sfsp","name":"PBCSD SFSP (Summer Food Service Sites)","category":"school","description":"No-cost meals at open sites for ages 0 through 18 during summer months. One site at this time: Circleville Church, 890 Goshen Tpke, Circleville, NY 10919.","phone":"845-744-2031 ext. 2809","email":"caitlin.lazarski@pinebushschools.org","website":"https://www.pinebushschools.org/departments/food-services/","address":"Circleville Church, 890 Goshen Tpke, Circleville, NY 10919","town":"Circleville / Pine Bush","district":"Pine Bush CSD","schedule":"Summer months","howToEnroll":"No requirements other than age 0 through 18. Text \"Summer Meals\" to 914-342-7744 or call 1-866-348-6479 to find a site. Contact Caitlin Lazarski, Director of School Nutrition.","links":[{"label":"Meals for Kids","url":"https://www.fns.usda.gov/meals4kids"},{"label":"Food services","url":"https://www.pinebushschools.org/departments/food-services/"}],"locations":[{"name":"Circleville Church","address":"890 Goshen Tpke, Circleville, NY 10919","phone":"845-744-2031 ext. 2809","email":"caitlin.lazarski@pinebushschools.org","schedule":"Summer months; ages 0–18; open site"}]},{"id":"pine-bush-csd-nslp","name":"National School Breakfast and Lunch Program","category":"school","description":"Pine Bush CSD participates in the National School Breakfast and Lunch Program. Dedicated to students' health, well-being and ability to learn. Provides breakfast and/or lunch every day with healthy, well-balanced, exciting and delicious meals built with quality foods and fresh ingredients.","phone":"845-744-2031 ext. 2809","email":"caitlin.lazarski@pinebushschools.org","website":"https://www.pinebushschools.org/departments/food-services/","address":"PBCSD School Nutrition Dept., PO BOX 700, Pine Bush NY 12566","town":"Pine Bush","district":"Pine Bush CSD","schedule":null,"howToEnroll":"Return completed paper applications via: (1) send with child (Attention School Nutrition Dept.); (2) Fax 845-744-8795 (Confidential Fax); (3) Email caitlin.lazarski@pinebushschools.org; (4) Mail to PBCSD School Nutrition Dept., PO BOX 700, Pine Bush NY 12566.","links":[{"label":"Food services","url":"https://www.pinebushschools.org/departments/food-services/"}],"locations":[]},{"id":"port-jervis-csd-backpack","name":"Backpack Program","category":"school","description":"Provides food to identified families who may need assistance. Port Jervis is part of a grant that receives food for this program. Hudson Valley Food program organizes food collection/donation.","phone":"845-858-3100 x4645","email":"kvenetis@pjschools.org","website":"https://foodbankofhudsonvalley.org/","address":null,"town":"Port Jervis","district":"Port Jervis CSD","schedule":null,"howToEnroll":"Contact school staff; typically the teacher completes the referral form, then social worker or school counselor contacts the family to see if they need/are willing to accept assistance. Donations: contact Troy Martin at TMartin@foodbankofhudsonvalley.org.","links":[{"label":"Food Bank of the Hudson Valley","url":"https://foodbankofhudsonvalley.org/"}],"locations":[]},{"id":"port-jervis-csd-nslp","name":"National School Breakfast and Lunch Program","category":"school","description":"Port Jervis City School District participates in Community Eligibility Provision (CEP) or Provision 2 in a non-base year. All children receive meals/milk at no charge regardless of household income or form completion.","phone":"845-858-3100 ext.3895","email":"ephelan@pjschools.org","website":"https://www.pjschools.org/departments/food-service","address":null,"town":"Port Jervis","district":"Port Jervis CSD","schedule":null,"howToEnroll":"No additional requirements. Contact Erin Phelan, School Lunch Director.","links":[{"label":"Food service","url":"https://www.pjschools.org/departments/food-service"}],"locations":[]},{"id":"tuxedo-ufsd-healthy-snack","name":"School Healthy Snack Program","category":"school","description":"Participates in School Healthy Snack Program through Sloatsburg Food Pantry. Snacks provided as needed based on number of food-insecure students; also available occasionally to students who forgot a snack. Snacks in ES Health Office (Marie Castricone) and HS Guidance Office (Chris Oliva).","phone":"845-351-4797 x3106","email":"MCASTRICONE@tuxedoufsd.org","website":null,"address":null,"town":"Tuxedo","district":"Tuxedo UFSD","schedule":null,"howToEnroll":"Contact Marie Castricone. Donations (monetary or direct snack) can be made to Sloatsburg Food Pantry.","links":[],"locations":[{"name":"ES Health Office","address":null,"phone":"845-351-4797 x3106","email":"MCASTRICONE@tuxedoufsd.org","schedule":null},{"name":"HS Guidance Office","address":null,"phone":null,"email":null,"schedule":null}]},{"id":"tuxedo-ufsd-nslp","name":"National School Lunch and Breakfast Program","category":"school","description":"USDA federally funded school meal program provided at no cost to TUFSD students.","phone":"845-351-4797 x3106","email":"MCASTRICONE@tuxedoufsd.org","website":"https://www.tuxedoufsd.org/page/school-breakfast-and-lunch","address":"Tuxedo Union Free School District, 1 Tornado Drive, Tuxedo, NY 10987","town":"Tuxedo","district":"Tuxedo UFSD","schedule":null,"howToEnroll":"Return completed applications to: Tuxedo Union Free School District, 1 Tornado Drive, Tuxedo, NY 10987. Contact Marie Castricone.","links":[{"label":"School breakfast and lunch","url":"https://www.tuxedoufsd.org/page/school-breakfast-and-lunch"}],"locations":[]},{"id":"valley-central-sd-backpack-snack-attack","name":"Backpack Snack Attack","category":"school","description":"Meal program providing food to Valley Central School District students over weekends when school meals are not available.","phone":"845-457-2400 x16532","email":"Barbara.Gravel@vcsdny.org","website":"https://waldenfirstreformed.org/local-missions/","address":null,"town":"Montgomery / Walden (Valley Central)","district":"Valley Central SD","schedule":"Weekends","howToEnroll":"Participation reviewed individually by student support teams in each building. If food insecurity is determined, parents/guardians are contacted; verbal approval required. Contact Barbara Gravel, District Coordinator. Financial donations: checks payable to \"Backpack Snack Attack\" mailed to Attn: Backpack Snack Attack, First Reformed Church, 70 Scofield Street, Walden, NY 12586.","links":[{"label":"Local missions","url":"https://waldenfirstreformed.org/local-missions/"}],"locations":[]},{"id":"valley-central-sd-nslp","name":"National School Lunch and Breakfast Program","category":"school","description":"Everyone encouraged to fill out Free and Reduced Application. Only one application per household needed. Application may also make child eligible for other free/reduced programs (such as Summer EBT). Beginning July 1, 2019, NYS students approved for reduced-price meals receive breakfast and lunch at no charge.","phone":"845-457-2400 ext. 16896","email":"Amy.Bishop@vcsdny.org","website":"https://www.vcsd.k12.ny.us/departments/food-services/information-on-free-and-reduced-meals/","address":"Valley Central Middle School, 1189 Route 17K, Montgomery, NY 12549","town":"Montgomery","district":"Valley Central SD","schedule":null,"howToEnroll":"Return completed applications to youngest child's building or fax to (845) 457-3003, or to Valley Central Middle School, 1189 Route 17K, Montgomery, NY 12549. Contact Amy Bishopp, School Food Director.","links":[{"label":"Free and reduced meals info","url":"https://www.vcsd.k12.ny.us/departments/food-services/information-on-free-and-reduced-meals/"}],"locations":[]},{"id":"warwick-valley-csd-backpack-snack-attack","name":"Backpack Snack Attack","category":"school","description":"Outreach program of the Warwick Reformed Church providing food for hungry school children to eat at home on weekends during the school year. Provides backpacks and individually sized, ready-to-eat (including microwavable), kid-friendly food items for children and siblings every weekend.","phone":"845-987-3050 x12895","email":"jhelmrich@wvcsd.org","website":"https://backpacksnackattack.com/","address":null,"town":"Warwick","district":"Warwick Valley CSD","schedule":"Weekends during the school year","howToEnroll":"Parent/Guardian must fill out Backpack Application. Contact Julie Helmrich, Food Service Director.","links":[{"label":"Backpack Snack Attack","url":"https://backpacksnackattack.com/"},{"label":"Donate","url":"https://backpacksnackattack.com/donate/"}],"locations":[]},{"id":"warwick-valley-csd-nslp","name":"National School Lunch and Breakfast Program","category":"school","description":"USDA federally funded school meal program provided at no cost to WVCSD students in the district.","phone":"845-987-3050 x12895","email":"jhelmrich@wvcsd.org","website":"https://www.warwickvalleyschools.com/food-services/free-and-reduced-price-meal-application-facts/","address":"WVCSD Food Service Department-HS, P.O. Box 595, Warwick, NY 10990","town":"Warwick","district":"Warwick Valley CSD","schedule":null,"howToEnroll":"Return the completed application to: WVCSD Food Service Department-HS, P.O. Box 595, Warwick, NY 10990. Contact Julie Helmrich, Food Service Director.","links":[{"label":"Free and reduced meal application facts","url":"https://www.warwickvalleyschools.com/food-services/free-and-reduced-price-meal-application-facts/"}],"locations":[]},{"id":"washingtonville-csd-food-for-kids","name":"Food For Kids","category":"school","description":"Non-profit 501(c)(3) developed by the Washingtonville local community to supply children in need in Washingtonville CSD with easy-to-prepare food for weekends during the school year, with an extension during summer months.","phone":"845-497-4000 ext 27022","email":null,"website":"https://foodforkidswvl.org/","address":null,"town":"Washingtonville","district":"Washingtonville CSD","schedule":"Weekends during school year; extension during summer months","howToEnroll":"Parent of student must fill out form. Contact Barbara Quinn.","links":[{"label":"Food For Kids","url":"https://foodforkidswvl.org/"}],"locations":[]},{"id":"washingtonville-csd-nslp","name":"National School Lunch and Breakfast Program","category":"school","description":"Washingtonville CSD offers healthy meals every school day. Under the Community Eligibility Program all students are eligible to receive free meals at this time.","phone":"845-497-4000 x27122","email":"RGellman@wcsdk12.org","website":"https://www.wcsdk12.org/departments/food-services","address":"Washingtonville CSD Food Service, 54 West Main Street, Washingtonville NY 10992","town":"Washingtonville","district":"Washingtonville CSD","schedule":null,"howToEnroll":"Return completed applications to: Washingtonville CSD Food Service, 54 West Main Street, Washingtonville NY 10992. For possible additional services, complete an income eligibility application online or send to Food Service. Contact Robert Gellman, Food Service Director 2.","links":[{"label":"Food services","url":"https://www.wcsdk12.org/departments/food-services"},{"label":"Online income eligibility application","url":"https://www.nlappscloud.com/Welcome.aspx?api=2c5b5e7978ea3e639087946657cbb683#loaded"}],"locations":[]}],"sites":[{"id":"chester-community-pantry","name":"Chester Community Pantry","categories":["pantry"],"town":"Chester","address":"96 Main Street, Chester, New York, 10918","phone":"914-719-7969","email":"chestercommunitypantry@gmail.com","website":"https://www.facebook.com/ChesterPresbyterianPantry/","contactPerson":null,"residentsServed":"Town of Chester Residents","idRequired":"unknown","schedule":"Fourth Thursday of the month, 4:00PM-7:00PM","days":["Thu"],"donationsAccepted":false,"notes":"Also known via Facebook as Chester Presbyterian Pantry; name column obscured by document footer in source PDF","openToAll":false,"kind":"site","lat":41.3625,"lng":-74.2718},{"id":"florida-community-food-pantry","name":"Florida Community Food Pantry","categories":["pantry"],"town":"Florida","address":"9 Glenmere Avenue, Florida, NY 10921","phone":"845-651-4117","email":"Floridafoodpantry@gmail.com","website":null,"contactPerson":null,"residentsServed":"Florida, Warwick, Pine Island, Chester and Goshen","idRequired":"proof_of_residence","schedule":"Thursday, 9:00AM-12:00PM","days":["Thu"],"donationsAccepted":true,"notes":null,"openToAll":false,"kind":"site","lat":41.3328,"lng":-74.3575},{"id":"alamo-community-center-sun-river-health","name":"Alamo Community Center- Sun River Health","categories":["pantry"],"town":"Goshen","address":"890 Pulaski Highway, Goshen, NY 10924","phone":"845-838-7015","email":"jleon@sunriver.org","website":null,"contactPerson":"Jobeth Leon","residentsServed":"Goshen, Pine Island, Warwick, Florida, and New Hampton","idRequired":"proof_of_residence","schedule":"Food Pantry: Tuesday, 4:00PM-7:00PM; Thursday 4:00PM-7:00PM; Sunday, 10:30AM-2:30PM","days":["Tue","Thu","Sun"],"donationsAccepted":false,"notes":null,"openToAll":false,"kind":"site","lat":41.3855,"lng":-74.34},{"id":"goshen-ecumenical-pantry-inc","name":"Goshen Ecumenical Pantry Inc.","categories":["pantry"],"town":"Goshen","address":"33 Park Place, Goshen, NY 10924","phone":"845-294-9004","email":null,"website":"https://www.facebook.com/GoshenFoodPantry/","contactPerson":"John Strobl","residentsServed":"Towns within the Goshen Central School District, and Entire Town of Goshen","idRequired":"unknown","schedule":"Second Saturday of every month 9:00AM-10:00AM; Fourth Thursday of every month 6:00PM-7:00PM","days":["Sat","Thu"],"donationsAccepted":false,"notes":"Housed in Presbyterian Church","openToAll":false,"kind":"site","lat":41.403,"lng":-74.3248},{"id":"greenwood-lake-food-pantry","name":"Greenwood Lake Food Pantry","categories":["pantry"],"town":"Greenwood Lake","address":"41 Windermere Ave, Greenwood Lake, NY 10925","phone":"845-544-3257","email":"greenwoodlakefoodpantry@gmail.com","website":null,"contactPerson":"Pat Nolan","residentsServed":"Towns within the Greenwood Lake School District","idRequired":"proof_of_residence","schedule":"Saturday 9:00AM-12:00PM","days":["Sat"],"donationsAccepted":true,"notes":"Located at Holy Rosary Church; documentation listed as ID/Proof of Residence Required","openToAll":false,"kind":"site","lat":41.2235,"lng":-74.2935},{"id":"holy-innocents-church-food-pantry","name":"Holy Innocents Church Food Pantry","categories":["pantry"],"town":"Highland Falls","address":"401 Main Street, Highland Falls, NY, 10928","phone":"845-446-0626","email":"Biblio999@gmail.com","website":null,"contactPerson":"Carla Burns","residentsServed":"No Town Limit","idRequired":"not_required","schedule":"Second and Fourth Wednesday of the month, 4:00PM-5:30PM","days":["Wed"],"donationsAccepted":false,"notes":null,"openToAll":true,"kind":"site","lat":41.3705,"lng":-73.967},{"id":"sacred-heart-of-jesus-food-pantry","name":"Sacred Heart of Jesus Food Pantry","categories":["pantry"],"town":"Highland Falls","address":"353 Main Street, Highland Falls, New York, 10928","phone":"845-446-4609 / 845-446-2343","email":"sacredheartchurch_secretary@outlook.com","website":null,"contactPerson":null,"residentsServed":"No Town Limit","idRequired":"unknown","schedule":"First and Third Wednesday of the month, 10:30AM-12:00PM","days":["Wed"],"donationsAccepted":false,"notes":null,"openToAll":true,"kind":"site","lat":41.369,"lng":-73.9665},{"id":"kiryas-joel-community-council-food-pantry","name":"Kiryas Joel Community Council Food Pantry","categories":["pantry"],"town":"Kiryas Joel","address":"2 Garfield Road, Monroe, NY 10950","phone":"845-774-4444","email":null,"website":null,"contactPerson":null,"residentsServed":"Kiryas Joel and surrounding towns","idRequired":"unknown","schedule":"Call Ahead to Confirm; Monday-Friday, 9:00AM-5:00PM","days":[],"donationsAccepted":false,"notes":null,"openToAll":false,"kind":"site","lat":41.3405,"lng":-74.1685},{"id":"marba-lsoiva-soup-kitchen","name":"Marba Lsoiva Soup Kitchen","categories":["soup_kitchen"],"town":"Kiryas Joel","address":"51 Forest Rd. Suite #116, Monroe NY 10950","phone":"845-261-1600","email":null,"website":null,"contactPerson":null,"residentsServed":"No Town Limit","idRequired":"unknown","schedule":"7 Days a Week; Breakfast 8:00AM-12:30PM; Lunch 1:00PM-4:00PM; Supper 4:30PM-10:00PM","days":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],"donationsAccepted":false,"notes":null,"openToAll":true,"kind":"site","lat":41.338,"lng":-74.165},{"id":"centro-cristiano-nueva-vida-food-pantry","name":"Centro Cristiano Nueva Vida Food Pantry","categories":["pantry"],"town":"Middletown","address":"193-195 Watkins Ave; Parking at 305 Highland Ave Ext, Middletown, NY","phone":"845-326-6481","email":"centrocristianonuevavida@yahoo.com","website":null,"contactPerson":"Pastor Gilberto","residentsServed":"No Town Limit","idRequired":"not_required","schedule":"Every Wednesday, 1:00PM-3:00PM","days":["Wed"],"donationsAccepted":true,"notes":null,"openToAll":true,"kind":"site","lat":41.45,"lng":-74.415},{"id":"guild-of-st-margaret-soup-kitchen","name":"Guild of St. Margaret Soup Kitchen","categories":["pantry","soup_kitchen"],"town":"Middletown","address":"12 Depot Street, Middletown, NY, 10940","phone":"Soup Kitchen: 845-344-0569; Food Pantry: (845) 956-5566","email":"soupkitchengrace@msn.com","website":null,"contactPerson":"Carolanne Cusack","residentsServed":"No Town Limit","idRequired":"not_required","schedule":"Soup Kitchen: Monday-Saturday, 11:00AM-12:00PM; Sunday, 3:00PM-4:00PM; Thanksgiving & Christmas, 12:00PM-1:00PM; Fresh Pantry: 3PM-6PM Sat.; 1PM-4PM","days":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],"donationsAccepted":false,"notes":"Operates both soup kitchen and fresh pantry","openToAll":true,"kind":"site","lat":41.4455,"lng":-74.4205},{"id":"harmony-ministry-community-food-pantry","name":"Harmony Ministry Community Food Pantry","categories":["pantry"],"town":"Middletown","address":"1790 Route 211 East, Middletown, NY 10940","phone":"845-692-6113","email":"harmonychurchny@gmail.com","website":"https://www.facebook.com/harmonyministriesny/","contactPerson":null,"residentsServed":"Orange County Residents","idRequired":"not_required","schedule":"Third Saturday of the month, 10:00AM-12:00PM","days":["Sat"],"donationsAccepted":false,"notes":null,"openToAll":true,"kind":"site","lat":41.445,"lng":-74.385},{"id":"honor-food-pantry","name":"Honor Food Pantry","categories":["pantry"],"town":"Middletown","address":"38 Seward Avenue, Middletown, NY, 10940","phone":"845-343-7115 ext. 316","email":null,"website":null,"contactPerson":"Heather Parra Zerpa","residentsServed":"Orange County Residents","idRequired":"unknown","schedule":"Monday, Tuesday, Friday 7:00AM-12:00PM; Wednesday, Thursday 2:00PM-7:00PM; Service once every 7 days","days":["Mon","Tue","Wed","Thu","Fri"],"donationsAccepted":false,"notes":"Service once every 7 days","openToAll":true,"kind":"site","lat":41.448,"lng":-74.425},{"id":"pathstone-middletown-food-pantry","name":"Pathstone Middletown Food Pantry","categories":["pantry"],"town":"Middletown","address":"225 Dolson Ave, Middletown, NY 10940","phone":"845-341-2012","email":"info@pathstone.org","website":null,"contactPerson":null,"residentsServed":"Orange County Residents","idRequired":"required","schedule":"Tuesday/Thursday, 9:00AM-2:00PM; Once served, food available every three months","days":["Tue","Thu"],"donationsAccepted":false,"notes":"Pantry located on the side of the building, facing the parking lot; Photo ID Required","openToAll":true,"kind":"site","lat":41.435,"lng":-74.42},{"id":"recap-food-pantry","name":"RECAP Food Pantry","categories":["pantry"],"town":"Middletown","address":"34 Mill St., Middletown, NY 10940","phone":"845-342-3978 x6200 / 845-421-6200","email":"dvelasquez@recap.org; gmusumeci@recap.org","website":null,"contactPerson":null,"residentsServed":"Orange County Residents","idRequired":"required","schedule":"Monday, Wednesday, Friday, 10:00AM-1:00PM","days":["Mon","Wed","Fri"],"donationsAccepted":true,"notes":"Requires Proof of Address, Proof of Income, Birth Certificate/Passports, and Picture ID","openToAll":true,"kind":"site","lat":41.4465,"lng":-74.4215},{"id":"second-baptist-church-food-pantry","name":"Second Baptist Church Food Pantry","categories":["pantry"],"town":"Middletown","address":"125 North St, Middletown, NY 10940","phone":"845-381-1254","email":"Secondbaptistny@gmail.com","website":null,"contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Every 3rd Saturday, 12:00PM-3:00PM","days":["Sat"],"donationsAccepted":false,"notes":null,"openToAll":false,"kind":"site","lat":41.449,"lng":-74.418},{"id":"st-pauls-umc-mission-food-pantry","name":"St. Paul's UMC Mission Food Pantry","categories":["pantry"],"town":"Middletown","address":"58 West Main Street, Middletown, NY 10940","phone":"845-343-4425","email":"Stpaulsumcmission@gmail.com","website":null,"contactPerson":"Milly","residentsServed":"Middletown and neighboring towns","idRequired":"unknown","schedule":"By appointment only; Tuesday & Thursday 8:30AM-12:30PM, Curbside Pickup","days":["Tue","Thu"],"donationsAccepted":false,"notes":"By appointment only; curbside pickup","openToAll":false,"kind":"site","lat":41.4458,"lng":-74.4235},{"id":"salvation-army-food-pantry-middletown","name":"The Salvation Army Food Pantry- Middletown","categories":["pantry"],"town":"Middletown","address":"80 W Main St. Middletown, NY 10940","phone":"845-343-0821","email":"Andrew.allen@use.salvationarmy.org","website":null,"contactPerson":"Captain Andrew Allen","residentsServed":"Central Orange County, NY and Sullivan County, NY","idRequired":"required","schedule":"By appointment only; Tuesday, 12:00PM-2:00PM; Wednesday, 12:00PM-2:00PM; Thursday, 12:00PM-2:00PM; Friday, 12:00PM-2:00PM","days":["Tue","Wed","Thu","Fri"],"donationsAccepted":true,"notes":"Photo ID Required; by appointment only","openToAll":false,"kind":"site","lat":41.4456,"lng":-74.424},{"id":"touch-nutrition-program-food-pantry","name":"Touch Nutrition Program, Food Pantry","categories":["pantry"],"town":"Middletown","address":"6 Orchard Street, Middletown, NY 10940","phone":"845-343-8086","email":"tlloyd@touch-ny.org","website":"https://touchny.org/food-nutrition-program/","contactPerson":"Tiffany Lloyd","residentsServed":"Orange and Rockland County Residents","idRequired":"unknown","schedule":"By appointment only; Monday-Friday, 9:00AM-5:00PM","days":["Mon","Tue","Wed","Thu","Fri"],"donationsAccepted":true,"notes":"Must be enrolled in the Touch Program (Chronic Illness)","openToAll":false,"kind":"site","lat":41.447,"lng":-74.419},{"id":"food-pantry-at-holy-cross-catholic-parish","name":"Food Pantry at Holy Cross Catholic Parish","categories":["pantry"],"town":"Minisink","address":"626 County Route 22, Middletown, NY 10940","phone":"845-355-4439","email":"Papaaltenburg5@gmail.com","website":null,"contactPerson":"Paul Altenburg","residentsServed":"Towns within the Minisink School District","idRequired":"proof_of_residence","schedule":"First Saturday of the month, 9:00AM-10:00AM","days":["Sat"],"donationsAccepted":true,"notes":null,"openToAll":false,"kind":"site","lat":41.43,"lng":-74.5},{"id":"holy-name-of-jesus-food-pantry","name":"Holy Name of Jesus Food Pantry","categories":["pantry"],"town":"Minisink","address":"45 Highland Avenue, Otisville, NY 10963","phone":"845-386-1320","email":"hnojotisville@frontiernet.net","website":null,"contactPerson":"Julie / Maureen","residentsServed":"Parishioners and neighbors in the Otisville, Mt. Hope, Cuddebackville Area","idRequired":"unknown","schedule":"Last Wednesday of every month, 9:00AM-12:00PM","days":["Wed"],"donationsAccepted":false,"notes":null,"openToAll":false,"kind":"site","lat":41.474,"lng":-74.537},{"id":"community-emergency-food-pantry-umc","name":"Community Emergency Food Pantry at United Methodist Church","categories":["pantry"],"town":"Monroe-Woodbury","address":"47 Maple Ave East, Monroe, NY 10950","phone":"845-783-6371","email":null,"website":null,"contactPerson":"Gerri","residentsServed":"Towns within the MW School District","idRequired":"proof_of_residence","schedule":"Second & Fourth Saturday of the month, 9:30AM-11:00AM; 8:30AM-10:10AM in Summer","days":["Sat"],"donationsAccepted":false,"notes":"Summer hours 8:30AM-10:10AM","openToAll":false,"kind":"site","lat":41.3315,"lng":-74.185},{"id":"earl-reservoir-mini-pantry","name":"Earl Reservoir Mini-Pantry","categories":["mini_pantry"],"town":"Monroe-Woodbury","address":"Sid Felter Ln, Highland Mills, NY 10930","phone":null,"email":"Parks@woodburyny.us","website":null,"contactPerson":null,"residentsServed":"Town of Woodbury Residents","idRequired":"unknown","schedule":"Open 24/7","days":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],"donationsAccepted":true,"notes":"Across from the tennis courts","openToAll":false,"kind":"site","lat":41.348,"lng":-74.13},{"id":"first-presbyterian-church-of-monroe","name":"First Presbyterian Church of Monroe","categories":["pantry"],"town":"Monroe-Woodbury","address":"142 Stage Road, Monroe, NY 10950","phone":"914-588-0787 / 845-783-1632","email":"montrossrm@gmail.com; fpcmonroeoffice@yahoo.com","website":null,"contactPerson":"Rich Montross","residentsServed":"Towns within the MW School District","idRequired":"required","schedule":"Food Pantry; First & Third Saturday of the month, 9:00AM-11:30AM","days":["Sat"],"donationsAccepted":true,"notes":"ID, Driver's License or Utility Bill Required","openToAll":false,"kind":"site","lat":41.328,"lng":-74.19},{"id":"highland-mills-united-methodist-church-food-pantry","name":"Highland Mills United Methodist Church Food Pantry","categories":["pantry"],"town":"Monroe-Woodbury","address":"654 Route 32, Highland Mills, NY 10930","phone":null,"email":null,"website":null,"contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Saturday, 9:00AM-10:00AM","days":["Sat"],"donationsAccepted":false,"notes":null,"openToAll":false,"kind":"site","lat":41.347,"lng":-74.128},{"id":"our-fathers-kitchen-food-pantry","name":"Our Father's Kitchen Food Pantry","categories":["pantry"],"town":"Monroe-Woodbury","address":"26 Still Road, Monroe, NY, 10950","phone":"845-783-7840","email":"parishoutreach@shssparish.org","website":null,"contactPerson":"Kimberly Gutman","residentsServed":"Monroe, Central Valley, Harriman, Highland Mills","idRequired":"not_required","schedule":"Wednesday, 9:30AM-11:00AM","days":["Wed"],"donationsAccepted":true,"notes":null,"openToAll":false,"kind":"site","lat":41.329,"lng":-74.182},{"id":"ame-zion-church-of-newburgh-food-pantry","name":"AME Zion Church of Newburgh Food Pantry","categories":["pantry"],"town":"Newburgh","address":"111 Washington St, Newburgh, NY 12550","phone":"845-569-8114","email":"amezionnewburgh@yahoo.com","website":null,"contactPerson":null,"residentsServed":"No Town Limit","idRequired":"required","schedule":"Thursday, 10:00AM-12:00PM","days":["Thu"],"donationsAccepted":false,"notes":null,"openToAll":true,"kind":"site","lat":41.5045,"lng":-74.01},{"id":"catholic-charities-orange-sullivan-ulster","name":"Catholic Charities of Orange, Sullivan & Ulster","categories":["pantry"],"town":"Newburgh","address":"280 Broadway, Newburgh, NY 12550 Lower Level","phone":"845-561-1665 x1930","email":"Jacqueline.perez@ccsos.org","website":null,"contactPerson":"Jaqueline Perez","residentsServed":"Orange, Sullivan and Ulster County Residents","idRequired":"unknown","schedule":"Food Pantry; Tuesday, 9:30AM-2:30PM (Closed for Lunch 12:00noon-1:00PM)","days":["Tue"],"donationsAccepted":true,"notes":"Bring a bag","openToAll":false,"kind":"site","lat":41.502,"lng":-74.0085},{"id":"church-at-the-bridge-friends-and-family-night","name":"Church at the Bridge hosts \"Friends and Family Night\"","categories":["hot_meals"],"town":"Newburgh","address":"90 Broadway, Newburgh, NY 12550","phone":"845-522-8046","email":"Hannah@ctbny.com","website":null,"contactPerson":"Hannah","residentsServed":"No Town Limit","idRequired":"not_required","schedule":"Hot Meals; Third Wednesday of the month, 6:00PM-8:00PM","days":["Wed"],"donationsAccepted":true,"notes":null,"openToAll":true,"kind":"site","lat":41.5035,"lng":-74.009},{"id":"deacon-jack-seymour-food-pantry","name":"Deacon Jack Seymour Food Pantry of St. Francis of Assisi Church and Sacred Heart Church","categories":["pantry"],"town":"Newburgh","address":"301 Ann St, Newburgh, New York, 12550","phone":"845-234-8564 / 845-926-0626","email":"djsfoodpantry@gmail.com","website":null,"contactPerson":"Paul and Linda Zalanowski","residentsServed":"No Town Limit","idRequired":"required","schedule":"Friday, 9:00AM-12:00PM & Saturday, 8:30AM-12:00PM","days":["Fri","Sat"],"donationsAccepted":true,"notes":null,"openToAll":true,"kind":"site","lat":41.5005,"lng":-74.012},{"id":"food-not-bombs-newburgh","name":"Food Not Bombs","categories":["hot_meals","pantry"],"town":"Newburgh","address":"on Broadway between Johnston St & Lander St, Newburgh, NY","phone":null,"email":null,"website":"https://www.facebook.com/newburghfnb/","contactPerson":null,"residentsServed":"City and Town of Newburgh","idRequired":"unknown","schedule":"Hot Meals and occasional pantry items; Wednesday 6:30PM-8:00PM","days":["Wed"],"donationsAccepted":true,"notes":"Outdoor/street location on Broadway","openToAll":false,"kind":"site","lat":41.5058,"lng":-74.0173},{"id":"grace-united-methodist-church-food-closet","name":"Grace United Methodist Church, Food Closet","categories":["pantry"],"town":"Newburgh","address":"265 Van Ness St, Newburgh, NY 12550","phone":null,"email":null,"website":null,"contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Friday, 2:00PM-5:00PM","days":["Fri"],"donationsAccepted":false,"notes":null,"openToAll":false,"kind":"site","lat":41.505,"lng":-74.015},{"id":"hudson-valley-christian-church","name":"Hudson Valley Christian Church","categories":["pantry"],"town":"Newburgh","address":"100 Grand St, Newburgh, NY 12550","phone":"845-565-8526","email":"Hudsonvalley100g@gmail.com","website":null,"contactPerson":"Lorraine Libolt","residentsServed":"No Town Limit","idRequired":"required","schedule":"Food Pantry; Second and Fourth Monday of the month, 1:00PM-2:00PM","days":["Mon"],"donationsAccepted":false,"notes":null,"openToAll":true,"kind":"site","lat":41.5055,"lng":-74.008},{"id":"lodger-pantry","name":"LODGER Pantry","categories":["mini_pantry"],"town":"Newburgh","address":"188 Liberty St, Newburgh, NY 12550","phone":null,"email":"lodgernewburgh@gmail.com","website":null,"contactPerson":"Leon Johnson","residentsServed":"No Town Limit","idRequired":"not_required","schedule":"Mini-Pantry; Open 24/7","days":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],"donationsAccepted":true,"notes":null,"openToAll":true,"kind":"site","lat":41.501,"lng":-74.014},{"id":"may-lous-kitchen","name":"May Lou’s Kitchen","categories":["soup_kitchen"],"town":"Newburgh","address":"292 Ann St, Newburgh, NY 12550","phone":"914-295-2245","email":"Jodom1@live.com","website":null,"contactPerson":"Beverly Odom","residentsServed":"City of Newburgh","idRequired":"not_required","schedule":"Soup Kitchen; First Saturday of the month","days":["Sat"],"donationsAccepted":true,"notes":null,"openToAll":false,"kind":"site","lat":41.5008,"lng":-74.0125},{"id":"newburgh-free-library-mini-pantry","name":"Newburgh Free Library","categories":["mini_pantry"],"town":"Newburgh","address":"124 Grand Street, Newburgh NY","phone":null,"email":null,"website":null,"contactPerson":null,"residentsServed":"No Town Limit","idRequired":"not_required","schedule":"Mini-Pantry; Open 24/7","days":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],"donationsAccepted":false,"notes":null,"openToAll":true,"kind":"site","lat":41.5058,"lng":-74.0075},{"id":"newburgh-tabernacle-food-pantry-kitchen","name":"Newburgh Tabernacle Food Pantry & Kitchen","categories":["pantry","soup_kitchen"],"town":"Newburgh","address":"251-259 Grand St, Newburgh, NY, 12550","phone":"845-565-5053","email":"newburghtabsda@gmail.com","website":null,"contactPerson":"Grantley Nicholas","residentsServed":"City and Town of Newburgh","idRequired":"not_required","schedule":"Sunday, 10:00AM-1:00PM","days":["Sun"],"donationsAccepted":true,"notes":null,"openToAll":false,"kind":"site","lat":41.5065,"lng":-74.007},{"id":"one-accord-christian-church-food-pantry","name":"One Accord Christian Church Food Pantry","categories":["pantry"],"town":"Newburgh","address":"88 Lake St, Newburgh, NY 12550","phone":"845-522-5099","email":"oneaccordonemind@yahoo.com","website":null,"contactPerson":null,"residentsServed":"No Town Limit","idRequired":"required","schedule":"Thursday, 4:00PM-6:30 or until supplies run out","days":["Thu"],"donationsAccepted":true,"notes":"ID Required, Bags required","openToAll":true,"kind":"site","lat":41.5025,"lng":-74.018},{"id":"salvation-army-newburgh","name":"Salvation Army","categories":["pantry","soup_kitchen"],"town":"Newburgh","address":"234 Van Ness St, Newburgh, NY 12550","phone":"845-562-0413","email":"Kelly.Ross@use.salvationarmy.org","website":null,"contactPerson":"Major Ana Guzman","residentsServed":"Food Pantry open to Newburgh residents. Soup Kitchen open to all","idRequired":"proof_of_residence","schedule":"Food Pantry: First and Third Wednesday of the month, 12:00PM-2:00PM; Soup Kitchen: Monday-Thursday, 11:00AM-12:00PM","days":["Mon","Tue","Wed","Thu"],"donationsAccepted":true,"notes":"Proof of Residence Required for Food Pantry; No ID required for Soup Kitchen. Source lists pantry time as 12:00AM-2:00PM (likely 12:00PM)","openToAll":true,"kind":"site","lat":41.5048,"lng":-74.0155},{"id":"shepherds-kitchen-community-meals","name":"Shepherd's Kitchen Community Meals/Soup Kitchen","categories":["soup_kitchen"],"town":"Newburgh","address":"271 Broadway, Newburgh, NY 12550","phone":null,"email":"padrerigoberto@gmail.com","website":null,"contactPerson":"Rev. Rigoberto","residentsServed":"Newburgh, New Windsor, and surrounding areas","idRequired":"unknown","schedule":"Saturday & Sunday, 12:00PM-1:00PM","days":["Sat","Sun"],"donationsAccepted":true,"notes":null,"openToAll":false,"kind":"site","lat":41.5015,"lng":-74.008},{"id":"st-georges-church-food-pantry","name":"St. George's Church Food Pantry","categories":["pantry"],"town":"Newburgh","address":"105 Grand St, Newburgh, NY 12550","phone":"845-561-5355 / 845-234-8908","email":"Stgeo105@gmail.com; blueMitzi720@gmail.com","website":null,"contactPerson":"Alan Nucifore","residentsServed":"City and Town of Newburgh","idRequired":"required","schedule":"Wednesday, 10:00AM-11:00AM","days":["Wed"],"donationsAccepted":true,"notes":"I.D, Masks, and Bags required","openToAll":false,"kind":"site","lat":41.5052,"lng":-74.0082},{"id":"st-marys-outreach-giving-day","name":"St. Mary's Outreach hosts \"Giving Day\"","categories":["pantry"],"town":"Newburgh","address":"321 South Williams St, Newburgh, NY 12550","phone":"845-566-1425","email":"weekendmag@earthlink.net","website":null,"contactPerson":"Marietta Allen","residentsServed":"No Town Limit","idRequired":"required","schedule":"Food Pantry; Third Friday of every month, 9:00AM-12:00PM","days":["Fri"],"donationsAccepted":false,"notes":"Located at Newburgh Armory; ID and any form of Mail Required; Bring Bags","openToAll":true,"kind":"site","lat":41.498,"lng":-74.02},{"id":"trinity-house-food-pantry","name":"Trinity House Food Pantry","categories":["pantry"],"town":"Newburgh","address":"1 Owens Rd, Newburgh, New York, 12550","phone":null,"email":"Trinityh0use@aol.com","website":null,"contactPerson":null,"residentsServed":"Town of Newburgh Only","idRequired":"proof_of_residence","schedule":"Second Friday of the month, 5:00PM-7:00PM and following Saturday, 9:00AM-12:00PM","days":["Fri","Sat"],"donationsAccepted":false,"notes":null,"openToAll":false,"kind":"site","lat":41.52,"lng":-74.045},{"id":"union-church-food-pantry","name":"Union Church Food Pantry","categories":["pantry"],"town":"Newburgh","address":"44 Balmville Rd, Newburgh, NY 12550","phone":"845-562-0954","email":"NewburghUnionChurch@gmail.com","website":null,"contactPerson":"Debby Hill and Kathy Barry","residentsServed":"City and Town of Newburgh, and surrounding areas","idRequired":"unknown","schedule":"Every other week, Monday and Wednesday, 9:30AM-11:30AM","days":["Mon","Wed"],"donationsAccepted":true,"notes":null,"openToAll":false,"kind":"site","lat":41.53,"lng":-74.015},{"id":"calvary-presbyterian-church","name":"Calvary Presbyterian Church","categories":["hot_meals"],"town":"Newburgh","address":"120 South St, Newburgh, NY 12550","phone":"845-562-8730","email":"secretary@calvarypresbychurch.org","website":null,"contactPerson":null,"residentsServed":"No Town Limit","idRequired":"unknown","schedule":"Temporarily Not in Service. Community Dinner once a month, call for dates","days":[],"donationsAccepted":false,"notes":"Temporarily Not in Service","openToAll":true,"kind":"site","lat":41.499,"lng":-74.011},{"id":"st-patricks-soup-kitchen","name":"St. Patrick’s Soup Kitchen","categories":["soup_kitchen"],"town":"Newburgh","address":"55 Grand St, Newburgh, NY 12550","phone":"845-561-5023","email":"pammypad@aol.com","website":"https://stpatrickstmary.com/soup-kitchen","contactPerson":null,"residentsServed":"No Town Limit","idRequired":"unknown","schedule":"Temporarily Not in Service. Check Website or call for Information","days":[],"donationsAccepted":false,"notes":"Temporarily Not in Service","openToAll":true,"kind":"site","lat":41.504,"lng":-74.0088},{"id":"otisville-mount-hope-presbyterian-church-food-pantry","name":"Otisville-Mount Hope Presbyterian Church Food Pantry","categories":["pantry"],"town":"Otisville","address":"25 Main Street, Otisville, NY 10963","phone":"845-386-3851","email":"otisvillepres@hvc.rr.com","website":null,"contactPerson":"Kathy Card","residentsServed":"Towns within Minisink and Port Jervis School Districts","idRequired":"required","schedule":"1st and 3rd Thursday of each month 11:00AM–1:00PM","days":["Thu"],"donationsAccepted":false,"notes":"Please bring bags; Photo Id and Proof of Residence required; located at Otisville-Mount Hope Presbyterian Church","openToAll":false,"kind":"site","lat":41.4738,"lng":-74.5385},{"id":"charlottes-pantry-mountain-view-umc","name":"Charlotte’s Pantry at Mountain View UMC","categories":["pantry"],"town":"Pine Bush","address":"91 Maple Avenue, Pine Bush, NY 12566","phone":"610-733-0397","email":"lzelonis@msn.com","website":null,"contactPerson":"Lisa Zelonis","residentsServed":"Towns within the Pine Bush Central School District","idRequired":"unknown","schedule":"First and Third Friday of the month 10:00AM-10:30AM","days":["Fri"],"donationsAccepted":true,"notes":null,"openToAll":false,"kind":"site","lat":41.609,"lng":-74.2985},{"id":"pine-bush-ecumenical-food-pantry","name":"Pine Bush Ecumenical Food Pantry","categories":["pantry"],"town":"Pine Bush","address":"2964 Rt. 52, Pine Bush, NY 12566","phone":"845-744-3390","email":"doschiro@yahoo.com","website":null,"contactPerson":null,"residentsServed":"Towns within the Pine Bush Central School District","idRequired":"unknown","schedule":"Wednesday 10:00AM-12:00PM & Thursday 5:00PM-7:00PM","days":["Wed","Thu"],"donationsAccepted":false,"notes":"Located at New Prospect Reformed Church","openToAll":false,"kind":"site","lat":41.61,"lng":-74.295},{"id":"st-pauls-roman-catholic-church-bullville","name":"St. Paul’s Roman Catholic Church","categories":["pantry"],"town":"Pine Bush","address":"2800 Route 17K, Bullville, NY 10915","phone":"845-361-3107","email":"o389@archny.org","website":null,"contactPerson":"Deb Botty","residentsServed":"Middletown and Pine Bush area","idRequired":"unknown","schedule":"Food Pantry; Call for Availability","days":[],"donationsAccepted":false,"notes":null,"openToAll":false,"kind":"site","lat":41.555,"lng":-74.35},{"id":"easter-seals-food-pantry","name":"Easter Seals Food Pantry","categories":["pantry"],"town":"Port Jervis","address":"191 Jersey Avenue, Port Jervis, NY 12771","phone":"845-858-3869","email":"bkuczyra@eastersealsny.org","website":null,"contactPerson":"Barbara Kuczyra","residentsServed":"No Town Limit","idRequired":"not_required","schedule":"Daily Distribution of Emergency Food Boxes; Regular Pantry open 8:30AM, Third Monday of each month","days":["Mon"],"donationsAccepted":false,"notes":"Emergency food boxes available daily; regular pantry third Monday","openToAll":true,"kind":"site","lat":41.378,"lng":-74.69},{"id":"helping-hands-food-pantry-hope-center","name":"Helping Hands Food Pantry, Hope Center Drew United Methodist Church","categories":["pantry"],"town":"Port Jervis","address":"49 Sussex St, Port Jervis, NY 12771","phone":"845-856-3423","email":"drewumcpjny@gmail.com","website":null,"contactPerson":"Patty Gessner","residentsServed":"No Town Limit","idRequired":"not_required","schedule":"Saturday, 8:30AM-10:00AM","days":["Sat"],"donationsAccepted":true,"notes":null,"openToAll":true,"kind":"site","lat":41.376,"lng":-74.693},{"id":"faith-tabernacle-international-ministries","name":"Faith Tabernacle International Ministries","categories":["pantry"],"town":"Port Jervis","address":"20 Franklin Street, Port Jervis, NY 12771","phone":"845-313-4496","email":null,"website":null,"contactPerson":"Izetta Briggs-Bolling","residentsServed":"Surrounding towns (NY, NJ, PA)","idRequired":"not_required","schedule":"Every other Sunday 1:00PM-3:00PM","days":["Sun"],"donationsAccepted":false,"notes":null,"openToAll":false,"kind":"site","lat":41.3755,"lng":-74.691},{"id":"fed-by-grace-food-pantry","name":"Fed by Grace Food Pantry","categories":["pantry"],"town":"Port Jervis","address":"84 Seward Avenue, Port Jervis, NY 12771","phone":"845-856-3026","email":"graceptj@frontiernet.net","website":null,"contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Third Saturday of the month, 10:00AM-11:00AM","days":["Sat"],"donationsAccepted":false,"notes":null,"openToAll":false,"kind":"site","lat":41.377,"lng":-74.688},{"id":"salvation-army-of-port-jervis","name":"Salvation Army of Port Jervis","categories":["pantry","soup_kitchen"],"town":"Port Jervis","address":"99 Ball Street, Port Jervis, NY 12771","phone":"845-856-3214","email":"Sharon.eagle@use.salvationarmy.org","website":null,"contactPerson":"Sharon Eagle","residentsServed":"Orange County Residents","idRequired":"proof_of_residence","schedule":"By appointment only; Food Pantry Monday–Friday, 1:30PM-3:00PM; Soup Kitchen Monday-Friday, 11:30AM-12:30PM","days":["Mon","Tue","Wed","Thu","Fri"],"donationsAccepted":true,"notes":"By appointment only","openToAll":true,"kind":"site","lat":41.3745,"lng":-74.692},{"id":"seventh-day-adventist-food-pantry-sparrowbush","name":"Seventh-day Adventist Food Pantry","categories":["pantry"],"town":"Port Jervis","address":"795 Route 42, Sparrowbush, NY 12780","phone":null,"email":null,"website":"https://www.facebook.com/SDAFoodPantry/","contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Second Wednesday of the month, 11:00PM-4:00PM; Or contact on Facebook for information","days":["Wed"],"donationsAccepted":false,"notes":"Source lists 11:00PM-4:00PM (likely OCR error for 11:00AM)","openToAll":false,"kind":"site","lat":41.43,"lng":-74.72},{"id":"st-marys-food-pantry-and-soup-kitchen-port-jervis","name":"St. Mary’s Food Pantry and Soup Kitchen","categories":["pantry","soup_kitchen"],"town":"Port Jervis","address":"Food Pantry: 50 Ball Street, Port Jervis, NY 12771; Soup Kitchen: Church Hall, 48 Ball Street, Port Jervis, NY 12771","phone":"845-856-8212","email":"st-marys-rectory@hvc.rr.com","website":null,"contactPerson":"Gina T.","residentsServed":"No Town Limit","idRequired":"required","schedule":"Food Pantry: Every other Friday, 10:00AM-12:00PM; Soup Kitchen: Second Friday of the month, 5:00PM-7:00PM","days":["Fri"],"donationsAccepted":false,"notes":"Proof of Residence Required and I.D","openToAll":true,"kind":"site","lat":41.3748,"lng":-74.6925},{"id":"sloatsburg-food-pantry-all-souls","name":"Sloatsburg Food Pantry, All Souls Community Church","categories":["pantry"],"town":"Tuxedo","address":"81 Washington Avenue, Suffern, NY 10901","phone":"845-618-5373","email":"SloatsburgFoodPantry@gmail.com","website":null,"contactPerson":null,"residentsServed":"Tuxedo, Suffern, Hillburn, and Sloatsburg","idRequired":"required","schedule":"Appointment Recommended; Second & Fourth Tuesday of the month, 1:00PM-5:30PM & Wednesdays 1:00PM-6:30PM","days":["Tue","Wed"],"donationsAccepted":true,"notes":"Rockland County location listed under Tuxedo section; Proof of Residence and ID Required","openToAll":false,"kind":"site","lat":41.1155,"lng":-74.15},{"id":"orange-county-veterans-food-pantry","name":"Orange County Veterans Food Pantry","categories":["pantry"],"town":"Valley Central","address":"9 Hawkins Drive, Montgomery, NY 12549","phone":"845-291-2470 / 845-291-2464","email":"cfarrell@orangecountygov.com; nrostran@orangecountygov.com","website":null,"contactPerson":"Christian Farrell; Natalie Rostran","residentsServed":"Veterans living in Orange County, NY","idRequired":"unknown","schedule":"Home Delivery, call or email for application information","days":[],"donationsAccepted":true,"notes":"Monetary Only Donations Accepted; home delivery","openToAll":false,"kind":"site","lat":41.5285,"lng":-74.235},{"id":"town-of-montgomery-food-pantry","name":"Town of Montgomery Food Pantry","categories":["pantry"],"town":"Valley Central","address":"2200 State Route 208, Montgomery, NY 12549","phone":"845-778-7669","email":"jgrid@live.com","website":null,"contactPerson":"Judy Gridley","residentsServed":"Towns within the Valley Central School District","idRequired":"proof_of_residence","schedule":"Tuesday 10:00AM-12:00PM & Wednesday 6:30PM-8:00PM","days":["Tue","Wed"],"donationsAccepted":false,"notes":"Proof of residency for all adults 18 and over in household","openToAll":false,"kind":"site","lat":41.527,"lng":-74.24},{"id":"the-good-samaritan-food-pantry","name":"The Good Samaritan Food Pantry","categories":["pantry"],"town":"Walden","address":"12 Scoffield Rd, Walden, NY","phone":"845-541-8936","email":null,"website":null,"contactPerson":"Rev Ray Cummings","residentsServed":"Residents of Zip Code 12586, but no one refused","idRequired":"not_required","schedule":"Tuesday 12:00Noon-2:00PM; Wednesday 12:00PM-2:00PM; Thursday 12:00Noon-4:00PM; Friday 11:00AM-1:00PM","days":["Tue","Wed","Thu","Fri"],"donationsAccepted":true,"notes":"Monetary Only Donations Accepted; source lists Wednesday as 12:00AM-2:00PM (likely 12:00PM)","openToAll":false,"kind":"site","lat":41.56,"lng":-74.189},{"id":"his-love-unveiled-food-pantry","name":"His Love Unveiled Food Pantry at Mid-Hudson Christian Church","categories":["pantry"],"town":"Wallkill","address":"2393 Rt 300, Wallkill, NY 12589","phone":"845-895-3006","email":"Midhudcc@gmail.com","website":"https://www.facebook.com/mhccwallkill/","contactPerson":"Julie and Max","residentsServed":"Towns within the Wallkill Central School District","idRequired":"unknown","schedule":"Second & Fourth Tuesday of the month 12:00PM-1:30PM & Second & Fourth Friday of the month 6:30PM-7:30PM","days":["Tue","Fri"],"donationsAccepted":false,"notes":null,"openToAll":false,"kind":"site","lat":41.61,"lng":-74.18},{"id":"loaves-and-fishes-food-pantry-wallkill","name":"Loaves and Fishes Food Pantry at Wallkill Reformed Church","categories":["pantry"],"town":"Wallkill","address":"45 Bridge Street, Wallkill, NY 12589","phone":"845-851-4010","email":"wrclffp@yahoo.com","website":null,"contactPerson":null,"residentsServed":"Residents living within the Wallkill Central School District","idRequired":"proof_of_residence","schedule":"Thursday 5:30PM-7:30PM & Friday 11:00AM-1:00PM","days":["Thu","Fri"],"donationsAccepted":false,"notes":null,"openToAll":false,"kind":"site","lat":41.605,"lng":-74.186},{"id":"new-day-food-pantry","name":"New Day Food Pantry","categories":["pantry"],"town":"Wallkill","address":"38 Old Firehouse Road, Wallkill, NY 12568","phone":"845-566-4441","email":null,"website":null,"contactPerson":"Phyllis Washington","residentsServed":"Plattekill and surrounding towns","idRequired":"required","schedule":"Wednesday 5:00PM-6:00PM & Saturday 10:00AM-12:00PM","days":["Wed","Sat"],"donationsAccepted":false,"notes":null,"openToAll":false,"kind":"site","lat":41.6,"lng":-74.19},{"id":"st-peter-lutheran-church-food-pantry","name":"St. Peter Lutheran Church Food Pantry","categories":["pantry"],"town":"Warwick","address":"70 Little York Road, Warwick, NY","phone":"845-341-3626","email":"carol_long358@hotmail.com","website":null,"contactPerson":"Carol Long","residentsServed":"No Town Limit","idRequired":"unknown","schedule":"Last Sunday of the month, 12:00PM-1:30PM","days":["Sun"],"donationsAccepted":true,"notes":null,"openToAll":true,"kind":"site","lat":41.26,"lng":-74.35},{"id":"warwick-ecumenical-food-pantry","name":"Warwick Ecumenical Food Pantry","categories":["pantry"],"town":"Warwick","address":"135 Forester Avenue, Warwick, NY 10990","phone":"845-986-8368","email":"gpdickes@warwick.net","website":null,"contactPerson":"Glenn P. Dickes","residentsServed":"Town of Warwick and surrounding towns","idRequired":"required","schedule":"Monday & Thursday, 5:00PM-7:00PM","days":["Mon","Thu"],"donationsAccepted":true,"notes":"ID and Proof of Residence Required","openToAll":false,"kind":"site","lat":41.256,"lng":-74.358},{"id":"country-kids-4h-food-pantry","name":"Country Kids 4H Food Pantry","categories":["pantry"],"town":"Washingtonville","address":"2 Father Tierney Circle, Washingtonville, NY 10992","phone":"845-496-2119","email":"countrykidspantry@gmail.com","website":null,"contactPerson":"John Flores","residentsServed":"Towns within the Washingtonville Central School District","idRequired":"required","schedule":"First & Third Wednesday of every month 2:30PM-6:00PM","days":["Wed"],"donationsAccepted":false,"notes":"ID and Proof of Residence Required","openToAll":false,"kind":"site","lat":41.4275,"lng":-74.166},{"id":"healthy-orange-farmers-market","name":"Healthy Orange Farmers Market","address":"Broadway (between Johnston St and Lander St), Newburgh, NY 12550","schedule":"Tuesdays, June–October, 10:00AM–2:00PM","contact":"Meg Oakes","phone":null,"email":"moakes@orangecountygov.com","website":"http://www.healthyorange.com/farmers-markets/","accepts":["SNAP EBT","Fresh Connect","Senior & WIC FMNP","Double Up Food Bucks"],"town":"Newburgh","lat":41.504,"lng":-74.0085,"kind":"market","categories":["market"],"days":["Tue"],"idRequired":"unknown","openToAll":true,"donationsAccepted":false,"residentsServed":"SNAP EBT, Fresh Connect, Senior & WIC FMNP, Double Up Food Bucks","notes":"Accepts: SNAP EBT, Fresh Connect, Senior & WIC FMNP, Double Up Food Bucks","contactPerson":"Meg Oakes"},{"id":"newburgh-farmers-market","name":"Newburgh Farmers' Market","address":"Winter: Lobby at the Ritz, 107 Broadway, Newburgh NY 12550; Summer: Safe Harbors Green, 97 Broadway, Newburgh NY 12550","schedule":"Winter Market: Saturdays, December–April, 10:00AM–2:00PM; Summer Market: Saturdays, May–November, 10:00AM–3:00PM","contact":"Ilyana Campos","phone":"845-231-4424","email":null,"website":"https://www.newburghnyfarmersmarket.org/","accepts":["SNAP EBT","Fresh Connect","Senior & WIC FMNP","Double Up Food Bucks","Greens4Greens"],"town":"Newburgh","lat":41.5038,"lng":-74.0092,"kind":"market","categories":["market"],"days":["Sat"],"idRequired":"unknown","openToAll":true,"donationsAccepted":false,"residentsServed":"SNAP EBT, Fresh Connect, Senior & WIC FMNP, Double Up Food Bucks, Greens4Greens","notes":"Accepts: SNAP EBT, Fresh Connect, Senior & WIC FMNP, Double Up Food Bucks, Greens4Greens","contactPerson":"Ilyana Campos"},{"id":"tuxedo-farmers-market","name":"Tuxedo Farmers Market","address":"240 Rt 17, Tuxedo, NY 10987","schedule":"Saturdays, June 17–October 27, 9:00AM–2:00PM","contact":"Tuxedo Chamber of Commerce","phone":"845-351-4791","email":"tuxedofarmersmarket@gmail.com","website":"https://tuxedofarmersmarket.com/","accepts":["Senior & WIC FMNP","Fresh Connect"],"town":"Tuxedo","lat":41.195,"lng":-74.187,"kind":"market","categories":["market"],"days":["Sat"],"idRequired":"unknown","openToAll":true,"donationsAccepted":false,"residentsServed":"Senior & WIC FMNP, Fresh Connect","notes":"Accepts: Senior & WIC FMNP, Fresh Connect","contactPerson":"Tuxedo Chamber of Commerce"},{"id":"port-jervis-farmers-market","name":"Port Jervis Farmers Market","address":"Orange Square Veterans Memorial Park, Port Jervis, NY 12771","schedule":"Saturdays, 10:00AM–1:00PM, May 9–September 26","contact":"Arina Soler","phone":null,"email":"pjfarmersmarket@gmail.com","website":"http://www.pjfarmmarket.com/","accepts":["SNAP EBT with FreshConnect","Fresh Connect","Senior & WIC FMNP"],"town":"Port Jervis","lat":41.3755,"lng":-74.6925,"kind":"market","categories":["market"],"days":["Sat"],"idRequired":"unknown","openToAll":true,"donationsAccepted":false,"residentsServed":"SNAP EBT with FreshConnect, Fresh Connect, Senior & WIC FMNP","notes":"Accepts: SNAP EBT with FreshConnect, Fresh Connect, Senior & WIC FMNP","contactPerson":"Arina Soler"},{"id":"soons-orchard-farm-market","name":"Soons Orchard Farm Market Store","address":"23 Soons Circle, New Hampton, NY 10958","schedule":"Seven days a week, 9:00AM–6:00PM","contact":null,"phone":"845-374-5471","email":"soonsorchards@gmail.com","website":"https://www.soonsorchards.com/market","accepts":["Senior & WIC FMNP"],"town":"New Hampton","lat":41.389,"lng":-74.421,"kind":"market","categories":["market"],"days":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],"idRequired":"unknown","openToAll":true,"donationsAccepted":false,"residentsServed":"Senior & WIC FMNP","notes":"Accepts: Senior & WIC FMNP","contactPerson":null},{"id":"snap-united-way-of-the-dutchess-orange-region","name":"United Way of the Dutchess-Orange Region Serving Orange County","categories":["snap"],"town":"Orange County","address":"75 Market Street, Poughkeepsie, NY 12601","phone":"211","email":null,"website":"https://mybenefits.ny.gov/mybenefits/begin","contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"","days":[],"donationsAccepted":false,"notes":"Part of Supplemental Nutrition Assistance Program (SNAP)","openToAll":true,"kind":"program_location","programId":"snap","lat":41.704,"lng":-73.921},{"id":"snap-orange-county-department-of-social-servi","name":"Orange County Department of Social Services – Goshen","categories":["snap"],"town":"Orange County","address":"11 Quarry Road, Box Z, Goshen, NY 10924","phone":"845-291-2002","email":null,"website":"https://mybenefits.ny.gov/mybenefits/begin","contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"","days":[],"donationsAccepted":false,"notes":"Part of Supplemental Nutrition Assistance Program (SNAP)","openToAll":true,"kind":"program_location","programId":"snap","lat":41.4,"lng":-74.325},{"id":"snap-orange-county-department-of-social-servi","name":"Orange County Department of Social Services – Middletown","categories":["snap"],"town":"Orange County","address":"18 Seward Avenue, Middletown, NY 10940","phone":"845-291-2002","email":null,"website":"https://mybenefits.ny.gov/mybenefits/begin","contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"","days":[],"donationsAccepted":false,"notes":"Part of Supplemental Nutrition Assistance Program (SNAP)","openToAll":true,"kind":"program_location","programId":"snap","lat":41.4485,"lng":-74.4255},{"id":"snap-orange-county-department-of-social-servi","name":"Orange County Department of Social Services – Newburgh","categories":["snap"],"town":"Orange County","address":"3 Washington Center, Newburgh, NY 12550","phone":"845-291-2002","email":null,"website":"https://mybenefits.ny.gov/mybenefits/begin","contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"","days":[],"donationsAccepted":false,"notes":"Part of Supplemental Nutrition Assistance Program (SNAP)","openToAll":true,"kind":"program_location","programId":"snap","lat":41.503,"lng":-74.0115},{"id":"snap-cornerstone-family-healthcare-enabling-s","name":"Cornerstone Family Healthcare Enabling Services – Newburgh","categories":["snap"],"town":"Orange County","address":"147 Lake Street, Newburgh, NY 12550","phone":"845-926-3636","email":"Jduran@cornerstonefh.org","website":"https://mybenefits.ny.gov/mybenefits/begin","contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"","days":[],"donationsAccepted":false,"notes":"Part of Supplemental Nutrition Assistance Program (SNAP)","openToAll":true,"kind":"program_location","programId":"snap","lat":41.508,"lng":-74.02},{"id":"snap-cornerstone-family-healthcare-enabling-s","name":"Cornerstone Family Healthcare Enabling Services – Middletown","categories":["snap"],"town":"Orange County","address":"10 Benton Avenue, Middletown, NY 10940","phone":"845-926-3636","email":"Jduran@cornerstonefh.org","website":"https://mybenefits.ny.gov/mybenefits/begin","contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"","days":[],"donationsAccepted":false,"notes":"Part of Supplemental Nutrition Assistance Program (SNAP)","openToAll":true,"kind":"program_location","programId":"snap","lat":41.446,"lng":-74.43},{"id":"wic-cornerstone-family-healthcare-newburgh","name":"Cornerstone Family Healthcare – Newburgh","categories":["wic"],"town":"Orange County","address":"147 Lake Street, Newburgh, NY","phone":"845-568-5473","email":"Wic@sunriver.org","website":null,"contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Monday 10:00a–6:00p; Tuesday 8:00a–5:00p; Wednesday 8:00a–5:00p; Thursday 8:00a–4:00p; Friday 8:00a–5:00p; 3rd Saturday of the month 9:00a–1:00p","days":["Mon","Tue","Wed","Thu","Fri","Sat"],"donationsAccepted":false,"notes":"Part of Women, Infants, and Children Program (WIC)","openToAll":true,"kind":"program_location","programId":"wic","lat":41.508,"lng":-74.02},{"id":"wic-cornerstone-family-healthcare-harriman","name":"Cornerstone Family Healthcare – Harriman","categories":["wic"],"town":"Orange County","address":"33 NY-17M, Harriman, NY","phone":"845-568-5473","email":"Wic@sunriver.org","website":null,"contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Monday 10:00a–6:00p; Tuesday & Wednesday 8:00a–5:00p; Thursday 8:00a–4:00p; Friday 9:00a–5:00p; Third Sunday of the month 9:00a–1:00p","days":["Mon","Tue","Wed","Thu","Fri","Sun"],"donationsAccepted":false,"notes":"Part of Women, Infants, and Children Program (WIC)","openToAll":true,"kind":"program_location","programId":"wic","lat":41.3084,"lng":-74.1446},{"id":"wic-cornerstone-family-healthcare-port-jervi","name":"Cornerstone Family Healthcare – Port Jervis","categories":["wic"],"town":"Orange County","address":"140 Hammond Street, Port Jervis, NY","phone":"845-568-5473","email":"Wic@sunriver.org","website":null,"contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Monday–Wednesday 9:00a–5:00p; Thursday 8:00a–4:00p; Friday 9:00a–5:00p","days":["Mon","Wed","Thu","Fri"],"donationsAccepted":false,"notes":"Part of Women, Infants, and Children Program (WIC)","openToAll":true,"kind":"program_location","programId":"wic","lat":41.3765,"lng":-74.695},{"id":"wic-sun-river-health-middletown","name":"Sun River Health – Middletown","categories":["wic"],"town":"Orange County","address":"156 Dolson Avenue, Middletown, NY 10940","phone":"845-640-4480","email":"Wic@sunriver.org","website":null,"contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Monday 10:00a–6:00p; Tuesday–Friday 9:00a–5:00p","days":["Mon","Tue","Fri"],"donationsAccepted":false,"notes":"Part of Women, Infants, and Children Program (WIC)","openToAll":true,"kind":"program_location","programId":"wic","lat":41.434,"lng":-74.419},{"id":"wic-sun-river-health-walden","name":"Sun River Health – Walden","categories":["wic"],"town":"Orange County","address":"75 Orange Ave, Walden, NY 12586","phone":"845-831-7402","email":"Wic@sunriver.org","website":null,"contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Monday & Wednesday–Friday 9:00a–5:00p; Tuesday 10:00a–6:00p","days":["Mon","Tue","Wed","Fri"],"donationsAccepted":false,"notes":"Part of Women, Infants, and Children Program (WIC)","openToAll":true,"kind":"program_location","programId":"wic","lat":41.5605,"lng":-74.187},{"id":"home-delivered-meals-orange-county-office-for-the-aging","name":"Orange County Office for the Aging","categories":["senior"],"town":"Orange County (except Village of Warwick)","address":"40 Matthews Street, 3rd Floor, Suite 305, Goshen, NY","phone":"845-615-3700","email":null,"website":"https://www.orangecountygov.com/165/Senior-Dining-Program","contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Food delivery once a week after sign-up; weekend service may be arranged","days":[],"donationsAccepted":false,"notes":"Part of Home Delivered Meal Program","openToAll":true,"kind":"program_location","programId":"home-delivered-meals","lat":41.4035,"lng":-74.323},{"id":"congregate-dining-cornwall-senior-center","name":"Cornwall Senior Center","categories":["senior"],"town":"Orange County","address":"Munger Cottage","phone":"845-534-4500","email":null,"website":"https://www.orangecountygov.com/165/Senior-Dining-Program","contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Monday, Thursday, and Friday at Munger Cottage","days":["Mon","Thu","Fri"],"donationsAccepted":false,"notes":"Part of Congregate Dining Sites","openToAll":true,"kind":"program_location","programId":"congregate-dining","lat":41.3922,"lng":-74.3043},{"id":"congregate-dining-greenwood-lake-senior-center","name":"Greenwood Lake Senior Center","categories":["senior"],"town":"Orange County","address":"Greenwood Lake Senior Center","phone":"845-477-8482","email":null,"website":"https://www.orangecountygov.com/165/Senior-Dining-Program","contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Wednesdays and Fridays at the Greenwood Lake Senior Center","days":["Wed","Fri"],"donationsAccepted":false,"notes":"Part of Congregate Dining Sites","openToAll":true,"kind":"program_location","programId":"congregate-dining","lat":41.3946,"lng":-74.3074},{"id":"congregate-dining-middletown","name":"Middletown","categories":["senior"],"town":"Orange County","address":"St. Paul's Methodist Church, 58 W. Main Street, Middletown","phone":"845-343-6911","email":null,"website":"https://www.orangecountygov.com/165/Senior-Dining-Program","contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Monday through Friday","days":["Mon","Fri"],"donationsAccepted":false,"notes":"Part of Congregate Dining Sites","openToAll":true,"kind":"program_location","programId":"congregate-dining","lat":41.4458,"lng":-74.4235},{"id":"congregate-dining-montgomery-senior-center","name":"Montgomery Senior Center","categories":["senior"],"town":"Orange County","address":"Montgomery Senior Center","phone":"845-457-9367","email":null,"website":"https://www.orangecountygov.com/165/Senior-Dining-Program","contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Monday, Wednesday, and Friday at the Montgomery Senior Center","days":["Mon","Wed","Fri"],"donationsAccepted":false,"notes":"Part of Congregate Dining Sites","openToAll":true,"kind":"program_location","programId":"congregate-dining","lat":41.3966,"lng":-74.319},{"id":"pine-bush-csd-sfsp-circleville-church","name":"Circleville Church","categories":["school"],"town":"Circleville / Pine Bush","address":"890 Goshen Tpke, Circleville, NY 10919","phone":"845-744-2031 ext. 2809","email":"caitlin.lazarski@pinebushschools.org","website":"https://www.pinebushschools.org/departments/food-services/","contactPerson":null,"residentsServed":"","idRequired":"unknown","schedule":"Summer months; ages 0–18; open site","days":[],"donationsAccepted":false,"notes":"Part of PBCSD SFSP (Summer Food Service Sites)","openToAll":true,"kind":"program_location","programId":"pine-bush-csd-sfsp","lat":41.535,"lng":-74.328},{"id":"congregate-blooming-grove-senior-center","name":"Congregate Dining – Blooming Grove Senior Center","categories":["senior"],"town":"Blooming Grove","address":"Tuesday, Thursday and Friday","phone":"845-496-4411","email":null,"website":"https://www.orangecountygov.com/165/Senior-Dining-Program","contactPerson":null,"residentsServed":"Seniors; reservations required 24 hours in advance","idRequired":"unknown","schedule":"Tuesday, Thursday and Friday","days":["Tue","Thu","Fri"],"donationsAccepted":false,"notes":"Call site to reserve 24 hours in advance.","openToAll":false,"kind":"program_location","programId":"congregate-dining","lat":41.414,"lng":-74.1806},{"id":"congregate-chester","name":"Congregate Dining – Chester","categories":["senior"],"town":"Chester","address":"Tuesday and Thursday","phone":"845-469-7000 Ext 3","email":null,"website":"https://www.orangecountygov.com/165/Senior-Dining-Program","contactPerson":null,"residentsServed":"Seniors; reservations required 24 hours in advance","idRequired":"unknown","schedule":"Tuesday and Thursday","days":["Tue","Thu"],"donationsAccepted":false,"notes":"Call site to reserve 24 hours in advance.","openToAll":false,"kind":"program_location","programId":"congregate-dining","lat":41.3549,"lng":-74.2789},{"id":"congregate-cornwall-senior-center","name":"Congregate Dining – Cornwall Senior Center","categories":["senior"],"town":"Cornwall","address":"Monday, Thursday, and Friday at Munger cottage","phone":"845-534-4500","email":null,"website":"https://www.orangecountygov.com/165/Senior-Dining-Program","contactPerson":null,"residentsServed":"Seniors; reservations required 24 hours in advance","idRequired":"unknown","schedule":"Monday, Thursday, and Friday at Munger cottage","days":["Mon","Thu","Fri"],"donationsAccepted":false,"notes":"Call site to reserve 24 hours in advance.","openToAll":false,"kind":"program_location","programId":"congregate-dining","lat":41.4533,"lng":-74.0212},{"id":"congregate-greenwood-lake-senior-center","name":"Congregate Dining – Greenwood Lake Senior Center","categories":["senior"],"town":"Greenwood Lake","address":"Wednesdays and Fridays at the Greenwood Lake Senior Center","phone":"845-477-8482","email":null,"website":"https://www.orangecountygov.com/165/Senior-Dining-Program","contactPerson":null,"residentsServed":"Seniors; reservations required 24 hours in advance","idRequired":"unknown","schedule":"Wednesdays and Fridays at the Greenwood Lake Senior Center","days":["Wed","Fri"],"donationsAccepted":false,"notes":"Call site to reserve 24 hours in advance.","openToAll":false,"kind":"program_location","programId":"congregate-dining","lat":41.2179,"lng":-74.2915},{"id":"congregate-middletown","name":"Congregate Dining – Middletown","categories":["senior"],"town":"Middletown","address":"Monday through Friday, St. Paul's Methodist Church, 58 W. Main Street, Middletown","phone":"845-343-6911","email":null,"website":"https://www.orangecountygov.com/165/Senior-Dining-Program","contactPerson":null,"residentsServed":"Seniors; reservations required 24 hours in advance","idRequired":"unknown","schedule":"Monday through Friday, St. Paul's Methodist Church, 58 W. Main Street, Middletown","days":["Mon","Fri"],"donationsAccepted":false,"notes":"Call site to reserve 24 hours in advance.","openToAll":false,"kind":"program_location","programId":"congregate-dining","lat":41.4458,"lng":-74.4235},{"id":"congregate-montgomery-senior-center","name":"Congregate Dining – Montgomery Senior Center","categories":["senior"],"town":"Montgomery","address":"Monday, Wednesday, and Friday at the Montgomery Senior Center","phone":"845-457-9367","email":null,"website":"https://www.orangecountygov.com/165/Senior-Dining-Program","contactPerson":null,"residentsServed":"Seniors; reservations required 24 hours in advance","idRequired":"unknown","schedule":"Monday, Wednesday, and Friday at the Montgomery Senior Center","days":["Mon","Wed","Fri"],"donationsAccepted":false,"notes":"Call site to reserve 24 hours in advance.","openToAll":false,"kind":"program_location","programId":"congregate-dining","lat":41.5295,"lng":-74.2362}]};
-const FAV_KEY = "oc-food-favorites-v1";
 const LANG_KEY = "oc-food-lang-v1";
 const BW_KEY = "oc-food-lowbw-v1";
-const DAY_NAMES = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-const ORDINAL = { first: 1, second: 2, third: 3, fourth: 4, "1st": 1, "2nd": 2, "3rd": 3, "4th": 4, last: -1 };
-
 const I18N = {
   "en": {
     "language": "Language",
@@ -567,7 +369,32 @@ const I18N = {
       "senior": "Senior",
       "school": "School",
       "summer_ebt": "Summer EBT"
-    }
+    },
+    "skipBenefits": "Skip to benefits",
+    "backDirectory": "Back to directory",
+    "pageTitle": "Benefits & programs",
+    "pageLead": "County food benefits and school meal programs — eligibility, enrollment, and contacts in one place.",
+    "jumpTo": "Jump to",
+    "jumpSnap": "SNAP",
+    "jumpWic": "WIC",
+    "jumpSummer": "Summer EBT",
+    "jumpSenior": "Senior meals",
+    "jumpSchools": "School programs",
+    "countyTitle": "County benefits",
+    "schoolsTitle": "School programs",
+    "schoolsLead": "Free and reduced meals, backpack programs, and summer food by school district.",
+    "searchSchools": "Search schools",
+    "searchSchoolsPh": "Program, district, town…",
+    "allDistricts": "All districts",
+    "district": "District",
+    "schoolCount": "{n} program",
+    "schoolCountPlural": "{n} programs",
+    "noSchoolMatches": "No school programs match",
+    "noSchoolHint": "Try another district or clear the search.",
+    "eligibilityHeading": "About this program",
+    "howEnrollHeading": "How to enroll",
+    "contactHeading": "Contact & links",
+    "sitesHeading": "Locations"
   },
   "es": {
     "language": "Idioma",
@@ -685,7 +512,32 @@ const I18N = {
       "senior": "Adultos mayores",
       "school": "Escolar",
       "summer_ebt": "Summer EBT"
-    }
+    },
+    "skipBenefits": "Saltar a beneficios",
+    "backDirectory": "Volver al directorio",
+    "pageTitle": "Beneficios y programas",
+    "pageLead": "Beneficios alimentarios del condado y programas escolares — elegibilidad, inscripción y contactos.",
+    "jumpTo": "Ir a",
+    "jumpSnap": "SNAP",
+    "jumpWic": "WIC",
+    "jumpSummer": "Summer EBT",
+    "jumpSenior": "Comidas para adultos mayores",
+    "jumpSchools": "Programas escolares",
+    "countyTitle": "Beneficios del condado",
+    "schoolsTitle": "Programas escolares",
+    "schoolsLead": "Comidas gratuitas o a precio reducido, mochilas de alimentos y comida de verano por distrito.",
+    "searchSchools": "Buscar escuelas",
+    "searchSchoolsPh": "Programa, distrito, pueblo…",
+    "allDistricts": "Todos los distritos",
+    "district": "Distrito",
+    "schoolCount": "{n} programa",
+    "schoolCountPlural": "{n} programas",
+    "noSchoolMatches": "Ningún programa escolar coincide",
+    "noSchoolHint": "Pruebe otro distrito o borre la búsqueda.",
+    "eligibilityHeading": "Sobre este programa",
+    "howEnrollHeading": "Cómo inscribirse",
+    "contactHeading": "Contacto y enlaces",
+    "sitesHeading": "Ubicaciones"
   },
   "yi": {
     "language": "שפּראַך",
@@ -803,7 +655,32 @@ const I18N = {
       "senior": "עלטערע",
       "school": "שול",
       "summer_ebt": "Summer EBT"
-    }
+    },
+    "skipBenefits": "שפּרינג צו בענעפֿיטן",
+    "backDirectory": "צוריק צום וועגווײַזער",
+    "pageTitle": "בענעפֿיטן און פּראָגראַמען",
+    "pageLead": "קאָונטי בענעפֿיטן און שול־פּראָגראַמען — בארעכטיגונג, רעגיסטראַציע און קאָנטאַקט.",
+    "jumpTo": "שפּרינג צו",
+    "jumpSnap": "SNAP",
+    "jumpWic": "WIC",
+    "jumpSummer": "Summer EBT",
+    "jumpSenior": "עלטערע מאָלצייַטן",
+    "jumpSchools": "שול־פּראָגראַמען",
+    "countyTitle": "קאָונטי בענעפֿיטן",
+    "schoolsTitle": "שול־פּראָגראַמען",
+    "schoolsLead": "פֿרײַע מאָלצייַטן, באַקפּאַק פּראָגראַמען און זומער עסן לויט דיסטריקט.",
+    "searchSchools": "זוך שולן",
+    "searchSchoolsPh": "פּראָגראַם, דיסטריקט…",
+    "allDistricts": "אַלע דיסטריקטן",
+    "district": "דיסטריקט",
+    "schoolCount": "{n} פּראָגראַם",
+    "schoolCountPlural": "{n} פּראָגראַמען",
+    "noSchoolMatches": "קיין שול־פּראָגראַם געפֿונען",
+    "noSchoolHint": "פּרוּווט אַן אַנדער דיסטריקט.",
+    "eligibilityHeading": "וועגן דעם פּראָגראַם",
+    "howEnrollHeading": "ווי צו רעגיסטרירן",
+    "contactHeading": "קאָנטאַקט און לינקס",
+    "sitesHeading": "ערטער"
   },
   "zh": {
     "language": "语言",
@@ -921,7 +798,32 @@ const I18N = {
       "senior": "老年",
       "school": "学校",
       "summer_ebt": "Summer EBT"
-    }
+    },
+    "skipBenefits": "跳到福利",
+    "backDirectory": "返回目录",
+    "pageTitle": "福利与项目",
+    "pageLead": "县级食品福利与学校餐食项目 — 资格、申请方式与联系方式。",
+    "jumpTo": "跳转到",
+    "jumpSnap": "SNAP",
+    "jumpWic": "WIC",
+    "jumpSummer": "Summer EBT",
+    "jumpSenior": "老年用餐",
+    "jumpSchools": "学校项目",
+    "countyTitle": "县级福利",
+    "schoolsTitle": "学校项目",
+    "schoolsLead": "按学区查找免费或减价餐、背包食品计划与夏日供餐。",
+    "searchSchools": "搜索学校",
+    "searchSchoolsPh": "项目、学区、城镇…",
+    "allDistricts": "所有学区",
+    "district": "学区",
+    "schoolCount": "{n} 个项目",
+    "schoolCountPlural": "{n} 个项目",
+    "noSchoolMatches": "没有匹配的学校项目",
+    "noSchoolHint": "请尝试其他学区或清除搜索。",
+    "eligibilityHeading": "关于本项目",
+    "howEnrollHeading": "如何申请",
+    "contactHeading": "联系与链接",
+    "sitesHeading": "地点"
   },
   "ht": {
     "language": "Lang",
@@ -1039,7 +941,32 @@ const I18N = {
       "senior": "Granmoun",
       "school": "Lekòl",
       "summer_ebt": "Summer EBT"
-    }
+    },
+    "skipBenefits": "Ale nan benefis",
+    "backDirectory": "Tounen nan anyè a",
+    "pageTitle": "Benefis ak pwogram",
+    "pageLead": "Benefis manje konte a ak pwogram lekòl — kalifikasyon, enskripsyon ak kontak.",
+    "jumpTo": "Ale nan",
+    "jumpSnap": "SNAP",
+    "jumpWic": "WIC",
+    "jumpSummer": "Summer EBT",
+    "jumpSenior": "Repa pou granmoun",
+    "jumpSchools": "Pwogram lekòl",
+    "countyTitle": "Benefis konte a",
+    "schoolsTitle": "Pwogram lekòl",
+    "schoolsLead": "Repa gratis oswa redwi, pwogram sakado, ak manje ete dapre distri.",
+    "searchSchools": "Chèche lekòl",
+    "searchSchoolsPh": "Pwogram, distri, vil…",
+    "allDistricts": "Tout distri",
+    "district": "Distri",
+    "schoolCount": "{n} pwogram",
+    "schoolCountPlural": "{n} pwogram",
+    "noSchoolMatches": "Pa gen pwogram lekòl ki matche",
+    "noSchoolHint": "Eseye yon lòt distri oswa efase rechèch la.",
+    "eligibilityHeading": "Sou pwogram sa a",
+    "howEnrollHeading": "Kijan pou enskri",
+    "contactHeading": "Kontak ak lyen",
+    "sitesHeading": "Kote"
   },
   "ar": {
     "language": "اللغة",
@@ -1107,7 +1034,7 @@ const I18N = {
     "favNote": "تُحفظ أماكني على هذا الجهاز/المتصفح فقط.",
     "top": "العودة للأعلى",
     "call": "اتصال",
-    "email": "بريد",
+    "email": "البريد",
     "directions": "الاتجاهات",
     "website": "الموقع",
     "details": "التفاصيل",
@@ -1157,7 +1084,32 @@ const I18N = {
       "senior": "كبار السن",
       "school": "مدرسة",
       "summer_ebt": "Summer EBT"
-    }
+    },
+    "skipBenefits": "انتقل إلى المزايا",
+    "backDirectory": "العودة إلى الدليل",
+    "pageTitle": "المزايا والبرامج",
+    "pageLead": "مزايا الغذاء في المقاطعة وبرامج المدارس — الأهلية والتسجيل وجهات الاتصال.",
+    "jumpTo": "انتقل إلى",
+    "jumpSnap": "SNAP",
+    "jumpWic": "WIC",
+    "jumpSummer": "Summer EBT",
+    "jumpSenior": "وجبات كبار السن",
+    "jumpSchools": "برامج المدارس",
+    "countyTitle": "مزايا المقاطعة",
+    "schoolsTitle": "برامج المدارس",
+    "schoolsLead": "وجبات مجانية أو مخفضة وبرامج الحقائب وطعام الصيف حسب المنطقة.",
+    "searchSchools": "ابحث في المدارس",
+    "searchSchoolsPh": "برنامج، منطقة، بلدة…",
+    "allDistricts": "كل المناطق",
+    "district": "المنطقة",
+    "schoolCount": "برنامج {n}",
+    "schoolCountPlural": "{n} برامج",
+    "noSchoolMatches": "لا توجد برامج مدرسية مطابقة",
+    "noSchoolHint": "جرب منطقة أخرى أو امسح البحث.",
+    "eligibilityHeading": "حول هذا البرنامج",
+    "howEnrollHeading": "كيفية التسجيل",
+    "contactHeading": "الاتصال والروابط",
+    "sitesHeading": "المواقع"
   },
   "he": {
     "language": "שפה",
@@ -1225,7 +1177,7 @@ const I18N = {
     "favNote": "המקומות שלי נשמרים רק במכשיר/דפדפן זה.",
     "top": "חזרה למעלה",
     "call": "התקשר",
-    "email": "אימייל",
+    "email": "דוא\"ל",
     "directions": "ניווט",
     "website": "אתר",
     "details": "פרטים",
@@ -1275,7 +1227,32 @@ const I18N = {
       "senior": "גיל שלישי",
       "school": "בית ספר",
       "summer_ebt": "Summer EBT"
-    }
+    },
+    "skipBenefits": "דלגו להטבות",
+    "backDirectory": "חזרה למדריך",
+    "pageTitle": "הטבות ותוכניות",
+    "pageLead": "הטבות מזון במחוז ותוכניות בית ספר — זכאות, רישום ופרטי קשר.",
+    "jumpTo": "קפיצה אל",
+    "jumpSnap": "SNAP",
+    "jumpWic": "WIC",
+    "jumpSummer": "Summer EBT",
+    "jumpSenior": "ארוחות לגיל השלישי",
+    "jumpSchools": "תוכניות בית ספר",
+    "countyTitle": "הטבות המחוז",
+    "schoolsTitle": "תוכניות בית ספר",
+    "schoolsLead": "ארוחות חינם או מוזלות, תוכניות תרמיל ומזון קיץ לפי מחוז.",
+    "searchSchools": "חיפוש בתי ספר",
+    "searchSchoolsPh": "תוכנית, מחוז, יישוב…",
+    "allDistricts": "כל המחוזות",
+    "district": "מחוז",
+    "schoolCount": "תוכנית {n}",
+    "schoolCountPlural": "{n} תוכניות",
+    "noSchoolMatches": "אין תוכניות בית ספר תואמות",
+    "noSchoolHint": "נסו מחוז אחר או נקו את החיפוש.",
+    "eligibilityHeading": "על התוכנית",
+    "howEnrollHeading": "כיצד להירשם",
+    "contactHeading": "יצירת קשר וקישורים",
+    "sitesHeading": "מיקומים"
   },
   "ru": {
     "language": "Язык",
@@ -1343,7 +1320,7 @@ const I18N = {
     "favNote": "«Мои места» сохраняются только на этом устройстве/в браузере.",
     "top": "Наверх",
     "call": "Позвонить",
-    "email": "Email",
+    "email": "Эл. почта",
     "directions": "Маршрут",
     "website": "Сайт",
     "details": "Подробнее",
@@ -1393,13 +1370,37 @@ const I18N = {
       "senior": "Пожилые",
       "school": "Школа",
       "summer_ebt": "Summer EBT"
-    }
+    },
+    "skipBenefits": "Перейти к пособиям",
+    "backDirectory": "Назад к справочнику",
+    "pageTitle": "Пособия и программы",
+    "pageLead": "Продовольственные пособия округа и школьные программы — право на участие, запись и контакты.",
+    "jumpTo": "Перейти к",
+    "jumpSnap": "SNAP",
+    "jumpWic": "WIC",
+    "jumpSummer": "Summer EBT",
+    "jumpSenior": "Питание для пожилых",
+    "jumpSchools": "Школьные программы",
+    "countyTitle": "Пособия округа",
+    "schoolsTitle": "Школьные программы",
+    "schoolsLead": "Бесплатное или льготное питание, рюкзачные программы и летнее питание по округам.",
+    "searchSchools": "Поиск школ",
+    "searchSchoolsPh": "Программа, округ, город…",
+    "allDistricts": "Все округа",
+    "district": "Округ",
+    "schoolCount": "{n} программа",
+    "schoolCountPlural": "{n} программ",
+    "noSchoolMatches": "Нет подходящих школьных программ",
+    "noSchoolHint": "Попробуйте другой округ или очистите поиск.",
+    "eligibilityHeading": "Об этой программе",
+    "howEnrollHeading": "Как записаться",
+    "contactHeading": "Контакты и ссылки",
+    "sitesHeading": "Места"
   }
 };
+
 const state = {
-  view: "list", selectedId: null, userLoc: null, markers: {}, map: null, markerLayer: null,
   lang: localStorage.getItem(LANG_KEY) || "en",
-  favorites: new Set(JSON.parse(localStorage.getItem(FAV_KEY) || "[]")),
   syncingUrl: false,
 };
 
@@ -1410,160 +1411,60 @@ function t(key) {
 function catLabel(c) {
   return (I18N[state.lang].cats || I18N.en.cats)[c] || c;
 }
-function todayAbbr() { return DAY_NAMES[new Date().getDay()]; }
-function categoriesOf(item) { return item.categories || (item.category ? [item.category] : []); }
 function phoneHref(phone) {
   if (!phone) return null;
   const first = String(phone).split(/[;/]/)[0].replace(/[^\d+]/g, "");
   return first ? `tel:${first}` : null;
 }
-function mapsUrl(item) {
-  if (!item.address) return null;
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.address)}`;
+function escapeHtml(str) {
+  return String(str || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
-function haversine(a, b, c, d) {
-  const R = 3958.8, toRad = (x) => (x * Math.PI) / 180;
-  const dLat = toRad(c - a), dLon = toRad(d - b);
-  const lat1 = toRad(a), lat2 = toRad(c);
-  const h = Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLon/2)**2;
-  return 2 * R * Math.asin(Math.sqrt(h));
+function prefsQuery() {
+  const params = new URLSearchParams();
+  if (state.lang !== "en") params.set("lang", state.lang);
+  if (document.body.classList.contains("low-bw")) params.set("bw", "1");
+  const qs = params.toString();
+  return qs ? `?${qs}` : "";
 }
-function toast(msg) {
-  const el = document.getElementById("toast");
-  el.textContent = msg;
-  el.classList.add("show");
-  clearTimeout(toast._t);
-  toast._t = setTimeout(() => el.classList.remove("show"), 2200);
+function syncCrossLinks() {
+  const href = `index.html${prefsQuery()}`;
+  ["directory-link", "directory-cta", "directory-footer"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.setAttribute("href", href);
+  });
 }
-function saveFavorites() {
-  localStorage.setItem(FAV_KEY, JSON.stringify([...state.favorites]));
+function syncUrl() {
+  if (state.syncingUrl) return;
+  const params = new URLSearchParams();
+  if (state.lang !== "en") params.set("lang", state.lang);
+  if (document.body.classList.contains("low-bw")) params.set("bw", "1");
+  const qs = params.toString();
+  const hash = location.hash || "";
+  history.replaceState(null, "", qs ? `${location.pathname}?${qs}${hash}` : `${location.pathname}${hash}`);
+  syncCrossLinks();
 }
-function toggleFavorite(id, ev) {
-  if (ev) ev.stopPropagation();
-  if (state.favorites.has(id)) state.favorites.delete(id);
-  else state.favorites.add(id);
-  saveFavorites();
-  render();
-  if (state.selectedId === id) selectItem(id, true);
-}
-
-/* ---- Open now parsing ---- */
-function parseTimeToMinutes(str) {
-  const m = String(str).trim().match(/^(\d{1,2})(?::(\d{2}))?\s*(a|p|am|pm)?\.?$/i);
-  if (!m) return null;
-  let h = parseInt(m[1], 10);
-  const min = m[2] ? parseInt(m[2], 10) : 0;
-  const ap = (m[3] || "").toLowerCase();
-  if (ap.startsWith("p") && h < 12) h += 12;
-  if (ap.startsWith("a") && h === 12) h = 0;
-  if (!ap && h <= 7) h += 12; // bare "4:00-7:00" often means PM for pantries
-  return h * 60 + min;
-}
-function extractTimeRanges(schedule) {
-  const s = schedule || "";
-  const ranges = [];
-  const re = /(\d{1,2}(?::\d{2})?\s*(?:a|p|am|pm)?\.?)\s*[-–—to]+\s*(\d{1,2}(?::\d{2})?\s*(?:a|p|am|pm)?\.?)/gi;
-  let m;
-  while ((m = re.exec(s))) {
-    let a = parseTimeToMinutes(m[1]);
-    let b = parseTimeToMinutes(m[2]);
-    if (a == null || b == null) continue;
-    // If end looks earlier and both lack meridian, assume end is PM
-    if (b <= a && b < 12 * 60) b += 12 * 60;
-    if (a > 24*60) a -= 12*60;
-    ranges.push([a, b]);
+function loadFromUrl() {
+  state.syncingUrl = true;
+  const p = new URLSearchParams(location.search);
+  const allowed = ["en","es","yi","zh","ht","ar","he","ru"];
+  if (allowed.includes(p.get("lang"))) {
+    state.lang = p.get("lang");
+    localStorage.setItem(LANG_KEY, state.lang);
   }
-  return ranges;
+  if (p.get("bw") === "1" || localStorage.getItem(BW_KEY) === "1") {
+    document.body.classList.add("low-bw");
+    localStorage.setItem(BW_KEY, "1");
+  }
+  state.syncingUrl = false;
 }
-function nthWeekdayOfMonth(year, month, weekday, n) {
-  // weekday: 0=Sun..6=Sat; n=-1 last
-  if (n === -1) {
-    const last = new Date(year, month + 1, 0);
-    const diff = (last.getDay() - weekday + 7) % 7;
-    return new Date(year, month, last.getDate() - diff);
-  }
-  const first = new Date(year, month, 1);
-  const diff = (weekday - first.getDay() + 7) % 7;
-  const day = 1 + diff + (n - 1) * 7;
-  const d = new Date(year, month, day);
-  return d.getMonth() === month ? d : null;
-}
-function scheduleMatchesTodayPattern(schedule, now = new Date()) {
-  const s = (schedule || "").toLowerCase();
-  if (!s) return { dayMatch: false, confidence: "none" };
-  if (/24\/7|open 24|seven days|7 days a week/.test(s)) return { dayMatch: true, confidence: "high", allDay: true };
-
-  const dayAbbr = DAY_NAMES[now.getDay()];
-  const dayFull = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"][now.getDay()];
-  const dayIdx = now.getDay();
-
-  // Ordinal patterns: first/second/third/fourth/last + weekday
-  const ordRe = /\b(first|second|third|fourth|last|1st|2nd|3rd|4th)\s+(sunday|monday|tuesday|wednesday|thursday|friday|saturday)\b/gi;
-  let ordHit = false, ordMatch = false;
-  let om;
-  while ((om = ordRe.exec(s))) {
-    ordHit = true;
-    const n = ORDINAL[om[1].toLowerCase()];
-    const wd = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"].indexOf(om[2].toLowerCase());
-    const target = nthWeekdayOfMonth(now.getFullYear(), now.getMonth(), wd, n);
-    if (target && target.toDateString() === now.toDateString()) ordMatch = true;
-  }
-  if (ordHit) return { dayMatch: ordMatch, confidence: ordMatch ? "high" : "none" };
-
-  // every other — approximate: treat as day match but low confidence
-  const everyOther = /every other/.test(s);
-
-  // Day ranges Mon-Fri etc
-  const range = s.match(/\b(monday|mon)\s*[-–—to]+\s*(friday|fri)\b/);
-  if (range && dayIdx >= 1 && dayIdx <= 5) return { dayMatch: true, confidence: everyOther ? "low" : "high" };
-
-  const days = [];
-  const map = { sunday:"Sun", sun:"Sun", monday:"Mon", mon:"Mon", tuesday:"Tue", tue:"Tue", wednesday:"Wed", wed:"Wed", thursday:"Thu", thu:"Thu", friday:"Fri", fri:"Fri", saturday:"Sat", sat:"Sat" };
-  for (const [k,v] of Object.entries(map)) {
-    if (new RegExp(`\\b${k}\\b`, "i").test(s)) days.push(v);
-  }
-  // Also use structured days array preference outside
-
-  if (days.includes(dayAbbr) || s.includes(dayFull)) {
-    return { dayMatch: true, confidence: everyOther ? "low" : "medium" };
-  }
-  return { dayMatch: false, confidence: "none" };
-}
-function openStatus(item, now = new Date()) {
-  const schedule = item.schedule || "";
-  const sLower = schedule.toLowerCase();
-  if (/temporarily not in service|not in service/.test(sLower)) return null;
-
-  const structuredDays = item.days || [];
-  const dayAbbr = DAY_NAMES[now.getDay()];
-  const pattern = scheduleMatchesTodayPattern(schedule, now);
-
-  let dayOk = false;
-  let confidence = "none";
-  if (pattern.dayMatch) { dayOk = true; confidence = pattern.confidence; }
-  else if (structuredDays.includes(dayAbbr) && !/\b(first|second|third|fourth|last|1st|2nd|3rd|4th)\b/i.test(schedule)) {
-    dayOk = true; confidence = "medium";
-  }
-  if (!dayOk) return null;
-
-  if (pattern.allDay || /24\/7|open 24/.test(sLower)) return { open: true, confidence: "high" };
-
-  const ranges = extractTimeRanges(schedule);
-  const mins = now.getHours() * 60 + now.getMinutes();
-  if (!ranges.length) {
-    // Day matches but no times — "likely open" if confidence high enough and daytime
-    if (confidence !== "none" && mins >= 8*60 && mins <= 20*60) return { open: true, confidence: "low" };
-    return null;
-  }
-  for (const [a,b] of ranges) {
-    if (mins >= a && mins <= b) return { open: true, confidence: confidence === "low" ? "low" : "high" };
-  }
-  return null;
-}
-
 function applyI18n() {
   document.documentElement.lang = state.lang;
   document.documentElement.dir = ["ar", "he"].includes(state.lang) ? "rtl" : "ltr";
+  document.title = `${t("pageTitle")} · ${t("brand")}`;
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
     const val = t(key);
@@ -1575,467 +1476,169 @@ function applyI18n() {
   });
   const langSel = document.getElementById("lang-select");
   if (langSel) langSel.value = state.lang;
-  const low = document.body.classList.contains("low-bw");
-  document.getElementById("low-bw").setAttribute("aria-pressed", low ? "true" : "false");
-  document.getElementById("map-panel").setAttribute("data-map-note", t("mapOfflineNote"));
+  document.getElementById("low-bw").setAttribute("aria-pressed", document.body.classList.contains("low-bw") ? "true" : "false");
+  const distFirst = document.querySelector("#school-district option[value='']");
+  if (distFirst) distFirst.textContent = t("allDistricts");
 }
 
-function populateTowns() {
-  const sel = document.getElementById("town");
+const CORE_ORDER = ["snap", "wic", "summer_ebt", "senior"];
+
+function corePrograms() {
+  const programs = DIRECTORY.programs || [];
+  const byCat = {};
+  for (const p of programs) {
+    if (!CORE_ORDER.includes(p.category)) continue;
+    (byCat[p.category] ||= []).push(p);
+  }
+  const ordered = [];
+  for (const cat of CORE_ORDER) {
+    for (const p of (byCat[cat] || [])) ordered.push(p);
+  }
+  return ordered;
+}
+
+function schoolPrograms() {
+  return (DIRECTORY.programs || []).filter((p) => p.category === "school");
+}
+
+function contactBlock(p) {
+  const bits = [];
+  if (p.phone) {
+    const href = phoneHref(p.phone);
+    bits.push(`<p><strong>${escapeHtml(t("phone"))}:</strong> ${href ? `<a href="${href}">${escapeHtml(p.phone)}</a>` : escapeHtml(p.phone)}</p>`);
+  }
+  if (p.email) {
+    bits.push(`<p><strong>${escapeHtml(t("email"))}:</strong> <a href="mailto:${escapeHtml(p.email)}">${escapeHtml(p.email)}</a></p>`);
+  }
+  if (p.website) {
+    bits.push(`<p><a href="${escapeHtml(p.website)}" target="_blank" rel="noopener">${escapeHtml(t("website"))}</a></p>`);
+  }
+  if (p.address) {
+    bits.push(`<p><strong>${escapeHtml(t("address"))}:</strong> ${escapeHtml(p.address)}</p>`);
+  }
+  const links = (p.links || []).map((l) => `<li><a href="${escapeHtml(l.url)}" target="_blank" rel="noopener">${escapeHtml(l.label)}</a></li>`).join("");
+  if (links) bits.push(`<ul>${links}</ul>`);
+  if (!bits.length) return "";
+  return `<div class="benefit-aside"><h4>${escapeHtml(t("contactHeading"))}</h4>${bits.join("")}</div>`;
+}
+
+function locationsBlock(p) {
+  const locs = (p.locations || []).filter((l) => l.name || l.address || l.phone);
+  if (!locs.length) return "";
+  const items = locs.map((l) => {
+    const lines = [escapeHtml(l.name || "")];
+    if (l.phone) {
+      const href = phoneHref(l.phone);
+      lines.push(href ? `<a href="${href}">${escapeHtml(l.phone)}</a>` : escapeHtml(l.phone));
+    }
+    if (l.address) lines.push(escapeHtml(l.address));
+    if (l.schedule) lines.push(escapeHtml(l.schedule));
+    return `<li>${lines.filter(Boolean).join("<br>")}</li>`;
+  }).join("");
+  return `<div class="benefit-sites"><h4>${escapeHtml(t("sitesHeading"))}</h4><ul>${items}</ul></div>`;
+}
+
+function renderBenefits() {
+  const el = document.getElementById("benefits-sections");
+  const core = corePrograms();
+  let firstSenior = true;
+  el.innerHTML = core.map((p) => {
+    let id = p.id;
+    if (p.category === "senior" && firstSenior) {
+      id = "senior";
+      firstSenior = false;
+    }
+    const place = [p.district, p.town].filter(Boolean).join(" · ");
+    return `
+      <article class="benefit-block" id="${escapeHtml(id)}">
+        <div class="benefit-kicker">
+          <span class="badge ${escapeHtml(p.category)}">${escapeHtml(catLabel(p.category))}</span>
+          ${place ? `<span style="color:var(--muted);font-weight:600;font-size:.9rem">${escapeHtml(place)}</span>` : ""}
+        </div>
+        <h3>${escapeHtml(p.name)}</h3>
+        <div class="benefit-layout">
+          <div class="benefit-copy">
+            ${p.description ? `<h4>${escapeHtml(t("eligibilityHeading"))}</h4><p>${escapeHtml(p.description)}</p>` : ""}
+            ${p.howToEnroll ? `<h4>${escapeHtml(t("howEnrollHeading"))}</h4><p>${escapeHtml(p.howToEnroll)}</p>` : ""}
+          </div>
+          ${contactBlock(p)}
+        </div>
+        ${locationsBlock(p)}
+      </article>`;
+  }).join("");
+}
+
+function populateDistricts() {
+  const sel = document.getElementById("school-district");
   const current = sel.value;
   const first = sel.querySelector("option[value='']");
   sel.innerHTML = "";
-  sel.appendChild(first || new Option(t("allTowns"), ""));
-  if (!first) sel.options[0].textContent = t("allTowns");
-  else sel.options[0].textContent = t("allTowns");
-  const towns = [...new Set(DIRECTORY.sites.map((s) => s.town).filter(Boolean))].sort((a,b) => a.localeCompare(b));
-  for (const town of towns) {
+  const all = document.createElement("option");
+  all.value = "";
+  all.textContent = t("allDistricts");
+  sel.appendChild(all);
+  const districts = [...new Set(schoolPrograms().map((p) => p.district).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+  for (const d of districts) {
     const opt = document.createElement("option");
-    opt.value = town; opt.textContent = town;
+    opt.value = d;
+    opt.textContent = d;
     sel.appendChild(opt);
   }
   sel.value = current;
 }
 
-function getFilters() {
-  return {
-    q: document.getElementById("q").value.trim().toLowerCase(),
-    town: document.getElementById("town").value,
-    type: document.getElementById("type").value,
-    day: document.getElementById("day").value,
-    docs: document.getElementById("docs").value,
-    radius: document.getElementById("radius").value,
-  };
-}
-
-function matches(item, f) {
-  if (f.docs === "favorites" && !state.favorites.has(item.id)) return false;
-  if (f.town && item.town !== f.town) return false;
-  const cats = categoriesOf(item);
-  if (f.type && !cats.includes(f.type)) return false;
-
-  if (f.day === "open_now") {
-    if (!openStatus(item)) return false;
-  } else if (f.day === "today") {
-    const day = todayAbbr();
-    const days = item.days || [];
-    const pattern = scheduleMatchesTodayPattern(item.schedule || "");
-    if (!(pattern.dayMatch || days.includes(day))) return false;
-  } else if (f.day) {
-    const days = item.days || [];
-    if (!days.length || !days.includes(f.day)) return false;
-  }
-
-  if (f.docs === "not_required" && item.idRequired !== "not_required") return false;
-  if (f.docs === "open_to_all" && !item.openToAll) return false;
-  if (f.docs === "required" && !(item.idRequired === "required" || item.idRequired === "proof_of_residence")) return false;
-
-  if (f.q) {
-    const blob = [item.name, item.address, item.town, item.schedule, item.notes, item.residentsServed, item.contactPerson, ...cats]
+function filteredSchools() {
+  const q = document.getElementById("school-q").value.trim().toLowerCase();
+  const district = document.getElementById("school-district").value;
+  return schoolPrograms().filter((p) => {
+    if (district && p.district !== district) return false;
+    if (!q) return true;
+    const hay = [p.name, p.district, p.town, p.description, p.howToEnroll, p.address, p.phone]
       .filter(Boolean).join(" ").toLowerCase();
-    if (!blob.includes(f.q)) return false;
-  }
-
-  if (f.radius && state.userLoc && item.lat != null) {
-    const miles = haversine(state.userLoc.lat, state.userLoc.lng, item.lat, item.lng);
-    if (miles > Number(f.radius)) return false;
-  }
-  return true;
-}
-
-function kindRank(s) {
-  const cats = categoriesOf(s);
-  if (cats.some((c) => ["pantry","soup_kitchen","mini_pantry","hot_meals"].includes(c))) return 0;
-  if (cats.includes("market")) return 1;
-  if (cats.some((c) => ["wic","snap","senior"].includes(c))) return 2;
-  return 3;
-}
-
-function filteredSites() {
-  const f = getFilters();
-  let list = DIRECTORY.sites.filter((s) => matches(s, f)).map((s) => {
-    const copy = { ...s };
-    copy._open = openStatus(s);
-    if (state.userLoc && s.lat != null) copy._miles = haversine(state.userLoc.lat, state.userLoc.lng, s.lat, s.lng);
-    return copy;
-  });
-  if (state.userLoc) list.sort((a, b) => (a._miles ?? 9999) - (b._miles ?? 9999));
-  else list.sort((a, b) => kindRank(a) - kindRank(b) || (a.town || "").localeCompare(b.town || "") || a.name.localeCompare(b.name));
-  return list;
-}
-
-function badgeHtml(cats, open) {
-  const bits = cats.map((c) => `<span class="badge ${c}">${catLabel(c)}</span>`);
-  if (open) bits.unshift(`<span class="badge ${open.confidence === "low" ? "approx" : "open"}">${open.confidence === "low" ? t("approxOpen") : t("openBadge")}</span>`);
-  return bits.join("");
-}
-
-function smsText(item) {
-  const lines = [
-    item.name,
-    item.address || "",
-    item.town ? `Town: ${item.town}` : "",
-    item.schedule ? `Hours: ${item.schedule}` : "",
-    item.phone ? `Phone: ${item.phone}` : "",
-    item.website || "",
-  ].filter(Boolean);
-  return lines.join("\n");
-}
-
-async function copyText(text) {
-  try {
-    await navigator.clipboard.writeText(text);
-    toast(t("copied"));
-  } catch {
-    const ta = document.createElement("textarea");
-    ta.value = text; document.body.appendChild(ta); ta.select();
-    document.execCommand("copy"); ta.remove();
-    toast(t("copied"));
-  }
-}
-
-function cardHtml(item) {
-  const cats = categoriesOf(item);
-  const fav = state.favorites.has(item.id);
-  const dist = item._miles != null ? `<span class="dist">${item._miles.toFixed(1)} mi</span>` : "";
-  const phone = phoneHref(item.phone);
-  const maps = mapsUrl(item);
-  return `
-    <article class="card${state.selectedId === item.id ? " active" : ""}" data-id="${item.id}" tabindex="0" role="button" aria-label="${item.name}">
-      <div class="card-top">
-        <h3>${item.name}</h3>
-        <div class="card-top-right">
-          <button type="button" class="fav-btn" data-fav="${item.id}" aria-pressed="${fav}" title="${fav ? t("saved") : t("save")}" aria-label="${fav ? t("saved") : t("save")}">${fav ? "★" : "☆"}</button>
-          <div class="badges">${badgeHtml(cats, item._open)}${dist}</div>
-        </div>
-      </div>
-      <div class="card-meta">
-        ${item.town ? `<p><strong>${item.town}</strong>${item.address ? " · " + item.address : ""}</p>` : (item.address ? `<p>${item.address}</p>` : "")}
-        ${item.schedule ? `<p>${item.schedule}</p>` : ""}
-      </div>
-      <div class="card-actions">
-        ${phone ? `<a href="${phone}" onclick="event.stopPropagation()">${t("call")}</a>` : ""}
-        ${item.email ? `<a href="mailto:${item.email}" onclick="event.stopPropagation()">${t("email")}</a>` : ""}
-        ${maps ? `<a href="${maps}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${t("directions")}</a>` : ""}
-        ${item.website ? `<a href="${item.website}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${t("website")}</a>` : ""}
-        <button type="button" data-copy="${item.id}">${t("copyText")}</button>
-        <button type="button" data-detail="${item.id}">${t("details")}</button>
-      </div>
-    </article>`;
-}
-
-function detailHtml(item) {
-  const cats = categoriesOf(item);
-  const phone = phoneHref(item.phone);
-  const maps = mapsUrl(item);
-  const fav = state.favorites.has(item.id);
-  const idLabel = {
-    required: t("idRequired"),
-    proof_of_residence: t("proofReq"),
-    not_required: t("noIdReq"),
-    unknown: t("askDocs"),
-  }[item.idRequired] || t("askDocs");
-  const open = openStatus(item);
-  return `
-    <div class="detail-inner">
-      <button type="button" class="close-detail" id="close-detail" aria-label="Close">&times;</button>
-      <div class="badges">${badgeHtml(cats, open)}</div>
-      <h2>${item.name}</h2>
-      ${item.town ? `<p><strong>${item.town}</strong></p>` : ""}
-      <div class="card-actions" style="margin:.6rem 0 0">
-        <button type="button" data-fav="${item.id}" aria-pressed="${fav}">${fav ? "★ " + t("saved") : "☆ " + t("save")}</button>
-        ${phone ? `<a href="${phone}">${t("call")}</a>` : ""}
-        ${item.email ? `<a href="mailto:${item.email}">${t("email")}</a>` : ""}
-        ${maps ? `<a href="${maps}" target="_blank" rel="noopener">${t("directions")}</a>` : ""}
-        ${item.website ? `<a href="${item.website}" target="_blank" rel="noopener">${t("website")}</a>` : ""}
-        <button type="button" data-copy="${item.id}">${t("copyText")}</button>
-      </div>
-      ${item.address ? `<div class="detail-section"><h4>${t("address")}</h4><p>${item.address}</p></div>` : ""}
-      ${item.schedule ? `<div class="detail-section"><h4>${t("schedule")}</h4><p>${item.schedule}</p></div>` : ""}
-      ${item.residentsServed ? `<div class="detail-section"><h4>${t("residents")}</h4><p>${item.residentsServed}</p></div>` : ""}
-      <div class="detail-section"><h4>${t("documentation")}</h4><p>${idLabel}${item.openToAll ? t("openToAllTag") : ""}</p></div>
-      ${item.contactPerson ? `<div class="detail-section"><h4>${t("contactLabel")}</h4><p>${item.contactPerson}${item.phone ? " · " + item.phone : ""}</p></div>` : (item.phone ? `<div class="detail-section"><h4>${t("phone")}</h4><p>${item.phone}</p></div>` : "")}
-      ${item.notes ? `<div class="detail-section"><h4>${t("notes")}</h4><p>${item.notes}</p></div>` : ""}
-      ${item.donationsAccepted ? `<div class="detail-section"><h4>${t("donations")}</h4><p>${t("donationsYes")}</p></div>` : ""}
-      <div class="detail-section"><h4>${t("reminder")}</h4><p>${DIRECTORY.meta.disclaimer}</p></div>
-    </div>`;
-}
-
-function selectItem(id, fromMap) {
-  const item = DIRECTORY.sites.find((s) => s.id === id);
-  if (!item) return;
-  state.selectedId = id;
-  document.body.classList.add("has-selection");
-  document.getElementById("layout").classList.add("has-detail");
-  document.getElementById("detail").innerHTML = detailHtml(item);
-  wireDetailActions();
-  document.querySelectorAll(".card").forEach((c) => c.classList.toggle("active", c.dataset.id === id));
-  if (state.map && item.lat != null) {
-    const m = state.markers[id];
-    if (m) {
-      if (!fromMap) state.map.setView([item.lat, item.lng], Math.max(state.map.getZoom(), 13), { animate: true });
-      m.openPopup();
-    }
-  }
-}
-function clearSelection() {
-  state.selectedId = null;
-  document.body.classList.remove("has-selection");
-  document.getElementById("layout").classList.remove("has-detail");
-  document.getElementById("detail").innerHTML = "";
-}
-function wireDetailActions() {
-  document.getElementById("close-detail")?.addEventListener("click", clearSelection);
-  document.querySelectorAll("#detail [data-fav]").forEach((btn) => {
-    btn.addEventListener("click", (e) => toggleFavorite(btn.getAttribute("data-fav"), e));
-  });
-  document.querySelectorAll("#detail [data-copy]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const item = DIRECTORY.sites.find((s) => s.id === btn.getAttribute("data-copy"));
-      if (item) copyText(smsText(item));
-    });
+    return hay.includes(q);
+  }).sort((a, b) => {
+    const da = (a.district || "").localeCompare(b.district || "");
+    return da || a.name.localeCompare(b.name);
   });
 }
 
-function renderList() {
-  const list = filteredSites();
-  const el = document.getElementById("cards");
-  const n = list.length;
-  const label = (n === 1 ? t("locCount") : t("locCountPlural")).replace("{n}", n);
-  document.getElementById("result-count").textContent = label + (state.userLoc ? t("sortedDist") : "");
-  document.getElementById("print-header").textContent =
-    `${t("brand")} — ${label}` + (getFilters().town ? ` · ${getFilters().town}` : "");
-
+function renderSchools() {
+  const list = filteredSchools();
+  const countEl = document.getElementById("school-count");
+  const key = list.length === 1 ? "schoolCount" : "schoolCountPlural";
+  countEl.textContent = t(key).replace("{n}", String(list.length));
+  const el = document.getElementById("school-list");
   if (!list.length) {
-    const favMode = getFilters().docs === "favorites";
-    el.innerHTML = `<div class="empty"><strong>${favMode ? t("emptyFav") : t("noMatches")}</strong>${favMode ? t("emptyFavHint") : t("noMatchesHint")}</div>`;
+    el.innerHTML = `<div class="empty"><strong>${escapeHtml(t("noSchoolMatches"))}</strong>${escapeHtml(t("noSchoolHint"))}</div>`;
     return;
   }
-  el.innerHTML = list.map(cardHtml).join("");
-  el.querySelectorAll(".card").forEach((card) => {
-    const open = () => selectItem(card.dataset.id, false);
-    card.addEventListener("click", (e) => {
-      if (e.target.closest("a,button")) return;
-      open();
-    });
-    card.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
-    });
-  });
-  el.querySelectorAll("[data-fav]").forEach((btn) => {
-    btn.addEventListener("click", (e) => toggleFavorite(btn.getAttribute("data-fav"), e));
-  });
-  el.querySelectorAll("[data-detail]").forEach((btn) => {
-    btn.addEventListener("click", (e) => { e.stopPropagation(); selectItem(btn.getAttribute("data-detail"), false); });
-  });
-  el.querySelectorAll("[data-copy]").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const item = DIRECTORY.sites.find((s) => s.id === btn.getAttribute("data-copy"));
-      if (item) copyText(smsText(item));
-    });
-  });
-}
-
-function ensureMap() {
-  if (state.map) { state.map.invalidateSize(); return; }
-  state.map = L.map("map", { scrollWheelZoom: true }).setView([41.42, -74.28], 10);
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 18,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  }).addTo(state.map);
-  state.markerLayer = L.layerGroup().addTo(state.map);
-}
-
-function renderMap() {
-  ensureMap();
-  state.markerLayer.clearLayers();
-  state.markers = {};
-  const list = filteredSites().filter((s) => s.lat != null && s.lng != null);
-  const bounds = [];
-  for (const item of list) {
-    const cats = categoriesOf(item);
-    const marker = L.marker([item.lat, item.lng]);
-    marker.bindPopup(`<strong>${item.name}</strong><br>${item.town || ""}<br><em>${cats.map(catLabel).join(", ")}</em>`);
-    marker.on("click", () => selectItem(item.id, true));
-    marker.addTo(state.markerLayer);
-    state.markers[item.id] = marker;
-    bounds.push([item.lat, item.lng]);
-  }
-  if (state.userLoc) {
-    L.circleMarker([state.userLoc.lat, state.userLoc.lng], {
-      radius: 8, color: "#c9a227", fillColor: "#c9a227", fillOpacity: 0.9, weight: 2,
-    }).addTo(state.markerLayer).bindPopup(t("nearMeOn"));
-    bounds.push([state.userLoc.lat, state.userLoc.lng]);
-  }
-  if (bounds.length === 1) state.map.setView(bounds[0], 13);
-  else if (bounds.length > 1) state.map.fitBounds(bounds, { padding: [36, 36], maxZoom: 12 });
-  else state.map.setView([41.42, -74.28], 10);
-  setTimeout(() => state.map.invalidateSize(), 80);
-}
-
-function setView(view) {
-  state.view = view;
-  document.body.classList.toggle("view-map", view === "map");
-  document.getElementById("view-list").setAttribute("aria-pressed", view === "list" ? "true" : "false");
-  document.getElementById("view-map").setAttribute("aria-pressed", view === "map" ? "true" : "false");
-  syncUrl();
-  render();
-}
-
-function prefsQuery() {
-  const params = new URLSearchParams();
-  if (state.lang !== "en") params.set("lang", state.lang);
-  if (document.body.classList.contains("low-bw")) params.set("bw", "1");
-  const qs = params.toString();
-  return qs ? `?${qs}` : "";
-}
-
-function syncCrossLinks() {
-  const benefits = document.getElementById("benefits-link");
-  if (benefits) benefits.href = `benefits.html${prefsQuery()}`;
-}
-
-function syncUrl() {
-  if (state.syncingUrl) return;
-  const f = getFilters();
-  const params = new URLSearchParams();
-  if (f.q) params.set("q", f.q);
-  if (f.town) params.set("town", f.town);
-  if (f.type) params.set("type", f.type);
-  if (f.day) params.set("day", f.day);
-  if (f.docs) params.set("docs", f.docs);
-  if (f.radius) params.set("radius", f.radius);
-  if (state.view === "map") params.set("view", "map");
-  if (state.lang !== "en") params.set("lang", state.lang);
-  if (document.body.classList.contains("low-bw")) params.set("bw", "1");
-  const qs = params.toString();
-  const hash = (location.hash === "#directory" || location.hash === "#top") ? location.hash : "";
-  history.replaceState(null, "", qs ? `${location.pathname}?${qs}${hash}` : `${location.pathname}${hash}`);
-  syncCrossLinks();
-}
-
-function loadFromUrl() {
-  state.syncingUrl = true;
-  const p = new URLSearchParams(location.search);
-  if (p.get("q")) document.getElementById("q").value = p.get("q");
-  if (p.get("town")) document.getElementById("town").value = p.get("town");
-  if (p.get("type")) document.getElementById("type").value = p.get("type");
-  if (p.get("day")) document.getElementById("day").value = p.get("day");
-  if (p.get("docs")) document.getElementById("docs").value = p.get("docs");
-  if (p.get("radius")) document.getElementById("radius").value = p.get("radius");
-  const allowed = ["en","es","yi","zh","ht","ar","he","ru"];
-  if (allowed.includes(p.get("lang"))) {
-    state.lang = p.get("lang");
-    localStorage.setItem(LANG_KEY, state.lang);
-  }
-  if (p.get("bw") === "1" || localStorage.getItem(BW_KEY) === "1") {
-    document.body.classList.add("low-bw");
-    localStorage.setItem(BW_KEY, "1");
-  }
-  if (p.get("view") === "map") state.view = "map";
-  state.syncingUrl = false;
+  el.innerHTML = list.map((p) => {
+    const meta = [p.district, p.town].filter(Boolean).join(" · ");
+    const actions = [];
+    if (p.phone) {
+      const href = phoneHref(p.phone);
+      if (href) actions.push(`<a href="${href}">${escapeHtml(t("call"))}</a>`);
+    }
+    if (p.email) actions.push(`<a href="mailto:${escapeHtml(p.email)}">${escapeHtml(t("email"))}</a>`);
+    if (p.website) actions.push(`<a href="${escapeHtml(p.website)}" target="_blank" rel="noopener">${escapeHtml(t("website"))}</a>`);
+    return `
+      <article class="school-row" id="${escapeHtml(p.id)}">
+        <h3>${escapeHtml(p.name)}</h3>
+        ${meta ? `<p class="school-meta">${escapeHtml(meta)}</p>` : ""}
+        ${p.description ? `<p>${escapeHtml(p.description)}</p>` : ""}
+        ${p.howToEnroll ? `<p><strong>${escapeHtml(t("howEnroll"))}</strong> ${escapeHtml(p.howToEnroll)}</p>` : ""}
+        ${p.address ? `<p><strong>${escapeHtml(t("address"))}:</strong> ${escapeHtml(p.address)}</p>` : ""}
+        ${actions.length ? `<div class="school-actions">${actions.join("")}</div>` : ""}
+      </article>`;
+  }).join("");
 }
 
 function render() {
   applyI18n();
-  renderList();
-  if (state.view === "map") renderMap();
-  document.body.classList.toggle("view-map", state.view === "map");
-  document.getElementById("view-list").setAttribute("aria-pressed", state.view === "list" ? "true" : "false");
-  document.getElementById("view-map").setAttribute("aria-pressed", state.view === "map" ? "true" : "false");
-  const near = document.getElementById("near-me");
-  near.textContent = state.userLoc ? t("nearMeOn") : t("nearMe");
-  near.classList.toggle("on", !!state.userLoc);
+  renderBenefits();
+  populateDistricts();
+  renderSchools();
   syncUrl();
-}
-
-async function shareList() {
-  syncUrl();
-  const url = location.href.split("#")[0];
-  if (navigator.share) {
-    try {
-      await navigator.share({ title: t("brand"), text: t("lead"), url });
-    } catch (_) { /* user cancelled */ }
-    return;
-  }
-  try {
-    await navigator.clipboard.writeText(url);
-    toast(t("shared"));
-  } catch {
-    toast(t("shareFailed"));
-  }
-}
-
-function wireFilters() {
-  ["q","town","type","day","docs","radius"].forEach((id) => {
-    document.getElementById(id).addEventListener("input", render);
-    document.getElementById(id).addEventListener("change", render);
-  });
-  document.getElementById("view-list").addEventListener("click", () => setView("list"));
-  document.getElementById("view-map").addEventListener("click", () => setView("map"));
-  document.getElementById("share-btn").addEventListener("click", shareList);
-  document.getElementById("print-btn").addEventListener("click", () => window.print());
-  document.getElementById("lang-select").addEventListener("change", (e) => {
-    state.lang = e.target.value || "en";
-    localStorage.setItem(LANG_KEY, state.lang);
-    populateTowns();
-    render();
-  });
-  document.getElementById("low-bw").addEventListener("click", () => {
-    const on = document.body.classList.toggle("low-bw");
-    localStorage.setItem(BW_KEY, on ? "1" : "0");
-    applyI18n();
-    syncUrl();
-  });
-  document.querySelectorAll(".chip[data-quick]").forEach((chip) => {
-    chip.addEventListener("click", () => {
-      const q = chip.dataset.quick;
-      if (q === "clear") {
-        document.getElementById("q").value = "";
-        document.getElementById("town").value = "";
-        document.getElementById("type").value = "";
-        document.getElementById("day").value = "";
-        document.getElementById("docs").value = "";
-        document.getElementById("radius").value = "";
-        document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
-      } else if (q === "favorites") {
-        document.getElementById("docs").value = "favorites";
-        document.getElementById("day").value = "";
-        document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
-        chip.setAttribute("aria-pressed", "true");
-      } else if (q === "open_now") {
-        document.getElementById("day").value = "open_now";
-        document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
-        chip.setAttribute("aria-pressed", "true");
-      } else if (q === "today") {
-        document.getElementById("day").value = "today";
-        document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
-        chip.setAttribute("aria-pressed", "true");
-      } else if (q === "open_to_all") {
-        document.getElementById("docs").value = "open_to_all";
-        chip.setAttribute("aria-pressed", "true");
-      } else {
-        document.getElementById("type").value = q;
-        chip.setAttribute("aria-pressed", "true");
-      }
-      render();
-    });
-  });
-  document.getElementById("near-me").addEventListener("click", () => {
-    if (!navigator.geolocation) { alert(t("geoUnsupported")); return; }
-    const btn = document.getElementById("near-me");
-    btn.textContent = t("locating");
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        state.userLoc = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-        if (!document.getElementById("radius").value) document.getElementById("radius").value = "10";
-        render();
-      },
-      () => { btn.textContent = t("nearMe"); alert(t("geoFail")); },
-      { enableHighAccuracy: true, timeout: 10000 }
-    );
-  });
 }
 
 function updateOnline() {
@@ -2045,16 +1648,27 @@ window.addEventListener("online", updateOnline);
 window.addEventListener("offline", updateOnline);
 updateOnline();
 
+document.getElementById("lang-select").addEventListener("change", (e) => {
+  state.lang = e.target.value || "en";
+  localStorage.setItem(LANG_KEY, state.lang);
+  render();
+});
+document.getElementById("low-bw").addEventListener("click", () => {
+  const on = document.body.classList.toggle("low-bw");
+  localStorage.setItem(BW_KEY, on ? "1" : "0");
+  applyI18n();
+  syncUrl();
+});
+document.getElementById("school-q").addEventListener("input", renderSchools);
+document.getElementById("school-district").addEventListener("change", renderSchools);
+
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./sw.js").catch(() => {});
   });
 }
 
-populateTowns();
 loadFromUrl();
-wireFilters();
-applyI18n();
 render();
 </script>
 </body>

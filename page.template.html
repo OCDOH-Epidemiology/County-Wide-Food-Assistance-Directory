@@ -219,16 +219,6 @@ body.low-bw.view-map #map-panel::after {
 }
 .card-actions a:hover, .card-actions button:hover { border-color: var(--leaf); background: var(--sky); }
 .dist { font-weight: 700; color: var(--forest); font-size: .85rem; }
-.programs { margin: 1.5rem 0 .25rem; }
-.programs h2 { font-family: var(--display); font-size: 1.5rem; margin: 0 0 .35rem; }
-.programs-lead { margin: 0 0 1rem; color: var(--muted); }
-.program-grid { display: grid; gap: .85rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
-.program-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.05rem; box-shadow: var(--shadow); }
-.program-card h3 { margin: 0 0 .4rem; font-family: var(--display); font-size: 1.1rem; }
-.program-card p { margin: 0; color: var(--muted); font-size: .92rem; }
-.program-card details { margin-top: .65rem; }
-.program-card summary { cursor: pointer; font-weight: 700; color: var(--forest); }
-.program-card .links { margin: .5rem 0 0; padding-left: 1.1rem; }
 #detail { display: none; position: sticky; top: 6.5rem; align-self: start; max-height: calc(100vh - 7rem); overflow: auto; }
 body.has-selection #detail { display: block; }
 .detail-inner { padding: 1.15rem 1.2rem 1.4rem; }
@@ -266,7 +256,7 @@ footer a { font-weight: 600; }
 }
 @media print {
   body::before, .hero, .banner, .toolbar, .hero-top, .view-toggle, .chip-row,
-  .action-row, #map-panel, #detail, .programs, footer, .skip-link, .offline-banner, .toast, .fav-btn { display: none !important; }
+  .action-row, #map-panel, #detail, footer, .skip-link, .offline-banner, .toast, .fav-btn { display: none !important; }
   body { background: #fff; color: #000; }
   .main { padding: 0; }
   .panel { box-shadow: none; border: 0; }
@@ -308,7 +298,7 @@ footer a { font-weight: 600; }
     <p class="hero-lead" data-i18n="lead">Find pantries, meals, benefits, and markets near you — filter by town, day, and program type.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#directory" data-i18n="browse">Browse directory</a>
-      <a class="btn btn-ghost" href="#programs" data-i18n="benefits">Benefits &amp; programs</a>
+      <a class="btn btn-ghost" id="benefits-link" href="benefits.html" data-i18n="benefits">Benefits &amp; programs</a>
     </div>
     <div class="meta-pills">
       <span class="pill" data-i18n="updated">Updated June 2026</span>
@@ -437,12 +427,6 @@ footer a { font-weight: 600; }
       </div>
       <aside class="panel" id="detail" aria-live="polite"></aside>
     </div>
-
-    <section class="programs" id="programs">
-      <h2 data-i18n="programsTitle">Benefits &amp; programs</h2>
-      <p class="programs-lead" data-i18n="programsLead">SNAP, WIC, senior dining, school meals, Summer EBT, and more — expand a card for eligibility and how to enroll.</p>
-      <div class="program-grid" id="program-grid"></div>
-    </section>
   </div>
 </main>
 
@@ -525,7 +509,7 @@ const I18N = {
     "share": "Share list",
     "print": "Print list",
     "programsTitle": "Benefits & programs",
-    "programsLead": "SNAP, WIC, senior dining, school meals, Summer EBT, and more — expand a card for eligibility and how to enroll.",
+    "programsLead": "SNAP, WIC, senior dining, school meals, Summer EBT, and more — eligibility and how to enroll.",
     "mapNote": "Map pins are approximate by address/town. Always confirm location details by phone.",
     "mapOfflineNote": "Map tiles need a network connection. List view works offline.",
     "source": "Source: County-Wide Food Assistance Directory Programs by Town, Orange County NY — <strong>Last updated June 2026</strong>.",
@@ -643,7 +627,7 @@ const I18N = {
     "share": "Compartir lista",
     "print": "Imprimir lista",
     "programsTitle": "Beneficios y programas",
-    "programsLead": "SNAP, WIC, comidas para adultos mayores, programas escolares, Summer EBT y más — abra una tarjeta para elegibilidad e inscripción.",
+    "programsLead": "SNAP, WIC, comidas para adultos mayores, programas escolares, Summer EBT y más — elegibilidad e inscripción.",
     "mapNote": "Los pines del mapa son aproximados por dirección/pueblo. Confirme siempre por teléfono.",
     "mapOfflineNote": "Las baldosas del mapa necesitan conexión. La lista funciona sin conexión.",
     "source": "Fuente: Directorio de Asistencia Alimentaria del Condado de Orange — <strong>Actualizado junio 2026</strong>.",
@@ -761,7 +745,7 @@ const I18N = {
     "share": "טיילן ליסטע",
     "print": "דרוקן ליסטע",
     "programsTitle": "בענעפֿיטן און פּראָגראַמען",
-    "programsLead": "SNAP, WIC, עלטערע מאָלצייַטן, שול־פּראָגראַמען און מער — עפֿנט אַ קאַרטל פֿאַר דעטאַלן.",
+    "programsLead": "SNAP, WIC, עלטערע מאָלצייַטן, שול־פּראָגראַמען און מער — בארעכטיגונג און ווי צו רעגיסטרירן.",
     "mapNote": "מאַפּע־פּינס זענען בערך. באַשטעטיקט שטענדיק דעם אָרט מיט אַ טעלעפֿאָן־רוף.",
     "mapOfflineNote": "די מאַפּע דאַרף אינטערנעץ. די ליסטע אַרבעט אָן אינטערנעץ.",
     "source": "מקור: אָראַנדזש קאַונטי עסן־הילף וועגווייַזער — <strong>דערהײַנט יוני 2026</strong>.",
@@ -879,7 +863,7 @@ const I18N = {
     "share": "分享列表",
     "print": "打印列表",
     "programsTitle": "福利与项目",
-    "programsLead": "SNAP、WIC、老年用餐、学校餐食、Summer EBT 等 — 展开卡片查看资格与申请方式。",
+    "programsLead": "SNAP、WIC、老年用餐、学校餐食、Summer EBT 等 — 资格与申请方式。",
     "mapNote": "地图标记为大致位置。请务必电话确认。",
     "mapOfflineNote": "地图需要网络。列表可离线使用。",
     "source": "来源：奥兰治县食品援助目录 — <strong>更新于 2026年6月</strong>。",
@@ -997,7 +981,7 @@ const I18N = {
     "share": "Pataje lis",
     "print": "Enprime lis",
     "programsTitle": "Benefis ak pwogram",
-    "programsLead": "SNAP, WIC, repa pou granmoun, pwogram lekòl, Summer EBT ak plis — louvri yon kat pou detay.",
+    "programsLead": "SNAP, WIC, repa pou granmoun, pwogram lekòl, Summer EBT ak plis — kalifikasyon ak enskripsyon.",
     "mapNote": "Pwen sou kat yo apwoksimatif. Toujou konfime pa telefòn.",
     "mapOfflineNote": "Kat la bezwen entènèt. Lis la mache san entènèt.",
     "source": "Sous: Anyè Asistans Manje Orange County — <strong>Mizajou jen 2026</strong>.",
@@ -1115,7 +1099,7 @@ const I18N = {
     "share": "مشاركة القائمة",
     "print": "طباعة القائمة",
     "programsTitle": "المزايا والبرامج",
-    "programsLead": "SNAP وWIC ووجبات كبار السن وبرامج المدارس وSummer EBT والمزيد — افتح البطاقة للتفاصيل.",
+    "programsLead": "SNAP وWIC ووجبات كبار السن وبرامج المدارس وSummer EBT والمزيد — الأهلية وطريقة التسجيل.",
     "mapNote": "علامات الخريطة تقريبية. أكّد دائمًا عبر الهاتف.",
     "mapOfflineNote": "الخريطة تحتاج اتصالاً. القائمة تعمل دون اتصال.",
     "source": "المصدر: دليل المساعدة الغذائية لمقاطعة أورانج — <strong>محدَّث يونيو 2026</strong>.",
@@ -1233,7 +1217,7 @@ const I18N = {
     "share": "שתף רשימה",
     "print": "הדפס רשימה",
     "programsTitle": "הטבות ותוכניות",
-    "programsLead": "SNAP, WIC, ארוחות לגיל השלישי, תוכניות בית ספר, Summer EBT ועוד — פתחו כרטיס לפרטים.",
+    "programsLead": "SNAP, WIC, ארוחות לגיל השלישי, תוכניות בית ספר, Summer EBT ועוד — זכאות ורישום.",
     "mapNote": "סימוני המפה משוערים. תמיד אשרו בטלפון.",
     "mapOfflineNote": "המפה דורשת רשת. הרשימה עובדת ללא רשת.",
     "source": "מקור: מדריך סיוע במזון במחוז אורנג׳ — <strong>עודכן יוני 2026</strong>.",
@@ -1351,7 +1335,7 @@ const I18N = {
     "share": "Поделиться списком",
     "print": "Печать списка",
     "programsTitle": "Пособия и программы",
-    "programsLead": "SNAP, WIC, питание для пожилых, школьные программы, Summer EBT и другое — откройте карточку для деталей.",
+    "programsLead": "SNAP, WIC, питание для пожилых, школьные программы, Summer EBT и другое — право на участие и запись.",
     "mapNote": "Метки на карте приблизительные. Всегда подтверждайте по телефону.",
     "mapOfflineNote": "Карте нужен интернет. Список работает офлайн.",
     "source": "Источник: справочник продовольственной помощи округа Ориндж — <strong>обновлено июнь 2026</strong>.",
@@ -1890,33 +1874,6 @@ function renderMap() {
   setTimeout(() => state.map.invalidateSize(), 80);
 }
 
-function renderPrograms() {
-  const core = DIRECTORY.programs.filter((p) => ["snap", "wic", "senior", "summer_ebt"].includes(p.category));
-  const schools = DIRECTORY.programs.filter((p) => p.category === "school");
-  const grid = document.getElementById("program-grid");
-  grid.innerHTML = [...core, ...schools].map((p) => {
-    const links = (p.links || []).map((l) => `<li><a href="${l.url}" target="_blank" rel="noopener">${l.label}</a></li>`).join("");
-    const locs = (p.locations || []).filter((l) => l.address || l.phone).slice(0, 6)
-      .map((l) => `<li>${l.name}${l.phone ? " — " + l.phone : ""}${l.address ? "<br>" + l.address : ""}${l.schedule ? "<br>" + l.schedule : ""}</li>`).join("");
-    return `
-      <article class="program-card">
-        <span class="badge ${p.category}">${catLabel(p.category)}</span>
-        <h3>${p.name}</h3>
-        ${p.district ? `<p>${p.district}${p.town ? " · " + p.town : ""}</p>` : (p.town ? `<p>${p.town}</p>` : "")}
-        <p>${(p.description || "").slice(0, 160)}${(p.description || "").length > 160 ? "…" : ""}</p>
-        <details>
-          <summary>${t("eligibility")}</summary>
-          <p style="margin-top:.5rem">${p.description || ""}</p>
-          ${p.howToEnroll ? `<p style="margin-top:.5rem"><strong>${t("howEnroll")}</strong> ${p.howToEnroll}</p>` : ""}
-          ${p.phone ? `<p style="margin-top:.4rem"><strong>${t("phone")}:</strong> <a href="${phoneHref(p.phone) || "#"}">${p.phone}</a></p>` : ""}
-          ${p.website ? `<p><a href="${p.website}" target="_blank" rel="noopener">${t("website")}</a></p>` : ""}
-          ${links ? `<ul class="links">${links}</ul>` : ""}
-          ${locs ? `<p style="margin-top:.5rem"><strong>${t("programSites")}</strong></p><ul class="links">${locs}</ul>` : ""}
-        </details>
-      </article>`;
-  }).join("");
-}
-
 function setView(view) {
   state.view = view;
   document.body.classList.toggle("view-map", view === "map");
@@ -1924,6 +1881,19 @@ function setView(view) {
   document.getElementById("view-map").setAttribute("aria-pressed", view === "map" ? "true" : "false");
   syncUrl();
   render();
+}
+
+function prefsQuery() {
+  const params = new URLSearchParams();
+  if (state.lang !== "en") params.set("lang", state.lang);
+  if (document.body.classList.contains("low-bw")) params.set("bw", "1");
+  const qs = params.toString();
+  return qs ? `?${qs}` : "";
+}
+
+function syncCrossLinks() {
+  const benefits = document.getElementById("benefits-link");
+  if (benefits) benefits.href = `benefits.html${prefsQuery()}`;
 }
 
 function syncUrl() {
@@ -1940,8 +1910,9 @@ function syncUrl() {
   if (state.lang !== "en") params.set("lang", state.lang);
   if (document.body.classList.contains("low-bw")) params.set("bw", "1");
   const qs = params.toString();
-  const url = qs ? `${location.pathname}?${qs}${location.hash && location.hash !== "#directory" ? location.hash : ""}` : location.pathname;
-  history.replaceState(null, "", url + (location.hash === "#directory" || location.hash === "#programs" || location.hash === "#top" ? location.hash : ""));
+  const hash = (location.hash === "#directory" || location.hash === "#top") ? location.hash : "";
+  history.replaceState(null, "", qs ? `${location.pathname}?${qs}${hash}` : `${location.pathname}${hash}`);
+  syncCrossLinks();
 }
 
 function loadFromUrl() {
@@ -1969,7 +1940,6 @@ function loadFromUrl() {
 function render() {
   applyI18n();
   renderList();
-  renderPrograms();
   if (state.view === "map") renderMap();
   document.body.classList.toggle("view-map", state.view === "map");
   document.getElementById("view-list").setAttribute("aria-pressed", state.view === "list" ? "true" : "false");

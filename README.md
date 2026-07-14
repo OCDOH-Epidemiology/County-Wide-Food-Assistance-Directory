@@ -4,8 +4,9 @@ Interactive directory of food pantries, soup kitchens, SNAP, WIC, senior meals, 
 
 ## Files
 
-- `index.html` — published directory app
-- `page.template.html` + `generate.py` — rebuild `index.html` from `directory.json`
+- `index.html` — published directory app (pantries, meals, map)
+- `benefits.html` — SNAP, WIC, senior meals, Summer EBT, and school programs
+- `page.template.html` + `benefits.template.html` + `generate.py` — rebuild published HTML from `directory.json`
 - `directory.json`, `sites.json`, `programs.json`, `program_locations.json` — data
 - Source PDF of the June 2026 town directory
 
@@ -14,3 +15,5 @@ Interactive directory of food pantries, soup kitchens, SNAP, WIC, senior meals, 
 ```bash
 python3 generate.py
 ```
+
+This writes both `index.html` and `benefits.html`.

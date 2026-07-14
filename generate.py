@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
-"""Generate the Food Assistance Directory HTML page from directory.json + template."""
+"""Generate the Food Assistance Directory HTML pages from directory.json + templates."""
 import json
 from pathlib import Path
 
 BUILD = Path(__file__).parent
 DIRECTORY = json.loads((BUILD / "directory.json").read_text(encoding="utf-8"))
 DATA_JSON = json.dumps(DIRECTORY, separators=(",", ":"), ensure_ascii=False)
-TEMPLATE = (BUILD / "page.template.html").read_text(encoding="utf-8")
-HTML = TEMPLATE.replace("__DATA__", DATA_JSON)
 
 OUTS = [
-    BUILD / "index.html",
+    (BUILD / "page.template.html", BUILD / "index.html"),
+    (BUILD / "benefits.template.html", BUILD / "benefits.html"),
 ]
-for out in OUTS:
-    out.write_text(HTML, encoding="utf-8")
-    print(f"Wrote {out} ({out.stat().st_size:,} bytes)")
+
+for template_path, out_path in OUTS:
+    html = template_path.read_text(encoding="utf-8").replace("__DATA__", DATA_JSON)
+    if "__DATA__" in html:
+        raise SystemExit(f"Placeholder __DATA__ still present in {template_path.name}")
+    out_path.write_text(html, encoding="utf-8")
+    print(f"Wrote {out_path.name} ({out_path.stat().st_size:,} bytes)")

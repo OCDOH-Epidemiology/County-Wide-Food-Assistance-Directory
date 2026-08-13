@@ -1399,8 +1399,272 @@ const I18N = {
   }
 };
 
+const PROGRAM_I18N = {
+  "snap": {
+    "es": {
+      "name": "Programa de Asistencia Nutricional Suplementaria (SNAP)",
+      "description": "El hogar debe cumplir ciertos límites de ingresos y recursos, y requisitos de trabajo, para ser elegible a SNAP. Aunque normalmente no son elegibles, estudiantes y no ciudadanos pueden recibir SNAP bajo calificaciones específicas. En general, los no ciudadanos deben haber vivido en EE. UU. al menos 5 años, recibir asistencia relacionada con discapacidad, o ser menores de 18 años. Las personas sin hogar no necesitan cumplir ciertos requisitos de residencia. Aplican reglas especiales para adultos mayores o con discapacidad.",
+      "howToEnroll": "Solicite en myBenefits (https://mybenefits.ny.gov/mybenefits/begin), llame al Departamento de Servicios Sociales del Condado de Orange al 845-291-2002, llame al United Way 211, o contacte Cornerstone Family Healthcare Enabling Services al 845-926-3636 / Jduran@cornerstonefh.org."
+    },
+    "yi": {
+      "name": "צוגעגעבענע דערנערונג הילף פּראָגראַם (SNAP)",
+      "description": "אַ הויזגעזינד מוז טרעפן געוויסע אַרייַנקונפט און רעסורסן לימיטן און אַרבעט רעקווייערמענץ צו זיין בארעכטיגט פֿאַר SNAP. כאָטש סטודענטן און נישט־בירגער זענען געוויינטלעך נישט בארעכטיגט, קענען זיי באַקומען SNAP אונטער ספּעציפֿישע באַדינגונגען. נישט־בירגער מוזן בכלל האָבן געוווינט אין די פֿאַראייניקטע שטאַטן לפּחות 5 יאָר, באַקומען הילף צוליב אינבאַלידקייט, אָדער זיין קינדער אונטער 18. מענטשן אָן אַ היים דאַרפן נישט טרעפן געוויסע וווינונג רעקווייערמענץ. ספּעציעלע כּללים גילטן פֿאַר עלטערע אָדער אינבאַלידע.",
+      "howToEnroll": "אַפּליקירט דורך myBenefits (https://mybenefits.ny.gov/mybenefits/begin), רופט Orange County Department of Social Services אויף 845-291-2002, רופט United Way 211, אָדער קאָנטאַקטירט Cornerstone Family Healthcare Enabling Services אויף 845-926-3636 / Jduran@cornerstonefh.org."
+    },
+    "zh": {
+      "name": "补充营养援助计划 (SNAP)",
+      "description": "家庭须符合一定的收入与资产限制以及工作要求，才有资格领取 SNAP 福利。学生与非公民通常不符合资格，但在特定条件下可以领取。非公民一般须在美国居住至少 5 年、正在领取与残疾相关的补助，或为未满 18 岁的儿童。无家可归者无需满足某些居住要求。老年人或残疾人适用特别规定。",
+      "howToEnroll": "通过 myBenefits（https://mybenefits.ny.gov/mybenefits/begin）申请，致电奥兰治县社会服务部 845-291-2002，拨打联合劝募 211，或联系 Cornerstone Family Healthcare Enabling Services：845-926-3636 / Jduran@cornerstonefh.org。"
+    },
+    "ht": {
+      "name": "Pwogram Asistans Nitrisyonèl Siplemantè (SNAP)",
+      "description": "Fanmi an dwe satisfè sèten limit revni ak resous, epi kondisyon travay, pou kalifye pou benefis SNAP. Byenke elèv ak moun ki pa sitwayen anjeneral pa kalifye, yo ka resevwa SNAP nan kondisyon espesifik. Anjeneral, moun ki pa sitwayen dwe te viv Ozetazini pou omwen 5 ane, resevwa èd ki gen rapò ak andikap, oswa se timoun ki poko gen 18 an. Moun ki san kay pa bezwen satisfè sèten kondisyon rezidans. Gen règ espesyal pou granmoun aje oswa moun andikape.",
+      "howToEnroll": "Aplike sou myBenefits (https://mybenefits.ny.gov/mybenefits/begin), rele Depatman Sèvis Sosyal Konte Orange nan 845-291-2002, rele United Way 211, oswa kontakte Cornerstone Family Healthcare Enabling Services nan 845-926-3636 / Jduran@cornerstonefh.org."
+    },
+    "ar": {
+      "name": "برنامج المساعدة الغذائية التكميلية (SNAP)",
+      "description": "يجب أن تستوفي الأسرة حدودًا معينة للدخل والموارد ومتطلبات العمل للتأهل لمزايا SNAP. رغم أن الطلاب وغير المواطنين غير مؤهلين عادةً، يمكنهم الحصول على SNAP وفق شروط محددة. عمومًا يجب أن يكون غير المواطنين قد عاشوا في الولايات المتحدة لمدة 5 سنوات على الأقل، أو يتلقون مساعدة متعلقة بالإعاقة، أو أن يكونوا أطفالًا دون 18 عامًا. لا يحتاج الأشخاص الذين يعانون من التشرد إلى استيفاء بعض متطلبات الإقامة. وتُطبَّق قواعد خاصة لكبار السن أو ذوي الإعاقة.",
+      "howToEnroll": "قدّم عبر myBenefits (https://mybenefits.ny.gov/mybenefits/begin)، أو اتصل بإدارة الخدمات الاجتماعية في مقاطعة أورانج على 845-291-2002، أو اتصل بـ United Way على 211، أو تواصل مع Cornerstone Family Healthcare Enabling Services على 845-926-3636 / Jduran@cornerstonefh.org."
+    },
+    "he": {
+      "name": "תוכנית סיוע תזונתי משלים (SNAP)",
+      "description": "משק בית חייב לעמוד במגבלות הכנסה ומשאבים מסוימות ובדרישות עבודה כדי להיות זכאי להטבות SNAP. אף שסטודנטים ומי שאינם אזרחים בדרך כלל אינם זכאים, הם יכולים לקבל SNAP בתנאים מסוימים. בדרך כלל, מי שאינם אזרחים חייבים לגור בארה\"ב לפחות 5 שנים, לקבל סיוע הקשור לנכות, או להיות ילדים מתחת לגיל 18. אנשים החווים חוסר בית אינם צריכים לעמוד בדרישות מגורים מסוימות. חלים כללים מיוחדים לקשישים או לאנשים עם מוגבלות.",
+      "howToEnroll": "הגישו בקשה ב־myBenefits (https://mybenefits.ny.gov/mybenefits/begin), התקשרו למחלקת השירותים החברתיים של מחוז אורנג' ב־845-291-2002, חייגו ל־United Way ב־211, או צרו קשר עם Cornerstone Family Healthcare Enabling Services ב־845-926-3636 / Jduran@cornerstonefh.org."
+    },
+    "ru": {
+      "name": "Программа дополнительной продовольственной помощи (SNAP)",
+      "description": "Семья должна соответствовать определённым ограничениям по доходу и ресурсам, а также требованиям к работе, чтобы иметь право на SNAP. Хотя студенты и лица без гражданства обычно не имеют права, они могут получать SNAP при определённых условиях. Как правило, лица без гражданства должны проживать в США не менее 5 лет, получать пособие, связанное с инвалидностью, либо быть детьми младше 18 лет. Людям без жилья не нужно выполнять некоторые требования к месту жительства. Для пожилых и людей с инвалидностью действуют особые правила.",
+      "howToEnroll": "Подайте заявку через myBenefits (https://mybenefits.ny.gov/mybenefits/begin), позвоните в Департамент социальных служб округа Ориндж по телефону 845-291-2002, наберите United Way 211 или свяжитесь с Cornerstone Family Healthcare Enabling Services: 845-926-3636 / Jduran@cornerstonefh.org."
+    }
+  },
+  "wic": {
+    "es": {
+      "name": "Programa para Mujeres, Bebés y Niños (WIC)",
+      "description": "Los solicitantes deben cumplir todos los requisitos: Categórico (mujeres embarazadas durante el embarazo y hasta 6 semanas después del parto/fin del embarazo; posparto hasta seis meses después del parto; lactancia hasta el primer cumpleaños del bebé; bebés hasta el primer cumpleaños; niños hasta el quinto cumpleaños); Residencial (vivir en el estado de la solicitud); Ingresos (igual o por debajo del estándar estatal, o elegibles automáticamente por SNAP, Medicaid, TANF, etc.); Riesgo nutricional (determinado por un profesional de la salud o personal de WIC). Los no ciudadanos son elegibles si cumplen los requisitos generales.",
+      "howToEnroll": "Contacte una clínica WIC local (Cornerstone Family Healthcare o Sun River Health) para solicitar. Debe cumplir requisitos categóricos, residenciales, de ingresos y de riesgo nutricional."
+    },
+    "yi": {
+      "name": "פֿרויען, זייגלינג און קינדער פּראָגראַם (WIC)",
+      "description": "אַפּליקאַנטן מוזן טרעפן אַלע בארעכטיגונג רעקווייערמענץ: קאַטעגאָריש (שוואַנגערע פֿרויען ביז 6 וואָכן נאָך געבורט/סוף פֿון שוואַנגערשאַפֿט; נאָך־געבורט ביז זעקס חדשים; ברוסטפֿיטערונג ביז דעם קינדס ערשטן יום־טובֿ; זייגלינגען ביזן ערשטן יום־טובֿ; קינדער ביזן פֿינפֿטן יום־טובֿ); וווינונג (מוז וווינען אין דעם שטאַט פֿון דער אַפּליקאַציע); אַרייַנקונפט (ביזן שטאַט סטאַנדאַרט, אָדער אויטאָמאַטיש דורך SNAP, Medicaid, TANF, אאז\"וו); דערנערונג ריזיקע (באַשטימט דורך אַ געזונט פּראָפֿעסיאָנעל אָדער WIC פּערסאָנאַל). נישט־בירגער זענען בארעכטיגט אויב זיי טרעפן די אַלגעמיינע רעקווייערמענץ.",
+      "howToEnroll": "קאָנטאַקטירט אַ לאָקאַלע WIC קליניק (Cornerstone Family Healthcare אָדער Sun River Health) צו אַפּליקירן. מען מוז טרעפן קאַטעגאָרישע, וווינונג, אַרייַנקונפט און דערנערונג־ריזיקע רעקווייערמענץ."
+    },
+    "zh": {
+      "name": "妇女、婴儿和儿童计划 (WIC)",
+      "description": "申请人须符合全部资格要求：类别（孕妇至分娩/妊娠结束后 6 周；产后至分娩后六个月；母乳喂养至婴儿一周岁；婴儿至一周岁；儿童至五周岁）；居住（须居住在申请所在州）；收入（达到或低于州收入标准，或因 SNAP、Medicaid、TANF 等自动符合收入资格）；营养风险（由健康专业人员或 WIC 工作人员确定）。非公民如符合一般资格要求亦可申请。",
+      "howToEnroll": "联系当地 WIC 诊所（Cornerstone Family Healthcare 或 Sun River Health）申请。须符合类别、居住、收入与营养风险要求。"
+    },
+    "ht": {
+      "name": "Pwogram Fanm, Tibebe ak Timoun (WIC)",
+      "description": "Aplikan yo dwe satisfè tout kondisyon kalifikasyon: Kategorik (fanm ansent pandan gwosès la ak jiska 6 semèn apre nesans/fen gwosès; apre akouchman jiska sis mwa; bay tete jiska premye anivèsè tibebe a; tibebe jiska premye anivèsè; timoun jiska senkyèm anivèsè); Rezidansyèl (dwe viv nan eta kote yo aplike a); Revni (egal oswa pi ba pase estanda eta a, oswa otomatikman kalifye atravè SNAP, Medicaid, TANF, elatriye); Risk nitrisyonèl (detèmine pa pwofesyonèl sante oswa anplwaye WIC). Moun ki pa sitwayen kalifye si yo satisfè kondisyon jeneral yo.",
+      "howToEnroll": "Kontakte yon klinik WIC lokal (Cornerstone Family Healthcare oswa Sun River Health) pou aplike. Ou dwe satisfè kondisyon kategorik, rezidansyèl, revni ak risk nitrisyonèl."
+    },
+    "ar": {
+      "name": "برنامج النساء والرضع والأطفال (WIC)",
+      "description": "يجب أن يستوفي المتقدمون جميع متطلبات الأهلية: فئوية (الحوامل أثناء الحمل وحتى 6 أسابيع بعد الولادة/انتهاء الحمل؛ ما بعد الولادة حتى ستة أشهر؛ الرضاعة حتى عيد ميلاد الرضيع الأول؛ الرضع حتى عيد الميلاد الأول؛ الأطفال حتى عيد الميلاد الخامس)؛ السكن (يجب العيش في ولاية التقديم)؛ الدخل (عند أو دون معيار الولاية، أو الأهلية التلقائية عبر SNAP أو Medicaid أو TANF وغيرها)؛ خطر التغذية (يحدده مختص صحي أو موظفو WIC). غير المواطنين مؤهلون إذا استوفوا المتطلبات العامة.",
+      "howToEnroll": "تواصل مع عيادة WIC محلية (Cornerstone Family Healthcare أو Sun River Health) للتقديم. يجب استيفاء المتطلبات الفئوية والسكنية ومتطلبات الدخل وخطر التغذية."
+    },
+    "he": {
+      "name": "תוכנית נשים, תינוקות וילדים (WIC)",
+      "description": "על המועמדים לעמוד בכל דרישות הזכאות: קטגוריאלית (נשים בהריון במהלך ההריון ועד 6 שבועות לאחר הלידה/סיום ההריון; לאחר לידה עד שישה חודשים; הנקה עד יום ההולדת הראשון של התינוק; תינוקות עד יום ההולדת הראשון; ילדים עד יום ההולדת החמישי); מגורים (חיים במדינת ההגשה); הכנסה (ברמת תקן המדינה או מתחתיה, או זכאות אוטומטית דרך SNAP, Medicaid, TANF וכד'); סיכון תזונתי (נקבע על ידי איש מקצוע רפואי או צוות WIC). מי שאינם אזרחים זכאים אם הם עומדים בדרישות הכלליות.",
+      "howToEnroll": "צרו קשר עם מרפאת WIC מקומית (Cornerstone Family Healthcare או Sun River Health) כדי להגיש בקשה. יש לעמוד בדרישות קטגוריאליות, מגורים, הכנסה וסיכון תזונתי."
+    },
+    "ru": {
+      "name": "Программа для женщин, младенцев и детей (WIC)",
+      "description": "Заявители должны соответствовать всем требованиям: категорийным (беременные во время беременности и до 6 недель после родов/окончания беременности; послеродовой период до шести месяцев; грудное вскармливание до первого дня рождения ребёнка; младенцы до первого дня рождения; дети до пятого дня рождения); по месту жительства (проживание в штате подачи заявления); по доходу (на уровне или ниже стандарта штата либо автоматическая правомочность через SNAP, Medicaid, TANF и т. д.); по риску питания (определяет медработник или сотрудник WIC). Лица без гражданства имеют право, если соответствуют общим требованиям.",
+      "howToEnroll": "Обратитесь в местную клинику WIC (Cornerstone Family Healthcare или Sun River Health), чтобы подать заявку. Необходимо соответствовать категорийным, жилищным, доходным требованиям и требованиям по риску питания."
+    }
+  },
+  "home-delivered-meals": {
+    "es": {
+      "name": "Programa de comidas a domicilio",
+      "description": "Se distribuyen comidas nutritivas al mediodía a residentes de edad avanzada en muchas ubicaciones del Condado de Orange, con educación nutricional y orientación de un dietista registrado según sea necesario. Se pueden hacer arreglos para servicio de fin de semana y modificaciones limitadas de dieta. Se requiere una evaluación previa; la aprobación final depende de una evaluación en el hogar. Entrega de alimentos una vez por semana después de la inscripción. Atiende a todos los residentes del Condado de Orange excepto la Aldea de Warwick.",
+      "howToEnroll": "Llame a Orange County NY Connects al 845-615-3710 para completar una referencia para comidas a domicilio. Se requiere evaluación previa; la aprobación final depende de una evaluación en el hogar."
+    },
+    "yi": {
+      "name": "היים־דעליווערד מאָלצייַט פּראָגראַם",
+      "description": "נערישע מיטאָג מאָלצייַטן ווערן צעטיילט צו עלטערע איינוואוינער אין פילע ערטער אין Orange County, מיט דערנערונג בילדונג און באַראַטונג מיט אַ רעגיסטרירטן דיעטיקער ווען נייטיק. מען קען מאַכן אָרדענונגען פֿאַר וואָכנענדיקן סערוויס און באַגרענעצטע דיעטע ענדערונגען. אַ פֿאָר־סקרינינג איז פֿאַרלאַנגט; לעצטע אַפּרווו הענגט אָפּ פֿון אַן אין־היים אַסעסמענט. עסן דעליווערי איין מאָל אַ וואָך נאָך רעגיסטראַציע. באַדינט אַלע Orange County איינוואוינער חוץ Village of Warwick.",
+      "howToEnroll": "רופט Orange County NY Connects אויף 845-615-3710 צו פֿאַרענדיקן אַ רעפֿעראַל פֿאַר היים־דעליווערד מאָלצייַטן. פֿאָר־סקרינינג פֿאַרלאַנגט; לעצטע אַפּרווו הענגט אָפּ פֿון אַן אין־היים אַסעסמענט."
+    },
+    "zh": {
+      "name": "送餐上门计划",
+      "description": "奥兰治县多地为老年居民配送营养午餐，并视需要提供营养教育与注册营养师咨询。可安排周末服务及有限的饮食调整。须先预筛；最终批准取决于上门评估。登记后每周送餐一次。服务对象为除 Warwick 村以外的全体奥兰治县居民。",
+      "howToEnroll": "致电奥兰治县 NY Connects：845-615-3710，完成送餐上门转介。须预筛；最终批准取决于上门评估。"
+    },
+    "ht": {
+      "name": "Pwogram Repa Livrezon Lakay",
+      "description": "Yo distribye repa midi nitrisyonèl bay rezidan aje nan anpil kote nan Konte Orange, ak edikasyon nitrisyonèl ak konsèy yon dyetetisyen anrejistre jan sa nesesè. Yo ka fè aranjman pou sèvis wikenn ak modifikasyon dyèt limite. Yon pre-seleksyon obligatwa; apwobasyon final la depann de yon evalyasyon lakay. Livrezon manje yon fwa pa semèn apre enskripsyon. Sèvi tout rezidan Konte Orange eksepte Vilaj Warwick.",
+      "howToEnroll": "Rele Orange County NY Connects nan 845-615-3710 pou konplete yon referans pou Repa Livrezon Lakay. Pre-seleksyon obligatwa; apwobasyon final depann de evalyasyon lakay."
+    },
+    "ar": {
+      "name": "برنامج الوجبات المنزلية",
+      "description": "تُوزَّع وجبات غداء مغذية على كبار السن في مواقع عديدة في مقاطعة أورانج، مع تثقيف غذائي واستشارة من اختصاصي تغذية مسجّل عند الحاجة. يمكن ترتيب خدمة نهاية الأسبوع وتعديلات غذائية محدودة. يلزم فحص أولي؛ وتعتمد الموافقة النهائية على تقييم منزلي. توصيل الطعام مرة أسبوعيًا بعد التسجيل. يخدم جميع سكان مقاطعة أورانج باستثناء قرية Warwick.",
+      "howToEnroll": "اتصل بـ Orange County NY Connects على 845-615-3710 لإكمال إحالة إلى الوجبات المنزلية. يلزم فحص أولي؛ وتعتمد الموافقة النهائية على تقييم منزلي."
+    },
+    "he": {
+      "name": "תוכנית ארוחות במשלוח לבית",
+      "description": "ארוחות צהריים מזינות מחולקות לתושבים קשישים במקומות רבים במחוז אורנג', עם חינוך תזונתי וייעוץ עם דיאטנית רשומה לפי הצורך. ניתן לסדר שירות בסופי שבוע והתאמות תזונה מוגבלות. נדרש מיון מוקדם; האישור הסופי תלוי בהערכת בית. משלוח מזון פעם בשבוע לאחר ההרשמה. משרת את כל תושבי מחוז אורנג' למעט כפר Warwick.",
+      "howToEnroll": "התקשרו ל־Orange County NY Connects ב־845-615-3710 כדי להשלים הפניה לארוחות במשלוח לבית. נדרש מיון מוקדם; האישור הסופי תלוי בהערכת בית."
+    },
+    "ru": {
+      "name": "Программа доставки питания на дом",
+      "description": "Питательные обеды доставляются пожилым жителям во многих местах округа Ориндж; при необходимости предоставляются обучение по питанию и консультации дипломированного диетолога. Можно организовать обслуживание в выходные и ограниченные изменения рациона. Требуется предварительный отбор; окончательное одобрение зависит от оценки на дому. Доставка еды раз в неделю после регистрации. Обслуживает всех жителей округа Ориндж, кроме деревни Warwick.",
+      "howToEnroll": "Позвоните в Orange County NY Connects по телефону 845-615-3710, чтобы оформить направление на доставку питания на дом. Требуется предварительный отбор; окончательное одобрение зависит от оценки на дому."
+    }
+  },
+  "congregate-dining": {
+    "es": {
+      "name": "Sitios de comedor comunitario",
+      "description": "De lunes a viernes, adultos mayores se reúnen en distintos sitios del Condado de Orange para recibir una comida nutritiva al mediodía mientras disfrutan de programas sociales, de salud y educativos, así como educación nutricional y orientación con un dietista registrado. Se requieren reservaciones con 24 horas de anticipación llamando al sitio específico.",
+      "howToEnroll": "Se requieren reservaciones con 24 horas de anticipación llamando al teléfono del sitio específico."
+    },
+    "yi": {
+      "name": "געמיינזאַמע עסן ערטער",
+      "description": "מאָנטיק ביז פֿרײַטיק קומען עלטערע צונויף אויף פֿאַרשידענע ערטער איבער Orange County צו באַקומען אַ נערישע מיטאָג מאָלצייַט און הנאה האָבן פֿון סאָציאַלע, געזונט און בילדונג פּראָגראַמען, ווי אויך דערנערונג בילדונג און באַראַטונג מיט אַ רעגיסטרירטן דיעטיקער. מען דאַרף רעזערווירן 24 שעה פֿריִער דורך רופֿן דעם ספּעציפֿישן אָרט.",
+      "howToEnroll": "מען דאַרף רעזערווירן 24 שעה פֿריִער דורך רופֿן דעם טעלעפֿאָן נומער פֿונעם ספּעציפֿישן אָרט."
+    },
+    "zh": {
+      "name": "集体用餐点",
+      "description": "周一至周五，老年人在奥兰治县各用餐点共进营养午餐，并参加社交、健康与教育活动，以及营养教育和注册营养师咨询。须提前 24 小时致电具体用餐点预约。",
+      "howToEnroll": "须提前 24 小时致电具体用餐点电话预约。"
+    },
+    "ht": {
+      "name": "Sit Manje An Gwoup",
+      "description": "Lendi rive vandredi, granmoun aje yo rasanble nan diferan sit atravè Konte Orange pou resevwa yon repa midi nitrisyonèl pandan y ap jwi pwogram sosyal, sante ak edikatif, ansanm ak edikasyon nitrisyonèl ak konsèy yon dyetetisyen anrejistre. Rezèvasyon obligatwa 24 èdtan davans nan rele sit espesifik la.",
+      "howToEnroll": "Rezèvasyon obligatwa 24 èdtan davans nan rele nimewo telefòn sit espesifik la."
+    },
+    "ar": {
+      "name": "مواقع تناول الطعام الجماعي",
+      "description": "من الاثنين إلى الجمعة، يجتمع كبار السن في مواقع مختلفة في مقاطعة أورانج لتناول وجبة غداء مغذية مع برامج اجتماعية وصحية وتعليمية، إضافة إلى التثقيف الغذائي والاستشارة مع اختصاصي تغذية مسجّل. يلزم الحجز قبل 24 ساعة بالاتصال بالموقع المحدد.",
+      "howToEnroll": "يلزم الحجز قبل 24 ساعة بالاتصال برقم هاتف الموقع المحدد."
+    },
+    "he": {
+      "name": "אתרי ארוחות קהילתיות",
+      "description": "מיום שני עד שישי נפגשים קשישים באתרים שונים ברחבי מחוז אורנג' לארוחת צהריים מזינה לצד תוכניות חברתיות, בריאותיות וחינוכיות, וכן חינוך תזונתי וייעוץ עם דיאטנית רשומה. נדרשת הזמנה 24 שעות מראש בטלפון לאתר הספציפי.",
+      "howToEnroll": "נדרשת הזמנה 24 שעות מראש בטלפון למספר של האתר הספציפי."
+    },
+    "ru": {
+      "name": "Площадки совместного питания",
+      "description": "С понедельника по пятницу пожилые люди собираются на разных площадках округа Ориндж, чтобы получить питательный обед и принять участие в социальных, оздоровительных и образовательных программах, а также в обучении по питанию и консультациях дипломированного диетолога. Бронирование необходимо за 24 часа по телефону конкретной площадки.",
+      "howToEnroll": "Бронирование необходимо за 24 часа по телефону конкретной площадки."
+    }
+  },
+  "meals-on-wheels-newburgh": {
+    "es": {
+      "name": "Meals on Wheels – Newburgh y New Windsor",
+      "description": "Cualquier persona que resida en Newburgh o New Windsor y esté confinada en el hogar con dificultad para cocinar—por edad, enfermedad, lesión o discapacidad—puede solicitar comidas. Hay un cargo modesto para quienes pueden pagar; participa en la mayoría de los planes de seguro de cuidado a largo plazo administrados; depende de donaciones para cubrir el resto.",
+      "howToEnroll": "Solicite en https://www.mealsonwheelsnewburgh.org/how-apply o llame al 845-562-3490."
+    },
+    "yi": {
+      "name": "Meals on Wheels – Newburgh און New Windsor",
+      "description": "יעדער מענטש וואָס וווינט אין Newburgh אָדער New Windsor און איז היים־געבונדן מיט שוועריקייט צו קאָכן—צוליב עלטער, קראַנקייט, פֿאַרלעצונג אָדער אינבאַלידקייט—קען אַפּליקירן פֿאַר מאָלצייַטן. ס׳איז דאָ אַ באַשיידענע צאָלונג פֿאַר די וואָס קענען באַצאָלן; באַטייליקט זיך אין די מערסטע געפֿירטע לאַנג־טערמין זאָרג אינשורענס פּלענער; שטיצט זיך אויף נדבֿות צו דעקן די איבעריקע קאָסטן.",
+      "howToEnroll": "אַפּליקירט אויף https://www.mealsonwheelsnewburgh.org/how-apply אָדער רופט 845-562-3490."
+    },
+    "zh": {
+      "name": "送餐上车 – Newburgh 与 New Windsor",
+      "description": "居住在 Newburgh 或 New Windsor、因年迈、疾病、受伤或残疾而居家且难以自行做饭的人士均可申请送餐。有能力支付者收取适量费用；参与多数管理式长期护理保险计划；其余费用依赖捐赠。",
+      "howToEnroll": "在 https://www.mealsonwheelsnewburgh.org/how-apply 申请，或致电 845-562-3490。"
+    },
+    "ht": {
+      "name": "Meals on Wheels – Newburgh ak New Windsor",
+      "description": "Nenpòt moun k ap viv nan Newburgh oswa New Windsor ki rete lakay epi ki gen difikilte pou kwit manje—akòz laj, maladi, blesi oswa andikap—ka aplike pou resevwa repa. Gen yon ti frè pou moun ki kapab peye; li patisipe nan pifò plan asirans swen alontèm jere; li depann de don pou kouvri rès depans yo.",
+      "howToEnroll": "Aplike sou https://www.mealsonwheelsnewburgh.org/how-apply oswa rele 845-562-3490."
+    },
+    "ar": {
+      "name": "Meals on Wheels – Newburgh وNew Windsor",
+      "description": "يمكن لأي شخص يقيم في Newburgh أو New Windsor ويكون حبيس المنزل ويجد صعوبة في الطهي—بسبب العمر أو المرض أو الإصابة أو الإعاقة—التقدم للحصول على وجبات. هناك رسوم متواضعة لمن يستطيع الدفع؛ ويشارك في معظم خطط التأمين للرعاية طويلة الأمد المدارة؛ ويعتمد على التبرعات لتغطية التكاليف المتبقية.",
+      "howToEnroll": "قدّم عبر https://www.mealsonwheelsnewburgh.org/how-apply أو اتصل على 845-562-3490."
+    },
+    "he": {
+      "name": "Meals on Wheels – Newburgh ו־New Windsor",
+      "description": "כל אדם המתגורר ב־Newburgh או New Windsor ומרותק לביתו ומתקשה לבשל—בשל גיל, מחלה, פציעה או מוגבלות—יכול להגיש בקשה לקבלת ארוחות. יש תשלום צנוע למי שיכול לשלם; משתתף ברוב תוכניות ביטוח הסיעוד ארוכות הטווח המנוהלות; נשען על תרומות לכיסוי יתרת העלויות.",
+      "howToEnroll": "הגישו בקשה ב־https://www.mealsonwheelsnewburgh.org/how-apply או התקשרו ל־845-562-3490."
+    },
+    "ru": {
+      "name": "Meals on Wheels – Newburgh и New Windsor",
+      "description": "Любой житель Newburgh или New Windsor, который прикован к дому и испытывает трудности с приготовлением пищи — из‑за возраста, болезни, травмы или инвалидности — может подать заявку на получение питания. Для тех, кто может платить, есть скромная плата; программа участвует в большинстве управляемых планов страхования долгосрочного ухода; оставшиеся расходы покрываются за счёт пожертвований.",
+      "howToEnroll": "Подайте заявку на https://www.mealsonwheelsnewburgh.org/how-apply или позвоните по телефону 845-562-3490."
+    }
+  },
+  "meals-on-wheels-warwick": {
+    "es": {
+      "name": "Meals on Wheels – Pueblo/Aldea de Warwick",
+      "description": "Comidas para personas confinadas en el hogar y/o de edad avanzada que no pueden comprar o cocinar por edad, enfermedad o discapacidad. Comidas frescas preparadas a diario en Mt. Alverno Center. Hay comidas calientes (carne, almidón, verduras, leche o jugo, pan y mantequilla, postre o fruta) y frías (sándwich, ensalada, leche o jugo, postre); se adaptan a necesidades dietéticas. Cargo modesto. Entregas en la Aldea de Warwick y algunas áreas cercanas del Pueblo de Warwick.",
+      "howToEnroll": "Llame a Meals on Wheels of Warwick al 845-986-3389 y deje un mensaje de voz. Un representante se comunicará con usted. La entrega comienza poco después de la inscripción. También solicite en https://www.mealsonwheelsofwarwickny.org/apply-for-meals."
+    },
+    "yi": {
+      "name": "Meals on Wheels – שטאָט/דאָרף Warwick",
+      "description": "מאָלצייַטן פֿאַר היים־געבונדענע און/אָדער עלטערע מענטשן וואָס קענען נישט קויפֿן אָדער קאָכן צוליב עלטער, קראַנקייט אָדער אינבאַלידקייט. פֿרישע מאָלצייַטן צוגעגרייט טעגלעך אין Mt. Alverno Center. הייסע מאָלצייַטן און קאַלטע מאָלצייַטן זענען פֿאַראַן; צוגעפּאַסט צו דיעטע באַדערפֿענישן. באַשיידענע צאָלונג. דעליוועריס צו Village of Warwick און עטלעכע אַרומיקע ערטער אין Town of Warwick.",
+      "howToEnroll": "רופט Meals on Wheels of Warwick אויף 845-986-3389 און לאָזט אַ ווויסמעיל. אַ פֿאָרשטייער וועט זיך פֿאַרבינדן מיט אײַך. מאָלצייַט דעליווערי הייבט זיך אָן באַלד נאָך רעגיסטראַציע. אַפּליקירט אויך אויף https://www.mealsonwheelsofwarwickny.org/apply-for-meals."
+    },
+    "zh": {
+      "name": "送餐上车 – Warwick 镇/村",
+      "description": "为因年迈、疾病或残疾而无法购物或做饭的居家及/或老年人士提供餐食。新鲜餐食每日在 Mt. Alverno Center 制作。提供热餐与冷餐，并可按饮食需求调整。收取适量费用。配送覆盖 Warwick 村及 Warwick 镇部分周边地区。",
+      "howToEnroll": "致电 Warwick 送餐上车：845-986-3389 并留言。工作人员会与您联系。登记后很快开始送餐。也可在 https://www.mealsonwheelsofwarwickny.org/apply-for-meals 申请。"
+    },
+    "ht": {
+      "name": "Meals on Wheels – Vil/Vilaj Warwick",
+      "description": "Repa pou moun ki rete lakay epi/oswa granmoun aje ki pa kapab fè makèt oswa kwit manje akòz laj, maladi oswa andikap. Repa fre prepare chak jou nan Mt. Alverno Center. Gen repa cho ak repa frèt; yo personnalize selon bezwen dyèt. Ti frè pou repa yo. Livrezon nan Vilaj Warwick ak kèk zòn ki antoure nan Vil Warwick.",
+      "howToEnroll": "Rele Meals on Wheels of Warwick nan 845-986-3389 epi kite yon mesaj vwa. Yon reprezantan ap kontakte ou. Livrezon repa kòmanse yon ti tan apre enskripsyon. Ou ka aplike tou sou https://www.mealsonwheelsofwarwickny.org/apply-for-meals."
+    },
+    "ar": {
+      "name": "Meals on Wheels – بلدة/قرية Warwick",
+      "description": "وجبات للمقيمين في المنزل و/أو كبار السن غير القادرين على التسوق أو الطهي بسبب العمر أو المرض أو الإعاقة. تُحضَّر وجبات طازجة يوميًا في Mt. Alverno Center. تتوفر وجبات ساخنة وباردة؛ وتُخصَّص حسب الاحتياجات الغذائية. رسوم متواضعة. التوصيل إلى قرية Warwick وبعض المناطق المحيطة في بلدة Warwick.",
+      "howToEnroll": "اتصل بـ Meals on Wheels of Warwick على 845-986-3389 واترك رسالة صوتية. سيتواصل معك ممثل. يبدأ توصيل الوجبات بعد التسجيل بفترة قصيرة. وقدّم أيضًا عبر https://www.mealsonwheelsofwarwickny.org/apply-for-meals."
+    },
+    "he": {
+      "name": "Meals on Wheels – עיירה/כפר Warwick",
+      "description": "ארוחות לאנשים המרותקים לבית ו/או לקשישים שאינם יכולים לקנות או לבשל בשל גיל, מחלה או מוגבלות. ארוחות טריות מוכנות מדי יום ב־Mt. Alverno Center. זמינות ארוחות חמות וקרות; מותאמות לצרכים תזונתיים. תשלום צנוע. משלוחים לכפר Warwick ולחלק מהאזורים הסמוכים בעיירת Warwick.",
+      "howToEnroll": "התקשרו ל־Meals on Wheels of Warwick ב־845-986-3389 והשאירו הודעה קולית. נציג ייצור עמכם קשר. משלוח הארוחות מתחיל זמן קצר לאחר ההרשמה. ניתן גם להגיש בקשה ב־https://www.mealsonwheelsofwarwickny.org/apply-for-meals."
+    },
+    "ru": {
+      "name": "Meals on Wheels – город/деревня Warwick",
+      "description": "Питание для людей, прикованных к дому, и/или пожилых, которые не могут самостоятельно покупать продукты или готовить из‑за возраста, болезни или инвалидности. Свежие блюда готовятся ежедневно в Mt. Alverno Center. Доступны горячие и холодные приёмы пищи; рацион адаптируется под диетические потребности. Скромная плата. Доставка в деревню Warwick и некоторые окрестности города Warwick.",
+      "howToEnroll": "Позвоните в Meals on Wheels of Warwick по телефону 845-986-3389 и оставьте голосовое сообщение. С вами свяжется представитель. Доставка начинается вскоре после регистрации. Также подайте заявку на https://www.mealsonwheelsofwarwickny.org/apply-for-meals."
+    }
+  },
+  "summer-ebt": {
+    "es": {
+      "name": "Beneficios Summer EBT de Nueva York",
+      "description": "El programa Summer Electronic Benefit Transfer (EBT) ayuda a las familias a comprar alimentos para sus hijos en edad escolar durante el verano. Las familias reciben $120 en beneficios alimentarios por cada niño elegible en una tarjeta EBT, usable para frutas, verduras, carne, granos integrales y lácteos en tiendas autorizadas, mercados de agricultores y donde se acepte SNAP. Los beneficios no usados vencen y se eliminan 122 días después de emitidos. Solicite antes de la fecha límite del 8 de septiembre de 2026 para beneficios de 2026 si no recibió comunicación de OTDA a mediados de junio.",
+      "howToEnroll": "Visite otda.ny.gov/SummerEBT para saber cuándo y cómo se emiten los beneficios y cómo usarlos. Si no hay comunicación de NYS OTDA a mediados de junio, solicite antes del 8 de septiembre de 2026 para beneficios de 2026."
+    },
+    "yi": {
+      "name": "זומער EBT עסן בענעפֿיטן פֿאַר ניו יאָרק סטעיט",
+      "description": "דער זומער Electronic Benefit Transfer (EBT) פּראָגראַם העלפֿט משפּחות קויפֿן עסן פֿאַר זייערע שול־עלטער קינדער אין זומער. משפּחות באַקומען $120 עסן בענעפֿיטן פֿאַר יעדן בארעכטיגטן קינד אויף אַן EBT קאַרטל, וואָס מען קען ניצן פֿאַר פֿרוכט, גרינסן, פֿלייש, גאַנצע קערן און מילכיקס אין דערלויבטע קראָמען, פֿאַרמערס מאַרקעס און וווּ SNAP ווערט אָנגענומען. נישט־געניצטע בענעפֿיטן ווערן אַלט און אַוועקגענומען 122 טעג נאָך אַרויסגעבן. אַפּליקירט פֿאַרן 8טן סעפּטעמבער 2026 דעדליין פֿאַר 2026 בענעפֿיטן אויב מען האָט נישט באַקומען OTDA קאָמוניקאַציע מיטן יוני.",
+      "howToEnroll": "באַזוכט otda.ny.gov/SummerEBT צו לערנען ווען און ווי בענעפֿיטן ווערן אַרויסגעגעבן און ווי זיי צו ניצן. אויב ס׳איז נישטאָ קאָמוניקאַציע פֿון NYS OTDA מיטן יוני, אַפּליקירט פֿאַרן 8טן סעפּטעמבער 2026 דעדליין פֿאַר 2026 בענעפֿיטן."
+    },
+    "zh": {
+      "name": "纽约州夏季 EBT 食品福利",
+      "description": "夏季电子福利转账（EBT）计划帮助家庭在暑假为学龄子女购买食品。每个符合条件的孩子可在 EBT 卡上获得 120 美元食品福利，可用于授权零售店、农贸市场以及接受 SNAP 的场所购买水果、蔬菜、肉类、全谷物和乳制品。未使用的福利自发放之日起 122 天后过期并被移除。若六月中旬前未收到 OTDA 通知，请在 2026 年 9 月 8 日截止日期前申请 2026 年福利。",
+      "howToEnroll": "访问 otda.ny.gov/SummerEBT，了解福利发放时间、方式及使用方法。若六月中旬前未收到纽约州 OTDA 通知，请在 2026 年 9 月 8 日之前申请 2026 年福利。"
+    },
+    "ht": {
+      "name": "Benefis Summer EBT pou Eta New York",
+      "description": "Pwogram Summer Electronic Benefit Transfer (EBT) ede fanmi achte manje pou timoun yo ki nan laj lekòl pandan ete a. Fanmi yo resevwa $120 nan benefis manje pou chak timoun ki kalifye sou yon kat EBT, ki ka itilize pou fwi, legim, vyann, sereyal konplè ak pwodui letye nan magazen otorize, mache fèmye, ak tout kote yo aksepte SNAP. Benefis ki pa itilize ekspire epi yo retire yo 122 jou apre yo bay yo. Aplike anvan dat limit 8 septanm 2026 pou benefis 2026 si ou pa te resevwa kominikasyon OTDA nan mitan jen.",
+      "howToEnroll": "Vizite otda.ny.gov/SummerEBT pou aprann kilè ak kijan yo bay benefis yo epi kijan pou itilize yo. Si pa gen kominikasyon nan NYS OTDA nan mitan jen, aplike anvan 8 septanm 2026 pou benefis 2026."
+    },
+    "ar": {
+      "name": "مزايا Summer EBT لولاية نيويورك",
+      "description": "يساعد برنامج التحويل الإلكتروني للمزايا الصيفي (EBT) العائلات على شراء الطعام لأطفالهم في سن المدرسة خلال الصيف. تحصل العائلات على 120 دولارًا من مزايا الطعام لكل طفل مؤهل على بطاقة EBT، ويمكن استخدامها لشراء الفواكه والخضروات واللحوم والحبوب الكاملة ومنتجات الألبان في المتاجر المعتمدة وأسواق المزارعين وأي مكان يُقبل فيه SNAP. تنتهي المزايا غير المستخدمة وتُزال بعد 122 يومًا من الإصدار. قدّم قبل موعد 8 سبتمبر 2026 لمزايا 2026 إذا لم يصلك بلاغ من OTDA بحلول منتصف يونيو.",
+      "howToEnroll": "زُر otda.ny.gov/SummerEBT لمعرفة متى وكيف تُصدر المزايا وكيفية استخدامها. إذا لم يكن هناك تواصل من NYS OTDA بحلول منتصف يونيو، فقدّم قبل 8 سبتمبر 2026 لمزايا 2026."
+    },
+    "he": {
+      "name": "הטבות Summer EBT למדינת ניו יורק",
+      "description": "תוכנית Summer Electronic Benefit Transfer (EBT) מסייעת למשפחות לקנות מזון לילדיהן בגיל בית הספר במהלך הקיץ. המשפחות מקבלות 120$ בהטבות מזון לכל ילד זכאי בכרטיס EBT, לשימוש בפירות, ירקות, בשר, דגנים מלאים ומוצרי חלב בחנויות מורשות, שווקי חקלאים ובכל מקום שמקבלים SNAP. הטבות שלא נוצלו פוקעות ומוסרות 122 ימים מהנפקה. הגישו בקשה לפני המועד האחרון 8 בספטמבר 2026 להטבות 2026 אם לא התקבלה הודעה מ־OTDA באמצע יוני.",
+      "howToEnroll": "בקרו ב־otda.ny.gov/SummerEBT כדי ללמוד מתי וכיצד מונפקות ההטבות וכיצד להשתמש בהן. אם אין תקשורת מ־NYS OTDA באמצע יוני, הגישו בקשה לפני 8 בספטמבר 2026 להטבות 2026."
+    },
+    "ru": {
+      "name": "Летние пособия Summer EBT штата Нью‑Йорк",
+      "description": "Программа летнего электронного перевода пособий (EBT) помогает семьям покупать еду для детей школьного возраста летом. Семьи получают 120$ продовольственных пособий на каждого имеющего право ребёнка на карте EBT; ими можно оплачивать фрукты, овощи, мясо, цельнозерновые и молочные продукты в авторизованных магазинах, фермерских рынках и везде, где принимают SNAP. Неиспользованные пособия истекают и снимаются через 122 дня после выдачи. Подайте заявку до срока 8 сентября 2026 для пособий 2026 года, если к середине июня не было сообщения от OTDA.",
+      "howToEnroll": "Посетите otda.ny.gov/SummerEBT, чтобы узнать, когда и как выдаются пособия и как ими пользоваться. Если к середине июня нет сообщений от NYS OTDA, подайте заявку до 8 сентября 2026 для пособий 2026 года."
+    }
+  }
+};
+
+const ALLOWED_LANGS = ["en","es","yi","zh","ht","ar","he","ru"];
+const savedLang = localStorage.getItem(LANG_KEY);
 const state = {
-  lang: localStorage.getItem(LANG_KEY) || "en",
+  lang: ALLOWED_LANGS.includes(savedLang) ? savedLang : "en",
   syncingUrl: false,
 };
 
@@ -1409,7 +1673,13 @@ function t(key) {
   return pack[key] ?? I18N.en[key] ?? key;
 }
 function catLabel(c) {
-  return (I18N[state.lang].cats || I18N.en.cats)[c] || c;
+  const pack = I18N[state.lang] || I18N.en;
+  return (pack.cats || I18N.en.cats)[c] || c;
+}
+function programField(p, field) {
+  const byId = PROGRAM_I18N[p.id];
+  const localized = byId && byId[state.lang] && byId[state.lang][field];
+  return localized || p[field] || "";
 }
 function phoneHref(phone) {
   if (!phone) return null;
@@ -1450,8 +1720,7 @@ function syncUrl() {
 function loadFromUrl() {
   state.syncingUrl = true;
   const p = new URLSearchParams(location.search);
-  const allowed = ["en","es","yi","zh","ht","ar","he","ru"];
-  if (allowed.includes(p.get("lang"))) {
+  if (ALLOWED_LANGS.includes(p.get("lang"))) {
     state.lang = p.get("lang");
     localStorage.setItem(LANG_KEY, state.lang);
   }
@@ -1475,7 +1744,10 @@ function applyI18n() {
     el.placeholder = t(el.getAttribute("data-i18n-placeholder"));
   });
   const langSel = document.getElementById("lang-select");
-  if (langSel) langSel.value = state.lang;
+  if (langSel) {
+    langSel.value = state.lang;
+    langSel.setAttribute("aria-label", t("language"));
+  }
   document.getElementById("low-bw").setAttribute("aria-pressed", document.body.classList.contains("low-bw") ? "true" : "false");
   const distFirst = document.querySelector("#school-district option[value='']");
   if (distFirst) distFirst.textContent = t("allDistricts");
@@ -1555,11 +1827,11 @@ function renderBenefits() {
           <span class="badge ${escapeHtml(p.category)}">${escapeHtml(catLabel(p.category))}</span>
           ${place ? `<span style="color:var(--muted);font-weight:600;font-size:.9rem">${escapeHtml(place)}</span>` : ""}
         </div>
-        <h3>${escapeHtml(p.name)}</h3>
+        <h3>${escapeHtml(programField(p, "name"))}</h3>
         <div class="benefit-layout">
           <div class="benefit-copy">
-            ${p.description ? `<h4>${escapeHtml(t("eligibilityHeading"))}</h4><p>${escapeHtml(p.description)}</p>` : ""}
-            ${p.howToEnroll ? `<h4>${escapeHtml(t("howEnrollHeading"))}</h4><p>${escapeHtml(p.howToEnroll)}</p>` : ""}
+            ${programField(p, "description") ? `<h4>${escapeHtml(t("eligibilityHeading"))}</h4><p>${escapeHtml(programField(p, "description"))}</p>` : ""}
+            ${programField(p, "howToEnroll") ? `<h4>${escapeHtml(t("howEnrollHeading"))}</h4><p>${escapeHtml(programField(p, "howToEnroll"))}</p>` : ""}
           </div>
           ${contactBlock(p)}
         </div>

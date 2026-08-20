@@ -87,7 +87,7 @@ button, input, select { font: inherit; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
 .btn { appearance: none; border: 0; border-radius: 999px; padding: .7rem 1.2rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: .45rem; transition: transform .15s ease, filter .15s ease; }
 .btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
-.btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.btn:focus-visible { outline: 3px solid var(--leaf); outline-offset: 2px; }
 .btn-primary { background: var(--gold); color: #1a1808; }
 .btn-ghost { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(6px); }
 .meta-pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.15rem; }
@@ -106,7 +106,7 @@ button, input, select { font: inherit; }
 .chip-row { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .75rem; }
 .chip { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: .35rem .8rem; font-size: .88rem; font-weight: 600; cursor: pointer; }
 .chip[aria-pressed="true"] { background: var(--forest); border-color: var(--forest); color: #fff; }
-.chip:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.chip:focus-visible { outline: 3px solid var(--leaf); outline-offset: 2px; }
 .view-toggle { display: inline-flex; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: .2rem; gap: .15rem; }
 .view-toggle button { border: 0; background: transparent; border-radius: 999px; padding: .5rem .95rem; font-weight: 700; cursor: pointer; color: var(--muted); }
 .view-toggle button[aria-pressed="true"] { background: var(--forest); color: #fff; }
@@ -204,7 +204,7 @@ body.low-bw.view-map #map-panel::after {
 .fav-btn {
   flex: 0 0 auto; border: 1px solid #c2b280; background: #fffdf6; border-radius: 999px;
   width: 2.35rem; height: 2.35rem; display: inline-grid; place-items: center;
-  font-size: 1.15rem; cursor: pointer; line-height: 1; color: #8a7418; padding: 0;
+  font-size: 1.15rem; cursor: pointer; line-height: 1; color: #6e5a10; padding: 0;
   box-shadow: 0 1px 2px rgba(20,40,30,.06);
 }
 .fav-btn:hover { border-color: var(--gold); background: var(--gold-s); }
@@ -234,8 +234,12 @@ body.has-selection #detail { display: block; }
 .detail-inner h2 { font-family: var(--display); font-size: 1.45rem; margin: .35rem 0 .5rem; line-height: 1.2; }
 .close-detail { float: right; border: 0; background: transparent; font-size: 1.4rem; line-height: 1; cursor: pointer; color: var(--muted); }
 .detail-section { margin-top: .9rem; }
-.detail-section h4 { margin: 0 0 .25rem; font-size: .75rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
+.detail-section h3 { margin: 0 0 .25rem; font-size: .75rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 700; }
 .detail-section p { margin: 0; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
 .empty { padding: 2.5rem 1.25rem; text-align: center; color: var(--muted); }
 .empty strong { display: block; color: var(--ink); font-family: var(--display); font-size: 1.3rem; margin-bottom: .35rem; }
 .toast {
@@ -299,7 +303,7 @@ footer a { font-weight: 600; }
           <option value="ru">Русский · Russian</option>
         </select>
       </div>
-      <div class="bw-toggle" role="group">
+      <div class="bw-toggle">
         <button type="button" id="low-bw" aria-pressed="false" data-i18n="lowBw">Low data</button>
       </div>
     </div>
@@ -317,7 +321,7 @@ footer a { font-weight: 600; }
   </div>
 </header>
 
-<div class="banner">
+<div class="banner" role="note">
   <div class="wrap"><strong data-i18n="callAheadStrong">Please call ahead.</strong> <span data-i18n="callAhead">Hours and availability change. Confirm before you go, and bring bags when visiting pantries.</span></div>
 </div>
 
@@ -373,14 +377,14 @@ footer a { font-weight: 600; }
         </select>
       </div>
       <div class="field">
-        <label data-i18n="view">View</label>
-        <div class="view-toggle" role="group" aria-label="List or map view">
+        <label id="view-label" data-i18n="view">View</label>
+        <div class="view-toggle" role="group" aria-labelledby="view-label">
           <button type="button" id="view-list" aria-pressed="true" data-i18n="list">List</button>
           <button type="button" id="view-map" aria-pressed="false" data-i18n="map">Map</button>
         </div>
       </div>
     </div>
-    <div class="chip-row" aria-label="Quick filters">
+    <div class="chip-row" role="group" data-i18n-aria="quickFilters" aria-label="Quick filters">
       <button type="button" class="chip" data-quick="open_now" aria-pressed="false" data-i18n="openNow">Open now</button>
       <button type="button" class="chip" data-quick="today" aria-pressed="false" data-i18n="openToday">Open today</button>
       <button type="button" class="chip" data-quick="pantry" aria-pressed="false" data-i18n="pantries">Pantries</button>
@@ -398,7 +402,7 @@ footer a { font-weight: 600; }
     <div class="results-bar">
       <div>
         <h2 data-i18n="locations">Locations</h2>
-        <div class="count" id="result-count">…</div>
+        <div class="count" id="result-count" aria-live="polite" aria-atomic="true">…</div>
       </div>
       <div class="action-row">
         <div class="action-control">
@@ -431,7 +435,8 @@ footer a { font-weight: 600; }
       <div>
         <div class="panel" id="list-panel"><div class="cards" id="cards"></div></div>
         <div class="panel" id="map-panel" data-map-note="Map tiles need a network connection. List view works offline.">
-          <div id="map" role="application" aria-label="Map of food assistance locations"></div>
+          <p id="map-a11y-hint" class="sr-only" data-i18n="mapA11yHint">Map pins work best with a mouse or touch. Use List view for a fully keyboard-accessible directory of locations.</p>
+          <div id="map" role="region" data-i18n-aria="mapLabel" aria-label="Map of food assistance locations" aria-describedby="map-a11y-hint"></div>
         </div>
       </div>
       <aside class="panel" id="detail" aria-live="polite"></aside>
@@ -510,6 +515,10 @@ const I18N = {
     "soups": "Soup kitchens",
     "markets": "Markets",
     "clear": "Clear filters",
+    "quickFilters": "Quick filters",
+    "mapLabel": "Map of food assistance locations",
+    "mapA11yHint": "Map pins work best with a mouse or touch. Use List view for a fully keyboard-accessible directory of locations.",
+    "dirTitle": "Orange County Food Assistance Directory",
     "locations": "Locations",
     "within": "Within",
     "nearMe": "Use my location",
@@ -633,6 +642,10 @@ const I18N = {
     "soups": "Comedores",
     "markets": "Mercados",
     "clear": "Borrar filtros",
+    "quickFilters": "Filtros rápidos",
+    "mapLabel": "Mapa de ubicaciones de asistencia alimentaria",
+    "mapA11yHint": "Los pines del mapa funcionan mejor con ratón o táctil. Use la vista Lista para un directorio totalmente accesible por teclado.",
+    "dirTitle": "Directorio de Asistencia Alimentaria del Condado de Orange",
     "locations": "Ubicaciones",
     "within": "Dentro de",
     "nearMe": "Usar mi ubicación",
@@ -756,6 +769,10 @@ const I18N = {
     "soups": "זופּ־קיכן",
     "markets": "מאַרקן",
     "clear": "רייניקן פֿילטערס",
+    "quickFilters": "שנעלע פֿילטערס",
+    "mapLabel": "מאַפּע פֿון עסן־הילף ערטער",
+    "mapA11yHint": "מאַפּע־שפּילקעס אַרבעטן בעסטן מיט אַ מויז אָדער פֿינגר. ניצט ליסטע־קוק פֿאַר אַ פֿול־טאַסטאַטור־צוטריטלעכן וועגווייַזער.",
+    "dirTitle": "אָראַנדזש קאַונטי עסן הילף וועגווייַזער",
     "locations": "ערטער",
     "within": "אינעווייניק",
     "nearMe": "ניץ מײַן אָרט",
@@ -879,6 +896,10 @@ const I18N = {
     "soups": "施粥处",
     "markets": "市场",
     "clear": "清除筛选",
+    "quickFilters": "快速筛选",
+    "mapLabel": "食品援助地点地图",
+    "mapA11yHint": "地图标记最适合鼠标或触控操作。请使用列表视图以获得完整的键盘无障碍目录。",
+    "dirTitle": "奥兰治县食品援助目录",
     "locations": "地点",
     "within": "范围内",
     "nearMe": "使用我的位置",
@@ -1002,6 +1023,10 @@ const I18N = {
     "soups": "Kwizin soup",
     "markets": "Mache",
     "clear": "Efase filtè",
+    "quickFilters": "Filtè rapid",
+    "mapLabel": "Kat kote asistans manje yo",
+    "mapA11yHint": "Pwen sou kat la mache pi byen ak sourit oswa manyen. Sèvi ak lis la pou yon anyè konplètman aksesib ak klavye.",
+    "dirTitle": "Anyè Asistans Manje Orange County",
     "locations": "Kote",
     "within": "Nan",
     "nearMe": "Sèvi ak lokalizasyon mwen",
@@ -1125,6 +1150,10 @@ const I18N = {
     "soups": "مطابخ الشوربة",
     "markets": "الأسواق",
     "clear": "مسح عوامل التصفية",
+    "quickFilters": "عوامل تصفية سريعة",
+    "mapLabel": "خريطة مواقع المساعدة الغذائية",
+    "mapA11yHint": "تعمل دبابيس الخريطة بشكل أفضل بالماوس أو اللمس. استخدم عرض القائمة للحصول على دليل يمكن الوصول إليه بالكامل عبر لوحة المفاتيح.",
+    "dirTitle": "دليل المساعدة الغذائية في مقاطعة أورانج",
     "locations": "المواقع",
     "within": "ضمن",
     "nearMe": "استخدم موقعي",
@@ -1248,6 +1277,10 @@ const I18N = {
     "soups": "מטבחי מרק",
     "markets": "שווקים",
     "clear": "נקה מסננים",
+    "quickFilters": "מסננים מהירים",
+    "mapLabel": "מפת מיקומי סיוע במזון",
+    "mapA11yHint": "סיכות המפה מתאימות יותר לעכבר או מגע. השתמשו בתצוגת הרשימה למדריך נגיש במלואו באמצעות מקלדת.",
+    "dirTitle": "מדריך סיוע במזון במחוז אורנג׳",
     "locations": "מיקומים",
     "within": "בטווח",
     "nearMe": "השתמש במיקום שלי",
@@ -1371,6 +1404,10 @@ const I18N = {
     "soups": "Кухни",
     "markets": "Рынки",
     "clear": "Сбросить фильтры",
+    "quickFilters": "Быстрые фильтры",
+    "mapLabel": "Карта пунктов продовольственной помощи",
+    "mapA11yHint": "Метки на карте удобнее мышью или касанием. Используйте вид «Список» для полностью клавиатурно-доступного справочника.",
+    "dirTitle": "Справочник продовольственной помощи округа Ориндж",
     "locations": "Места",
     "within": "В пределах",
     "nearMe": "Использовать моё местоположение",
@@ -3108,6 +3145,7 @@ function openStatus(item, now = new Date()) {
 function applyI18n() {
   document.documentElement.lang = state.lang;
   document.documentElement.dir = ["ar", "he"].includes(state.lang) ? "rtl" : "ltr";
+  document.title = t("dirTitle");
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
     const val = t(key);
@@ -3116,6 +3154,9 @@ function applyI18n() {
   });
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
     el.placeholder = t(el.getAttribute("data-i18n-placeholder"));
+  });
+  document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+    el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria")));
   });
   const langSel = document.getElementById("lang-select");
   if (langSel) {
@@ -3248,7 +3289,7 @@ function cardHtml(item) {
   const phone = phoneHref(item.phone);
   const maps = mapsUrl(item);
   return `
-    <article class="card${state.selectedId === item.id ? " active" : ""}" data-id="${item.id}" tabindex="0" role="button" aria-label="${item.name}">
+    <article class="card${state.selectedId === item.id ? " active" : ""}" data-id="${item.id}">
       <div class="card-top">
         <h3>${item.name}</h3>
         <div class="card-top-right">
@@ -3287,7 +3328,7 @@ function detailHtml(item) {
     <div class="detail-inner">
       <button type="button" class="close-detail" id="close-detail" aria-label="${t("closeDetail")}">&times;</button>
       <div class="badges">${badgeHtml(cats, open)}</div>
-      <h2>${item.name}</h2>
+      <h2 id="detail-heading" tabindex="-1">${item.name}</h2>
       ${item.town ? `<p><strong>${item.town}</strong></p>` : ""}
       <div class="card-actions" style="margin:.6rem 0 0">
         <button type="button" data-fav="${item.id}" aria-pressed="${fav}">${fav ? "★ " + t("saved") : "☆ " + t("save")}</button>
@@ -3297,20 +3338,21 @@ function detailHtml(item) {
         ${item.website ? `<a href="${item.website}" target="_blank" rel="noopener">${t("website")}</a>` : ""}
         <button type="button" data-copy="${item.id}">${t("copyText")}</button>
       </div>
-      ${item.address ? `<div class="detail-section"><h4>${t("address")}</h4><p>${item.address}</p></div>` : ""}
-      ${item.schedule ? `<div class="detail-section"><h4>${t("schedule")}</h4><p>${localizeField(item.schedule)}</p></div>` : ""}
-      ${item.residentsServed ? `<div class="detail-section"><h4>${t("residents")}</h4><p>${localizeField(item.residentsServed)}</p></div>` : ""}
-      <div class="detail-section"><h4>${t("documentation")}</h4><p>${idLabel}${item.openToAll ? t("openToAllTag") : ""}</p></div>
-      ${item.contactPerson ? `<div class="detail-section"><h4>${t("contactLabel")}</h4><p>${item.contactPerson}${item.phone ? " · " + item.phone : ""}</p></div>` : (item.phone ? `<div class="detail-section"><h4>${t("phone")}</h4><p>${item.phone}</p></div>` : "")}
-      ${item.notes ? `<div class="detail-section"><h4>${t("notes")}</h4><p>${localizeField(item.notes)}</p></div>` : ""}
-      ${item.donationsAccepted ? `<div class="detail-section"><h4>${t("donations")}</h4><p>${t("donationsYes")}</p></div>` : ""}
-      <div class="detail-section"><h4>${t("reminder")}</h4><p>${t("disclaimer")}</p></div>
+      ${item.address ? `<div class="detail-section"><h3>${t("address")}</h3><p>${item.address}</p></div>` : ""}
+      ${item.schedule ? `<div class="detail-section"><h3>${t("schedule")}</h3><p>${localizeField(item.schedule)}</p></div>` : ""}
+      ${item.residentsServed ? `<div class="detail-section"><h3>${t("residents")}</h3><p>${localizeField(item.residentsServed)}</p></div>` : ""}
+      <div class="detail-section"><h3>${t("documentation")}</h3><p>${idLabel}${item.openToAll ? t("openToAllTag") : ""}</p></div>
+      ${item.contactPerson ? `<div class="detail-section"><h3>${t("contactLabel")}</h3><p>${item.contactPerson}${item.phone ? " · " + item.phone : ""}</p></div>` : (item.phone ? `<div class="detail-section"><h3>${t("phone")}</h3><p>${item.phone}</p></div>` : "")}
+      ${item.notes ? `<div class="detail-section"><h3>${t("notes")}</h3><p>${localizeField(item.notes)}</p></div>` : ""}
+      ${item.donationsAccepted ? `<div class="detail-section"><h3>${t("donations")}</h3><p>${t("donationsYes")}</p></div>` : ""}
+      <div class="detail-section"><h3>${t("reminder")}</h3><p>${t("disclaimer")}</p></div>
     </div>`;
 }
 
 function selectItem(id, fromMap) {
   const item = DIRECTORY.sites.find((s) => s.id === id);
   if (!item) return;
+  const prevId = state.selectedId;
   state.selectedId = id;
   document.body.classList.add("has-selection");
   document.getElementById("layout").classList.add("has-detail");
@@ -3324,12 +3366,22 @@ function selectItem(id, fromMap) {
       m.openPopup();
     }
   }
+  if (prevId !== id) {
+    requestAnimationFrame(() => {
+      document.getElementById("detail-heading")?.focus({ preventScroll: false });
+    });
+  }
 }
 function clearSelection() {
+  const id = state.selectedId;
   state.selectedId = null;
   document.body.classList.remove("has-selection");
   document.getElementById("layout").classList.remove("has-detail");
   document.getElementById("detail").innerHTML = "";
+  if (id) {
+    const btn = document.querySelector(`.card[data-id="${id}"] [data-detail]`);
+    btn?.focus();
+  }
 }
 function wireDetailActions() {
   document.getElementById("close-detail")?.addEventListener("click", clearSelection);
@@ -3364,9 +3416,6 @@ function renderList() {
     card.addEventListener("click", (e) => {
       if (e.target.closest("a,button")) return;
       open();
-    });
-    card.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
     });
   });
   el.querySelectorAll("[data-fav]").forEach((btn) => {
@@ -3582,6 +3631,9 @@ function wireFilters() {
       () => { btn.textContent = t("nearMe"); alert(t("geoFail")); },
       { enableHighAccuracy: true, timeout: 10000 }
     );
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && state.selectedId) clearSelection();
   });
 }
 

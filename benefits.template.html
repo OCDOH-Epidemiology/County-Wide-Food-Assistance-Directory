@@ -74,7 +74,7 @@ button, input, select { font: inherit; }
 .bw-toggle button[aria-pressed="true"] { background: var(--gold); color: #1a1808; }
 .btn { appearance: none; border: 0; border-radius: 999px; padding: .55rem 1rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: .4rem; transition: transform .15s ease, filter .15s ease; }
 .btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
-.btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.btn:focus-visible { outline: 3px solid var(--leaf); outline-offset: 2px; }
 .btn-back { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.35); }
 .page-hero { padding: 2rem 0 1.25rem; animation: rise .7s ease-out both; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
@@ -201,7 +201,7 @@ footer a { font-weight: 600; }
           <option value="ru">Русский · Russian</option>
         </select>
       </div>
-      <div class="bw-toggle" role="group">
+      <div class="bw-toggle">
         <button type="button" id="low-bw" aria-pressed="false" data-i18n="lowBw">Low data</button>
       </div>
       <a class="btn btn-back" id="directory-cta" href="index.html" data-i18n="backDirectory">Back to directory</a>

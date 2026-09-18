@@ -96,8 +96,159 @@ button, input, select { font: inherit; }
 .banner strong { color: #3f320c; }
 .toolbar { position: sticky; top: 0; z-index: 40; background: rgba(243,246,242,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); padding: .85rem 0; }
 .toolbar-row { display: grid; gap: .75rem; grid-template-columns: 1fr; }
+.toolbar-sheet-bar { display: none; }
+.toolbar-peek { display: none; }
+#toolbar-sentinel { height: 0; margin: 0; padding: 0; overflow: hidden; pointer-events: none; }
 @media (min-width: 980px) {
   .toolbar-row { grid-template-columns: 1.35fr repeat(4, minmax(0, 1fr)) auto; align-items: end; }
+}
+@media (max-width: 979px) {
+  .toolbar {
+    position: static;
+    transition: none;
+  }
+  body.toolbar-minimized:not(.toolbar-sheet-open) .toolbar {
+    height: 0 !important;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    overflow: hidden;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  body.toolbar-minimized:not(.toolbar-sheet-open) .toolbar-peek {
+    display: inline-flex;
+  }
+  .toolbar-peek {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    left: auto;
+    z-index: 55;
+    width: 2.85rem;
+    min-height: 7.5rem;
+    margin: 0;
+    border: 1px solid var(--line);
+    border-right: 0;
+    border-radius: 14px 0 0 14px;
+    background: var(--forest);
+    color: #fff;
+    box-shadow: -4px 6px 18px rgba(20, 40, 30, .18);
+    font: inherit;
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    gap: .45rem;
+    padding: 1rem .35rem;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: translateY(-50%) rotate(180deg);
+  }
+  html[dir="rtl"] .toolbar-peek {
+    right: auto;
+    left: 0;
+    border-right: 1px solid var(--line);
+    border-left: 0;
+    border-radius: 0 14px 14px 0;
+    transform: translateY(-50%);
+    box-shadow: 4px 6px 18px rgba(20, 40, 30, .18);
+  }
+  body.has-selection .toolbar-peek {
+    top: 22%;
+  }
+  .toolbar-peek:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+  .toolbar-peek-count {
+    display: none;
+    writing-mode: horizontal-tb;
+    min-width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 999px;
+    background: var(--gold);
+    color: #1a1808;
+    font-size: .72rem;
+    font-weight: 800;
+    line-height: 1.35rem;
+    text-align: center;
+    padding: 0 .25rem;
+  }
+  .toolbar-peek-count.is-on { display: inline-block; }
+  .toolbar-sheet-bar {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    margin-bottom: .85rem;
+    padding-bottom: .65rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .toolbar-sheet-bar strong {
+    font-family: var(--display);
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  .toolbar-close {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    border-radius: 999px;
+    padding: .45rem .9rem;
+    font: inherit;
+    font-size: .88rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .toolbar-close:focus-visible {
+    outline: 2px solid var(--leaf);
+    outline-offset: 1px;
+  }
+  body.toolbar-sheet-open {
+    overflow: hidden;
+  }
+  body.toolbar-sheet-open .toolbar {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 1rem 0 2rem;
+    background: rgba(243,246,242,.98);
+    height: auto !important;
+    min-height: 100%;
+    visibility: visible;
+    pointer-events: auto;
+    border: 0;
+    margin: 0;
+  }
+  body.toolbar-sheet-open .toolbar-sheet-bar { display: flex; }
+  body.toolbar-sheet-open .toolbar-peek { display: none; }
+  .toolbar-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 65;
+    background: rgba(18, 28, 24, .42);
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+  body.toolbar-sheet-open .toolbar-backdrop { display: block; }
+}
+@media (min-width: 980px) {
+  body.toolbar-minimized .toolbar,
+  body.toolbar-sheet-open .toolbar {
+    position: sticky;
+    top: 0;
+    transform: none;
+    inset: auto;
+  }
+  body.toolbar-sheet-open { overflow: auto; }
 }
 .field { display: grid; gap: .3rem; }
 .field label { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
@@ -268,7 +419,7 @@ footer a { font-weight: 600; }
   body.has-selection #detail { display: block; }
 }
 @media print {
-  body::before, .hero, .banner, .toolbar, .hero-top, .view-toggle, .chip-row,
+  body::before, .hero, .banner, .toolbar, .toolbar-peek, .toolbar-backdrop, .hero-top, .view-toggle, .chip-row,
   .action-row, #map-panel, #detail, footer, .skip-link, .offline-banner, .toast, .fav-btn { display: none !important; }
   body { background: #fff; color: #000; }
   .main { padding: 0; }
@@ -325,8 +476,17 @@ footer a { font-weight: 600; }
   <div class="wrap"><strong data-i18n="callAheadStrong">Please call ahead.</strong> <span data-i18n="callAhead">Hours and availability change. Confirm before you go, and bring bags when visiting pantries.</span></div>
 </div>
 
+<button type="button" class="toolbar-backdrop" id="toolbar-backdrop" tabindex="-1" aria-hidden="true" data-i18n-aria="hideFilters" aria-label="Hide filters"></button>
+<button type="button" class="toolbar-peek" id="toolbar-peek" aria-controls="directory" aria-expanded="false" data-i18n-aria="showFilters" aria-label="Show filters">
+  <span data-i18n="filters">Filters</span>
+  <span class="toolbar-peek-count" id="toolbar-peek-count" aria-hidden="true"></span>
+</button>
 <section class="toolbar" id="directory" aria-label="Directory filters">
   <div class="wrap">
+    <div class="toolbar-sheet-bar">
+      <strong data-i18n="filters">Filters</strong>
+      <button type="button" class="toolbar-close" id="toolbar-close" data-i18n="hideFilters">Hide filters</button>
+    </div>
     <div class="toolbar-row">
       <div class="field">
         <label for="q" data-i18n="search">Search</label>
@@ -396,6 +556,7 @@ footer a { font-weight: 600; }
     </div>
   </div>
 </section>
+<div id="toolbar-sentinel" aria-hidden="true"></div>
 
 <main class="main">
   <div class="wrap">
@@ -515,6 +676,9 @@ const I18N = {
     "soups": "Soup kitchens",
     "markets": "Markets",
     "clear": "Clear filters",
+    "filters": "Filters",
+    "showFilters": "Show filters",
+    "hideFilters": "Hide filters",
     "quickFilters": "Quick filters",
     "mapLabel": "Map of food assistance locations",
     "mapA11yHint": "Map pins work best with a mouse or touch. Use List view for a fully keyboard-accessible directory of locations.",
@@ -642,6 +806,9 @@ const I18N = {
     "soups": "Comedores",
     "markets": "Mercados",
     "clear": "Borrar filtros",
+    "filters": "Filtros",
+    "showFilters": "Mostrar filtros",
+    "hideFilters": "Ocultar filtros",
     "quickFilters": "Filtros rápidos",
     "mapLabel": "Mapa de ubicaciones de asistencia alimentaria",
     "mapA11yHint": "Los pines del mapa funcionan mejor con ratón o táctil. Use la vista Lista para un directorio totalmente accesible por teclado.",
@@ -769,6 +936,9 @@ const I18N = {
     "soups": "זופּ־קיכן",
     "markets": "מאַרקן",
     "clear": "רייניקן פֿילטערס",
+    "filters": "פֿילטערס",
+    "showFilters": "ווײַזן פֿילטערס",
+    "hideFilters": "באַהאַלטן פֿילטערס",
     "quickFilters": "שנעלע פֿילטערס",
     "mapLabel": "מאַפּע פֿון עסן־הילף ערטער",
     "mapA11yHint": "מאַפּע־שפּילקעס אַרבעטן בעסטן מיט אַ מויז אָדער פֿינגר. ניצט ליסטע־קוק פֿאַר אַ פֿול־טאַסטאַטור־צוטריטלעכן וועגווייַזער.",
@@ -896,6 +1066,9 @@ const I18N = {
     "soups": "施粥处",
     "markets": "市场",
     "clear": "清除筛选",
+    "filters": "筛选",
+    "showFilters": "显示筛选",
+    "hideFilters": "隐藏筛选",
     "quickFilters": "快速筛选",
     "mapLabel": "食品援助地点地图",
     "mapA11yHint": "地图标记最适合鼠标或触控操作。请使用列表视图以获得完整的键盘无障碍目录。",
@@ -1023,6 +1196,9 @@ const I18N = {
     "soups": "Kwizin soup",
     "markets": "Mache",
     "clear": "Efase filtè",
+    "filters": "Filtè",
+    "showFilters": "Montre filtè",
+    "hideFilters": "Kache filtè",
     "quickFilters": "Filtè rapid",
     "mapLabel": "Kat kote asistans manje yo",
     "mapA11yHint": "Pwen sou kat la mache pi byen ak sourit oswa manyen. Sèvi ak lis la pou yon anyè konplètman aksesib ak klavye.",
@@ -1150,6 +1326,9 @@ const I18N = {
     "soups": "مطابخ الشوربة",
     "markets": "الأسواق",
     "clear": "مسح عوامل التصفية",
+    "filters": "عوامل التصفية",
+    "showFilters": "إظهار عوامل التصفية",
+    "hideFilters": "إخفاء عوامل التصفية",
     "quickFilters": "عوامل تصفية سريعة",
     "mapLabel": "خريطة مواقع المساعدة الغذائية",
     "mapA11yHint": "تعمل دبابيس الخريطة بشكل أفضل بالماوس أو اللمس. استخدم عرض القائمة للحصول على دليل يمكن الوصول إليه بالكامل عبر لوحة المفاتيح.",
@@ -1277,6 +1456,9 @@ const I18N = {
     "soups": "מטבחי מרק",
     "markets": "שווקים",
     "clear": "נקה מסננים",
+    "filters": "מסננים",
+    "showFilters": "הצג מסננים",
+    "hideFilters": "הסתר מסננים",
     "quickFilters": "מסננים מהירים",
     "mapLabel": "מפת מיקומי סיוע במזון",
     "mapA11yHint": "סיכות המפה מתאימות יותר לעכבר או מגע. השתמשו בתצוגת הרשימה למדריך נגיש במלואו באמצעות מקלדת.",
@@ -1404,6 +1586,9 @@ const I18N = {
     "soups": "Кухни",
     "markets": "Рынки",
     "clear": "Сбросить фильтры",
+    "filters": "Фильтры",
+    "showFilters": "Показать фильтры",
+    "hideFilters": "Скрыть фильтры",
     "quickFilters": "Быстрые фильтры",
     "mapLabel": "Карта пунктов продовольственной помощи",
     "mapA11yHint": "Метки на карте удобнее мышью или касанием. Используйте вид «Список» для полностью клавиатурно-доступного справочника.",
@@ -3543,6 +3728,7 @@ function render() {
   const near = document.getElementById("near-me");
   near.textContent = state.userLoc ? t("nearMeOn") : t("nearMe");
   near.classList.toggle("on", !!state.userLoc);
+  updateToolbarPeekCount();
   syncUrl();
 }
 
@@ -3561,6 +3747,97 @@ async function shareList() {
   } catch {
     toast(t("shareFailed"));
   }
+}
+
+function countActiveFilters() {
+  const f = getFilters();
+  let n = 0;
+  if (f.q) n += 1;
+  if (f.town) n += 1;
+  if (f.type) n += 1;
+  if (f.day) n += 1;
+  if (f.docs) n += 1;
+  if (f.radius) n += 1;
+  return n;
+}
+
+function updateToolbarPeekCount() {
+  const badge = document.getElementById("toolbar-peek-count");
+  if (!badge) return;
+  const n = countActiveFilters();
+  badge.textContent = n ? String(n) : "";
+  badge.classList.toggle("is-on", n > 0);
+}
+
+function setToolbarSheetOpen(open) {
+  const peek = document.getElementById("toolbar-peek");
+  const toolbar = document.getElementById("directory");
+  document.body.classList.toggle("toolbar-sheet-open", open);
+  if (peek) peek.setAttribute("aria-expanded", open ? "true" : "false");
+  if (open) {
+    const closeBtn = document.getElementById("toolbar-close");
+    if (closeBtn) closeBtn.focus();
+    else if (toolbar) {
+      const first = toolbar.querySelector("input, select, button");
+      if (first) first.focus();
+    }
+  } else if (document.body.classList.contains("toolbar-minimized") && peek) {
+    peek.focus();
+  }
+}
+
+function wireMobileToolbar() {
+  const toolbar = document.getElementById("directory");
+  const sentinel = document.getElementById("toolbar-sentinel");
+  const peek = document.getElementById("toolbar-peek");
+  const closeBtn = document.getElementById("toolbar-close");
+  const backdrop = document.getElementById("toolbar-backdrop");
+  if (!toolbar || !sentinel || !peek) return;
+
+  const mq = window.matchMedia("(max-width: 979px)");
+
+  const syncMinimized = () => {
+    if (!mq.matches) {
+      document.body.classList.remove("toolbar-minimized", "toolbar-sheet-open");
+      peek.setAttribute("aria-expanded", "false");
+      return;
+    }
+    if (document.body.classList.contains("toolbar-sheet-open")) return;
+
+    const rect = sentinel.getBoundingClientRect();
+    // Toolbar has scrolled away once its trailing sentinel crosses the top edge.
+    const past = rect.top < 8;
+    const was = document.body.classList.contains("toolbar-minimized");
+
+    if (past && !was) {
+      const height = toolbar.offsetHeight;
+      const y = window.scrollY;
+      document.body.classList.add("toolbar-minimized");
+      // Collapsing height above the viewport would jump the list; keep the visual place stable.
+      window.scrollTo(0, Math.max(0, y - height));
+    } else if (!past && was) {
+      const y = window.scrollY;
+      document.body.classList.remove("toolbar-minimized");
+      const height = toolbar.offsetHeight;
+      window.scrollTo(0, y + height);
+    }
+  };
+
+  const io = new IntersectionObserver(() => syncMinimized(), {
+    threshold: [0, 1],
+    rootMargin: "0px",
+  });
+  io.observe(sentinel);
+  window.addEventListener("scroll", syncMinimized, { passive: true });
+  window.addEventListener("resize", syncMinimized);
+  if (typeof mq.addEventListener === "function") mq.addEventListener("change", syncMinimized);
+  else if (typeof mq.addListener === "function") mq.addListener(syncMinimized);
+
+  peek.addEventListener("click", () => setToolbarSheetOpen(true));
+  if (closeBtn) closeBtn.addEventListener("click", () => setToolbarSheetOpen(false));
+  if (backdrop) backdrop.addEventListener("click", () => setToolbarSheetOpen(false));
+
+  syncMinimized();
 }
 
 function wireFilters() {
@@ -3633,6 +3910,10 @@ function wireFilters() {
     );
   });
   document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && document.body.classList.contains("toolbar-sheet-open")) {
+      setToolbarSheetOpen(false);
+      return;
+    }
     if (e.key === "Escape" && state.selectedId) clearSelection();
   });
 }
@@ -3653,6 +3934,7 @@ if ("serviceWorker" in navigator) {
 populateTowns();
 loadFromUrl();
 wireFilters();
+wireMobileToolbar();
 applyI18n();
 render();
 </script>

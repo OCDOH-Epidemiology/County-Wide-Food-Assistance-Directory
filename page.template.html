@@ -3804,29 +3804,20 @@ function wireMobileToolbar() {
       peek.setAttribute("aria-expanded", "false");
       return;
     }
+    // Once docked to the side, stay docked until the Filters button opens the sheet.
+    if (document.body.classList.contains("toolbar-minimized")) return;
     if (document.body.classList.contains("toolbar-sheet-open")) return;
 
     const rect = sentinel.getBoundingClientRect();
-    // Toolbar has scrolled away once its trailing sentinel crosses the top edge.
-    const past = rect.top < 8;
-    const was = document.body.classList.contains("toolbar-minimized");
+    if (rect.top >= 8) return;
 
-    if (past && !was) {
-      const height = toolbar.offsetHeight;
-      const y = window.scrollY;
-      syncing = true;
-      document.body.classList.add("toolbar-minimized");
-      // Collapsing height above the viewport would jump the list; keep the visual place stable.
-      window.scrollTo(0, Math.max(0, y - height));
-      syncing = false;
-    } else if (!past && was) {
-      const y = window.scrollY;
-      syncing = true;
-      document.body.classList.remove("toolbar-minimized");
-      const height = toolbar.offsetHeight;
-      window.scrollTo(0, y + height);
-      syncing = false;
-    }
+    const height = toolbar.offsetHeight;
+    const y = window.scrollY;
+    syncing = true;
+    document.body.classList.add("toolbar-minimized");
+    // Collapsing height above the viewport would jump the list; keep the visual place stable.
+    window.scrollTo(0, Math.max(0, y - height));
+    syncing = false;
   };
 
   const io = new IntersectionObserver(() => syncMinimized(), {

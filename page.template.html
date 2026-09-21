@@ -107,7 +107,11 @@ button, input, select { font: inherit; }
     position: static;
     transition: none;
   }
-  body.toolbar-minimized:not(.toolbar-sheet-open) .toolbar {
+  body.view-map .toolbar {
+    position: sticky;
+    top: 0;
+  }
+  body.toolbar-minimized:not(.toolbar-sheet-open):not(.view-map) .toolbar {
     height: 0 !important;
     min-height: 0;
     padding: 0;
@@ -117,8 +121,11 @@ button, input, select { font: inherit; }
     visibility: hidden;
     pointer-events: none;
   }
-  body.toolbar-minimized:not(.toolbar-sheet-open) .toolbar-peek {
+  body.toolbar-minimized:not(.toolbar-sheet-open):not(.view-map) .toolbar-peek {
     display: inline-flex;
+  }
+  body.view-map .toolbar-peek {
+    display: none !important;
   }
   .toolbar-peek {
     position: fixed;
@@ -333,13 +340,87 @@ button, input, select { font: inherit; }
 @media (min-width: 980px) { .layout.has-detail { grid-template-columns: 1fr 360px; } }
 .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
 #list-panel { min-height: 420px; }
-#map-panel { display: none; min-height: 520px; overflow: hidden; }
+#map-panel {
+  display: none;
+  min-height: 520px;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  margin-bottom: 1.25rem;
+}
 body.view-map #list-panel { display: none; }
 body.view-map #map-panel { display: block; }
 body.low-bw.view-map #map-panel::after {
   content: attr(data-map-note); display: block; padding: .75rem 1rem; background: #fff8e6; color: #5c4810; font-size: .9rem; border-top: 1px solid #e6d59a;
 }
-#map { height: min(70vh, 640px); width: 100%; }
+#map {
+  height: min(70vh, 640px);
+  width: 100%;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  position: relative;
+  z-index: 0;
+  touch-action: pan-x pan-y;
+}
+#map .leaflet-container {
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+}
+.leaflet-control-fullscreen a {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #333 !important;
+  text-decoration: none;
+  background: #fff;
+}
+.leaflet-control-fullscreen a:hover { background: #f4f4f4; }
+.leaflet-control-fullscreen a:focus-visible {
+  outline: 2px solid var(--leaf);
+  outline-offset: 1px;
+}
+.leaflet-control-fullscreen a.is-exit {
+  font-size: 1.45rem;
+  line-height: 1;
+  color: var(--forest-d) !important;
+}
+body.map-fullscreen {
+  overflow: hidden;
+}
+body.map-fullscreen #map-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  width: 100%;
+  height: 100dvh;
+  min-height: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  display: block !important;
+}
+body.map-fullscreen #map {
+  height: 100% !important;
+  max-height: none !important;
+}
+body.map-fullscreen .toolbar-peek,
+body.map-fullscreen .toolbar-backdrop {
+  display: none !important;
+}
+body.view-map footer {
+  position: relative;
+  z-index: 1;
+  background: var(--paper);
+  isolation: isolate;
+}
 .cards { display: grid; gap: .85rem; padding: 1rem; }
 .card {
   border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.05rem;
@@ -682,6 +763,8 @@ const I18N = {
     "quickFilters": "Quick filters",
     "mapLabel": "Map of food assistance locations",
     "mapA11yHint": "Map pins work best with a mouse or touch. Use List view for a fully keyboard-accessible directory of locations.",
+    "mapFullscreen": "Full screen map",
+    "mapExitFullscreen": "Exit full screen",
     "dirTitle": "Orange County Food Assistance Directory",
     "locations": "Locations",
     "within": "Within",
@@ -812,6 +895,8 @@ const I18N = {
     "quickFilters": "Filtros rápidos",
     "mapLabel": "Mapa de ubicaciones de asistencia alimentaria",
     "mapA11yHint": "Los pines del mapa funcionan mejor con ratón o táctil. Use la vista Lista para un directorio totalmente accesible por teclado.",
+    "mapFullscreen": "Mapa a pantalla completa",
+    "mapExitFullscreen": "Salir de pantalla completa",
     "dirTitle": "Directorio de Asistencia Alimentaria del Condado de Orange",
     "locations": "Ubicaciones",
     "within": "Dentro de",
@@ -942,6 +1027,8 @@ const I18N = {
     "quickFilters": "שנעלע פֿילטערס",
     "mapLabel": "מאַפּע פֿון עסן־הילף ערטער",
     "mapA11yHint": "מאַפּע־שפּילקעס אַרבעטן בעסטן מיט אַ מויז אָדער פֿינגר. ניצט ליסטע־קוק פֿאַר אַ פֿול־טאַסטאַטור־צוטריטלעכן וועגווייַזער.",
+    "mapFullscreen": "פֿולשירן מאַפּע",
+    "mapExitFullscreen": "פֿאַרלאָזן פֿולשירן",
     "dirTitle": "אָראַנדזש קאַונטי עסן הילף וועגווייַזער",
     "locations": "ערטער",
     "within": "אינעווייניק",
@@ -1072,6 +1159,8 @@ const I18N = {
     "quickFilters": "快速筛选",
     "mapLabel": "食品援助地点地图",
     "mapA11yHint": "地图标记最适合鼠标或触控操作。请使用列表视图以获得完整的键盘无障碍目录。",
+    "mapFullscreen": "全屏地图",
+    "mapExitFullscreen": "退出全屏",
     "dirTitle": "奥兰治县食品援助目录",
     "locations": "地点",
     "within": "范围内",
@@ -1202,6 +1291,8 @@ const I18N = {
     "quickFilters": "Filtè rapid",
     "mapLabel": "Kat kote asistans manje yo",
     "mapA11yHint": "Pwen sou kat la mache pi byen ak sourit oswa manyen. Sèvi ak lis la pou yon anyè konplètman aksesib ak klavye.",
+    "mapFullscreen": "Kat an plen ekran",
+    "mapExitFullscreen": "Sòti nan plen ekran",
     "dirTitle": "Anyè Asistans Manje Orange County",
     "locations": "Kote",
     "within": "Nan",
@@ -1332,6 +1423,8 @@ const I18N = {
     "quickFilters": "عوامل تصفية سريعة",
     "mapLabel": "خريطة مواقع المساعدة الغذائية",
     "mapA11yHint": "تعمل دبابيس الخريطة بشكل أفضل بالماوس أو اللمس. استخدم عرض القائمة للحصول على دليل يمكن الوصول إليه بالكامل عبر لوحة المفاتيح.",
+    "mapFullscreen": "خريطة بملء الشاشة",
+    "mapExitFullscreen": "إنهاء ملء الشاشة",
     "dirTitle": "دليل المساعدة الغذائية في مقاطعة أورانج",
     "locations": "المواقع",
     "within": "ضمن",
@@ -1462,6 +1555,8 @@ const I18N = {
     "quickFilters": "מסננים מהירים",
     "mapLabel": "מפת מיקומי סיוע במזון",
     "mapA11yHint": "סיכות המפה מתאימות יותר לעכבר או מגע. השתמשו בתצוגת הרשימה למדריך נגיש במלואו באמצעות מקלדת.",
+    "mapFullscreen": "מפה במסך מלא",
+    "mapExitFullscreen": "יציאה ממסך מלא",
     "dirTitle": "מדריך סיוע במזון במחוז אורנג׳",
     "locations": "מיקומים",
     "within": "בטווח",
@@ -1592,6 +1687,8 @@ const I18N = {
     "quickFilters": "Быстрые фильтры",
     "mapLabel": "Карта пунктов продовольственной помощи",
     "mapA11yHint": "Метки на карте удобнее мышью или касанием. Используйте вид «Список» для полностью клавиатурно-доступного справочника.",
+    "mapFullscreen": "Карта на весь экран",
+    "mapExitFullscreen": "Выйти из полноэкранного режима",
     "dirTitle": "Справочник продовольственной помощи округа Ориндж",
     "locations": "Места",
     "within": "В пределах",
@@ -3351,6 +3448,7 @@ function applyI18n() {
   const low = document.body.classList.contains("low-bw");
   document.getElementById("low-bw").setAttribute("aria-pressed", low ? "true" : "false");
   document.getElementById("map-panel").setAttribute("data-map-note", t("mapOfflineNote"));
+  syncMapFullscreenButton();
 }
 
 function populateTowns() {
@@ -3620,13 +3718,74 @@ function renderList() {
 
 function ensureMap() {
   if (state.map) { state.map.invalidateSize(); return; }
-  state.map = L.map("map", { scrollWheelZoom: true }).setView([41.42, -74.28], 10);
+  const el = document.getElementById("map");
+  state.map = L.map(el, {
+    scrollWheelZoom: false,
+    // Keep wheel/touch scrolling on the page from fighting the map chrome.
+  }).setView([41.42, -74.28], 10);
+  L.DomEvent.disableScrollPropagation(el);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 18,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(state.map);
   state.markerLayer = L.layerGroup().addTo(state.map);
+  addMapFullscreenControl(state.map);
+  // Zoom with scroll only while the map is focused / being used.
+  el.addEventListener("pointerdown", () => {
+    if (!document.body.classList.contains("map-fullscreen")) state.map.scrollWheelZoom.enable();
+  });
+  el.addEventListener("mouseleave", () => {
+    if (!document.body.classList.contains("map-fullscreen")) state.map.scrollWheelZoom.disable();
+  });
 }
+
+function syncMapFullscreenButton() {
+  const btn = state.mapFsBtn;
+  if (!btn) return;
+  const on = document.body.classList.contains("map-fullscreen");
+  const label = on ? t("mapExitFullscreen") : t("mapFullscreen");
+  btn.setAttribute("aria-label", label);
+  btn.title = label;
+  btn.classList.toggle("is-exit", on);
+  btn.innerHTML = on
+    ? '<span aria-hidden="true">&times;</span>'
+    : '<span aria-hidden="true">⛶</span>';
+}
+
+function setMapFullscreen(on) {
+  const next = !!on;
+  document.body.classList.toggle("map-fullscreen", next);
+  syncMapFullscreenButton();
+  if (state.map) {
+    if (next) state.map.scrollWheelZoom.enable();
+    else state.map.scrollWheelZoom.disable();
+    setTimeout(() => state.map.invalidateSize(), 80);
+  }
+}
+
+function addMapFullscreenControl(map) {
+  const Control = L.Control.extend({
+    options: { position: "topright" },
+    onAdd() {
+      const container = L.DomUtil.create("div", "leaflet-bar leaflet-control leaflet-control-fullscreen");
+      const btn = L.DomUtil.create("a", "", container);
+      btn.href = "#";
+      btn.setAttribute("role", "button");
+      state.mapFsBtn = btn;
+      syncMapFullscreenButton();
+      L.DomEvent.disableClickPropagation(container);
+      L.DomEvent.disableScrollPropagation(container);
+      L.DomEvent.on(btn, "click", (e) => {
+        L.DomEvent.preventDefault(e);
+        setMapFullscreen(!document.body.classList.contains("map-fullscreen"));
+      });
+      return container;
+    },
+  });
+  map.addControl(new Control());
+}
+
+
 
 function renderMap() {
   ensureMap();
@@ -3662,6 +3821,7 @@ function setView(view) {
   document.getElementById("view-map").setAttribute("aria-pressed", view === "map" ? "true" : "false");
   syncUrl();
   render();
+  if (view !== "map") setMapFullscreen(false);
 }
 
 function prefsQuery() {
@@ -3725,6 +3885,11 @@ function render() {
   document.body.classList.toggle("view-map", state.view === "map");
   document.getElementById("view-list").setAttribute("aria-pressed", state.view === "list" ? "true" : "false");
   document.getElementById("view-map").setAttribute("aria-pressed", state.view === "map" ? "true" : "false");
+  if (state.view === "map") {
+    document.body.classList.remove("toolbar-minimized", "toolbar-sheet-open");
+    const peek = document.getElementById("toolbar-peek");
+    if (peek) peek.setAttribute("aria-expanded", "false");
+  }
   const near = document.getElementById("near-me");
   near.textContent = state.userLoc ? t("nearMeOn") : t("nearMe");
   near.classList.toggle("on", !!state.userLoc);
@@ -3800,6 +3965,12 @@ function wireMobileToolbar() {
   const syncMinimized = () => {
     if (syncing) return;
     if (!mq.matches) {
+      document.body.classList.remove("toolbar-minimized", "toolbar-sheet-open");
+      peek.setAttribute("aria-expanded", "false");
+      return;
+    }
+    // Map view keeps the full directory toolbar sticky at the top — no side Filters button.
+    if (document.body.classList.contains("view-map") || state.view === "map") {
       document.body.classList.remove("toolbar-minimized", "toolbar-sheet-open");
       peek.setAttribute("aria-expanded", "false");
       return;
@@ -3907,6 +4078,10 @@ function wireFilters() {
     );
   });
   document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && document.body.classList.contains("map-fullscreen")) {
+      setMapFullscreen(false);
+      return;
+    }
     if (e.key === "Escape" && document.body.classList.contains("toolbar-sheet-open")) {
       setToolbarSheetOpen(false);
       return;

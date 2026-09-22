@@ -734,6 +734,12 @@ footer a { font-weight: 600; }
 @media (max-width: 979px) {
   #detail {
     position: fixed; inset: 0; max-height: none; z-index: 92;
+    /* Undo the desktop align-self: start — browsers now honor it on fixed boxes, which sizes
+       the panel to its content (taller than the screen) so it can't scroll. */
+    align-self: stretch;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     border-radius: 0; box-shadow: none;
     padding-bottom: env(safe-area-inset-bottom);
     animation: detailIn .2s ease-out both;

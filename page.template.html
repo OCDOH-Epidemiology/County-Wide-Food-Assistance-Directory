@@ -63,7 +63,8 @@ button, input, select { font: inherit; }
 @keyframes heroIn { from { transform: scale(1.08); opacity: .7; } to { transform: scale(1.02); opacity: 1; } }
 .hero-inner { padding: 2.25rem 0 2.5rem; animation: rise .8s ease-out .15s both; }
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-.hero-top { display: flex; justify-content: flex-end; gap: .5rem; margin-bottom: 1rem; }
+.hero-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem .75rem; margin-bottom: 1rem; }
+.hero-top-controls { display: flex; align-items: center; gap: .5rem; }
 
 .lang-select-wrap { display: flex; align-items: center; gap: .4rem; }
 .lang-select-wrap label { font-size: .78rem; font-weight: 700; letter-spacing: .04em; color: #fff; text-transform: uppercase; text-shadow: 0 1px 2px rgba(0,0,0,.45); }
@@ -82,6 +83,7 @@ button, input, select { font: inherit; }
   padding: .35rem .7rem; font-weight: 700; cursor: pointer; font-size: .85rem;
 }
 .bw-toggle button[aria-pressed="true"] { background: var(--gold); color: #1a1808; }
+.seal { width: clamp(44px, 6vw, 60px); height: auto; flex: none; filter: drop-shadow(0 2px 10px rgba(0,0,0,.4)); }
 .brand { font-family: var(--display); font-size: clamp(2.4rem, 7vw, 4.4rem); line-height: .98; letter-spacing: -.02em; margin: 0 0 .75rem; max-width: 14ch; text-shadow: 0 2px 24px rgba(0,0,0,.35); }
 .hero-lead { margin: 0 0 1.25rem; max-width: 40ch; font-size: clamp(1.05rem, 2.2vw, 1.25rem); color: #dce9e1; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
@@ -107,10 +109,6 @@ button, input, select { font: inherit; }
     position: static;
     transition: none;
   }
-  body.view-map .toolbar {
-    position: sticky;
-    top: 0;
-  }
   body.toolbar-minimized:not(.toolbar-sheet-open):not(.view-map) .toolbar {
     height: 0 !important;
     min-height: 0;
@@ -121,9 +119,8 @@ button, input, select { font: inherit; }
     visibility: hidden;
     pointer-events: none;
   }
-  body.toolbar-minimized:not(.toolbar-sheet-open):not(.view-map) .toolbar-peek {
-    display: inline-flex;
-  }
+  /* The side-docked Filters tab is retired on mobile; Search again above the list opens the sheet. */
+  .toolbar-peek { display: none !important; }
   body.view-map .toolbar-peek {
     display: none !important;
   }
@@ -221,7 +218,7 @@ button, input, select { font: inherit; }
   body.toolbar-sheet-open .toolbar {
     position: fixed;
     inset: 0;
-    z-index: 70;
+    z-index: 95;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     padding: 1rem 0 2rem;
@@ -239,13 +236,16 @@ button, input, select { font: inherit; }
     display: none;
     position: fixed;
     inset: 0;
-    z-index: 65;
+    z-index: 94;
     background: rgba(18, 28, 24, .42);
     border: 0;
     padding: 0;
     cursor: pointer;
   }
   body.toolbar-sheet-open .toolbar-backdrop { display: block; }
+  /* The filter sheet can be opened from on top of the fullscreen mobile map — keep it above the map layer. */
+  body.map-fullscreen.toolbar-sheet-open .toolbar-backdrop { display: block !important; }
+  .leaflet-control-fullscreen { display: none !important; }
 }
 @media (min-width: 980px) {
   body.toolbar-minimized .toolbar,
@@ -257,34 +257,163 @@ button, input, select { font: inherit; }
   }
   body.toolbar-sheet-open { overflow: auto; }
 }
-.field { display: grid; gap: .3rem; }
-.field label { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.field { display: grid; gap: .3rem; position: relative; }
+.field label, .field-label { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
 .field input, .field select { width: 100%; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: .65rem .75rem; color: var(--ink); }
 .field input:focus, .field select:focus { outline: 2px solid var(--leaf); outline-offset: 1px; border-color: var(--leaf); }
+.toolbar-hint { margin: 0 0 .75rem; font-size: .82rem; color: var(--muted); }
+.ms-btn {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+  border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: .65rem .75rem;
+  color: var(--ink); font: inherit; text-align: left; cursor: pointer;
+}
+.ms-btn:hover { border-color: var(--leaf); }
+.ms-btn:focus-visible { outline: 2px solid var(--leaf); outline-offset: 1px; border-color: var(--leaf); }
+.ms.is-active .ms-btn { border-color: var(--forest); background: var(--sky); }
+.ms-btn-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ms-caret { flex: none; display: inline-block; color: var(--muted); transition: transform .15s ease; }
+.ms-btn[aria-expanded="true"] .ms-caret { transform: rotate(180deg); }
+.ms-panel {
+  position: absolute; inset-inline-start: 0; top: calc(100% + .4rem); z-index: 55;
+  min-width: 100%; width: max-content; max-width: min(320px, calc(100vw - 2rem));
+  max-height: 320px; overflow-y: auto; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 12px; box-shadow: var(--shadow); padding: .6rem;
+}
+.ms-panel[hidden] { display: none; }
+.ms-options { display: flex; flex-direction: column; gap: .1rem; }
+.ms-option { display: flex; align-items: center; gap: .55rem; padding: .5rem .4rem; border-radius: 8px; cursor: pointer; font-size: .92rem; }
+.ms-option:hover { background: var(--paper); }
+.ms-option input[type="checkbox"] { width: 1.15rem; height: 1.15rem; flex: none; accent-color: var(--forest); }
+.ms-option input[type="checkbox"]:focus-visible { outline: 2px solid var(--leaf); outline-offset: 1px; }
+.ms-panel-actions { display: flex; justify-content: space-between; gap: .5rem; margin-top: .5rem; padding-top: .5rem; border-top: 1px solid var(--line); }
+.ms-clear, .ms-done {
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px;
+  padding: .4rem .85rem; font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer;
+}
+.ms-clear:focus-visible, .ms-done:focus-visible { outline: 2px solid var(--leaf); outline-offset: 1px; }
+.ms-done { background: var(--forest); color: #fff; border-color: var(--forest); }
+@media (max-width: 979px) {
+  .ms-option { padding: .7rem .5rem; font-size: 1rem; }
+  .ms-btn { padding: .75rem; }
+}
 .chip-row { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .75rem; }
+.chip-line { display: contents; }
+@media (max-width: 979px) {
+  .chip-row { flex-direction: column; align-items: center; }
+  .chip-line { display: flex; flex-wrap: wrap; justify-content: center; gap: .45rem; }
+}
 .chip { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: .35rem .8rem; font-size: .88rem; font-weight: 600; cursor: pointer; }
 .chip[aria-pressed="true"] { background: var(--forest); border-color: var(--forest); color: #fff; }
 .chip:focus-visible { outline: 3px solid var(--leaf); outline-offset: 2px; }
 .view-toggle { display: inline-flex; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: .2rem; gap: .15rem; }
 .view-toggle button { border: 0; background: transparent; border-radius: 999px; padding: .5rem .95rem; font-weight: 700; cursor: pointer; color: var(--muted); }
 .view-toggle button[aria-pressed="true"] { background: var(--forest); color: #fff; }
-.results-bar { display: flex; flex-wrap: wrap; gap: .85rem 1rem; align-items: flex-end; justify-content: space-between; margin: 1.25rem 0 .85rem; }
+.results-bar { margin: 1.25rem 0 .85rem; }
+.results-bar-flex { display: flex; flex-direction: column; align-items: stretch; gap: .5rem; }
 .results-bar h2 { margin: 0; font-family: var(--display); font-size: 1.35rem; font-weight: 600; }
+.toolbar-heading { margin: 0 0 .85rem; font-family: var(--display); font-size: 1.35rem; font-weight: 600; color: var(--ink); }
 .count { color: var(--muted); font-weight: 600; }
-.action-row {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: .5rem;
-  width: min(100%, 42rem);
-  align-items: end;
+.search-again { display: none; }
+@media (max-width: 979px) {
+  /* On mobile the count moves into the Search again button; keep the live region for screen readers. */
+  .results-bar .count {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .search-again {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    width: calc(100% - 2rem);
+    margin: 1rem 1rem 0;
+    padding: .85rem 1rem;
+    border: 0;
+    border-radius: 16px;
+    background: var(--forest);
+    color: #fff;
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+    overflow: hidden;
+    isolation: isolate;
+    animation: searchAgainIn .45s ease-out both, searchAgainGlow 2.6s ease-in-out .5s infinite;
+  }
+  /* Light sweep across the button to draw the eye. */
+  .search-again::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.22) 50%, transparent 70%);
+    transform: translateX(-100%);
+    animation: searchAgainShine 3.2s ease-in-out 1s infinite;
+  }
+  .search-again:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  .search-again-icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 999px;
+    background: var(--gold);
+    color: #1a1808;
+    animation: searchAgainBob 2.6s ease-in-out .5s infinite;
+  }
+  .search-again-text { display: grid; gap: .1rem; flex: 1; min-width: 0; }
+  .search-again-label { font-size: 1.05rem; font-weight: 800; letter-spacing: .01em; }
+  .search-again-count { font-size: .85rem; font-weight: 600; opacity: .85; }
+  .search-again-arrow {
+    flex: none;
+    font-size: 1.3rem;
+    line-height: 1;
+    animation: searchAgainNudge 1.3s ease-in-out infinite;
+  }
+  html[dir="rtl"] .search-again-arrow { transform: scaleX(-1); animation: none; }
+  .search-again .toolbar-peek-count { flex: none; }
+  .search-again.is-bumped { animation: searchAgainBump .5s ease-out, searchAgainGlow 2.6s ease-in-out .5s infinite; }
 }
-@media (max-width: 720px) {
-  .action-row { grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+@keyframes searchAgainIn {
+  from { opacity: 0; transform: translateY(-8px) scale(.97); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes searchAgainGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(31,92,69,.45), 0 6px 16px rgba(20,40,30,.18); }
+  50% { box-shadow: 0 0 0 7px rgba(31,92,69,0), 0 6px 16px rgba(20,40,30,.18); }
+}
+@keyframes searchAgainShine {
+  0%, 55% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes searchAgainBob {
+  0%, 100% { transform: rotate(0) scale(1); }
+  20% { transform: rotate(-12deg) scale(1.08); }
+  40% { transform: rotate(10deg) scale(1.08); }
+  60% { transform: rotate(0) scale(1); }
+}
+@keyframes searchAgainNudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+@keyframes searchAgainBump {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: .6rem 1rem;
+  align-items: end;
+  margin-top: .6rem;
 }
 .action-control {
   display: grid;
   gap: .28rem;
   min-width: 0;
+  flex: 0 0 auto;
 }
 .action-control label,
 .action-spacer {
@@ -302,13 +431,12 @@ button, input, select { font: inherit; }
 .loc-btn,
 .tool-btn {
   box-sizing: border-box;
-  width: 100%;
   height: 2.75rem;
   margin: 0;
   border: 1px solid var(--line);
   background: var(--surface);
   border-radius: 10px;
-  padding: 0 .7rem;
+  padding: 0 .9rem;
   font: inherit;
   font-size: .88rem;
   font-weight: 600;
@@ -318,7 +446,7 @@ button, input, select { font: inherit; }
   align-items: center;
   justify-content: center;
   text-align: center;
-  white-space: normal;
+  white-space: nowrap;
   line-height: 1.15;
 }
 .action-control select {
@@ -327,6 +455,7 @@ button, input, select { font: inherit; }
   background-repeat: no-repeat;
   background-position: right .75rem center;
   padding-right: 2rem;
+  padding-left: .9rem;
   text-align: left;
   justify-content: flex-start;
 }
@@ -335,6 +464,27 @@ button, input, select { font: inherit; }
   outline: 2px solid var(--leaf); outline-offset: 1px;
 }
 .loc-btn.on { background: var(--forest); color: #fff; border-color: var(--forest); }
+.action-control-search { flex: 0 1 22rem; }
+.loc-search-group { display: flex; flex-wrap: wrap; gap: .5rem; max-width: 28rem; }
+.loc-search-group input {
+  flex: 1 1 10rem; min-width: 10rem; height: 2.75rem; border: 1px solid var(--line); background: var(--surface);
+  border-radius: 10px; padding: 0 .85rem; font: inherit; font-size: .92rem; color: var(--ink);
+}
+.loc-search-group input:focus { outline: 2px solid var(--leaf); outline-offset: 1px; border-color: var(--leaf); }
+.loc-search-group button {
+  flex: none; height: 2.75rem; padding: 0 1.2rem; border: 1px solid var(--forest); background: var(--forest);
+  color: #fff; border-radius: 10px; font: inherit; font-weight: 700; font-size: .9rem; cursor: pointer;
+}
+.loc-search-group button:hover { filter: brightness(1.08); }
+.loc-search-group button:focus-visible { outline: 2px solid var(--leaf); outline-offset: 2px; }
+.loc-search-group button:disabled { opacity: .6; cursor: default; }
+.loc-search-status { margin: .5rem 0 0; font-size: .85rem; color: var(--muted); min-height: 1.1rem; }
+.loc-search-status.is-error { color: var(--warn); }
+@media (max-width: 720px) {
+  .action-control, .action-control-search { flex: 1 1 100%; }
+  .action-control select, .loc-btn, .tool-btn { width: 100%; }
+  .loc-search-group { max-width: none; }
+}
 .main { padding: 0 0 3.5rem; }
 .layout { display: grid; gap: 1.25rem; }
 @media (min-width: 980px) { .layout.has-detail { grid-template-columns: 1fr 360px; } }
@@ -415,6 +565,42 @@ body.map-fullscreen .toolbar-peek,
 body.map-fullscreen .toolbar-backdrop {
   display: none !important;
 }
+.map-view-bar {
+  display: none;
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: 5;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  padding: max(.6rem, env(safe-area-inset-top)) .75rem .6rem;
+  background: linear-gradient(180deg, rgba(20,40,30,.55), rgba(20,40,30,0));
+}
+.map-back-btn, .map-filters-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: .55rem 1rem;
+  font: inherit;
+  font-size: .9rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.map-back-btn:hover, .map-filters-btn:hover { border-color: var(--leaf); }
+.map-back-btn:focus-visible, .map-filters-btn:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+html[dir="rtl"] .map-back-icon { display: inline-block; transform: scaleX(-1); }
+@media (max-width: 979px) {
+  body.map-fullscreen .map-view-bar { display: flex; }
+}
 body.view-map footer {
   position: relative;
   z-index: 1;
@@ -463,11 +649,22 @@ body.view-map footer {
 #detail { display: none; position: sticky; top: 6.5rem; align-self: start; max-height: calc(100vh - 7rem); overflow: auto; }
 body.has-selection #detail { display: block; }
 .detail-inner { padding: 1.15rem 1.2rem 1.4rem; }
-.detail-inner h2 { font-family: var(--display); font-size: 1.45rem; margin: .35rem 0 .5rem; line-height: 1.2; }
+.detail-inner h2 { font-family: var(--display); font-size: 1.45rem; margin: .35rem 0 .15rem; line-height: 1.2; }
+.detail-subtitle { margin: 0 0 .75rem; color: var(--forest); font-weight: 700; font-size: 1rem; }
 .close-detail { float: right; border: 0; background: transparent; font-size: 1.4rem; line-height: 1; cursor: pointer; color: var(--muted); }
-.detail-section { margin-top: .9rem; }
-.detail-section h3 { margin: 0 0 .25rem; font-size: .75rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 700; }
-.detail-section p { margin: 0; }
+.detail-actions { margin: 0 0 1.1rem; padding-bottom: 1.1rem; border-bottom: 1px solid var(--line); }
+.detail-sections { display: flex; flex-direction: column; gap: 1rem; }
+.detail-section { padding: .05rem 0 .05rem .9rem; border-left: 3px solid var(--sky); }
+.detail-section h3 { margin: 0 0 .3rem; font-size: .76rem; text-transform: uppercase; letter-spacing: .08em; color: var(--forest-d); font-weight: 800; }
+.detail-section p { margin: 0; line-height: 1.5; }
+.detail-documentation { border-left-color: var(--gold); }
+.detail-documentation h3 { color: #6a5608; }
+.detail-reminder {
+  margin-top: 1.3rem; padding: .85rem 1rem; background: #fff8e6;
+  border: 1px solid #e6d59a; border-radius: 10px;
+}
+.detail-reminder h3 { margin: 0 0 .3rem; font-size: .76rem; text-transform: uppercase; letter-spacing: .08em; color: #5c4810; font-weight: 800; }
+.detail-reminder p { margin: 0; color: #5c4810; line-height: 1.5; font-size: .92rem; }
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
@@ -493,11 +690,50 @@ footer a { font-weight: 600; }
 }
 @media (max-width: 700px) {
   .brand { max-width: none; }
+  /* Size the hero to its content instead of a fixed 68vh floor, so the directory
+     toolbar sits higher on small screens and needs less scrolling to reach. */
+  .hero { min-height: auto; }
+  .hero-inner { padding: 1.75rem 0 2rem; }
+}
+@media (max-width: 979px) {
   #detail {
-    position: fixed; inset: auto 0 0 0; top: auto; max-height: 55vh; z-index: 50;
-    border-radius: 18px 18px 0 0; box-shadow: 0 -10px 40px rgba(0,0,0,.18);
+    position: fixed; inset: 0; max-height: none; z-index: 92;
+    border-radius: 0; box-shadow: none;
+    padding-bottom: env(safe-area-inset-bottom);
+    animation: detailIn .2s ease-out both;
   }
   body.has-selection #detail { display: block; }
+  body.has-selection { overflow: hidden; }
+  /* Leave room at the top so the fixed close button never covers the badges/heading. */
+  .detail-inner { padding-top: calc(4rem + env(safe-area-inset-top)); }
+  .close-detail {
+    position: fixed;
+    top: max(.9rem, env(safe-area-inset-top));
+    inset-inline-end: .9rem;
+    z-index: 2;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 1.7rem;
+    box-shadow: var(--shadow);
+    animation: closePulse 2.2s ease-in-out infinite;
+  }
+  .close-detail:hover, .close-detail:focus-visible { animation-play-state: paused; }
+  .close-detail:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+}
+@keyframes detailIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes closePulse {
+  0%, 100% { transform: scale(1); box-shadow: var(--shadow); }
+  50% { transform: scale(1.1); box-shadow: 0 4px 18px rgba(31,92,69,.4); }
 }
 @media print {
   body::before, .hero, .banner, .toolbar, .toolbar-peek, .toolbar-backdrop, .hero-top, .view-toggle, .chip-row,
@@ -522,6 +758,8 @@ footer a { font-weight: 600; }
   <div class="hero-pattern" aria-hidden="true"></div>
   <div class="wrap hero-inner">
     <div class="hero-top">
+      <img class="seal" src="logo_county_seal.png" alt="Orange County, NY seal" width="397" height="398" loading="eager" />
+      <div class="hero-top-controls">
       <div class="lang-select-wrap">
         <label for="lang-select" data-i18n="language">Language</label>
         <select id="lang-select" aria-label="Language">
@@ -537,6 +775,7 @@ footer a { font-weight: 600; }
       </div>
       <div class="bw-toggle">
         <button type="button" id="low-bw" aria-pressed="false" data-i18n="lowBw">Low data</button>
+      </div>
       </div>
     </div>
     <h1 class="brand" data-i18n="brand">Orange County Food Assistance</h1>
@@ -564,58 +803,97 @@ footer a { font-weight: 600; }
 </button>
 <section class="toolbar" id="directory" aria-label="Directory filters">
   <div class="wrap">
+    <h2 class="toolbar-heading" data-i18n="directory">Directory</h2>
     <div class="toolbar-sheet-bar">
       <strong data-i18n="filters">Filters</strong>
       <button type="button" class="toolbar-close" id="toolbar-close" data-i18n="hideFilters">Hide filters</button>
     </div>
+    <p class="toolbar-hint" id="toolbar-hint" data-i18n="searchHint">Search matches any word — try a town, program, or day. Filters below can select more than one option.</p>
     <div class="toolbar-row">
       <div class="field">
         <label for="q" data-i18n="search">Search</label>
-        <input id="q" type="search" data-i18n-placeholder="searchPh" placeholder="Name, address, notes…" autocomplete="off" />
+        <input id="q" type="search" data-i18n-placeholder="searchPh" placeholder="Try a name, town, program type, or day…" autocomplete="off" aria-describedby="toolbar-hint" />
       </div>
-      <div class="field">
-        <label for="town" data-i18n="town">Town / area</label>
-        <select id="town"><option value="" data-i18n="allTowns">All towns</option></select>
+      <div class="field ms" data-ms="town">
+        <span class="field-label" id="town-label" data-i18n="town">Town / area</span>
+        <button type="button" class="ms-btn" id="town-btn" aria-haspopup="true" aria-expanded="false" aria-controls="town-panel" aria-labelledby="town-label town-btn-text">
+          <span class="ms-btn-text" id="town-btn-text">All towns</span>
+          <span class="ms-caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="ms-panel" id="town-panel" role="group" aria-labelledby="town-label" hidden>
+          <div class="ms-options" id="town-options"></div>
+          <div class="ms-panel-actions">
+            <button type="button" class="ms-clear" data-i18n="clearSelection">Clear</button>
+            <button type="button" class="ms-done" data-i18n="done">Done</button>
+          </div>
+        </div>
       </div>
-      <div class="field">
-        <label for="type" data-i18n="type">Program type</label>
-        <select id="type">
-          <option value="" data-i18n="allTypes">All types</option>
-          <option value="pantry" data-i18n="optPantry">Food pantry</option>
-          <option value="soup_kitchen" data-i18n="optSoup">Soup kitchen</option>
-          <option value="mini_pantry" data-i18n="optMini">Mini-pantry</option>
-          <option value="hot_meals" data-i18n="optHot">Hot meals</option>
-          <option value="market" data-i18n="optMarket">Farmers market</option>
-          <option value="snap">SNAP</option>
-          <option value="wic">WIC</option>
-          <option value="senior" data-i18n="optSenior">Senior meals</option>
-          <option value="school" data-i18n="optSchool">School program</option>
-        </select>
+      <div class="field ms" data-ms="type">
+        <span class="field-label" id="type-label" data-i18n="type">Program type</span>
+        <button type="button" class="ms-btn" id="type-btn" aria-haspopup="true" aria-expanded="false" aria-controls="type-panel" aria-labelledby="type-label type-btn-text">
+          <span class="ms-btn-text" id="type-btn-text">All types</span>
+          <span class="ms-caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="ms-panel" id="type-panel" role="group" aria-labelledby="type-label" hidden>
+          <div class="ms-options" id="type-options">
+            <label class="ms-option"><input type="checkbox" value="pantry"><span data-i18n="optPantry">Food pantry</span></label>
+            <label class="ms-option"><input type="checkbox" value="soup_kitchen"><span data-i18n="optSoup">Soup kitchen</span></label>
+            <label class="ms-option"><input type="checkbox" value="mini_pantry"><span data-i18n="optMini">Mini-pantry</span></label>
+            <label class="ms-option"><input type="checkbox" value="hot_meals"><span data-i18n="optHot">Hot meals</span></label>
+            <label class="ms-option"><input type="checkbox" value="market"><span data-i18n="optMarket">Farmers market</span></label>
+            <label class="ms-option"><input type="checkbox" value="snap"><span>SNAP</span></label>
+            <label class="ms-option"><input type="checkbox" value="wic"><span>WIC</span></label>
+            <label class="ms-option"><input type="checkbox" value="senior"><span data-i18n="optSenior">Senior meals</span></label>
+            <label class="ms-option"><input type="checkbox" value="school"><span data-i18n="optSchool">School program</span></label>
+          </div>
+          <div class="ms-panel-actions">
+            <button type="button" class="ms-clear" data-i18n="clearSelection">Clear</button>
+            <button type="button" class="ms-done" data-i18n="done">Done</button>
+          </div>
+        </div>
       </div>
-      <div class="field">
-        <label for="day" data-i18n="openOn">Open on</label>
-        <select id="day">
-          <option value="" data-i18n="anyDay">Any day</option>
-          <option value="today" data-i18n="openToday">Open today</option>
-          <option value="open_now" data-i18n="openNow">Open now</option>
-          <option value="Mon" data-i18n="mon">Monday</option>
-          <option value="Tue" data-i18n="tue">Tuesday</option>
-          <option value="Wed" data-i18n="wed">Wednesday</option>
-          <option value="Thu" data-i18n="thu">Thursday</option>
-          <option value="Fri" data-i18n="fri">Friday</option>
-          <option value="Sat" data-i18n="sat">Saturday</option>
-          <option value="Sun" data-i18n="sun">Sunday</option>
-        </select>
+      <div class="field ms" data-ms="day">
+        <span class="field-label" id="day-label" data-i18n="openOn">Open on</span>
+        <button type="button" class="ms-btn" id="day-btn" aria-haspopup="true" aria-expanded="false" aria-controls="day-panel" aria-labelledby="day-label day-btn-text">
+          <span class="ms-btn-text" id="day-btn-text">Any day</span>
+          <span class="ms-caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="ms-panel" id="day-panel" role="group" aria-labelledby="day-label" hidden>
+          <div class="ms-options" id="day-options">
+            <label class="ms-option"><input type="checkbox" value="today"><span data-i18n="openToday">Open today</span></label>
+            <label class="ms-option"><input type="checkbox" value="open_now"><span data-i18n="openNow">Open now</span></label>
+            <label class="ms-option"><input type="checkbox" value="Mon"><span data-i18n="mon">Monday</span></label>
+            <label class="ms-option"><input type="checkbox" value="Tue"><span data-i18n="tue">Tuesday</span></label>
+            <label class="ms-option"><input type="checkbox" value="Wed"><span data-i18n="wed">Wednesday</span></label>
+            <label class="ms-option"><input type="checkbox" value="Thu"><span data-i18n="thu">Thursday</span></label>
+            <label class="ms-option"><input type="checkbox" value="Fri"><span data-i18n="fri">Friday</span></label>
+            <label class="ms-option"><input type="checkbox" value="Sat"><span data-i18n="sat">Saturday</span></label>
+            <label class="ms-option"><input type="checkbox" value="Sun"><span data-i18n="sun">Sunday</span></label>
+          </div>
+          <div class="ms-panel-actions">
+            <button type="button" class="ms-clear" data-i18n="clearSelection">Clear</button>
+            <button type="button" class="ms-done" data-i18n="done">Done</button>
+          </div>
+        </div>
       </div>
-      <div class="field">
-        <label for="docs" data-i18n="docs">Documentation</label>
-        <select id="docs">
-          <option value="" data-i18n="any">Any</option>
-          <option value="not_required" data-i18n="noId">No ID required</option>
-          <option value="open_to_all" data-i18n="openAll">Open to all / no town limit</option>
-          <option value="required" data-i18n="idReq">ID or proof required</option>
-          <option value="favorites" data-i18n="myPlaces">My places</option>
-        </select>
+      <div class="field ms" data-ms="docs">
+        <span class="field-label" id="docs-label" data-i18n="docs">Documentation</span>
+        <button type="button" class="ms-btn" id="docs-btn" aria-haspopup="true" aria-expanded="false" aria-controls="docs-panel" aria-labelledby="docs-label docs-btn-text">
+          <span class="ms-btn-text" id="docs-btn-text">Any</span>
+          <span class="ms-caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="ms-panel" id="docs-panel" role="group" aria-labelledby="docs-label" hidden>
+          <div class="ms-options" id="docs-options">
+            <label class="ms-option"><input type="checkbox" value="not_required"><span data-i18n="noId">No ID required</span></label>
+            <label class="ms-option"><input type="checkbox" value="open_to_all"><span data-i18n="openAll">Open to all / no town limit</span></label>
+            <label class="ms-option"><input type="checkbox" value="required"><span data-i18n="idReq">ID or proof required</span></label>
+            <label class="ms-option"><input type="checkbox" value="favorites"><span data-i18n="myPlaces">My places</span></label>
+          </div>
+          <div class="ms-panel-actions">
+            <button type="button" class="ms-clear" data-i18n="clearSelection">Clear</button>
+            <button type="button" class="ms-done" data-i18n="done">Done</button>
+          </div>
+        </div>
       </div>
       <div class="field">
         <label id="view-label" data-i18n="view">View</label>
@@ -626,27 +904,33 @@ footer a { font-weight: 600; }
       </div>
     </div>
     <div class="chip-row" role="group" data-i18n-aria="quickFilters" aria-label="Quick filters">
-      <button type="button" class="chip" data-quick="open_now" aria-pressed="false" data-i18n="openNow">Open now</button>
-      <button type="button" class="chip" data-quick="today" aria-pressed="false" data-i18n="openToday">Open today</button>
-      <button type="button" class="chip" data-quick="pantry" aria-pressed="false" data-i18n="pantries">Pantries</button>
-      <button type="button" class="chip" data-quick="soup_kitchen" aria-pressed="false" data-i18n="soups">Soup kitchens</button>
-      <button type="button" class="chip" data-quick="open_to_all" aria-pressed="false" data-i18n="openAll">Open to all</button>
-      <button type="button" class="chip" data-quick="favorites" aria-pressed="false" data-i18n="myPlaces">My places</button>
-      <button type="button" class="chip" data-quick="market" aria-pressed="false" data-i18n="markets">Markets</button>
-      <button type="button" class="chip" data-quick="clear" aria-pressed="false" data-i18n="clear">Clear filters</button>
+      <div class="chip-line">
+        <button type="button" class="chip" data-quick="open_now" aria-pressed="false" data-i18n="openNow">Open now</button>
+        <button type="button" class="chip" data-quick="today" aria-pressed="false" data-i18n="openToday">Open today</button>
+        <button type="button" class="chip" data-quick="open_to_all" aria-pressed="false" data-i18n="openAllChip">Open to all</button>
+      </div>
+      <div class="chip-line">
+        <button type="button" class="chip" data-quick="favorites" aria-pressed="false" data-i18n="myPlaces">My places</button>
+        <button type="button" class="chip" data-quick="clear" aria-pressed="false" data-i18n="clear">Clear filters</button>
+      </div>
     </div>
   </div>
 </section>
 <div id="toolbar-sentinel" aria-hidden="true"></div>
 
-<main class="main">
+<section class="results-bar" aria-label="Results and tools">
   <div class="wrap">
-    <div class="results-bar">
-      <div>
-        <h2 data-i18n="locations">Locations</h2>
-        <div class="count" id="result-count" aria-live="polite" aria-atomic="true">…</div>
-      </div>
+    <div class="results-bar-flex">
+      <h2 data-i18n="locations">Locations</h2>
+      <div class="count" id="result-count" aria-live="polite" aria-atomic="true">…</div>
       <div class="action-row">
+        <div class="action-control action-control-search">
+          <label for="loc-search" data-i18n="searchNear">Search near an address</label>
+          <div class="loc-search-group">
+            <input type="search" id="loc-search" data-i18n-placeholder="searchNearPh" placeholder="Address, town, or zip code" autocomplete="off" />
+            <button type="button" id="loc-search-btn" data-i18n="searchNearBtn">Search</button>
+          </div>
+        </div>
         <div class="action-control">
           <label for="radius" data-i18n="within">Within</label>
           <select id="radius" aria-label="Within">
@@ -670,13 +954,41 @@ footer a { font-weight: 600; }
         </div>
       </div>
     </div>
+    <p class="loc-search-status" id="loc-search-status" role="status" aria-live="polite"></p>
+  </div>
+</section>
 
+<main class="main">
+  <div class="wrap">
     <p class="print-only" id="print-header"></p>
 
     <div class="layout" id="layout">
       <div>
-        <div class="panel" id="list-panel"><div class="cards" id="cards"></div></div>
+        <div class="panel" id="list-panel">
+          <button type="button" class="search-again" id="search-again" aria-controls="directory" aria-expanded="false">
+            <span class="search-again-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+            </span>
+            <span class="search-again-text">
+              <span class="search-again-label" data-i18n="searchAgain">Search again</span>
+              <span class="search-again-count" id="search-again-count"></span>
+            </span>
+            <span class="toolbar-peek-count" aria-hidden="true"></span>
+            <span class="search-again-arrow" aria-hidden="true">→</span>
+          </button>
+          <div class="cards" id="cards"></div>
+        </div>
         <div class="panel" id="map-panel" data-map-note="Map tiles need a network connection. List view works offline.">
+          <div class="map-view-bar">
+            <button type="button" class="map-back-btn" id="map-back">
+              <span class="map-back-icon" aria-hidden="true">←</span>
+              <span data-i18n="backToList">Back to list</span>
+            </button>
+            <button type="button" class="map-filters-btn" id="map-filters-btn" aria-haspopup="true" aria-expanded="false" aria-controls="directory">
+              <span data-i18n="search">Search</span>
+              <span class="toolbar-peek-count" id="map-filters-count" aria-hidden="true"></span>
+            </button>
+          </div>
           <p id="map-a11y-hint" class="sr-only" data-i18n="mapA11yHint">Map pins work best with a mouse or touch. Use List view for a fully keyboard-accessible directory of locations.</p>
           <div id="map" role="region" data-i18n-aria="mapLabel" aria-label="Map of food assistance locations" aria-describedby="map-a11y-hint"></div>
         </div>
@@ -715,13 +1027,13 @@ const I18N = {
     "lead": "Find pantries, meals, benefits, and markets near you — filter by town, day, and program type.",
     "browse": "Browse directory",
     "benefits": "Benefits & programs",
-    "updated": "Updated June 2026",
+    "updated": "Updated 9.22.26",
     "listMap": "List + Map",
     "lowBw": "Low data",
     "callAheadStrong": "Please call ahead.",
     "callAhead": "Hours and availability change. Confirm before you go, and bring bags when visiting pantries.",
     "search": "Search",
-    "searchPh": "Name, address, notes…",
+    "searchPh": "Try a name, town, program type, or day…",
     "town": "Town / area",
     "allTowns": "All towns",
     "type": "Program type",
@@ -748,23 +1060,28 @@ const I18N = {
     "any": "Any",
     "noId": "No ID required",
     "openAll": "Open to all / no town limit",
+    "openAllChip": "Open to all",
     "idReq": "ID or proof required",
     "myPlaces": "My places",
     "view": "View",
     "list": "List",
     "map": "Map",
-    "pantries": "Pantries",
-    "soups": "Soup kitchens",
-    "markets": "Markets",
     "clear": "Clear filters",
+    "clearSelection": "Clear",
+    "done": "Done",
+    "nSelected": "{n} selected",
+    "searchHint": "Search matches any word — try a town, program, or day. Filters below can select more than one option.",
+    "directory": "Directory",
     "filters": "Filters",
     "showFilters": "Show filters",
+    "searchAgain": "Search again",
     "hideFilters": "Hide filters",
     "quickFilters": "Quick filters",
     "mapLabel": "Map of food assistance locations",
     "mapA11yHint": "Map pins work best with a mouse or touch. Use List view for a fully keyboard-accessible directory of locations.",
     "mapFullscreen": "Full screen map",
     "mapExitFullscreen": "Exit full screen",
+    "backToList": "Back to list",
     "dirTitle": "Orange County Food Assistance Directory",
     "locations": "Locations",
     "within": "Within",
@@ -813,6 +1130,12 @@ const I18N = {
     "shareFailed": "Could not copy link",
     "geoFail": "Could not get your location. Check browser permissions.",
     "geoUnsupported": "Geolocation is not supported in this browser.",
+    "searchNear": "Search near an address",
+    "searchNearPh": "Address, town, or zip code",
+    "searchNearBtn": "Search",
+    "searchingLoc": "Searching…",
+    "searchNotFound": "Couldn't find that address. Try a nearby town or zip code.",
+    "searchFailedLoc": "Search failed. Check your connection and try again.",
     "askDocs": "Ask location about documentation",
     "idRequired": "ID required",
     "proofReq": "Proof of residence required",
@@ -847,13 +1170,13 @@ const I18N = {
     "lead": "Encuentre despensas, comidas, beneficios y mercados cerca de usted — filtre por pueblo, día y tipo de programa.",
     "browse": "Ver directorio",
     "benefits": "Beneficios y programas",
-    "updated": "Actualizado junio 2026",
+    "updated": "Actualizado 9.22.26",
     "listMap": "Lista + Mapa",
     "lowBw": "Pocos datos",
     "callAheadStrong": "Llame antes de ir.",
     "callAhead": "Los horarios y la disponibilidad cambian. Confirme antes de ir y lleve bolsas a las despensas.",
     "search": "Buscar",
-    "searchPh": "Nombre, dirección, notas…",
+    "searchPh": "Prueba con un nombre, pueblo, tipo de programa o día…",
     "town": "Pueblo / área",
     "allTowns": "Todos los pueblos",
     "type": "Tipo de programa",
@@ -880,23 +1203,28 @@ const I18N = {
     "any": "Cualquiera",
     "noId": "Sin ID requerido",
     "openAll": "Abierto a todos / sin límite de pueblo",
+    "openAllChip": "Abierto a todos",
     "idReq": "ID o prueba requerida",
     "myPlaces": "Mis lugares",
     "view": "Vista",
     "list": "Lista",
     "map": "Mapa",
-    "pantries": "Despensas",
-    "soups": "Comedores",
-    "markets": "Mercados",
     "clear": "Borrar filtros",
+    "clearSelection": "Borrar",
+    "done": "Listo",
+    "nSelected": "{n} seleccionados",
+    "searchHint": "La búsqueda coincide con cualquier palabra — prueba con un pueblo, programa o día. Los filtros de abajo permiten elegir más de una opción.",
+    "directory": "Directorio",
     "filters": "Filtros",
     "showFilters": "Mostrar filtros",
+    "searchAgain": "Buscar de nuevo",
     "hideFilters": "Ocultar filtros",
     "quickFilters": "Filtros rápidos",
     "mapLabel": "Mapa de ubicaciones de asistencia alimentaria",
     "mapA11yHint": "Los pines del mapa funcionan mejor con ratón o táctil. Use la vista Lista para un directorio totalmente accesible por teclado.",
     "mapFullscreen": "Mapa a pantalla completa",
     "mapExitFullscreen": "Salir de pantalla completa",
+    "backToList": "Volver a la lista",
     "dirTitle": "Directorio de Asistencia Alimentaria del Condado de Orange",
     "locations": "Ubicaciones",
     "within": "Dentro de",
@@ -945,6 +1273,12 @@ const I18N = {
     "shareFailed": "No se pudo copiar el enlace",
     "geoFail": "No se pudo obtener su ubicación. Revise los permisos del navegador.",
     "geoUnsupported": "La geolocalización no es compatible con este navegador.",
+    "searchNear": "Buscar cerca de una dirección",
+    "searchNearPh": "Dirección, pueblo o código postal",
+    "searchNearBtn": "Buscar",
+    "searchingLoc": "Buscando…",
+    "searchNotFound": "No se encontró esa dirección. Prueba con un pueblo cercano o código postal.",
+    "searchFailedLoc": "Error en la búsqueda. Verifica tu conexión e intenta de nuevo.",
     "askDocs": "Pregunte al lugar sobre la documentación",
     "idRequired": "Se requiere ID",
     "proofReq": "Se requiere prueba de residencia",
@@ -979,13 +1313,13 @@ const I18N = {
     "lead": "געפֿינט עסן פּאַנטריס, מאָלצייַטן, בענעפֿיטן און מאַרקן נאָענט צו אײַך.",
     "browse": "זעט דעם וועגווייַזער",
     "benefits": "בענעפֿיטן און פּראָגראַמען",
-    "updated": "דערהײַנט יוני 2026",
+    "updated": "דערהײַנט 9.22.26",
     "listMap": "ליסטע + מאַפּע",
     "lowBw": "ווייניק דאַטן",
     "callAheadStrong": "רופֿט פֿריִער.",
     "callAhead": "שעהען און פֿאַראַנענקייט קענען זיך ענדערן. באַשטעטיקט פֿאַר איר גייט, און ברענגט זעקלעך.",
     "search": "זוכן",
-    "searchPh": "נאָמען, אַדרעס, נאָטיצן…",
+    "searchPh": "פּרוּווט אַ נאָמען, שטאָט, פּראָגראַם־טיפּ, אָדער טאָג…",
     "town": "שטאָט / געגנט",
     "allTowns": "אַלע שטעט",
     "type": "פּראָגראַם־סאָרט",
@@ -1012,23 +1346,28 @@ const I18N = {
     "any": "וואָס נישט איז",
     "noId": "קיין ID נישט נויטיק",
     "openAll": "אָפֿן פֿאַר אַלע",
+    "openAllChip": "אָפֿן פֿאַר אַלע",
     "idReq": "ID אָדער בּאַווײַז נויטיק",
     "myPlaces": "מײַנע ערטער",
     "view": "קוק",
     "list": "ליסטע",
     "map": "מאַפּע",
-    "pantries": "פּאַנטריס",
-    "soups": "זופּ־קיכן",
-    "markets": "מאַרקן",
     "clear": "רייניקן פֿילטערס",
+    "clearSelection": "רייניקן",
+    "done": "פֿאַרטיק",
+    "nSelected": "{n} אויסגעקליבן",
+    "searchHint": "די זוכן שטימט מיט יעדעס וואָרט — פּרוּווט אַ שטאָט, פּראָגראַם, אָדער טאָג. די פֿילטערס קענען קלייַבן מער ווי איין אָפּציע.",
+    "directory": "פֿאַרצייכעניש",
     "filters": "פֿילטערס",
     "showFilters": "ווײַזן פֿילטערס",
+    "searchAgain": "זוכן ווידער",
     "hideFilters": "באַהאַלטן פֿילטערס",
     "quickFilters": "שנעלע פֿילטערס",
     "mapLabel": "מאַפּע פֿון עסן־הילף ערטער",
     "mapA11yHint": "מאַפּע־שפּילקעס אַרבעטן בעסטן מיט אַ מויז אָדער פֿינגר. ניצט ליסטע־קוק פֿאַר אַ פֿול־טאַסטאַטור־צוטריטלעכן וועגווייַזער.",
     "mapFullscreen": "פֿולשירן מאַפּע",
     "mapExitFullscreen": "פֿאַרלאָזן פֿולשירן",
+    "backToList": "צוריק צו רשימה",
     "dirTitle": "אָראַנדזש קאַונטי עסן הילף וועגווייַזער",
     "locations": "ערטער",
     "within": "אינעווייניק",
@@ -1077,6 +1416,12 @@ const I18N = {
     "shareFailed": "נישט געקענט קאָפּירן",
     "geoFail": "נישט געקענט געפֿינען אײַער אָרט.",
     "geoUnsupported": "אָרט־זוכן נישט געשטיצט.",
+    "searchNear": "זוכן לעבן אַן אַדרעס",
+    "searchNearPh": "אַדרעס, שטאָט, אָדער זיפּ־קאָוד",
+    "searchNearBtn": "זוכן",
+    "searchingLoc": "זוכט…",
+    "searchNotFound": "נישט געפֿונען דעם אַדרעס. פּרוּווט אַ נאָענטע שטאָט אָדער זיפּ־קאָוד.",
+    "searchFailedLoc": "זוכן איז נישט אײַנגעגאַנגען. קאָנטראָלירט אײַער פֿאַרבינדונג און פּרוּווט ווידער.",
     "askDocs": "פֿרעגט וועגן דאָקומענטן",
     "idRequired": "ID נויטיק",
     "proofReq": "וווינונג־באַווײַ נויטיק",
@@ -1111,13 +1456,13 @@ const I18N = {
     "lead": "查找附近的食品分发点、餐食、福利项目和市场 — 可按城镇、日期和类型筛选。",
     "browse": "浏览目录",
     "benefits": "福利与项目",
-    "updated": "更新于 2026年6月",
+    "updated": "更新于 9.22.26",
     "listMap": "列表 + 地图",
     "lowBw": "省流量",
     "callAheadStrong": "请先致电确认。",
     "callAhead": "开放时间可能变化。前往前请确认，并自备袋子。",
     "search": "搜索",
-    "searchPh": "名称、地址、备注…",
+    "searchPh": "试试名称、城镇、项目类型或星期…",
     "town": "城镇 / 地区",
     "allTowns": "所有城镇",
     "type": "项目类型",
@@ -1144,23 +1489,28 @@ const I18N = {
     "any": "任意",
     "noId": "无需身份证",
     "openAll": "对所有人开放",
+    "openAllChip": "对所有人开放",
     "idReq": "需要身份证或证明",
     "myPlaces": "我的地点",
     "view": "视图",
     "list": "列表",
     "map": "地图",
-    "pantries": "分发点",
-    "soups": "施粥处",
-    "markets": "市场",
     "clear": "清除筛选",
+    "clearSelection": "清除",
+    "done": "完成",
+    "nSelected": "已选择 {n} 项",
+    "searchHint": "搜索会匹配任意关键词 — 可以试试城镇、项目类型或星期。下面的筛选项可多选。",
+    "directory": "目录",
     "filters": "筛选",
     "showFilters": "显示筛选",
+    "searchAgain": "重新搜索",
     "hideFilters": "隐藏筛选",
     "quickFilters": "快速筛选",
     "mapLabel": "食品援助地点地图",
     "mapA11yHint": "地图标记最适合鼠标或触控操作。请使用列表视图以获得完整的键盘无障碍目录。",
     "mapFullscreen": "全屏地图",
     "mapExitFullscreen": "退出全屏",
+    "backToList": "返回列表",
     "dirTitle": "奥兰治县食品援助目录",
     "locations": "地点",
     "within": "范围内",
@@ -1209,6 +1559,12 @@ const I18N = {
     "shareFailed": "无法复制链接",
     "geoFail": "无法获取位置。请检查浏览器权限。",
     "geoUnsupported": "此浏览器不支持定位。",
+    "searchNear": "按地址搜索附近",
+    "searchNearPh": "地址、城镇或邮编",
+    "searchNearBtn": "搜索",
+    "searchingLoc": "搜索中…",
+    "searchNotFound": "找不到该地址。请试试附近的城镇或邮编。",
+    "searchFailedLoc": "搜索失败。请检查网络连接后重试。",
     "askDocs": "请向该地点询问证件要求",
     "idRequired": "需要身份证",
     "proofReq": "需要住址证明",
@@ -1243,13 +1599,13 @@ const I18N = {
     "lead": "Jwenn depo manje, repa, benefis ak mache tou pre ou — filtre pa vil, jou, ak kalite pwogram.",
     "browse": "Gade anyè a",
     "benefits": "Benefis ak pwogram",
-    "updated": "Mizajou jen 2026",
+    "updated": "Mizajou 9.22.26",
     "listMap": "Lis + Kat",
     "lowBw": "Ti done",
     "callAheadStrong": "Tanpri rele anvan.",
     "callAhead": "Orè yo ka chanje. Konfime anvan ou ale, epi pote sak.",
     "search": "Chèche",
-    "searchPh": "Non, adrès, nòt…",
+    "searchPh": "Eseye yon non, vil, tip pwogram, oswa jou…",
     "town": "Vil / zòn",
     "allTowns": "Tout vil",
     "type": "Kalite pwogram",
@@ -1276,23 +1632,28 @@ const I18N = {
     "any": "Nenpòt",
     "noId": "Pa bezwen ID",
     "openAll": "Louvri pou tout moun",
+    "openAllChip": "Louvri pou tout moun",
     "idReq": "Bezwen ID oswa prèv",
     "myPlaces": "Kote mwen",
     "view": "View",
     "list": "Lis",
     "map": "Kat",
-    "pantries": "Depo manje",
-    "soups": "Kwizin soup",
-    "markets": "Mache",
     "clear": "Efase filtè",
+    "clearSelection": "Efase",
+    "done": "Fini",
+    "nSelected": "{n} chwazi",
+    "searchHint": "Rechèch la matche nenpòt mo — eseye yon vil, pwogram, oswa jou. Filtè anba yo ka chwazi plis pase yon opsyon.",
+    "directory": "Anyè",
     "filters": "Filtè",
     "showFilters": "Montre filtè",
+    "searchAgain": "Chèche ankò",
     "hideFilters": "Kache filtè",
     "quickFilters": "Filtè rapid",
     "mapLabel": "Kat kote asistans manje yo",
     "mapA11yHint": "Pwen sou kat la mache pi byen ak sourit oswa manyen. Sèvi ak lis la pou yon anyè konplètman aksesib ak klavye.",
     "mapFullscreen": "Kat an plen ekran",
     "mapExitFullscreen": "Sòti nan plen ekran",
+    "backToList": "Tounen nan lis la",
     "dirTitle": "Anyè Asistans Manje Orange County",
     "locations": "Kote",
     "within": "Nan",
@@ -1341,6 +1702,12 @@ const I18N = {
     "shareFailed": "Pa t kapab kopye lyen an",
     "geoFail": "Pa t kapab jwenn lokalizasyon ou.",
     "geoUnsupported": "Navigatè a pa sipòte lokalizasyon.",
+    "searchNear": "Chèche tou pre yon adrès",
+    "searchNearPh": "Adrès, vil, oswa kòd postal",
+    "searchNearBtn": "Chèche",
+    "searchingLoc": "Ap chèche…",
+    "searchNotFound": "Nou pa jwenn adrès sa a. Eseye yon vil pre oswa yon kòd postal.",
+    "searchFailedLoc": "Rechèch la echwe. Verifye koneksyon ou epi eseye ankò.",
     "askDocs": "Mande sou dokiman",
     "idRequired": "Bezwen ID",
     "proofReq": "Bezwen prèv rezidans",
@@ -1375,13 +1742,13 @@ const I18N = {
     "lead": "ابحث عن بنوك الطعام والوجبات والمزايا والأسواق بالقرب منك — صفِّ حسب البلدة واليوم ونوع البرنامج.",
     "browse": "تصفح الدليل",
     "benefits": "المزايا والبرامج",
-    "updated": "محدَّث يونيو 2026",
+    "updated": "محدَّث 9.22.26",
     "listMap": "قائمة + خريطة",
     "lowBw": "بيانات منخفضة",
     "callAheadStrong": "يُرجى الاتصال مسبقًا.",
     "callAhead": "قد تتغير المواعيد والتوفر. أكّد قبل الذهاب وأحضر أكياسًا.",
     "search": "بحث",
-    "searchPh": "الاسم، العنوان، ملاحظات…",
+    "searchPh": "جرّب اسمًا أو بلدة أو نوع برنامج أو يومًا…",
     "town": "البلدة / المنطقة",
     "allTowns": "كل البلدات",
     "type": "نوع البرنامج",
@@ -1408,23 +1775,28 @@ const I18N = {
     "any": "أي",
     "noId": "لا حاجة لهوية",
     "openAll": "مفتوح للجميع",
+    "openAllChip": "مفتوح للجميع",
     "idReq": "مطلوب هوية أو إثبات",
     "myPlaces": "أماكني",
     "view": "العرض",
     "list": "قائمة",
     "map": "خريطة",
-    "pantries": "بنوك الطعام",
-    "soups": "مطابخ الشوربة",
-    "markets": "الأسواق",
     "clear": "مسح عوامل التصفية",
+    "clearSelection": "مسح",
+    "done": "تم",
+    "nSelected": "تم اختيار {n}",
+    "searchHint": "يطابق البحث أي كلمة تكتبها — جرّب اسم بلدة أو برنامج أو يوم. يمكن لعوامل التصفية أدناه اختيار أكثر من خيار.",
+    "directory": "الدليل",
     "filters": "عوامل التصفية",
     "showFilters": "إظهار عوامل التصفية",
+    "searchAgain": "ابحث مرة أخرى",
     "hideFilters": "إخفاء عوامل التصفية",
     "quickFilters": "عوامل تصفية سريعة",
     "mapLabel": "خريطة مواقع المساعدة الغذائية",
     "mapA11yHint": "تعمل دبابيس الخريطة بشكل أفضل بالماوس أو اللمس. استخدم عرض القائمة للحصول على دليل يمكن الوصول إليه بالكامل عبر لوحة المفاتيح.",
     "mapFullscreen": "خريطة بملء الشاشة",
     "mapExitFullscreen": "إنهاء ملء الشاشة",
+    "backToList": "العودة إلى القائمة",
     "dirTitle": "دليل المساعدة الغذائية في مقاطعة أورانج",
     "locations": "المواقع",
     "within": "ضمن",
@@ -1473,6 +1845,12 @@ const I18N = {
     "shareFailed": "تعذّر نسخ الرابط",
     "geoFail": "تعذّر الحصول على موقعك.",
     "geoUnsupported": "المتصفح لا يدعم تحديد الموقع.",
+    "searchNear": "البحث بالقرب من عنوان",
+    "searchNearPh": "العنوان أو البلدة أو الرمز البريدي",
+    "searchNearBtn": "بحث",
+    "searchingLoc": "جارٍ البحث…",
+    "searchNotFound": "تعذر العثور على هذا العنوان. جرّب بلدة قريبة أو رمزًا بريديًا.",
+    "searchFailedLoc": "فشل البحث. تحقق من اتصالك وحاول مرة أخرى.",
     "askDocs": "اسأل عن الوثائق",
     "idRequired": "مطلوب هوية",
     "proofReq": "مطلوب إثبات سكن",
@@ -1507,13 +1885,13 @@ const I18N = {
     "lead": "מצאו מזווה מזון, ארוחות, הטבות ושווקים לידכם — סננו לפי יישוב, יום וסוג תוכנית.",
     "browse": "עיון במדריך",
     "benefits": "הטבות ותוכניות",
-    "updated": "עודכן יוני 2026",
+    "updated": "עודכן 9.22.26",
     "listMap": "רשימה + מפה",
     "lowBw": "חיסכון בנתונים",
     "callAheadStrong": "נא להתקשר מראש.",
     "callAhead": "שעות וזמינות עשויות להשתנות. אשרו לפני ההגעה והביאו שקיות.",
     "search": "חיפוש",
-    "searchPh": "שם, כתובת, הערות…",
+    "searchPh": "נסו שם, עיר, סוג תוכנית או יום…",
     "town": "יישוב / אזור",
     "allTowns": "כל היישובים",
     "type": "סוג תוכנית",
@@ -1540,23 +1918,28 @@ const I18N = {
     "any": "הכל",
     "noId": "אין צורך בתעודה",
     "openAll": "פתוח לכולם",
+    "openAllChip": "פתוח לכולם",
     "idReq": "נדרשת תעודה או הוכחה",
     "myPlaces": "המקומות שלי",
     "view": "תצוגה",
     "list": "רשימה",
     "map": "מפה",
-    "pantries": "מזווים",
-    "soups": "מטבחי מרק",
-    "markets": "שווקים",
     "clear": "נקה מסננים",
+    "clearSelection": "נקה",
+    "done": "סיום",
+    "nSelected": "{n} נבחרו",
+    "searchHint": "החיפוש מתאים לכל מילה — נסו עיר, תוכנית או יום. המסננים למטה מאפשרים לבחור יותר מאפשרות אחת.",
+    "directory": "מדריך",
     "filters": "מסננים",
     "showFilters": "הצג מסננים",
+    "searchAgain": "חפש שוב",
     "hideFilters": "הסתר מסננים",
     "quickFilters": "מסננים מהירים",
     "mapLabel": "מפת מיקומי סיוע במזון",
     "mapA11yHint": "סיכות המפה מתאימות יותר לעכבר או מגע. השתמשו בתצוגת הרשימה למדריך נגיש במלואו באמצעות מקלדת.",
     "mapFullscreen": "מפה במסך מלא",
     "mapExitFullscreen": "יציאה ממסך מלא",
+    "backToList": "חזרה לרשימה",
     "dirTitle": "מדריך סיוע במזון במחוז אורנג׳",
     "locations": "מיקומים",
     "within": "בטווח",
@@ -1605,6 +1988,12 @@ const I18N = {
     "shareFailed": "לא ניתן להעתיק קישור",
     "geoFail": "לא ניתן לקבל את המיקום שלכם.",
     "geoUnsupported": "הדפדפן אינו תומך במיקום.",
+    "searchNear": "חיפוש ליד כתובת",
+    "searchNearPh": "כתובת, עיר או מיקוד",
+    "searchNearBtn": "חיפוש",
+    "searchingLoc": "מחפש…",
+    "searchNotFound": "הכתובת לא נמצאה. נסו עיר קרובה או מיקוד.",
+    "searchFailedLoc": "החיפוש נכשל. בדקו את החיבור ונסו שוב.",
     "askDocs": "שאלו לגבי מסמכים",
     "idRequired": "נדרשת תעודה",
     "proofReq": "נדרשת הוכחת מגורים",
@@ -1639,13 +2028,13 @@ const I18N = {
     "lead": "Найдите продовольственные пункты, питание, пособия и рынки рядом — фильтруйте по городу, дню и типу программы.",
     "browse": "Открыть справочник",
     "benefits": "Пособия и программы",
-    "updated": "Обновлено: июнь 2026",
+    "updated": "Обновлено: 9.22.26",
     "listMap": "Список + карта",
     "lowBw": "Экономия трафика",
     "callAheadStrong": "Пожалуйста, позвоните заранее.",
     "callAhead": "Часы работы могут меняться. Уточните перед визитом и возьмите сумки.",
     "search": "Поиск",
-    "searchPh": "Название, адрес, заметки…",
+    "searchPh": "Попробуйте название, город, тип программы или день…",
     "town": "Город / район",
     "allTowns": "Все города",
     "type": "Тип программы",
@@ -1672,23 +2061,28 @@ const I18N = {
     "any": "Любые",
     "noId": "ID не требуется",
     "openAll": "Открыто для всех",
+    "openAllChip": "Открыто для всех",
     "idReq": "Требуется ID или подтверждение",
     "myPlaces": "Мои места",
     "view": "Вид",
     "list": "Список",
     "map": "Карта",
-    "pantries": "Пункты",
-    "soups": "Кухни",
-    "markets": "Рынки",
     "clear": "Сбросить фильтры",
+    "clearSelection": "Очистить",
+    "done": "Готово",
+    "nSelected": "Выбрано: {n}",
+    "searchHint": "Поиск ищет по любому слову — попробуйте город, программу или день. В фильтрах ниже можно выбрать несколько вариантов.",
+    "directory": "Каталог",
     "filters": "Фильтры",
     "showFilters": "Показать фильтры",
+    "searchAgain": "Искать снова",
     "hideFilters": "Скрыть фильтры",
     "quickFilters": "Быстрые фильтры",
     "mapLabel": "Карта пунктов продовольственной помощи",
     "mapA11yHint": "Метки на карте удобнее мышью или касанием. Используйте вид «Список» для полностью клавиатурно-доступного справочника.",
     "mapFullscreen": "Карта на весь экран",
     "mapExitFullscreen": "Выйти из полноэкранного режима",
+    "backToList": "Назад к списку",
     "dirTitle": "Справочник продовольственной помощи округа Ориндж",
     "locations": "Места",
     "within": "В пределах",
@@ -1737,6 +2131,12 @@ const I18N = {
     "shareFailed": "Не удалось скопировать ссылку",
     "geoFail": "Не удалось определить местоположение.",
     "geoUnsupported": "Браузер не поддерживает геолокацию.",
+    "searchNear": "Поиск рядом с адресом",
+    "searchNearPh": "Адрес, город или почтовый индекс",
+    "searchNearBtn": "Искать",
+    "searchingLoc": "Поиск…",
+    "searchNotFound": "Адрес не найден. Попробуйте ближайший город или индекс.",
+    "searchFailedLoc": "Не удалось выполнить поиск. Проверьте соединение и попробуйте снова.",
     "askDocs": "Уточните документы на месте",
     "idRequired": "Требуется ID",
     "proofReq": "Требуется подтверждение адреса",
@@ -3452,59 +3852,175 @@ function applyI18n() {
 }
 
 function populateTowns() {
-  const sel = document.getElementById("town");
-  const current = sel.value;
-  const first = sel.querySelector("option[value='']");
-  sel.innerHTML = "";
-  sel.appendChild(first || new Option(t("allTowns"), ""));
-  if (!first) sel.options[0].textContent = t("allTowns");
-  else sel.options[0].textContent = t("allTowns");
+  const box = document.getElementById("town-options");
+  const current = new Set(checkedValues("town-options"));
+  box.innerHTML = "";
   const towns = [...new Set(DIRECTORY.sites.map((s) => s.town).filter(Boolean))].sort((a,b) => a.localeCompare(b));
-  for (const town of towns) {
-    const opt = document.createElement("option");
-    opt.value = town; opt.textContent = town;
-    sel.appendChild(opt);
+  towns.forEach((town, i) => {
+    const label = document.createElement("label");
+    label.className = "ms-option";
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.value = town;
+    input.id = `town-opt-${i}`;
+    input.checked = current.has(town);
+    const span = document.createElement("span");
+    span.textContent = town;
+    label.appendChild(input);
+    label.appendChild(span);
+    box.appendChild(label);
+  });
+  updateMsButtonLabel("town");
+}
+
+function checkedValues(containerId) {
+  const box = document.getElementById(containerId);
+  if (!box) return [];
+  return [...box.querySelectorAll("input[type='checkbox']:checked")].map((cb) => cb.value);
+}
+
+function setFieldValues(containerId, values) {
+  const box = document.getElementById(containerId);
+  if (!box) return;
+  const set = new Set(values);
+  box.querySelectorAll("input[type='checkbox']").forEach((cb) => { cb.checked = set.has(cb.value); });
+}
+
+function clearField(containerId) {
+  setFieldValues(containerId, []);
+}
+
+const MS_DEFAULT_LABEL = { town: "allTowns", type: "allTypes", day: "anyDay", docs: "any" };
+
+function updateMsButtonLabel(field) {
+  const textEl = document.getElementById(`${field}-btn-text`);
+  if (!textEl) return;
+  const checked = document.querySelectorAll(`#${field}-options input[type='checkbox']:checked`);
+  if (!checked.length) {
+    textEl.textContent = t(MS_DEFAULT_LABEL[field]);
+  } else if (checked.length === 1) {
+    const span = checked[0].closest("label")?.querySelector("span");
+    textEl.textContent = span ? span.textContent : checked[0].value;
+  } else {
+    textEl.textContent = t("nSelected").replace("{n}", String(checked.length));
   }
-  sel.value = current;
+  const wrap = document.querySelector(`.ms[data-ms="${field}"]`);
+  if (wrap) wrap.classList.toggle("is-active", checked.length > 0);
+}
+
+function updateAllMsLabels() {
+  Object.keys(MS_DEFAULT_LABEL).forEach(updateMsButtonLabel);
+}
+
+function closeAllMsPanels(except) {
+  document.querySelectorAll(".ms").forEach((wrap) => {
+    if (wrap === except) return;
+    const btn = wrap.querySelector(".ms-btn");
+    const panel = wrap.querySelector(".ms-panel");
+    if (!panel || panel.hidden) return;
+    panel.hidden = true;
+    if (btn) btn.setAttribute("aria-expanded", "false");
+  });
+}
+
+function positionMsPanel(panel) {
+  panel.style.insetInlineStart = "0";
+  panel.style.insetInlineEnd = "auto";
+  const rect = panel.getBoundingClientRect();
+  if (rect.right > window.innerWidth - 8) {
+    panel.style.insetInlineStart = "auto";
+    panel.style.insetInlineEnd = "0";
+  }
+}
+
+function toggleMsPanel(wrap, forceOpen) {
+  const btn = wrap.querySelector(".ms-btn");
+  const panel = wrap.querySelector(".ms-panel");
+  const willOpen = forceOpen != null ? forceOpen : panel.hidden;
+  closeAllMsPanels(willOpen ? wrap : null);
+  panel.hidden = !willOpen;
+  btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+  if (willOpen) {
+    positionMsPanel(panel);
+    panel.querySelector("input, button")?.focus();
+  } else {
+    btn.focus();
+  }
+}
+
+function wireMultiselects() {
+  document.querySelectorAll(".ms").forEach((wrap) => {
+    const btn = wrap.querySelector(".ms-btn");
+    const panel = wrap.querySelector(".ms-panel");
+    const optionsBox = wrap.querySelector(".ms-options");
+    const field = wrap.dataset.ms;
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleMsPanel(wrap);
+    });
+    optionsBox.addEventListener("change", () => {
+      updateMsButtonLabel(field);
+      render();
+    });
+    wrap.querySelector(".ms-clear")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      clearField(`${field}-options`);
+      updateMsButtonLabel(field);
+      render();
+    });
+    wrap.querySelector(".ms-done")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleMsPanel(wrap, false);
+    });
+    panel.addEventListener("click", (e) => e.stopPropagation());
+  });
+  document.addEventListener("click", () => closeAllMsPanels());
 }
 
 function getFilters() {
   return {
     q: document.getElementById("q").value.trim().toLowerCase(),
-    town: document.getElementById("town").value,
-    type: document.getElementById("type").value,
-    day: document.getElementById("day").value,
-    docs: document.getElementById("docs").value,
+    town: checkedValues("town-options"),
+    type: checkedValues("type-options"),
+    day: checkedValues("day-options"),
+    docs: checkedValues("docs-options"),
     radius: document.getElementById("radius").value,
   };
 }
 
-function matches(item, f) {
-  if (f.docs === "favorites" && !state.favorites.has(item.id)) return false;
-  if (f.town && item.town !== f.town) return false;
-  const cats = categoriesOf(item);
-  if (f.type && !cats.includes(f.type)) return false;
-
-  if (f.day === "open_now") {
-    if (!openStatus(item)) return false;
-  } else if (f.day === "today") {
+function dayFilterMatches(item, d) {
+  if (d === "open_now") return !!openStatus(item);
+  if (d === "today") {
     const day = todayAbbr();
     const days = item.days || [];
     const pattern = scheduleMatchesTodayPattern(item.schedule || "");
-    if (!(pattern.dayMatch || days.includes(day))) return false;
-  } else if (f.day) {
-    const days = item.days || [];
-    if (!days.length || !days.includes(f.day)) return false;
+    return pattern.dayMatch || days.includes(day);
   }
+  const days = item.days || [];
+  return days.length > 0 && days.includes(d);
+}
 
-  if (f.docs === "not_required" && item.idRequired !== "not_required") return false;
-  if (f.docs === "open_to_all" && !item.openToAll) return false;
-  if (f.docs === "required" && !(item.idRequired === "required" || item.idRequired === "proof_of_residence")) return false;
+function docsFilterMatches(item, d) {
+  if (d === "not_required") return item.idRequired === "not_required";
+  if (d === "open_to_all") return !!item.openToAll;
+  if (d === "required") return item.idRequired === "required" || item.idRequired === "proof_of_residence";
+  if (d === "favorites") return state.favorites.has(item.id);
+  return false;
+}
+
+function matches(item, f) {
+  if (f.town.length && !f.town.includes(item.town)) return false;
+  const cats = categoriesOf(item);
+  if (f.type.length && !cats.some((c) => f.type.includes(c))) return false;
+
+  if (f.day.length && !f.day.some((d) => dayFilterMatches(item, d))) return false;
+  if (f.docs.length && !f.docs.some((d) => docsFilterMatches(item, d))) return false;
 
   if (f.q) {
     const blob = [item.name, item.address, item.town, item.schedule, item.notes, item.residentsServed, item.contactPerson, ...cats]
       .filter(Boolean).join(" ").toLowerCase();
-    if (!blob.includes(f.q)) return false;
+    const words = f.q.split(/\s+/).filter(Boolean);
+    if (!words.every((w) => blob.includes(w))) return false;
   }
 
   if (f.radius && state.userLoc && item.lat != null) {
@@ -3612,8 +4128,8 @@ function detailHtml(item) {
       <button type="button" class="close-detail" id="close-detail" aria-label="${t("closeDetail")}">&times;</button>
       <div class="badges">${badgeHtml(cats, open)}</div>
       <h2 id="detail-heading" tabindex="-1">${item.name}</h2>
-      ${item.town ? `<p><strong>${item.town}</strong></p>` : ""}
-      <div class="card-actions" style="margin:.6rem 0 0">
+      ${item.town ? `<p class="detail-subtitle">${item.town}</p>` : ""}
+      <div class="card-actions detail-actions">
         <button type="button" data-fav="${item.id}" aria-pressed="${fav}">${fav ? "★ " + t("saved") : "☆ " + t("save")}</button>
         ${phone ? `<a href="${phone}">${t("call")}</a>` : ""}
         ${item.email ? `<a href="mailto:${item.email}">${t("email")}</a>` : ""}
@@ -3621,14 +4137,16 @@ function detailHtml(item) {
         ${item.website ? `<a href="${item.website}" target="_blank" rel="noopener">${t("website")}</a>` : ""}
         <button type="button" data-copy="${item.id}">${t("copyText")}</button>
       </div>
-      ${item.address ? `<div class="detail-section"><h3>${t("address")}</h3><p>${item.address}</p></div>` : ""}
-      ${item.schedule ? `<div class="detail-section"><h3>${t("schedule")}</h3><p>${localizeField(item.schedule)}</p></div>` : ""}
-      ${item.residentsServed ? `<div class="detail-section"><h3>${t("residents")}</h3><p>${localizeField(item.residentsServed)}</p></div>` : ""}
-      <div class="detail-section"><h3>${t("documentation")}</h3><p>${idLabel}${item.openToAll ? t("openToAllTag") : ""}</p></div>
-      ${item.contactPerson ? `<div class="detail-section"><h3>${t("contactLabel")}</h3><p>${item.contactPerson}${item.phone ? " · " + item.phone : ""}</p></div>` : (item.phone ? `<div class="detail-section"><h3>${t("phone")}</h3><p>${item.phone}</p></div>` : "")}
-      ${item.notes ? `<div class="detail-section"><h3>${t("notes")}</h3><p>${localizeField(item.notes)}</p></div>` : ""}
-      ${item.donationsAccepted ? `<div class="detail-section"><h3>${t("donations")}</h3><p>${t("donationsYes")}</p></div>` : ""}
-      <div class="detail-section"><h3>${t("reminder")}</h3><p>${t("disclaimer")}</p></div>
+      <div class="detail-sections">
+        ${item.address ? `<div class="detail-section detail-address"><h3>${t("address")}</h3><p>${item.address}</p></div>` : ""}
+        ${item.schedule ? `<div class="detail-section detail-schedule"><h3>${t("schedule")}</h3><p>${localizeField(item.schedule)}</p></div>` : ""}
+        ${item.residentsServed ? `<div class="detail-section detail-residents"><h3>${t("residents")}</h3><p>${localizeField(item.residentsServed)}</p></div>` : ""}
+        <div class="detail-section detail-documentation"><h3>${t("documentation")}</h3><p>${idLabel}${item.openToAll ? t("openToAllTag") : ""}</p></div>
+        ${item.contactPerson ? `<div class="detail-section detail-contact"><h3>${t("contactLabel")}</h3><p>${item.contactPerson}${item.phone ? " · " + item.phone : ""}</p></div>` : (item.phone ? `<div class="detail-section detail-contact"><h3>${t("phone")}</h3><p>${item.phone}</p></div>` : "")}
+        ${item.notes ? `<div class="detail-section detail-notes"><h3>${t("notes")}</h3><p>${localizeField(item.notes)}</p></div>` : ""}
+        ${item.donationsAccepted ? `<div class="detail-section detail-donations"><h3>${t("donations")}</h3><p>${t("donationsYes")}</p></div>` : ""}
+      </div>
+      <div class="detail-reminder"><h3>${t("reminder")}</h3><p>${t("disclaimer")}</p></div>
     </div>`;
 }
 
@@ -3685,11 +4203,20 @@ function renderList() {
   const n = list.length;
   const label = (n === 1 ? t("locCount") : t("locCountPlural")).replace("{n}", n);
   document.getElementById("result-count").textContent = label + (state.userLoc ? t("sortedDist") : "");
+  const againCount = document.getElementById("search-again-count");
+  if (againCount && againCount.textContent !== label) {
+    againCount.textContent = label;
+    const againBtn = document.getElementById("search-again");
+    againBtn.classList.remove("is-bumped");
+    void againBtn.offsetWidth;
+    againBtn.classList.add("is-bumped");
+  }
+  const filtersForPrint = getFilters();
   document.getElementById("print-header").textContent =
-    `${t("brand")} — ${label}` + (getFilters().town ? ` · ${getFilters().town}` : "");
+    `${t("brand")} — ${label}` + (filtersForPrint.town.length ? ` · ${filtersForPrint.town.join(", ")}` : "");
 
   if (!list.length) {
-    const favMode = getFilters().docs === "favorites";
+    const favMode = getFilters().docs.includes("favorites");
     el.innerHTML = `<div class="empty"><strong>${favMode ? t("emptyFav") : t("noMatches")}</strong>${favMode ? t("emptyFavHint") : t("noMatchesHint")}</div>`;
     return;
   }
@@ -3729,6 +4256,7 @@ function ensureMap() {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(state.map);
   state.markerLayer = L.layerGroup().addTo(state.map);
+  state.map.zoomControl.setPosition("bottomleft");
   addMapFullscreenControl(state.map);
   // Zoom with scroll only while the map is focused / being used.
   el.addEventListener("pointerdown", () => {
@@ -3821,7 +4349,17 @@ function setView(view) {
   document.getElementById("view-map").setAttribute("aria-pressed", view === "map" ? "true" : "false");
   syncUrl();
   render();
-  if (view !== "map") setMapFullscreen(false);
+  if (view === "list") setToolbarSheetOpen(false);
+}
+
+// On phones/small tablets, Map view takes over the whole screen (like Google Maps/Yelp)
+// instead of sharing a scrolling page with the sticky filter toolbar above a small map.
+function syncAutoMapFullscreen() {
+  const isMobile = window.matchMedia("(max-width: 979px)").matches;
+  const shouldBeFullscreen = isMobile && state.view === "map";
+  if (shouldBeFullscreen !== document.body.classList.contains("map-fullscreen")) {
+    setMapFullscreen(shouldBeFullscreen);
+  }
 }
 
 function prefsQuery() {
@@ -3842,10 +4380,10 @@ function syncUrl() {
   const f = getFilters();
   const params = new URLSearchParams();
   if (f.q) params.set("q", f.q);
-  if (f.town) params.set("town", f.town);
-  if (f.type) params.set("type", f.type);
-  if (f.day) params.set("day", f.day);
-  if (f.docs) params.set("docs", f.docs);
+  if (f.town.length) params.set("town", f.town.join(","));
+  if (f.type.length) params.set("type", f.type.join(","));
+  if (f.day.length) params.set("day", f.day.join(","));
+  if (f.docs.length) params.set("docs", f.docs.join(","));
   if (f.radius) params.set("radius", f.radius);
   if (state.view === "map") params.set("view", "map");
   if (state.lang !== "en") params.set("lang", state.lang);
@@ -3860,10 +4398,10 @@ function loadFromUrl() {
   state.syncingUrl = true;
   const p = new URLSearchParams(location.search);
   if (p.get("q")) document.getElementById("q").value = p.get("q");
-  if (p.get("town")) document.getElementById("town").value = p.get("town");
-  if (p.get("type")) document.getElementById("type").value = p.get("type");
-  if (p.get("day")) document.getElementById("day").value = p.get("day");
-  if (p.get("docs")) document.getElementById("docs").value = p.get("docs");
+  if (p.get("town")) setFieldValues("town-options", p.get("town").split(","));
+  if (p.get("type")) setFieldValues("type-options", p.get("type").split(","));
+  if (p.get("day")) setFieldValues("day-options", p.get("day").split(","));
+  if (p.get("docs")) setFieldValues("docs-options", p.get("docs").split(","));
   if (p.get("radius")) document.getElementById("radius").value = p.get("radius");
   if (ALLOWED_LANGS.includes(p.get("lang"))) {
     state.lang = p.get("lang");
@@ -3879,17 +4417,14 @@ function loadFromUrl() {
 
 function render() {
   applyI18n();
+  updateAllMsLabels();
   renderList();
+  syncAutoMapFullscreen();
   if (state.view === "map") renderMap();
   if (state.selectedId) selectItem(state.selectedId, true);
   document.body.classList.toggle("view-map", state.view === "map");
   document.getElementById("view-list").setAttribute("aria-pressed", state.view === "list" ? "true" : "false");
   document.getElementById("view-map").setAttribute("aria-pressed", state.view === "map" ? "true" : "false");
-  if (state.view === "map") {
-    document.body.classList.remove("toolbar-minimized", "toolbar-sheet-open");
-    const peek = document.getElementById("toolbar-peek");
-    if (peek) peek.setAttribute("aria-expanded", "false");
-  }
   const near = document.getElementById("near-me");
   near.textContent = state.userLoc ? t("nearMeOn") : t("nearMe");
   near.classList.toggle("on", !!state.userLoc);
@@ -3914,31 +4449,73 @@ async function shareList() {
   }
 }
 
+async function searchNearAddress(query) {
+  const q = query.trim();
+  const status = document.getElementById("loc-search-status");
+  const btn = document.getElementById("loc-search-btn");
+  status.classList.remove("is-error");
+  if (!q) { status.textContent = ""; return; }
+  status.textContent = t("searchingLoc");
+  btn.disabled = true;
+  try {
+    // Bias (not restrict) results toward the Orange County, NY area so a short query
+    // like a town name resolves nearby instead of a same-named place elsewhere in the US.
+    const params = new URLSearchParams({
+      format: "jsonv2", limit: "1", countrycodes: "us",
+      viewbox: "-74.9,41.0,-73.9,41.7", bounded: "0", q,
+    });
+    const res = await fetch(`https://nominatim.openstreetmap.org/search?${params.toString()}`);
+    if (!res.ok) throw new Error("geocode request failed");
+    const results = await res.json();
+    if (!results.length) {
+      status.textContent = t("searchNotFound");
+      status.classList.add("is-error");
+      return;
+    }
+    state.userLoc = { lat: parseFloat(results[0].lat), lng: parseFloat(results[0].lon) };
+    if (!document.getElementById("radius").value) document.getElementById("radius").value = "10";
+    status.textContent = "";
+    render();
+  } catch (e) {
+    status.textContent = t("searchFailedLoc");
+    status.classList.add("is-error");
+  } finally {
+    btn.disabled = false;
+  }
+}
+
 function countActiveFilters() {
   const f = getFilters();
   let n = 0;
   if (f.q) n += 1;
-  if (f.town) n += 1;
-  if (f.type) n += 1;
-  if (f.day) n += 1;
-  if (f.docs) n += 1;
+  if (f.town.length) n += 1;
+  if (f.type.length) n += 1;
+  if (f.day.length) n += 1;
+  if (f.docs.length) n += 1;
   if (f.radius) n += 1;
   return n;
 }
 
 function updateToolbarPeekCount() {
-  const badge = document.getElementById("toolbar-peek-count");
-  if (!badge) return;
   const n = countActiveFilters();
-  badge.textContent = n ? String(n) : "";
-  badge.classList.toggle("is-on", n > 0);
+  document.querySelectorAll(".toolbar-peek-count").forEach((badge) => {
+    badge.textContent = n ? String(n) : "";
+    badge.classList.toggle("is-on", n > 0);
+  });
 }
 
+let sheetOpener = null;
 function setToolbarSheetOpen(open) {
   const peek = document.getElementById("toolbar-peek");
+  const mapFiltersBtn = document.getElementById("map-filters-btn");
+  const searchAgain = document.getElementById("search-again");
   const toolbar = document.getElementById("directory");
+  const returnToSearchAgain = !open && sheetOpener === searchAgain;
+  if (open) sheetOpener = document.activeElement;
   document.body.classList.toggle("toolbar-sheet-open", open);
+  if (searchAgain) searchAgain.setAttribute("aria-expanded", open ? "true" : "false");
   if (peek) peek.setAttribute("aria-expanded", open ? "true" : "false");
+  if (mapFiltersBtn) mapFiltersBtn.setAttribute("aria-expanded", open ? "true" : "false");
   if (open) {
     const closeBtn = document.getElementById("toolbar-close");
     if (closeBtn) closeBtn.focus();
@@ -3946,8 +4523,10 @@ function setToolbarSheetOpen(open) {
       const first = toolbar.querySelector("input, select, button");
       if (first) first.focus();
     }
-  } else if (document.body.classList.contains("toolbar-minimized") && peek) {
-    peek.focus();
+  } else if ((returnToSearchAgain || document.body.classList.contains("toolbar-minimized")) && searchAgain && state.view !== "map") {
+    searchAgain.focus();
+  } else if (state.view === "map" && mapFiltersBtn) {
+    mapFiltersBtn.focus();
   }
 }
 
@@ -3962,6 +4541,8 @@ function wireMobileToolbar() {
   const mq = window.matchMedia("(max-width: 979px)");
 
   let syncing = false;
+  let touching = false;
+  let settleTimer = 0;
   const syncMinimized = () => {
     if (syncing) return;
     if (!mq.matches) {
@@ -3969,27 +4550,46 @@ function wireMobileToolbar() {
       peek.setAttribute("aria-expanded", "false");
       return;
     }
-    // Map view keeps the full directory toolbar sticky at the top — no side Filters button.
-    if (document.body.classList.contains("view-map") || state.view === "map") {
-      document.body.classList.remove("toolbar-minimized", "toolbar-sheet-open");
-      peek.setAttribute("aria-expanded", "false");
-      return;
-    }
+    // Map view is a fullscreen takeover on mobile (see syncAutoMapFullscreen) — the
+    // side-docked toolbar/Filters button don't apply, but leave toolbar-sheet-open alone
+    // since the map view's own Filters button can open that same sheet on top of the map.
+    if (document.body.classList.contains("view-map") || state.view === "map") return;
     // Once docked to the side, stay docked until the Filters button opens the sheet.
     if (document.body.classList.contains("toolbar-minimized")) return;
     if (document.body.classList.contains("toolbar-sheet-open")) return;
 
-    const rect = sentinel.getBoundingClientRect();
-    if (rect.top >= 8) return;
+    if (sentinel.getBoundingClientRect().top >= 8) return;
+    // Collapsing mid-scroll forces a scroll correction that kills touch momentum and reads as
+    // a hard cut, so only collapse once the user has stopped scrolling.
+    if (touching) return;
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(collapse, 180);
+  };
 
-    const height = toolbar.offsetHeight;
-    const y = window.scrollY;
+  const collapse = () => {
+    if (touching || document.body.classList.contains("toolbar-minimized")) return;
+    if (document.body.classList.contains("toolbar-sheet-open") || state.view === "map") return;
+    if (sentinel.getBoundingClientRect().top >= 8) return;
+    // The toolbar is fully above the viewport; offset scroll by the exact shift of the
+    // content below it so the list stays put.
+    const before = sentinel.getBoundingClientRect().top;
     syncing = true;
     document.body.classList.add("toolbar-minimized");
-    // Collapsing height above the viewport would jump the list; keep the visual place stable.
-    window.scrollTo(0, Math.max(0, y - height));
+    const shift = before - sentinel.getBoundingClientRect().top;
+    if (shift) window.scrollBy(0, -shift);
     syncing = false;
+    const againBtn = document.getElementById("search-again");
+    if (againBtn) {
+      againBtn.classList.remove("is-bumped");
+      void againBtn.offsetWidth;
+      againBtn.classList.add("is-bumped");
+    }
   };
+
+  window.addEventListener("touchstart", () => { touching = true; clearTimeout(settleTimer); }, { passive: true });
+  const endTouch = () => { touching = false; syncMinimized(); };
+  window.addEventListener("touchend", endTouch, { passive: true });
+  window.addEventListener("touchcancel", endTouch, { passive: true });
 
   const io = new IntersectionObserver(() => syncMinimized(), {
     threshold: [0, 1],
@@ -3998,10 +4598,17 @@ function wireMobileToolbar() {
   io.observe(sentinel);
   window.addEventListener("scroll", syncMinimized, { passive: true });
   window.addEventListener("resize", syncMinimized);
-  if (typeof mq.addEventListener === "function") mq.addEventListener("change", syncMinimized);
-  else if (typeof mq.addListener === "function") mq.addListener(syncMinimized);
+  window.addEventListener("resize", syncAutoMapFullscreen);
+  if (typeof mq.addEventListener === "function") {
+    mq.addEventListener("change", syncMinimized);
+    mq.addEventListener("change", syncAutoMapFullscreen);
+  } else if (typeof mq.addListener === "function") {
+    mq.addListener(syncMinimized);
+    mq.addListener(syncAutoMapFullscreen);
+  }
 
   peek.addEventListener("click", () => setToolbarSheetOpen(true));
+  document.getElementById("search-again")?.addEventListener("click", () => setToolbarSheetOpen(true));
   if (closeBtn) closeBtn.addEventListener("click", () => setToolbarSheetOpen(false));
   if (backdrop) backdrop.addEventListener("click", () => setToolbarSheetOpen(false));
 
@@ -4009,12 +4616,15 @@ function wireMobileToolbar() {
 }
 
 function wireFilters() {
-  ["q","town","type","day","docs","radius"].forEach((id) => {
+  ["q","radius"].forEach((id) => {
     document.getElementById(id).addEventListener("input", render);
     document.getElementById(id).addEventListener("change", render);
   });
+  wireMultiselects();
   document.getElementById("view-list").addEventListener("click", () => setView("list"));
   document.getElementById("view-map").addEventListener("click", () => setView("map"));
+  document.getElementById("map-back")?.addEventListener("click", () => setView("list"));
+  document.getElementById("map-filters-btn")?.addEventListener("click", () => setToolbarSheetOpen(true));
   document.getElementById("share-btn").addEventListener("click", shareList);
   document.getElementById("print-btn").addEventListener("click", () => window.print());
   document.getElementById("lang-select").addEventListener("change", (e) => {
@@ -4034,30 +4644,27 @@ function wireFilters() {
       const q = chip.dataset.quick;
       if (q === "clear") {
         document.getElementById("q").value = "";
-        document.getElementById("town").value = "";
-        document.getElementById("type").value = "";
-        document.getElementById("day").value = "";
-        document.getElementById("docs").value = "";
+        clearField("town-options");
+        clearField("type-options");
+        clearField("day-options");
+        clearField("docs-options");
         document.getElementById("radius").value = "";
         document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
       } else if (q === "favorites") {
-        document.getElementById("docs").value = "favorites";
-        document.getElementById("day").value = "";
+        setFieldValues("docs-options", ["favorites"]);
+        clearField("day-options");
         document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
         chip.setAttribute("aria-pressed", "true");
       } else if (q === "open_now") {
-        document.getElementById("day").value = "open_now";
+        setFieldValues("day-options", ["open_now"]);
         document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
         chip.setAttribute("aria-pressed", "true");
       } else if (q === "today") {
-        document.getElementById("day").value = "today";
+        setFieldValues("day-options", ["today"]);
         document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", "false"));
         chip.setAttribute("aria-pressed", "true");
       } else if (q === "open_to_all") {
-        document.getElementById("docs").value = "open_to_all";
-        chip.setAttribute("aria-pressed", "true");
-      } else {
-        document.getElementById("type").value = q;
+        setFieldValues("docs-options", ["open_to_all"]);
         chip.setAttribute("aria-pressed", "true");
       }
       render();
@@ -4077,16 +4684,33 @@ function wireFilters() {
       { enableHighAccuracy: true, timeout: 10000 }
     );
   });
+  document.getElementById("loc-search-btn").addEventListener("click", () => {
+    searchNearAddress(document.getElementById("loc-search").value);
+  });
+  document.getElementById("loc-search").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      searchNearAddress(e.target.value);
+    }
+  });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && document.body.classList.contains("map-fullscreen")) {
-      setMapFullscreen(false);
+    if (e.key !== "Escape") return;
+    // Close the most recently opened overlay first: a filter dropdown, then the filter
+    // sheet (which can be open on top of the fullscreen mobile map), then the map itself.
+    if (document.querySelector(".ms-panel:not([hidden])")) {
+      closeAllMsPanels();
       return;
     }
-    if (e.key === "Escape" && document.body.classList.contains("toolbar-sheet-open")) {
+    if (document.body.classList.contains("toolbar-sheet-open")) {
       setToolbarSheetOpen(false);
       return;
     }
-    if (e.key === "Escape" && state.selectedId) clearSelection();
+    if (document.body.classList.contains("map-fullscreen")) {
+      if (window.matchMedia("(max-width: 979px)").matches && state.view === "map") setView("list");
+      else setMapFullscreen(false);
+      return;
+    }
+    if (state.selectedId) clearSelection();
   });
 }
 

@@ -2,7 +2,7 @@
   "meta": {
     "title": "Orange County Food Assistance",
     "subtitle": "County-Wide Food Assistance Directory",
-    "updated": "June 2026",
+    "updated": "9.22.26",
     "contactName": "Meg Oakes",
     "contactEmail": "moakes@orangecountygov.com",
     "disclaimer": "Information is subject to change due to increases in utilization. Please call the location before you go to confirm availability, hours, and documentation requirements. Most pantries ask for ID, proof of address, and that you bring your own bags."
@@ -1404,7 +1404,7 @@
       "email": "Secondbaptistny@gmail.com",
       "website": null,
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Every 3rd Saturday, 12:00PM-3:00PM",
       "days": [
@@ -1643,7 +1643,7 @@
       "email": null,
       "website": null,
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Saturday, 9:00AM-10:00AM",
       "days": [
@@ -1820,7 +1820,7 @@
       "email": null,
       "website": null,
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Friday, 2:00PM-5:00PM",
       "days": [
@@ -2385,7 +2385,7 @@
       "email": "graceptj@frontiernet.net",
       "website": null,
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Third Saturday of the month, 10:00AM-11:00AM",
       "days": [
@@ -2440,7 +2440,7 @@
       "email": null,
       "website": "https://www.facebook.com/SDAFoodPantry/",
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Second Wednesday of the month, 11:00PM-4:00PM; Or contact on Facebook for information",
       "days": [
@@ -2909,9 +2909,9 @@
       "email": null,
       "website": "https://mybenefits.ny.gov/mybenefits/begin",
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
-      "schedule": "",
+      "schedule": null,
       "days": [],
       "donationsAccepted": false,
       "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
@@ -2922,7 +2922,7 @@
       "lng": -73.921
     },
     {
-      "id": "snap-orange-county-department-of-social-servi",
+      "id": "snap-orange-county-dss-goshen",
       "name": "Orange County Department of Social Services \u2013 Goshen",
       "categories": [
         "snap"
@@ -2933,9 +2933,9 @@
       "email": null,
       "website": "https://mybenefits.ny.gov/mybenefits/begin",
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
-      "schedule": "",
+      "schedule": null,
       "days": [],
       "donationsAccepted": false,
       "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
@@ -2946,7 +2946,7 @@
       "lng": -74.325
     },
     {
-      "id": "snap-orange-county-department-of-social-servi",
+      "id": "snap-orange-county-dss-middletown",
       "name": "Orange County Department of Social Services \u2013 Middletown",
       "categories": [
         "snap"
@@ -2957,9 +2957,9 @@
       "email": null,
       "website": "https://mybenefits.ny.gov/mybenefits/begin",
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
-      "schedule": "",
+      "schedule": null,
       "days": [],
       "donationsAccepted": false,
       "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
@@ -2970,7 +2970,7 @@
       "lng": -74.4255
     },
     {
-      "id": "snap-orange-county-department-of-social-servi",
+      "id": "snap-orange-county-dss-newburgh",
       "name": "Orange County Department of Social Services \u2013 Newburgh",
       "categories": [
         "snap"
@@ -2981,9 +2981,9 @@
       "email": null,
       "website": "https://mybenefits.ny.gov/mybenefits/begin",
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
-      "schedule": "",
+      "schedule": null,
       "days": [],
       "donationsAccepted": false,
       "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
@@ -2994,7 +2994,7 @@
       "lng": -74.0115
     },
     {
-      "id": "snap-cornerstone-family-healthcare-enabling-s",
+      "id": "snap-cornerstone-family-healthcare-newburgh",
       "name": "Cornerstone Family Healthcare Enabling Services \u2013 Newburgh",
       "categories": [
         "snap"
@@ -3005,9 +3005,9 @@
       "email": "Jduran@cornerstonefh.org",
       "website": "https://mybenefits.ny.gov/mybenefits/begin",
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
-      "schedule": "",
+      "schedule": null,
       "days": [],
       "donationsAccepted": false,
       "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
@@ -3018,7 +3018,7 @@
       "lng": -74.02
     },
     {
-      "id": "snap-cornerstone-family-healthcare-enabling-s",
+      "id": "snap-cornerstone-family-healthcare-middletown",
       "name": "Cornerstone Family Healthcare Enabling Services \u2013 Middletown",
       "categories": [
         "snap"
@@ -3029,9 +3029,9 @@
       "email": "Jduran@cornerstonefh.org",
       "website": "https://mybenefits.ny.gov/mybenefits/begin",
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
-      "schedule": "",
+      "schedule": null,
       "days": [],
       "donationsAccepted": false,
       "notes": "Part of Supplemental Nutrition Assistance Program (SNAP)",
@@ -3053,7 +3053,7 @@
       "email": "Wic@sunriver.org",
       "website": null,
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Monday 10:00a\u20136:00p; Tuesday 8:00a\u20135:00p; Wednesday 8:00a\u20135:00p; Thursday 8:00a\u20134:00p; Friday 8:00a\u20135:00p; 3rd Saturday of the month 9:00a\u20131:00p",
       "days": [
@@ -3084,7 +3084,7 @@
       "email": "Wic@sunriver.org",
       "website": null,
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Monday 10:00a\u20136:00p; Tuesday & Wednesday 8:00a\u20135:00p; Thursday 8:00a\u20134:00p; Friday 9:00a\u20135:00p; Third Sunday of the month 9:00a\u20131:00p",
       "days": [
@@ -3115,7 +3115,7 @@
       "email": "Wic@sunriver.org",
       "website": null,
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Monday\u2013Wednesday 9:00a\u20135:00p; Thursday 8:00a\u20134:00p; Friday 9:00a\u20135:00p",
       "days": [
@@ -3144,7 +3144,7 @@
       "email": "Wic@sunriver.org",
       "website": null,
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Monday 10:00a\u20136:00p; Tuesday\u2013Friday 9:00a\u20135:00p",
       "days": [
@@ -3172,7 +3172,7 @@
       "email": "Wic@sunriver.org",
       "website": null,
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Monday & Wednesday\u2013Friday 9:00a\u20135:00p; Tuesday 10:00a\u20136:00p",
       "days": [
@@ -3201,7 +3201,7 @@
       "email": null,
       "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Food delivery once a week after sign-up; weekend service may be arranged",
       "days": [],
@@ -3225,7 +3225,7 @@
       "email": null,
       "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Monday, Thursday, and Friday at Munger Cottage",
       "days": [
@@ -3253,7 +3253,7 @@
       "email": null,
       "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Wednesdays and Fridays at the Greenwood Lake Senior Center",
       "days": [
@@ -3280,7 +3280,7 @@
       "email": null,
       "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Monday through Friday",
       "days": [
@@ -3307,7 +3307,7 @@
       "email": null,
       "website": "https://www.orangecountygov.com/165/Senior-Dining-Program",
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Monday, Wednesday, and Friday at the Montgomery Senior Center",
       "days": [
@@ -3335,7 +3335,7 @@
       "email": "caitlin.lazarski@pinebushschools.org",
       "website": "https://www.pinebushschools.org/departments/food-services/",
       "contactPerson": null,
-      "residentsServed": "",
+      "residentsServed": null,
       "idRequired": "unknown",
       "schedule": "Summer months; ages 0\u201318; open site",
       "days": [],

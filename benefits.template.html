@@ -51,8 +51,10 @@ button, input, select { font: inherit; }
   backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.12);
 }
 .site-header .wrap { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; align-items: center; justify-content: space-between; padding: .85rem 0; }
-.brand-lockup { display: grid; gap: .15rem; min-width: 0; }
-.brand-lockup a { color: inherit; text-decoration: none; }
+.brand-lockup { min-width: 0; }
+.brand-lockup a { display: flex; align-items: center; gap: .65rem; color: inherit; text-decoration: none; }
+.brand-seal { width: 40px; height: 40px; flex: none; }
+.brand-text { display: grid; gap: .15rem; min-width: 0; }
 .brand-name { font-family: var(--display); font-size: clamp(1.15rem, 2.8vw, 1.55rem); font-weight: 700; line-height: 1.15; letter-spacing: -.01em; }
 .brand-sub { font-size: .82rem; color: #c5d9ce; font-weight: 600; }
 .header-controls { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
@@ -183,8 +185,11 @@ footer a { font-weight: 600; }
   <div class="wrap">
     <div class="brand-lockup">
       <a href="index.html" id="directory-link">
-        <div class="brand-name" data-i18n="brand">Orange County Food Assistance</div>
-        <div class="brand-sub" data-i18n="pageTitle">Benefits &amp; programs</div>
+        <img class="brand-seal" src="logo_county_seal.png" alt="Orange County, NY seal" width="397" height="398" loading="eager" />
+        <div class="brand-text">
+          <div class="brand-name" data-i18n="brand">Orange County Food Assistance</div>
+          <div class="brand-sub" data-i18n="pageTitle">Benefits &amp; programs</div>
+        </div>
       </a>
     </div>
     <div class="header-controls">
@@ -270,7 +275,7 @@ const I18N = {
     "lead": "Find pantries, meals, benefits, and markets near you — filter by town, day, and program type.",
     "browse": "Browse directory",
     "benefits": "Benefits & programs",
-    "updated": "Updated June 2026",
+    "updated": "Updated 9.22.26",
     "listMap": "List + Map",
     "lowBw": "Low data",
     "callAheadStrong": "Please call ahead.",
@@ -413,7 +418,7 @@ const I18N = {
     "lead": "Encuentre despensas, comidas, beneficios y mercados cerca de usted — filtre por pueblo, día y tipo de programa.",
     "browse": "Ver directorio",
     "benefits": "Beneficios y programas",
-    "updated": "Actualizado junio 2026",
+    "updated": "Actualizado 9.22.26",
     "listMap": "Lista + Mapa",
     "lowBw": "Pocos datos",
     "callAheadStrong": "Llame antes de ir.",
@@ -556,7 +561,7 @@ const I18N = {
     "lead": "געפֿינט עסן פּאַנטריס, מאָלצייַטן, בענעפֿיטן און מאַרקן נאָענט צו אײַך.",
     "browse": "זעט דעם וועגווייַזער",
     "benefits": "בענעפֿיטן און פּראָגראַמען",
-    "updated": "דערהײַנט יוני 2026",
+    "updated": "דערהײַנט 9.22.26",
     "listMap": "ליסטע + מאַפּע",
     "lowBw": "ווייניק דאַטן",
     "callAheadStrong": "רופֿט פֿריִער.",
@@ -699,7 +704,7 @@ const I18N = {
     "lead": "查找附近的食品分发点、餐食、福利项目和市场 — 可按城镇、日期和类型筛选。",
     "browse": "浏览目录",
     "benefits": "福利与项目",
-    "updated": "更新于 2026年6月",
+    "updated": "更新于 9.22.26",
     "listMap": "列表 + 地图",
     "lowBw": "省流量",
     "callAheadStrong": "请先致电确认。",
@@ -842,7 +847,7 @@ const I18N = {
     "lead": "Jwenn depo manje, repa, benefis ak mache tou pre ou — filtre pa vil, jou, ak kalite pwogram.",
     "browse": "Gade anyè a",
     "benefits": "Benefis ak pwogram",
-    "updated": "Mizajou jen 2026",
+    "updated": "Mizajou 9.22.26",
     "listMap": "Lis + Kat",
     "lowBw": "Ti done",
     "callAheadStrong": "Tanpri rele anvan.",
@@ -985,7 +990,7 @@ const I18N = {
     "lead": "ابحث عن بنوك الطعام والوجبات والمزايا والأسواق بالقرب منك — صفِّ حسب البلدة واليوم ونوع البرنامج.",
     "browse": "تصفح الدليل",
     "benefits": "المزايا والبرامج",
-    "updated": "محدَّث يونيو 2026",
+    "updated": "محدَّث 9.22.26",
     "listMap": "قائمة + خريطة",
     "lowBw": "بيانات منخفضة",
     "callAheadStrong": "يُرجى الاتصال مسبقًا.",
@@ -1128,7 +1133,7 @@ const I18N = {
     "lead": "מצאו מזווה מזון, ארוחות, הטבות ושווקים לידכם — סננו לפי יישוב, יום וסוג תוכנית.",
     "browse": "עיון במדריך",
     "benefits": "הטבות ותוכניות",
-    "updated": "עודכן יוני 2026",
+    "updated": "עודכן 9.22.26",
     "listMap": "רשימה + מפה",
     "lowBw": "חיסכון בנתונים",
     "callAheadStrong": "נא להתקשר מראש.",
@@ -1271,7 +1276,7 @@ const I18N = {
     "lead": "Найдите продовольственные пункты, питание, пособия и рынки рядом — фильтруйте по городу, дню и типу программы.",
     "browse": "Открыть справочник",
     "benefits": "Пособия и программы",
-    "updated": "Обновлено: июнь 2026",
+    "updated": "Обновлено: 9.22.26",
     "listMap": "Список + карта",
     "lowBw": "Экономия трафика",
     "callAheadStrong": "Пожалуйста, позвоните заранее.",

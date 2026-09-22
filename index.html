@@ -212,6 +212,37 @@ button, input, select { font: inherit; }
     outline: 2px solid var(--leaf);
     outline-offset: 1px;
   }
+  .toolbar-close.is-back {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .6rem 1.15rem;
+    border-color: var(--forest);
+    background: var(--forest);
+    color: #fff;
+    font-weight: 800;
+    animation: searchAgainIn .35s ease-out both, searchAgainGlow 2.6s ease-in-out .5s infinite;
+  }
+  .toolbar-close.is-back::before {
+    content: "←";
+    font-size: 1.1rem;
+    line-height: 1;
+    animation: backNudge 1.3s ease-in-out infinite;
+  }
+  html[dir="rtl"] .toolbar-close.is-back::before { content: "→"; animation-name: searchAgainNudge; }
+  .toolbar-close.is-back::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.22) 50%, transparent 70%);
+    transform: translateX(-100%);
+    animation: searchAgainShine 3.2s ease-in-out 1s infinite;
+  }
+  .toolbar-close.is-back:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
   body.toolbar-sheet-open {
     overflow: hidden;
   }
@@ -322,7 +353,7 @@ button, input, select { font: inherit; }
   }
   .search-again {
     position: relative;
-    display: flex;
+    display: none;
     align-items: center;
     gap: .8rem;
     width: calc(100% - 2rem);
@@ -349,6 +380,7 @@ button, input, select { font: inherit; }
     transform: translateX(-100%);
     animation: searchAgainShine 3.2s ease-in-out 1s infinite;
   }
+  body.toolbar-minimized .search-again { display: flex; }
   .search-again:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
   .search-again-icon {
     flex: none;
@@ -395,6 +427,10 @@ button, input, select { font: inherit; }
 @keyframes searchAgainNudge {
   0%, 100% { transform: translateX(0); }
   50% { transform: translateX(4px); }
+}
+@keyframes backNudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-4px); }
 }
 @keyframes searchAgainBump {
   0% { transform: scale(1); }
@@ -4504,20 +4540,27 @@ function updateToolbarPeekCount() {
   });
 }
 
-let sheetOpener = null;
-function setToolbarSheetOpen(open) {
+let sheetFromList = false;
+function setToolbarSheetOpen(open, fromList = false) {
   const peek = document.getElementById("toolbar-peek");
   const mapFiltersBtn = document.getElementById("map-filters-btn");
   const searchAgain = document.getElementById("search-again");
   const toolbar = document.getElementById("directory");
-  const returnToSearchAgain = !open && sheetOpener === searchAgain;
-  if (open) sheetOpener = document.activeElement;
+  const closeBtn = document.getElementById("toolbar-close");
+  const returnToSearchAgain = !open && sheetFromList;
+  if (open) sheetFromList = fromList;
+  if (open && closeBtn) {
+    // Opened from Search again: the close button reads as a way back to the results.
+    const key = fromList ? "backToList" : "hideFilters";
+    closeBtn.setAttribute("data-i18n", key);
+    closeBtn.textContent = t(key);
+    closeBtn.classList.toggle("is-back", fromList);
+  }
   document.body.classList.toggle("toolbar-sheet-open", open);
   if (searchAgain) searchAgain.setAttribute("aria-expanded", open ? "true" : "false");
   if (peek) peek.setAttribute("aria-expanded", open ? "true" : "false");
   if (mapFiltersBtn) mapFiltersBtn.setAttribute("aria-expanded", open ? "true" : "false");
   if (open) {
-    const closeBtn = document.getElementById("toolbar-close");
     if (closeBtn) closeBtn.focus();
     else if (toolbar) {
       const first = toolbar.querySelector("input, select, button");
@@ -4571,19 +4614,14 @@ function wireMobileToolbar() {
     if (document.body.classList.contains("toolbar-sheet-open") || state.view === "map") return;
     if (sentinel.getBoundingClientRect().top >= 8) return;
     // The toolbar is fully above the viewport; offset scroll by the exact shift of the
-    // content below it so the list stays put.
-    const before = sentinel.getBoundingClientRect().top;
+    // cards (toolbar removed, Search again added) so the list stays put.
+    const cards = document.getElementById("cards");
+    const before = cards.getBoundingClientRect().top;
     syncing = true;
     document.body.classList.add("toolbar-minimized");
-    const shift = before - sentinel.getBoundingClientRect().top;
+    const shift = before - cards.getBoundingClientRect().top;
     if (shift) window.scrollBy(0, -shift);
     syncing = false;
-    const againBtn = document.getElementById("search-again");
-    if (againBtn) {
-      againBtn.classList.remove("is-bumped");
-      void againBtn.offsetWidth;
-      againBtn.classList.add("is-bumped");
-    }
   };
 
   window.addEventListener("touchstart", () => { touching = true; clearTimeout(settleTimer); }, { passive: true });
@@ -4608,7 +4646,7 @@ function wireMobileToolbar() {
   }
 
   peek.addEventListener("click", () => setToolbarSheetOpen(true));
-  document.getElementById("search-again")?.addEventListener("click", () => setToolbarSheetOpen(true));
+  document.getElementById("search-again")?.addEventListener("click", () => setToolbarSheetOpen(true, true));
   if (closeBtn) closeBtn.addEventListener("click", () => setToolbarSheetOpen(false));
   if (backdrop) backdrop.addEventListener("click", () => setToolbarSheetOpen(false));
 

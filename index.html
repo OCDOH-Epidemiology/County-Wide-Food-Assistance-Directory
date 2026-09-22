@@ -4765,6 +4765,15 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+// A refresh should start at the top: the browser would otherwise restore the old scroll
+// position (which lands on the toolbar once it re-expands) or re-jump to #directory.
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+if (performance.getEntriesByType?.("navigation")[0]?.type === "reload") {
+  if (location.hash === "#directory") history.replaceState(null, "", location.pathname + location.search);
+  window.scrollTo(0, 0);
+  window.addEventListener("load", () => window.scrollTo(0, 0), { once: true });
+}
+
 populateTowns();
 loadFromUrl();
 wireFilters();

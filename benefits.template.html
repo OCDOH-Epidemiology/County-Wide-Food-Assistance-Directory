@@ -122,6 +122,12 @@ button, input, select { font: inherit; }
 .benefit-copy > * + h4, .benefit-aside > * + h4 { margin-top: 1rem; }
 .benefit-copy p, .benefit-aside p { margin: 0; }
 .benefit-copy p + p { margin-top: .65rem; }
+.benefit-copy ul.enroll-list {
+  margin: .35rem 0 0;
+  padding-left: 1.15rem;
+}
+.benefit-copy ul.enroll-list li { margin: .4rem 0; }
+.benefit-copy ul.enroll-list a { font-weight: 600; }
 .benefit-aside {
   padding: 1rem 0 0;
   border-top: 1px dashed var(--line);
@@ -132,6 +138,135 @@ button, input, select { font: inherit; }
 .benefit-aside ul, .benefit-sites ul { margin: .35rem 0 0; padding-left: 1.1rem; }
 .benefit-aside li, .benefit-sites li { margin: .25rem 0; }
 .benefit-sites { margin-top: 1.15rem; }
+.benefit-sites ul {
+  display: grid;
+  gap: .65rem;
+  list-style: none;
+  padding: 0;
+  margin: .65rem 0 0;
+}
+.benefit-sites li { margin: 0; }
+.site-card,
+.site-name-only {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: linear-gradient(180deg, #fff 0%, #fbfcfb 100%);
+  box-shadow: 0 1px 0 rgba(20, 40, 30, .03);
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.site-card:hover,
+.site-name-only:hover {
+  border-color: #b4c6ba;
+  box-shadow: 0 4px 16px rgba(20, 61, 46, .07);
+}
+.site-card[open] {
+  border-color: #9fbfad;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(20, 61, 46, .09);
+}
+.site-card > summary {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: .85rem;
+  cursor: pointer;
+  list-style: none;
+  padding: .95rem 1rem .95rem 1.05rem;
+  border-inline-start: 3px solid transparent;
+  border-radius: 12px;
+  transition: border-color .18s ease, background .18s ease;
+}
+.site-card > summary::-webkit-details-marker { display: none; }
+.site-card > summary .site-card-title {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--forest-d);
+  min-width: 0;
+}
+.site-card > summary .site-card-cue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  flex: none;
+  border-radius: 999px;
+  background: var(--sky);
+  color: var(--forest);
+  transition: transform .2s ease, background .18s ease, color .18s ease;
+}
+.site-card > summary .site-card-cue svg {
+  width: .7rem;
+  height: .7rem;
+  display: block;
+}
+.site-card[open] > summary {
+  border-bottom: 1px solid #e2ebe5;
+  border-radius: 12px 12px 0 0;
+  border-inline-start-color: var(--leaf);
+  background: linear-gradient(90deg, rgba(47, 143, 101, .06), transparent 42%);
+}
+.site-card[open] > summary .site-card-cue {
+  transform: rotate(180deg);
+  background: var(--forest);
+  color: #fff;
+}
+.site-card > summary:focus-visible {
+  outline: 2px solid var(--leaf);
+  outline-offset: 2px;
+}
+.site-card .site-body {
+  padding: .85rem 1.05rem 1.05rem;
+  display: grid;
+  gap: .55rem;
+  animation: siteOpen .22s ease-out both;
+}
+.site-row {
+  display: grid;
+  gap: .15rem;
+  padding: .55rem .7rem;
+  border-radius: 8px;
+  background: var(--paper);
+}
+.site-label {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.site-value {
+  font-size: .98rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.site-value a {
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(31, 92, 69, .35);
+}
+.site-value a:hover { border-bottom-color: var(--forest); }
+.site-name-only {
+  display: block;
+  padding: .95rem 1.05rem;
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--forest-d);
+}
+@keyframes siteOpen {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-card .site-body { animation: none; }
+  .site-card > summary .site-card-cue { transition: none; }
+}
 .school-toolbar {
   position: sticky; top: 3.6rem; z-index: 30;
   display: grid; gap: .75rem; grid-template-columns: 1fr;
@@ -346,6 +481,8 @@ const I18N = {
     "documentation": "Documentation",
     "contactLabel": "Contact",
     "phone": "Phone",
+    "locationName": "Name",
+    "contactNumber": "Contact Number",
     "notes": "Notes",
     "donations": "Donations",
     "donationsYes": "Donations accepted — contact the location for details.",
@@ -489,6 +626,8 @@ const I18N = {
     "documentation": "Documentación",
     "contactLabel": "Contacto",
     "phone": "Teléfono",
+    "locationName": "Nombre",
+    "contactNumber": "Número de contacto",
     "notes": "Notas",
     "donations": "Donaciones",
     "donationsYes": "Se aceptan donaciones — contacte al lugar para detalles.",
@@ -632,6 +771,8 @@ const I18N = {
     "documentation": "דאָקומענטן",
     "contactLabel": "קאָנטאַקט",
     "phone": "טעלעפֿאָן",
+    "locationName": "נאָמען",
+    "contactNumber": "קאָנטאַקט נומער",
     "notes": "נאָטיצן",
     "donations": "נדבֿות",
     "donationsYes": "מען נעמט אָן נדבֿות — רופֿט דעם אָרט.",
@@ -775,6 +916,8 @@ const I18N = {
     "documentation": "证件",
     "contactLabel": "联系人",
     "phone": "电话",
+    "locationName": "名称",
+    "contactNumber": "联系电话",
     "notes": "备注",
     "donations": "捐赠",
     "donationsYes": "接受捐赠 — 请联系该地点了解详情。",
@@ -918,6 +1061,8 @@ const I18N = {
     "documentation": "Dokiman",
     "contactLabel": "Kontak",
     "phone": "Telefòn",
+    "locationName": "Non",
+    "contactNumber": "Nimewo kontak",
     "notes": "Nòt",
     "donations": "Donasyon",
     "donationsYes": "Yo aksepte donasyon — kontakte kote a.",
@@ -1061,6 +1206,8 @@ const I18N = {
     "documentation": "الوثائق",
     "contactLabel": "جهة الاتصال",
     "phone": "الهاتف",
+    "locationName": "الاسم",
+    "contactNumber": "رقم الاتصال",
     "notes": "ملاحظات",
     "donations": "التبرعات",
     "donationsYes": "تُقبل التبرعات — تواصل مع الموقع.",
@@ -1204,6 +1351,8 @@ const I18N = {
     "documentation": "מסמכים",
     "contactLabel": "איש קשר",
     "phone": "טלפון",
+    "locationName": "שם",
+    "contactNumber": "מספר ליצירת קשר",
     "notes": "הערות",
     "donations": "תרומות",
     "donationsYes": "מתקבלות תרומות — פנו למקום.",
@@ -1347,6 +1496,8 @@ const I18N = {
     "documentation": "Документы",
     "contactLabel": "Контакт",
     "phone": "Телефон",
+    "locationName": "Название",
+    "contactNumber": "Контактный номер",
     "notes": "Заметки",
     "donations": "Пожертвования",
     "donationsYes": "Принимают пожертвования — свяжитесь с пунктом.",
@@ -1418,37 +1569,72 @@ const PROGRAM_I18N = {
     "es": {
       "name": "Programa de Asistencia Nutricional Suplementaria (SNAP)",
       "description": "El hogar debe cumplir ciertos límites de ingresos y recursos, y requisitos de trabajo, para ser elegible a SNAP. Aunque normalmente no son elegibles, estudiantes y no ciudadanos pueden recibir SNAP bajo calificaciones específicas. En general, los no ciudadanos deben haber vivido en EE. UU. al menos 5 años, recibir asistencia relacionada con discapacidad, o ser menores de 18 años. Las personas sin hogar no necesitan cumplir ciertos requisitos de residencia. Aplican reglas especiales para adultos mayores o con discapacidad.",
-      "howToEnroll": "Solicite en myBenefits (https://mybenefits.ny.gov/mybenefits/begin), llame al Departamento de Servicios Sociales del Condado de Orange al 845-291-2002, llame al United Way 211, o contacte Cornerstone Family Healthcare Enabling Services al 845-926-3636 / Jduran@cornerstonefh.org."
+      "howToEnroll": [
+        { "label": "Solicite en línea en myBenefits" },
+        { "label": "Llame al Departamento de Servicios Sociales del Condado de Orange" },
+        { "label": "Llame al United Way" },
+        { "label": "Contacte Cornerstone Family Healthcare Enabling Services" }
+      ]
     },
     "yi": {
       "name": "צוגעגעבענע דערנערונג הילף פּראָגראַם (SNAP)",
       "description": "אַ הויזגעזינד מוז טרעפן געוויסע אַרייַנקונפט און רעסורסן לימיטן און אַרבעט רעקווייערמענץ צו זיין בארעכטיגט פֿאַר SNAP. כאָטש סטודענטן און נישט־בירגער זענען געוויינטלעך נישט בארעכטיגט, קענען זיי באַקומען SNAP אונטער ספּעציפֿישע באַדינגונגען. נישט־בירגער מוזן בכלל האָבן געוווינט אין די פֿאַראייניקטע שטאַטן לפּחות 5 יאָר, באַקומען הילף צוליב אינבאַלידקייט, אָדער זיין קינדער אונטער 18. מענטשן אָן אַ היים דאַרפן נישט טרעפן געוויסע וווינונג רעקווייערמענץ. ספּעציעלע כּללים גילטן פֿאַר עלטערע אָדער אינבאַלידע.",
-      "howToEnroll": "אַפּליקירט דורך myBenefits (https://mybenefits.ny.gov/mybenefits/begin), רופט Orange County Department of Social Services אויף 845-291-2002, רופט United Way 211, אָדער קאָנטאַקטירט Cornerstone Family Healthcare Enabling Services אויף 845-926-3636 / Jduran@cornerstonefh.org."
+      "howToEnroll": [
+        { "label": "אַפּליקירט אָנליין דורך myBenefits" },
+        { "label": "רופט Orange County Department of Social Services" },
+        { "label": "רופט United Way" },
+        { "label": "קאָנטאַקטירט Cornerstone Family Healthcare Enabling Services" }
+      ]
     },
     "zh": {
       "name": "补充营养援助计划 (SNAP)",
       "description": "家庭须符合一定的收入与资产限制以及工作要求，才有资格领取 SNAP 福利。学生与非公民通常不符合资格，但在特定条件下可以领取。非公民一般须在美国居住至少 5 年、正在领取与残疾相关的补助，或为未满 18 岁的儿童。无家可归者无需满足某些居住要求。老年人或残疾人适用特别规定。",
-      "howToEnroll": "通过 myBenefits（https://mybenefits.ny.gov/mybenefits/begin）申请，致电奥兰治县社会服务部 845-291-2002，拨打联合劝募 211，或联系 Cornerstone Family Healthcare Enabling Services：845-926-3636 / Jduran@cornerstonefh.org。"
+      "howToEnroll": [
+        { "label": "通过 myBenefits 在线申请" },
+        { "label": "致电奥兰治县社会服务部" },
+        { "label": "拨打联合劝募" },
+        { "label": "联系 Cornerstone Family Healthcare Enabling Services" }
+      ]
     },
     "ht": {
       "name": "Pwogram Asistans Nitrisyonèl Siplemantè (SNAP)",
       "description": "Fanmi an dwe satisfè sèten limit revni ak resous, epi kondisyon travay, pou kalifye pou benefis SNAP. Byenke elèv ak moun ki pa sitwayen anjeneral pa kalifye, yo ka resevwa SNAP nan kondisyon espesifik. Anjeneral, moun ki pa sitwayen dwe te viv Ozetazini pou omwen 5 ane, resevwa èd ki gen rapò ak andikap, oswa se timoun ki poko gen 18 an. Moun ki san kay pa bezwen satisfè sèten kondisyon rezidans. Gen règ espesyal pou granmoun aje oswa moun andikape.",
-      "howToEnroll": "Aplike sou myBenefits (https://mybenefits.ny.gov/mybenefits/begin), rele Depatman Sèvis Sosyal Konte Orange nan 845-291-2002, rele United Way 211, oswa kontakte Cornerstone Family Healthcare Enabling Services nan 845-926-3636 / Jduran@cornerstonefh.org."
+      "howToEnroll": [
+        { "label": "Aplike sou entènèt sou myBenefits" },
+        { "label": "Rele Depatman Sèvis Sosyal Konte Orange" },
+        { "label": "Rele United Way" },
+        { "label": "Kontakte Cornerstone Family Healthcare Enabling Services" }
+      ]
     },
     "ar": {
       "name": "برنامج المساعدة الغذائية التكميلية (SNAP)",
       "description": "يجب أن تستوفي الأسرة حدودًا معينة للدخل والموارد ومتطلبات العمل للتأهل لمزايا SNAP. رغم أن الطلاب وغير المواطنين غير مؤهلين عادةً، يمكنهم الحصول على SNAP وفق شروط محددة. عمومًا يجب أن يكون غير المواطنين قد عاشوا في الولايات المتحدة لمدة 5 سنوات على الأقل، أو يتلقون مساعدة متعلقة بالإعاقة، أو أن يكونوا أطفالًا دون 18 عامًا. لا يحتاج الأشخاص الذين يعانون من التشرد إلى استيفاء بعض متطلبات الإقامة. وتُطبَّق قواعد خاصة لكبار السن أو ذوي الإعاقة.",
-      "howToEnroll": "قدّم عبر myBenefits (https://mybenefits.ny.gov/mybenefits/begin)، أو اتصل بإدارة الخدمات الاجتماعية في مقاطعة أورانج على 845-291-2002، أو اتصل بـ United Way على 211، أو تواصل مع Cornerstone Family Healthcare Enabling Services على 845-926-3636 / Jduran@cornerstonefh.org."
+      "howToEnroll": [
+        { "label": "قدّم عبر الإنترنت على myBenefits" },
+        { "label": "اتصل بإدارة الخدمات الاجتماعية في مقاطعة أورانج" },
+        { "label": "اتصل بـ United Way" },
+        { "label": "تواصل مع Cornerstone Family Healthcare Enabling Services" }
+      ]
     },
     "he": {
       "name": "תוכנית סיוע תזונתי משלים (SNAP)",
       "description": "משק בית חייב לעמוד במגבלות הכנסה ומשאבים מסוימות ובדרישות עבודה כדי להיות זכאי להטבות SNAP. אף שסטודנטים ומי שאינם אזרחים בדרך כלל אינם זכאים, הם יכולים לקבל SNAP בתנאים מסוימים. בדרך כלל, מי שאינם אזרחים חייבים לגור בארה\"ב לפחות 5 שנים, לקבל סיוע הקשור לנכות, או להיות ילדים מתחת לגיל 18. אנשים החווים חוסר בית אינם צריכים לעמוד בדרישות מגורים מסוימות. חלים כללים מיוחדים לקשישים או לאנשים עם מוגבלות.",
-      "howToEnroll": "הגישו בקשה ב־myBenefits (https://mybenefits.ny.gov/mybenefits/begin), התקשרו למחלקת השירותים החברתיים של מחוז אורנג' ב־845-291-2002, חייגו ל־United Way ב־211, או צרו קשר עם Cornerstone Family Healthcare Enabling Services ב־845-926-3636 / Jduran@cornerstonefh.org."
+      "howToEnroll": [
+        { "label": "הגישו בקשה באינטרנט ב־myBenefits" },
+        { "label": "התקשרו למחלקת השירותים החברתיים של מחוז אורנג'" },
+        { "label": "חייגו ל־United Way" },
+        { "label": "צרו קשר עם Cornerstone Family Healthcare Enabling Services" }
+      ]
     },
     "ru": {
       "name": "Программа дополнительной продовольственной помощи (SNAP)",
       "description": "Семья должна соответствовать определённым ограничениям по доходу и ресурсам, а также требованиям к работе, чтобы иметь право на SNAP. Хотя студенты и лица без гражданства обычно не имеют права, они могут получать SNAP при определённых условиях. Как правило, лица без гражданства должны проживать в США не менее 5 лет, получать пособие, связанное с инвалидностью, либо быть детьми младше 18 лет. Людям без жилья не нужно выполнять некоторые требования к месту жительства. Для пожилых и людей с инвалидностью действуют особые правила.",
-      "howToEnroll": "Подайте заявку через myBenefits (https://mybenefits.ny.gov/mybenefits/begin), позвоните в Департамент социальных служб округа Ориндж по телефону 845-291-2002, наберите United Way 211 или свяжитесь с Cornerstone Family Healthcare Enabling Services: 845-926-3636 / Jduran@cornerstonefh.org."
+      "howToEnroll": [
+        { "label": "Подайте заявку онлайн через myBenefits" },
+        { "label": "Позвоните в Департамент социальных служб округа Ориндж" },
+        { "label": "Позвоните в United Way" },
+        { "label": "Свяжитесь с Cornerstone Family Healthcare Enabling Services" }
+      ]
     }
   },
   "wic": {
@@ -3300,19 +3486,99 @@ function contactBlock(p) {
   return `<div class="benefit-aside"><h4>${escapeHtml(t("contactHeading"))}</h4>${bits.join("")}</div>`;
 }
 
+function enrollStepHtml(step) {
+  if (typeof step === "string") return escapeHtml(step);
+  const label = escapeHtml(step.label || "");
+  const contacts = [];
+  if (step.url) {
+    contacts.push(
+      `<a href="${escapeHtml(step.url)}" target="_blank" rel="noopener">${escapeHtml(step.linkText || step.url.replace(/^https?:\/\//, ""))}</a>`,
+    );
+  }
+  if (step.phone) {
+    const href = phoneHref(step.phone);
+    contacts.push(
+      href
+        ? `<a href="${href}">${escapeHtml(step.phone)}</a>`
+        : escapeHtml(step.phone),
+    );
+  }
+  if (step.email) {
+    contacts.push(
+      `<a href="mailto:${escapeHtml(step.email)}">${escapeHtml(step.email)}</a>`,
+    );
+  }
+  if (!contacts.length) return label;
+  if (step.url && !step.phone && !step.email) {
+    return `<a href="${escapeHtml(step.url)}" target="_blank" rel="noopener">${label}</a>`;
+  }
+  return `${label}: ${contacts.join(" / ")}`;
+}
+
+function enrollBlock(p) {
+  const enroll = programField(p, "howToEnroll");
+  if (!enroll || (Array.isArray(enroll) && !enroll.length)) return "";
+  const heading = `<h4>${escapeHtml(t("howEnrollHeading"))}</h4>`;
+  if (Array.isArray(enroll)) {
+    const base = Array.isArray(p.howToEnroll) ? p.howToEnroll : [];
+    const items = enroll
+      .map((step, i) => {
+        const localized =
+          typeof step === "string" ? { label: step } : step || {};
+        const fromBase =
+          base[i] && typeof base[i] === "object" ? base[i] : {};
+        const merged = {
+          label: localized.label || fromBase.label,
+          url: localized.url || fromBase.url,
+          phone: localized.phone || fromBase.phone,
+          email: localized.email || fromBase.email,
+          linkText: localized.linkText || fromBase.linkText,
+        };
+        return `<li>${enrollStepHtml(merged)}</li>`;
+      })
+      .join("");
+    return `${heading}<ul class="enroll-list">${items}</ul>`;
+  }
+  return `${heading}<p>${escapeHtml(enroll)}</p>`;
+}
+
 function locationsBlock(p) {
   const locs = (p.locations || []).filter((l) => l.name || l.address || l.phone);
   if (!locs.length) return "";
-  const items = locs.map((l) => {
-    const lines = [escapeHtml(l.name || "")];
-    if (l.phone) {
-      const href = phoneHref(l.phone);
-      lines.push(href ? `<a href="${href}">${escapeHtml(l.phone)}</a>` : escapeHtml(l.phone));
-    }
-    if (l.address) lines.push(escapeHtml(l.address));
-    if (l.schedule) lines.push(escapeHtml(localizeField(l.schedule)));
-    return `<li>${lines.filter(Boolean).join("<br>")}</li>`;
-  }).join("");
+  const cue = `<span class="site-card-cue" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4.5 6 8.5 10 4.5"/></svg></span>`;
+  const row = (label, value) =>
+    `<div class="site-row"><span class="site-label">${escapeHtml(label)}</span><span class="site-value">${value}</span></div>`;
+  const items = locs
+    .map((l) => {
+      const details = [];
+      if (l.phone) {
+        const href = phoneHref(l.phone);
+        const phone = href
+          ? `<a href="${href}">${escapeHtml(l.phone)}</a>`
+          : escapeHtml(l.phone);
+        details.push(row(t("contactNumber"), phone));
+      }
+      if (l.email) {
+        details.push(
+          row(
+            t("email"),
+            `<a href="mailto:${escapeHtml(l.email)}">${escapeHtml(l.email)}</a>`,
+          ),
+        );
+      }
+      if (l.address) {
+        details.push(row(t("address"), escapeHtml(l.address)));
+      }
+      if (l.schedule) {
+        details.push(row(t("schedule"), escapeHtml(localizeField(l.schedule))));
+      }
+      const title = escapeHtml(l.name || t("sitesHeading"));
+      if (!details.length) {
+        return `<li><div class="site-name-only">${title}</div></li>`;
+      }
+      return `<li><details class="site-card"><summary><span class="site-card-title">${title}</span>${cue}</summary><div class="site-body">${details.join("")}</div></details></li>`;
+    })
+    .join("");
   return `<div class="benefit-sites"><h4>${escapeHtml(t("sitesHeading"))}</h4><ul>${items}</ul></div>`;
 }
 
@@ -3337,7 +3603,7 @@ function renderBenefits() {
         <div class="benefit-layout">
           <div class="benefit-copy">
             ${programField(p, "description") ? `<h4>${escapeHtml(t("eligibilityHeading"))}</h4><p>${escapeHtml(programField(p, "description"))}</p>` : ""}
-            ${programField(p, "howToEnroll") ? `<h4>${escapeHtml(t("howEnrollHeading"))}</h4><p>${escapeHtml(programField(p, "howToEnroll"))}</p>` : ""}
+            ${enrollBlock(p)}
           </div>
           ${contactBlock(p)}
         </div>

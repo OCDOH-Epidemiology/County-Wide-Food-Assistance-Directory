@@ -20,7 +20,25 @@
       "town": "Orange County",
       "district": null,
       "schedule": null,
-      "howToEnroll": "Apply via myBenefits (https://mybenefits.ny.gov/mybenefits/begin), call Orange County Department of Social Services at 845-291-2002, call United Way 211, or contact Cornerstone Family Healthcare Enabling Services at 845-926-3636 / Jduran@cornerstonefh.org.",
+      "howToEnroll": [
+        {
+          "label": "Apply online via myBenefits",
+          "url": "https://mybenefits.ny.gov/mybenefits/begin"
+        },
+        {
+          "label": "Call Orange County Department of Social Services",
+          "phone": "845-291-2002"
+        },
+        {
+          "label": "Call United Way",
+          "phone": "211"
+        },
+        {
+          "label": "Contact Cornerstone Family Healthcare Enabling Services",
+          "phone": "845-926-3636",
+          "email": "Jduran@cornerstonefh.org"
+        }
+      ],
       "links": [
         {
           "label": "Students SNAP eligibility",

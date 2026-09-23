@@ -29,7 +29,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
 :root {
-  --ink: #1a2a22; --muted: #5a6b62; --paper: #f3f6f2; --surface: #ffffff;
+  --ink: #1a2a22; --muted: #4a5b51; --paper: #f3f6f2; --surface: #ffffff;
   --line: #c9d5cc; --forest: #1f5c45; --forest-d: #143d2e; --leaf: #2f8f65;
   --gold: #c9a227; --gold-s: #f3e6b0; --warn: #9a4a1c; --sky: #dfece6;
   --shadow: 0 1px 2px rgba(20,40,30,.06), 0 10px 28px rgba(20,40,30,.08);
@@ -554,7 +554,7 @@ body.low-bw.view-map #map-panel::after {
   height: 100%;
   width: 100%;
 }
-.leaflet-control-fullscreen a {
+.leaflet-control-fullscreen button {
   width: 30px;
   height: 30px;
   line-height: 30px;
@@ -563,19 +563,20 @@ body.low-bw.view-map #map-panel::after {
   justify-content: center;
   font-size: 1.15rem;
   font-weight: 700;
-  color: #333 !important;
-  text-decoration: none;
+  color: #333;
   background: #fff;
+  border: none;
+  cursor: pointer;
 }
-.leaflet-control-fullscreen a:hover { background: #f4f4f4; }
-.leaflet-control-fullscreen a:focus-visible {
+.leaflet-control-fullscreen button:hover { background: #f4f4f4; }
+.leaflet-control-fullscreen button:focus-visible {
   outline: 2px solid var(--leaf);
   outline-offset: 1px;
 }
-.leaflet-control-fullscreen a.is-exit {
+.leaflet-control-fullscreen button.is-exit {
   font-size: 1.45rem;
   line-height: 1;
-  color: var(--forest-d) !important;
+  color: var(--forest-d);
 }
 body.map-fullscreen {
   overflow: hidden;
@@ -793,7 +794,7 @@ footer a { font-weight: 600; }
 </style>
 </head>
 <body>
-<a class="skip-link" href="#directory" data-i18n="skip">Skip to directory</a>
+<a class="skip-link" href="#main" data-i18n="skip">Skip to main content</a>
 <div class="offline-banner" data-i18n="offline">You're offline — showing saved directory data.</div>
 <header class="hero" id="top">
   <div class="hero-bg" aria-hidden="true"></div>
@@ -804,7 +805,7 @@ footer a { font-weight: 600; }
       <div class="hero-top-controls">
       <div class="lang-select-wrap">
         <label for="lang-select" data-i18n="language">Language</label>
-        <select id="lang-select" aria-label="Language">
+        <select id="lang-select">
           <option value="en">English</option>
           <option value="es">Español</option>
           <option value="yi">ייִדיש · Yiddish</option>
@@ -1000,7 +1001,7 @@ footer a { font-weight: 600; }
   </div>
 </section>
 
-<main class="main">
+<main class="main" id="main">
   <div class="wrap">
     <p class="print-only" id="print-header"></p>
 
@@ -1063,7 +1064,7 @@ const ORDINAL = { first: 1, second: 2, third: 3, fourth: 4, "1st": 1, "2nd": 2, 
 const I18N = {
   "en": {
     "language": "Language",
-    "skip": "Skip to directory",
+    "skip": "Skip to main content",
     "offline": "You're offline — showing saved directory data.",
     "brand": "Orange County Food Assistance",
     "lead": "Find pantries, meals, benefits, and markets near you — filter by town, day, and program type.",
@@ -1206,7 +1207,7 @@ const I18N = {
   },
   "es": {
     "language": "Idioma",
-    "skip": "Ir al directorio",
+    "skip": "Ir al contenido principal",
     "offline": "Sin conexión — mostrando datos guardados del directorio.",
     "brand": "Asistencia Alimentaria del Condado de Orange",
     "lead": "Encuentre despensas, comidas, beneficios y mercados cerca de usted — filtre por pueblo, día y tipo de programa.",
@@ -1349,7 +1350,7 @@ const I18N = {
   },
   "yi": {
     "language": "שפּראַך",
-    "skip": "גיין צום וועגווייַזער",
+    "skip": "גיין צום הויפּט אינהאַלט",
     "offline": "אָן אינטערנעץ — ווייַזן אָפּגעהיטע אינפֿאָרמאַציע.",
     "brand": "אָראַנדזש קאַונטי עסן הילף",
     "lead": "געפֿינט עסן פּאַנטריס, מאָלצייַטן, בענעפֿיטן און מאַרקן נאָענט צו אײַך.",
@@ -1492,7 +1493,7 @@ const I18N = {
   },
   "zh": {
     "language": "语言",
-    "skip": "跳到目录",
+    "skip": "跳至主要内容",
     "offline": "您处于离线状态 — 显示已保存的目录数据。",
     "brand": "奥兰治县食品援助",
     "lead": "查找附近的食品分发点、餐食、福利项目和市场 — 可按城镇、日期和类型筛选。",
@@ -1635,7 +1636,7 @@ const I18N = {
   },
   "ht": {
     "language": "Lang",
-    "skip": "Ale nan anyè a",
+    "skip": "Ale nan kontni prensipal la",
     "offline": "Ou offline — n ap montre done anyè ki sove.",
     "brand": "Asistans Manje Orange County",
     "lead": "Jwenn depo manje, repa, benefis ak mache tou pre ou — filtre pa vil, jou, ak kalite pwogram.",
@@ -1778,7 +1779,7 @@ const I18N = {
   },
   "ar": {
     "language": "اللغة",
-    "skip": "انتقل إلى الدليل",
+    "skip": "انتقل إلى المحتوى الرئيسي",
     "offline": "أنت غير متصل — عرض بيانات الدليل المحفوظة.",
     "brand": "المساعدة الغذائية في مقاطعة أورانج",
     "lead": "ابحث عن بنوك الطعام والوجبات والمزايا والأسواق بالقرب منك — صفِّ حسب البلدة واليوم ونوع البرنامج.",
@@ -1921,7 +1922,7 @@ const I18N = {
   },
   "he": {
     "language": "שפה",
-    "skip": "דלג למדריך",
+    "skip": "דלג לתוכן הראשי",
     "offline": "אין חיבור — מציגים נתונים שמורים.",
     "brand": "סיוע במזון במחוז אורנג׳",
     "lead": "מצאו מזווה מזון, ארוחות, הטבות ושווקים לידכם — סננו לפי יישוב, יום וסוג תוכנית.",
@@ -2064,7 +2065,7 @@ const I18N = {
   },
   "ru": {
     "language": "Язык",
-    "skip": "Перейти к справочнику",
+    "skip": "Перейти к основному содержимому",
     "offline": "Нет сети — показаны сохранённые данные.",
     "brand": "Продовольственная помощь округа Ориндж",
     "lead": "Найдите продовольственные пункты, питание, пособия и рынки рядом — фильтруйте по городу, дню и типу программы.",
@@ -4338,9 +4339,8 @@ function addMapFullscreenControl(map) {
     options: { position: "topright" },
     onAdd() {
       const container = L.DomUtil.create("div", "leaflet-bar leaflet-control leaflet-control-fullscreen");
-      const btn = L.DomUtil.create("a", "", container);
-      btn.href = "#";
-      btn.setAttribute("role", "button");
+      const btn = L.DomUtil.create("button", "", container);
+      btn.type = "button";
       state.mapFsBtn = btn;
       syncMapFullscreenButton();
       L.DomEvent.disableClickPropagation(container);

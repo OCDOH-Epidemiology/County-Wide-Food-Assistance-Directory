@@ -1275,7 +1275,6 @@
       "id": "guild-of-st-margaret-soup-kitchen",
       "name": "Guild of St. Margaret Soup Kitchen",
       "categories": [
-        "pantry",
         "soup_kitchen"
       ],
       "town": "Middletown",
@@ -1286,7 +1285,7 @@
       "contactPerson": "Carolanne Cusack",
       "residentsServed": "No Town Limit",
       "idRequired": "not_required",
-      "schedule": "Soup Kitchen: Monday-Saturday, 11:00AM-12:00PM; Sunday, 3:00PM-4:00PM; Thanksgiving & Christmas, 12:00PM-1:00PM; Fresh Pantry: 3PM-6PM Sat.; 1PM-4PM",
+      "schedule": "Monday-Saturday, 11:00AM-12:00PM; Sunday, 3:00PM-4:00PM; Thanksgiving & Christmas, 12:00PM-1:00PM",
       "days": [
         "Mon",
         "Tue",
@@ -3529,6 +3528,32 @@
       "programId": "congregate-dining",
       "lat": 41.5295,
       "lng": -74.2362
+    },
+    {
+      "id": "guild-of-st-margaret-fresh-pantry",
+      "name": "Guild of St. Margaret Fresh Pantry",
+      "categories": [
+        "pantry"
+      ],
+      "town": "Middletown",
+      "address": "12 Depot Street, Middletown, NY, 10940",
+      "phone": "(845) 956-5566",
+      "email": "soupkitchengrace@msn.com",
+      "website": null,
+      "contactPerson": "Carolanne Cusack",
+      "residentsServed": "No Town Limit",
+      "idRequired": "not_required",
+      "schedule": "Wednesday, 3:00PM-6:00PM; Saturday, 1:00PM-4:00PM",
+      "days": [
+        "Wed",
+        "Sat"
+      ],
+      "donationsAccepted": false,
+      "notes": null,
+      "openToAll": true,
+      "lat": 41.4455,
+      "lng": -74.4205,
+      "kind": "site"
     }
   ]
 }

@@ -307,6 +307,30 @@ button, input, select { font: inherit; }
 body.is-offline .offline-banner { display: block; }
 footer { border-top: 1px solid var(--line); padding: 2rem 0 2.5rem; color: var(--muted); font-size: .92rem; }
 footer a { font-weight: 600; }
+.page-actions { margin: 1rem 0 0; }
+.btn-feedback { background: var(--gold); color: #1a1808; }
+.feedback-fab {
+  position: fixed;
+  z-index: 60;
+  inset-inline-end: max(1rem, env(safe-area-inset-right));
+  bottom: max(1.15rem, env(safe-area-inset-bottom));
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .7rem 1.05rem .7rem .9rem;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #1a1808;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(20, 40, 30, .22);
+  border: 1px solid #a68516;
+}
+.feedback-fab:hover { filter: brightness(1.05); transform: translateY(-1px); }
+.feedback-fab:focus-visible { outline: 3px solid var(--leaf); outline-offset: 3px; }
+main { padding-bottom: 5rem; }
+.feedback-fab svg { width: 1.15rem; height: 1.15rem; flex: none; }
+@media print { .feedback-fab, .page-actions { display: none !important; } }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
@@ -354,6 +378,9 @@ footer a { font-weight: 600; }
     <header class="page-hero">
       <h1 data-i18n="pageTitle">Benefits &amp; programs</h1>
       <p data-i18n="pageLead">County food benefits and school meal programs — eligibility, enrollment, and contacts in one place.</p>
+      <p class="page-actions">
+        <a class="btn btn-feedback" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=eNJirltrzk6qebofSu9Xq7x3SBdK4UNDrceMkQ1YzENUREZXQVlBNFowSUw1MFU0U01UM05ENkVERi4u" target="_blank" rel="noopener noreferrer" data-i18n-aria="feedbackAria" aria-label="Share feedback about this directory. Opens a survey in a new tab."><span data-i18n="feedback">Share feedback</span></a>
+      </p>
       <nav class="jump-nav" aria-label="Section shortcuts">
         <span class="jump-label" data-i18n="jumpTo">Jump to</span>
         <a href="#snap" data-i18n="jumpSnap">SNAP</a>
@@ -396,6 +423,10 @@ footer a { font-weight: 600; }
     <p><a href="index.html" id="directory-footer" data-i18n="backDirectory">Back to directory</a> · <a href="#main" data-i18n="top">Back to top</a></p>
   </div>
 </footer>
+<a class="feedback-fab" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=eNJirltrzk6qebofSu9Xq7x3SBdK4UNDrceMkQ1YzENUREZXQVlBNFowSUw1MFU0U01UM05ENkVERi4u" target="_blank" rel="noopener noreferrer" data-i18n-aria="feedbackAria" aria-label="Share feedback about this directory. Opens a survey in a new tab.">
+  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-8.5 8.5c-1.2 0-2.3-.2-3.3-.7L3 21l1.2-5.2A8.5 8.5 0 1 1 21 12z"/></svg>
+  <span data-i18n="feedback">Share feedback</span>
+</a>
 
 <script>
 const DIRECTORY = __DATA__;
@@ -467,6 +498,8 @@ const I18N = {
     "contact": "Questions about this directory: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · Call <a href=\"tel:211\">211</a> for local help.",
     "favNote": "My places are saved only on this device/browser.",
     "top": "Back to top",
+    "feedback": "Share feedback",
+    "feedbackAria": "Share feedback about this directory. Opens a survey in a new tab.",
     "call": "Call",
     "email": "Email",
     "directions": "Directions",
@@ -612,6 +645,8 @@ const I18N = {
     "contact": "Preguntas sobre este directorio: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · Llame al <a href=\"tel:211\">211</a> para ayuda local.",
     "favNote": "Mis lugares se guardan solo en este dispositivo/navegador.",
     "top": "Volver arriba",
+    "feedback": "Enviar comentarios",
+    "feedbackAria": "Comparta sus comentarios sobre este directorio. Abre una encuesta en una pestaña nueva.",
     "call": "Llamar",
     "email": "Correo",
     "directions": "Direcciones",
@@ -757,6 +792,8 @@ const I18N = {
     "contact": "פֿראַגעס: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · רופֿט <a href=\"tel:211\">211</a>.",
     "favNote": "מײַנע ערטער ווערן געהאַלטן נאָר אויף דעם אַפּאַראַט/בראַוזער.",
     "top": "צוריק אַרויף",
+    "feedback": "שיקט באַמערקונגען",
+    "feedbackAria": "טיילט באַמערקונגען וועגן דעם וועגווייַזער. עפֿנט אַ סורוועי אין אַ נײַעם טאַב.",
     "call": "רופֿן",
     "email": "אימעיל",
     "directions": "וועגווײַזער",
@@ -902,6 +939,8 @@ const I18N = {
     "contact": "目录相关问题：<a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · 拨打 <a href=\"tel:211\">211</a>。",
     "favNote": "“我的地点”仅保存在此设备/浏览器。",
     "top": "回到顶部",
+    "feedback": "意见反馈",
+    "feedbackAria": "分享对本目录的反馈。在新标签页打开调查问卷。",
     "call": "电话",
     "email": "电子邮件",
     "directions": "导航",
@@ -1047,6 +1086,8 @@ const I18N = {
     "contact": "Kesyon: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · Rele <a href=\"tel:211\">211</a>.",
     "favNote": "Kote mwen sove sèlman sou aparèy/navigatè sa a.",
     "top": "Tounen anwo",
+    "feedback": "Kite kòmantè",
+    "feedbackAria": "Pataje kòmantè sou anyè sa a. Louvri yon sondaj nan yon nouvo onglè.",
     "call": "Rele",
     "email": "Imèl",
     "directions": "Direksyon",
@@ -1192,6 +1233,8 @@ const I18N = {
     "contact": "أسئلة حول الدليل: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · اتصل بـ <a href=\"tel:211\">211</a>.",
     "favNote": "تُحفظ أماكني على هذا الجهاز/المتصفح فقط.",
     "top": "العودة للأعلى",
+    "feedback": "أرسل ملاحظات",
+    "feedbackAria": "شارك ملاحظاتك حول هذا الدليل. يفتح استبيانًا في علامة تبويب جديدة.",
     "call": "اتصال",
     "email": "البريد",
     "directions": "الاتجاهات",
@@ -1337,6 +1380,8 @@ const I18N = {
     "contact": "שאלות: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · התקשרו ל־<a href=\"tel:211\">211</a>.",
     "favNote": "המקומות שלי נשמרים רק במכשיר/דפדפן זה.",
     "top": "חזרה למעלה",
+    "feedback": "שלחו משוב",
+    "feedbackAria": "שתפו משוב על המדריך. נפתח סקר בכרטיסייה חדשה.",
     "call": "התקשר",
     "email": "דוא\"ל",
     "directions": "ניווט",
@@ -1482,6 +1527,8 @@ const I18N = {
     "contact": "Вопросы: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · Звоните <a href=\"tel:211\">211</a>.",
     "favNote": "«Мои места» сохраняются только на этом устройстве/в браузере.",
     "top": "Наверх",
+    "feedback": "Оставить отзыв",
+    "feedbackAria": "Оставьте отзыв об этом справочнике. Откроет опрос в новой вкладке.",
     "call": "Позвонить",
     "email": "Эл. почта",
     "directions": "Маршрут",
@@ -3434,6 +3481,9 @@ function applyI18n() {
   });
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
     el.placeholder = t(el.getAttribute("data-i18n-placeholder"));
+  });
+  document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+    el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria")));
   });
   const langSel = document.getElementById("lang-select");
   if (langSel) {

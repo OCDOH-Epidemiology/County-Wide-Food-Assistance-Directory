@@ -59,6 +59,9 @@ button { font: inherit; }
 .btn-back { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.35); }
 .page-hero { padding: 2rem 0 1.25rem; }
 .page-hero h1 { font-family: var(--display); font-size: clamp(0.92rem, 2.7vw, 2.55rem); line-height: 1.15; letter-spacing: -.02em; margin: 0 0 .65rem; white-space: nowrap; color: var(--forest-d); }
+@media (max-width: 349px) {
+  .page-hero h1 { white-space: normal; font-size: 1.35rem; }
+}
 .page-hero p { margin: 0; color: var(--muted); font-size: 1.05rem; }
 .pills { display: flex; flex-wrap: wrap; gap: .45rem; margin: .15rem 0 1rem; }
 .pill { font-size: .82rem; font-weight: 700; padding: .35rem .75rem; border-radius: 999px; background: var(--gold-s); color: #3f320c; }

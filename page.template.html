@@ -84,7 +84,8 @@ button, input, select { font: inherit; }
 }
 .bw-toggle button[aria-pressed="true"] { background: var(--gold); color: #1a1808; }
 .seal { width: clamp(44px, 6vw, 60px); height: auto; flex: none; filter: drop-shadow(0 2px 10px rgba(0,0,0,.4)); }
-.brand { font-family: var(--display); font-size: clamp(2.4rem, 7vw, 4.4rem); line-height: .98; letter-spacing: -.02em; margin: 0 0 .75rem; max-width: 14ch; text-shadow: 0 2px 24px rgba(0,0,0,.35); }
+.brand { font-family: var(--display); font-size: clamp(0.86rem, 3.05vw, 2.55rem); line-height: 1.05; letter-spacing: -.02em; margin: 0 0 .75rem; white-space: nowrap; text-shadow: 0 2px 24px rgba(0,0,0,.35); }
+html:not([lang="en"]) .brand { white-space: normal; }
 .hero-lead { margin: 0 0 1.25rem; max-width: 40ch; font-size: clamp(1.05rem, 2.2vw, 1.25rem); color: #dce9e1; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
 .btn { appearance: none; border: 0; border-radius: 999px; padding: .7rem 1.2rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: .45rem; transition: transform .15s ease, filter .15s ease; }
@@ -726,7 +727,6 @@ footer a { font-weight: 600; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 @media (max-width: 700px) {
-  .brand { max-width: none; }
   /* Size the hero to its content instead of a fixed 68vh floor, so the directory
      toolbar sits higher on small screens and needs less scrolling to reach. */
   .hero { min-height: auto; }
@@ -862,15 +862,16 @@ body.map-fullscreen .feedback-fab {
       </div>
       </div>
     </div>
-    <h1 class="brand" data-i18n="brand">Orange County Food Assistance</h1>
+    <h1 class="brand" data-i18n="brand">Orange County Food Assistance Directory</h1>
     <p class="hero-lead" data-i18n="lead">Find pantries, meals, benefits, and markets near you — filter by town, day, and program type.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#directory" data-i18n="browse">Browse directory</a>
-      <a class="btn btn-ghost" id="benefits-link" href="benefits.html" data-i18n="benefits">Benefits &amp; programs</a>
-      <a class="btn btn-ghost" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=eNJirltrzk6qebofSu9Xq7x3SBdK4UNDrceMkQ1YzENUREZXQVlBNFowSUw1MFU0U01UM05ENkVERi4u" target="_blank" rel="noopener noreferrer" data-i18n-aria="feedbackAria" aria-label="Share feedback about this directory. Opens a survey in a new tab."><span data-i18n="feedback">Share feedback</span></a>
+      <a class="btn btn-primary" href="#directory" data-i18n="browse">Browse Directory</a>
+      <a class="btn btn-ghost" id="benefits-link" href="benefits.html" data-i18n="benefits">Benefits &amp; Programs</a>
+      <a class="btn btn-ghost" id="thanksgiving-link" href="thanksgiving.html" data-i18n="thanksgiving">Find Thanksgiving Meals</a>
+      <a class="btn btn-ghost" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=eNJirltrzk6qebofSu9Xq7x3SBdK4UNDrceMkQ1YzENUREZXQVlBNFowSUw1MFU0U01UM05ENkVERi4u" target="_blank" rel="noopener noreferrer" data-i18n-aria="feedbackAria" aria-label="Share feedback about this directory. Opens a survey in a new tab."><span data-i18n="feedback">Share Feedback</span></a>
     </div>
     <div class="meta-pills">
-      <span class="pill" data-i18n="updated">Updated June 2026</span>
+      <span class="pill" data-i18n="updated">Updated 11.5.26</span>
       <span class="pill">Orange County, NY</span>
       <span class="pill" data-i18n="listMap">List + Map</span>
     </div>
@@ -1086,15 +1087,15 @@ body.map-fullscreen .feedback-fab {
 <footer>
   <div class="wrap">
     <p data-i18n="mapNote">Map pins are approximate by address/town. Always confirm location details by phone.</p>
-    <p data-i18n="source">Source: County-Wide Food Assistance Directory Programs by Town, Orange County NY — <strong>Last updated June 2026</strong>.</p>
-    <p data-i18n="contact">Questions about this directory: <a href="mailto:moakes@orangecountygov.com">Meg Oakes, moakes@orangecountygov.com</a> · Call <a href="tel:211">211</a> for local help.</p>
+    <p data-i18n="source">Source: County-Wide Food Assistance Directory Programs by Town, Orange County NY — <strong>Last updated 11.5.26</strong>.</p>
+    <p data-i18n="contact">Questions about this directory: <a href="mailto:Moakes@orangecountyny.gov">Meg Oakes, Moakes@orangecountyny.gov</a> · Call <a href="tel:211">211</a> for local help.</p>
     <p data-i18n="favNote">My places are saved only on this device/browser.</p>
     <p><a href="#top" data-i18n="top">Back to top</a></p>
   </div>
 </footer>
 <a class="feedback-fab" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=eNJirltrzk6qebofSu9Xq7x3SBdK4UNDrceMkQ1YzENUREZXQVlBNFowSUw1MFU0U01UM05ENkVERi4u" target="_blank" rel="noopener noreferrer" data-i18n-aria="feedbackAria" aria-label="Share feedback about this directory. Opens a survey in a new tab.">
   <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-8.5 8.5c-1.2 0-2.3-.2-3.3-.7L3 21l1.2-5.2A8.5 8.5 0 1 1 21 12z"/></svg>
-  <span data-i18n="feedback">Share feedback</span>
+  <span data-i18n="feedback">Share Feedback</span>
 </a>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -1112,11 +1113,12 @@ const I18N = {
     "language": "Language",
     "skip": "Skip to main content",
     "offline": "You're offline — showing saved directory data.",
-    "brand": "Orange County Food Assistance",
+    "brand": "Orange County Food Assistance Directory",
     "lead": "Find pantries, meals, benefits, and markets near you — filter by town, day, and program type.",
-    "browse": "Browse directory",
-    "benefits": "Benefits & programs",
-    "updated": "Updated 9.22.26",
+    "browse": "Browse Directory",
+    "benefits": "Benefits & Programs",
+    "thanksgiving": "Find Thanksgiving Meals",
+    "updated": "Updated 11.5.26",
     "listMap": "List + Map",
     "lowBw": "Low data",
     "callAheadStrong": "Please call ahead.",
@@ -1183,11 +1185,11 @@ const I18N = {
     "programsLead": "SNAP, WIC, senior dining, school meals, Summer EBT, and more — eligibility and how to enroll.",
     "mapNote": "Map pins are approximate by address/town. Always confirm location details by phone.",
     "mapOfflineNote": "Map tiles need a network connection. List view works offline.",
-    "source": "Source: County-Wide Food Assistance Directory Programs by Town, Orange County NY — <strong>Last updated June 2026</strong>.",
-    "contact": "Questions about this directory: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · Call <a href=\"tel:211\">211</a> for local help.",
+    "source": "Source: County-Wide Food Assistance Directory Programs by Town, Orange County NY — <strong>Last updated 11.5.26</strong>.",
+    "contact": "Questions about this directory: <a href=\"mailto:Moakes@orangecountyny.gov\">Meg Oakes, Moakes@orangecountyny.gov</a> · Call <a href=\"tel:211\">211</a> for local help.",
     "favNote": "My places are saved only on this device/browser.",
     "top": "Back to top",
-    "feedback": "Share feedback",
+    "feedback": "Share Feedback",
     "feedbackAria": "Share feedback about this directory. Opens a survey in a new tab.",
     "call": "Call",
     "email": "Email",
@@ -1261,7 +1263,7 @@ const I18N = {
     "lead": "Encuentre despensas, comidas, beneficios y mercados cerca de usted — filtre por pueblo, día y tipo de programa.",
     "browse": "Ver directorio",
     "benefits": "Beneficios y programas",
-    "updated": "Actualizado 9.22.26",
+    "updated": "Actualizado 11.5.26",
     "listMap": "Lista + Mapa",
     "lowBw": "Pocos datos",
     "callAheadStrong": "Llame antes de ir.",
@@ -1328,8 +1330,8 @@ const I18N = {
     "programsLead": "SNAP, WIC, comidas para adultos mayores, programas escolares, Summer EBT y más — elegibilidad e inscripción.",
     "mapNote": "Los pines del mapa son aproximados por dirección/pueblo. Confirme siempre por teléfono.",
     "mapOfflineNote": "Las baldosas del mapa necesitan conexión. La lista funciona sin conexión.",
-    "source": "Fuente: Directorio de Asistencia Alimentaria del Condado de Orange — <strong>Actualizado junio 2026</strong>.",
-    "contact": "Preguntas sobre este directorio: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · Llame al <a href=\"tel:211\">211</a> para ayuda local.",
+    "source": "Fuente: Directorio de Asistencia Alimentaria del Condado de Orange — <strong>Actualizado 11.5.26</strong>.",
+    "contact": "Preguntas sobre este directorio: <a href=\"mailto:Moakes@orangecountyny.gov\">Meg Oakes, Moakes@orangecountyny.gov</a> · Llame al <a href=\"tel:211\">211</a> para ayuda local.",
     "favNote": "Mis lugares se guardan solo en este dispositivo/navegador.",
     "top": "Volver arriba",
     "feedback": "Enviar comentarios",
@@ -1406,7 +1408,7 @@ const I18N = {
     "lead": "געפֿינט עסן פּאַנטריס, מאָלצייַטן, בענעפֿיטן און מאַרקן נאָענט צו אײַך.",
     "browse": "זעט דעם וועגווייַזער",
     "benefits": "בענעפֿיטן און פּראָגראַמען",
-    "updated": "דערהײַנט 9.22.26",
+    "updated": "דערהײַנט 11.5.26",
     "listMap": "ליסטע + מאַפּע",
     "lowBw": "ווייניק דאַטן",
     "callAheadStrong": "רופֿט פֿריִער.",
@@ -1473,8 +1475,8 @@ const I18N = {
     "programsLead": "SNAP, WIC, עלטערע מאָלצייַטן, שול־פּראָגראַמען און מער — בארעכטיגונג און ווי צו רעגיסטרירן.",
     "mapNote": "מאַפּע־פּינס זענען בערך. באַשטעטיקט שטענדיק דעם אָרט מיט אַ טעלעפֿאָן־רוף.",
     "mapOfflineNote": "די מאַפּע דאַרף אינטערנעץ. די ליסטע אַרבעט אָן אינטערנעץ.",
-    "source": "מקור: אָראַנדזש קאַונטי עסן־הילף וועגווייַזער — <strong>דערהײַנט יוני 2026</strong>.",
-    "contact": "פֿראַגעס: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · רופֿט <a href=\"tel:211\">211</a>.",
+    "source": "מקור: אָראַנדזש קאַונטי עסן־הילף וועגווייַזער — <strong>דערהײַנט 11.5.26</strong>.",
+    "contact": "פֿראַגעס: <a href=\"mailto:Moakes@orangecountyny.gov\">Meg Oakes, Moakes@orangecountyny.gov</a> · רופֿט <a href=\"tel:211\">211</a>.",
     "favNote": "מײַנע ערטער ווערן געהאַלטן נאָר אויף דעם אַפּאַראַט/בראַוזער.",
     "top": "צוריק אַרויף",
     "feedback": "שיקט באַמערקונגען",
@@ -1551,7 +1553,7 @@ const I18N = {
     "lead": "查找附近的食品分发点、餐食、福利项目和市场 — 可按城镇、日期和类型筛选。",
     "browse": "浏览目录",
     "benefits": "福利与项目",
-    "updated": "更新于 9.22.26",
+    "updated": "更新于 11.5.26",
     "listMap": "列表 + 地图",
     "lowBw": "省流量",
     "callAheadStrong": "请先致电确认。",
@@ -1618,8 +1620,8 @@ const I18N = {
     "programsLead": "SNAP、WIC、老年用餐、学校餐食、Summer EBT 等 — 资格与申请方式。",
     "mapNote": "地图标记为大致位置。请务必电话确认。",
     "mapOfflineNote": "地图需要网络。列表可离线使用。",
-    "source": "来源：奥兰治县食品援助目录 — <strong>更新于 2026年6月</strong>。",
-    "contact": "目录相关问题：<a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · 拨打 <a href=\"tel:211\">211</a>。",
+    "source": "来源：奥兰治县食品援助目录 — <strong>更新于 11.5.26</strong>。",
+    "contact": "目录相关问题：<a href=\"mailto:Moakes@orangecountyny.gov\">Meg Oakes, Moakes@orangecountyny.gov</a> · 拨打 <a href=\"tel:211\">211</a>。",
     "favNote": "“我的地点”仅保存在此设备/浏览器。",
     "top": "回到顶部",
     "feedback": "意见反馈",
@@ -1696,7 +1698,7 @@ const I18N = {
     "lead": "Jwenn depo manje, repa, benefis ak mache tou pre ou — filtre pa vil, jou, ak kalite pwogram.",
     "browse": "Gade anyè a",
     "benefits": "Benefis ak pwogram",
-    "updated": "Mizajou 9.22.26",
+    "updated": "Mizajou 11.5.26",
     "listMap": "Lis + Kat",
     "lowBw": "Ti done",
     "callAheadStrong": "Tanpri rele anvan.",
@@ -1763,8 +1765,8 @@ const I18N = {
     "programsLead": "SNAP, WIC, repa pou granmoun, pwogram lekòl, Summer EBT ak plis — kalifikasyon ak enskripsyon.",
     "mapNote": "Pwen sou kat yo apwoksimatif. Toujou konfime pa telefòn.",
     "mapOfflineNote": "Kat la bezwen entènèt. Lis la mache san entènèt.",
-    "source": "Sous: Anyè Asistans Manje Orange County — <strong>Mizajou jen 2026</strong>.",
-    "contact": "Kesyon: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · Rele <a href=\"tel:211\">211</a>.",
+    "source": "Sous: Anyè Asistans Manje Orange County — <strong>Mizajou 11.5.26</strong>.",
+    "contact": "Kesyon: <a href=\"mailto:Moakes@orangecountyny.gov\">Meg Oakes, Moakes@orangecountyny.gov</a> · Rele <a href=\"tel:211\">211</a>.",
     "favNote": "Kote mwen sove sèlman sou aparèy/navigatè sa a.",
     "top": "Tounen anwo",
     "feedback": "Kite kòmantè",
@@ -1841,7 +1843,7 @@ const I18N = {
     "lead": "ابحث عن بنوك الطعام والوجبات والمزايا والأسواق بالقرب منك — صفِّ حسب البلدة واليوم ونوع البرنامج.",
     "browse": "تصفح الدليل",
     "benefits": "المزايا والبرامج",
-    "updated": "محدَّث 9.22.26",
+    "updated": "محدَّث 11.5.26",
     "listMap": "قائمة + خريطة",
     "lowBw": "بيانات منخفضة",
     "callAheadStrong": "يُرجى الاتصال مسبقًا.",
@@ -1908,8 +1910,8 @@ const I18N = {
     "programsLead": "SNAP وWIC ووجبات كبار السن وبرامج المدارس وSummer EBT والمزيد — الأهلية وطريقة التسجيل.",
     "mapNote": "علامات الخريطة تقريبية. أكّد دائمًا عبر الهاتف.",
     "mapOfflineNote": "الخريطة تحتاج اتصالاً. القائمة تعمل دون اتصال.",
-    "source": "المصدر: دليل المساعدة الغذائية لمقاطعة أورانج — <strong>محدَّث يونيو 2026</strong>.",
-    "contact": "أسئلة حول الدليل: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · اتصل بـ <a href=\"tel:211\">211</a>.",
+    "source": "المصدر: دليل المساعدة الغذائية لمقاطعة أورانج — <strong>محدَّث 11.5.26</strong>.",
+    "contact": "أسئلة حول الدليل: <a href=\"mailto:Moakes@orangecountyny.gov\">Meg Oakes, Moakes@orangecountyny.gov</a> · اتصل بـ <a href=\"tel:211\">211</a>.",
     "favNote": "تُحفظ أماكني على هذا الجهاز/المتصفح فقط.",
     "top": "العودة للأعلى",
     "feedback": "أرسل ملاحظات",
@@ -1986,7 +1988,7 @@ const I18N = {
     "lead": "מצאו מזווה מזון, ארוחות, הטבות ושווקים לידכם — סננו לפי יישוב, יום וסוג תוכנית.",
     "browse": "עיון במדריך",
     "benefits": "הטבות ותוכניות",
-    "updated": "עודכן 9.22.26",
+    "updated": "עודכן 11.5.26",
     "listMap": "רשימה + מפה",
     "lowBw": "חיסכון בנתונים",
     "callAheadStrong": "נא להתקשר מראש.",
@@ -2053,8 +2055,8 @@ const I18N = {
     "programsLead": "SNAP, WIC, ארוחות לגיל השלישי, תוכניות בית ספר, Summer EBT ועוד — זכאות ורישום.",
     "mapNote": "סימוני המפה משוערים. תמיד אשרו בטלפון.",
     "mapOfflineNote": "המפה דורשת רשת. הרשימה עובדת ללא רשת.",
-    "source": "מקור: מדריך סיוע במזון במחוז אורנג׳ — <strong>עודכן יוני 2026</strong>.",
-    "contact": "שאלות: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · התקשרו ל־<a href=\"tel:211\">211</a>.",
+    "source": "מקור: מדריך סיוע במזון במחוז אורנג׳ — <strong>עודכן 11.5.26</strong>.",
+    "contact": "שאלות: <a href=\"mailto:Moakes@orangecountyny.gov\">Meg Oakes, Moakes@orangecountyny.gov</a> · התקשרו ל־<a href=\"tel:211\">211</a>.",
     "favNote": "המקומות שלי נשמרים רק במכשיר/דפדפן זה.",
     "top": "חזרה למעלה",
     "feedback": "שלחו משוב",
@@ -2131,7 +2133,7 @@ const I18N = {
     "lead": "Найдите продовольственные пункты, питание, пособия и рынки рядом — фильтруйте по городу, дню и типу программы.",
     "browse": "Открыть справочник",
     "benefits": "Пособия и программы",
-    "updated": "Обновлено: 9.22.26",
+    "updated": "Обновлено: 11.5.26",
     "listMap": "Список + карта",
     "lowBw": "Экономия трафика",
     "callAheadStrong": "Пожалуйста, позвоните заранее.",
@@ -2198,8 +2200,8 @@ const I18N = {
     "programsLead": "SNAP, WIC, питание для пожилых, школьные программы, Summer EBT и другое — право на участие и запись.",
     "mapNote": "Метки на карте приблизительные. Всегда подтверждайте по телефону.",
     "mapOfflineNote": "Карте нужен интернет. Список работает офлайн.",
-    "source": "Источник: справочник продовольственной помощи округа Ориндж — <strong>обновлено июнь 2026</strong>.",
-    "contact": "Вопросы: <a href=\"mailto:moakes@orangecountygov.com\">Meg Oakes, moakes@orangecountygov.com</a> · Звоните <a href=\"tel:211\">211</a>.",
+    "source": "Источник: справочник продовольственной помощи округа Ориндж — <strong>обновлено 11.5.26</strong>.",
+    "contact": "Вопросы: <a href=\"mailto:Moakes@orangecountyny.gov\">Meg Oakes, Moakes@orangecountyny.gov</a> · Звоните <a href=\"tel:211\">211</a>.",
     "favNote": "«Мои места» сохраняются только на этом устройстве/в браузере.",
     "top": "Наверх",
     "feedback": "Оставить отзыв",
@@ -4475,8 +4477,11 @@ function prefsQuery() {
 }
 
 function syncCrossLinks() {
+  const q = prefsQuery();
   const benefits = document.getElementById("benefits-link");
-  if (benefits) benefits.href = `benefits.html${prefsQuery()}`;
+  if (benefits) benefits.href = `benefits.html${q}`;
+  const thanksgiving = document.getElementById("thanksgiving-link");
+  if (thanksgiving) thanksgiving.href = `thanksgiving.html${q}`;
 }
 
 function syncUrl() {

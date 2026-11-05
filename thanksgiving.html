@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3NSNSP7D0Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-3NSNSP7D0Z');
+</script>
+<title>Thanksgiving meals · Orange County Food Assistance Directory</title>
+<meta name="author" content="Dayquan Crandell" />
+<meta name="description" content="Orange County Thanksgiving meals for 2026: Regional Food Bank distributions, Newburgh community dinners, and cooked meals at Newburgh Brewing Company." />
+<meta name="theme-color" content="#1f5c45" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --ink: #1a2a22; --muted: #4a5b51; --paper: #f3f6f2; --surface: #ffffff;
+  --line: #c9d5cc; --forest: #1f5c45; --forest-d: #143d2e; --leaf: #2f8f65;
+  --gold: #c9a227; --gold-s: #f3e6b0; --warn: #9a4a1c; --sky: #dfece6;
+  --shadow: 0 1px 2px rgba(20,40,30,.06), 0 10px 28px rgba(20,40,30,.08);
+  --radius: 14px; --font: "Source Sans 3", system-ui, sans-serif; --display: "Fraunces", Georgia, serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--font); color: var(--ink); background: var(--paper); line-height: 1.5; min-height: 100vh; }
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 50% at 10% -10%, rgba(47,143,101,.12), transparent 55%),
+    linear-gradient(180deg, #e8efe9 0%, var(--paper) 38%, #f5f7f4 100%);
+}
+body.low-bw::before { background: var(--paper); }
+body.low-bw { --font: system-ui, sans-serif; --display: Georgia, serif; }
+img { max-width: 100%; display: block; }
+a { color: var(--forest); }
+button { font: inherit; }
+.wrap { width: min(980px, calc(100% - 2rem)); margin-inline: auto; }
+.skip-link { position: absolute; left: -999px; top: 0; background: var(--forest); color: #fff; padding: .6rem 1rem; z-index: 100; border-radius: 0 0 8px 0; font-weight: 700; }
+.skip-link:focus { left: 0; }
+.site-header {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(20,61,46,.94); color: #f4faf6;
+  backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.12);
+}
+.site-header .wrap { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; align-items: center; justify-content: space-between; padding: .85rem 0; }
+.brand-lockup a { display: flex; align-items: center; gap: .65rem; color: inherit; text-decoration: none; }
+.brand-seal { width: 40px; height: 40px; flex: none; }
+.brand-text { display: grid; gap: .15rem; min-width: 0; }
+.brand-name { font-family: var(--display); font-size: clamp(1.15rem, 2.8vw, 1.55rem); font-weight: 700; line-height: 1.15; letter-spacing: -.01em; }
+.brand-sub { font-size: .82rem; color: #c5d9ce; font-weight: 600; }
+.btn { appearance: none; border: 0; border-radius: 999px; padding: .55rem 1rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: .4rem; }
+.btn:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid var(--leaf); outline-offset: 2px; }
+.btn-back { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.35); }
+.page-hero { padding: 2rem 0 1.25rem; }
+.page-hero h1 { font-family: var(--display); font-size: clamp(0.92rem, 2.7vw, 2.55rem); line-height: 1.15; letter-spacing: -.02em; margin: 0 0 .65rem; white-space: nowrap; color: var(--forest-d); }
+.page-hero p { margin: 0; color: var(--muted); font-size: 1.05rem; }
+.pills { display: flex; flex-wrap: wrap; gap: .45rem; margin: .15rem 0 1rem; }
+.pill { font-size: .82rem; font-weight: 700; padding: .35rem .75rem; border-radius: 999px; background: var(--gold-s); color: #3f320c; }
+.category { padding: 1.5rem 0 1.75rem; border-top: 1px solid var(--line); scroll-margin-top: 5rem; }
+.category h2 { font-family: var(--display); font-size: clamp(1.45rem, 3vw, 1.85rem); margin: 0 0 .35rem; color: var(--forest-d); }
+.lede { margin: 0 0 1rem; }
+.facts { margin: 0 0 1.15rem; padding: 0; list-style: none; display: grid; gap: .35rem; }
+.facts li { padding-left: 1rem; position: relative; }
+.facts li::before { content: ""; position: absolute; left: 0; top: .55em; width: .4rem; height: .4rem; border-radius: 999px; background: var(--leaf); }
+.loc-grid { display: grid; gap: .75rem; margin: 0; padding: 0; list-style: none; }
+@media (min-width: 720px) {
+  .loc-grid { grid-template-columns: 1fr 1fr; }
+  .loc-grid:has(> :only-child) { grid-template-columns: 1fr; }
+}
+.loc-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+  padding: 1rem 1.05rem 1.05rem; box-shadow: 0 1px 0 rgba(20,40,30,.03);
+  display: grid; gap: .35rem; align-content: start;
+}
+.loc-card h3 { font-family: var(--display); font-size: 1.15rem; margin: 0; line-height: 1.25; color: var(--forest-d); }
+.town { margin: 0; font-size: .82rem; font-weight: 700; color: var(--forest); }
+.loc-card address { font-style: normal; margin: 0; }
+.dir {
+  justify-self: start; margin-top: .35rem; text-decoration: none; font-weight: 700;
+  border-bottom: 1px solid rgba(31,92,69,.35);
+}
+.note { margin: 1rem 0 0; color: var(--muted); font-size: .95rem; }
+.contacts { margin: 1rem 0 0; }
+.contacts a { font-weight: 700; }
+.more-info {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: .75rem 1.25rem; margin: 1.25rem 0 0; padding: 1rem 1.15rem;
+  background: var(--forest-d); color: #f7fbf8; text-decoration: none;
+  border-radius: 12px; font-weight: 650; font-size: 1.08rem; line-height: 1.35;
+}
+.more-info:hover { filter: brightness(1.08); }
+.more-info-action {
+  background: var(--gold); color: #1a1808; border-radius: 999px;
+  padding: .55rem 1.05rem; font-weight: 700; white-space: nowrap;
+}
+footer { border-top: 1px solid var(--line); padding: 2rem 0 2.5rem; color: var(--muted); font-size: .92rem; }
+footer a { font-weight: 600; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+@media print { .site-header .btn { display: none !important; } }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to Thanksgiving meals</a>
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand-lockup">
+      <a href="index.html" data-keep-query>
+        <img class="brand-seal" src="logo_county_seal.png" alt="Orange County, NY seal" width="397" height="398" />
+        <div class="brand-text">
+          <div class="brand-name">Orange County Food Assistance Directory</div>
+          <div class="brand-sub">Thanksgiving meals</div>
+        </div>
+      </a>
+    </div>
+    <a class="btn btn-back" href="index.html" data-keep-query>Back to directory</a>
+  </div>
+</header>
+<main id="main">
+  <div class="wrap">
+    <header class="page-hero">
+      <h1>Find thanksgiving meals in Orange County</h1>
+      <p>Holiday meals from different organizations. Each section has its own date, time, and rules.</p>
+    </header>
+
+    <section class="category" id="regional-food-bank" aria-labelledby="rfb-heading">
+      <h2 id="rfb-heading">Regional Food Bank</h2>
+      <div class="pills">
+        <span class="pill">Saturday, November 21, 2026</span>
+        <span class="pill">Starts at 10:00 a.m.</span>
+        <span class="pill">First come, first served</span>
+        <span class="pill">No pre-registration</span>
+      </div>
+      <p class="lede">Public food distribution at six Orange County sites. Show up early so food is still available. Each household that is served gets a turkey and a bag of groceries.</p>
+      <ul class="facts">
+        <li>No sign-up. Food is first come, first served.</li>
+        <li>Plan on one household per vehicle. A site can change that limit on the day.</li>
+        <li>Most sites allow walk-ups. Check the food bank page closer to November 21 for the site you will use. Line-up times depend on that town’s rules.</li>
+        <li>This is not home delivery. Meals sent to senior housing are for residents of those buildings only.</li>
+      </ul>
+      <ul class="loc-grid">
+        <li class="loc-card">
+          <h3>Cornerstone</h3>
+          <p class="town">Newburgh</p>
+          <address>Cornerstone Family Healthcare<br>147 Lake Street<br>Newburgh, NY 12550</address>
+          <a class="dir" href="https://maps.google.com/?q=147%20Lake%20Street%2C%20Newburgh%2C%20NY%2012550" target="_blank" rel="noopener noreferrer">Directions</a>
+        </li>
+        <li class="loc-card">
+          <h3>Salvation Army</h3>
+          <p class="town">Newburgh</p>
+          <address>The Salvation Army<br>234 Van Ness Street<br>Newburgh, NY 12550</address>
+          <a class="dir" href="https://maps.google.com/?q=234%20Van%20Ness%20Street%2C%20Newburgh%2C%20NY%2012550" target="_blank" rel="noopener noreferrer">Directions</a>
+        </li>
+        <li class="loc-card">
+          <h3>Newburgh Free Academy</h3>
+          <p class="town">Newburgh</p>
+          <address>Main campus<br>201 Fullerton Avenue<br>Newburgh, NY 12550</address>
+          <a class="dir" href="https://maps.google.com/?q=201%20Fullerton%20Avenue%2C%20Newburgh%2C%20NY%2012550" target="_blank" rel="noopener noreferrer">Directions</a>
+        </li>
+        <li class="loc-card">
+          <h3>Fei Tian College</h3>
+          <p class="town">Middletown</p>
+          <address>Middletown campus<br>14 Jason Place<br>Middletown, NY 10940</address>
+          <a class="dir" href="https://maps.google.com/?q=14%20Jason%20Place%2C%20Middletown%2C%20NY%2010940" target="_blank" rel="noopener noreferrer">Directions</a>
+        </li>
+        <li class="loc-card">
+          <h3>Regional Food Bank distribution center</h3>
+          <p class="town">Montgomery</p>
+          <address>580 State Route 416<br>Montgomery, NY 12549</address>
+          <a class="dir" href="https://maps.google.com/?q=580%20State%20Route%20416%2C%20Montgomery%2C%20NY%2012549" target="_blank" rel="noopener noreferrer">Directions</a>
+        </li>
+        <li class="loc-card">
+          <h3>West Point / Sacred Heart Church</h3>
+          <p class="town">Highland Falls</p>
+          <address>Sacred Heart of Jesus<br>353 Main Street<br>Highland Falls, NY 10928</address>
+          <a class="dir" href="https://maps.google.com/?q=353%20Main%20Street%2C%20Highland%20Falls%2C%20NY%2010928" target="_blank" rel="noopener noreferrer">Directions</a>
+        </li>
+      </ul>
+      <p class="note">The food bank lists each site by name and town. Street addresses are the published addresses for those organizations. Newburgh Free Academy is listed without a campus, so this page uses the main campus on Fullerton Avenue. Confirm the site on the food bank page before you go.</p>
+      <p class="contacts">Questions: <a href="mailto:thanksgiving@regionalfoodbank.net">thanksgiving@regionalfoodbank.net</a> or the Thanksgiving hotline <a href="tel:+18389005180">(838) 900-5180</a>. <a href="https://regionalfoodbank.net/2026-thanksgiving-food-distribution-live/" target="_blank" rel="noopener noreferrer">Food bank distribution page</a></p>
+      <a class="more-info" href="https://regionalfoodbank.net/wp-content/uploads/Thanksgving-FAQs-2026-v2-1.pdf" target="_blank" rel="noopener noreferrer">
+        <span>For more information on the Food Bank Thanksgiving distribution</span>
+        <span class="more-info-action">Click here</span>
+      </a>
+    </section>
+
+    <section class="category" id="cathedral-house" aria-labelledby="cathedral-heading">
+      <h2 id="cathedral-heading">Community Dinner at the Cathedral at the House</h2>
+      <div class="pills">
+        <span class="pill">Tuesday, November 24, 2026</span>
+        <span class="pill">Starts at 5:00 p.m.</span>
+      </div>
+      <p class="lede">A community dinner in Newburgh.</p>
+      <ul class="loc-grid">
+        <li class="loc-card">
+          <h3>Cathedral at the House</h3>
+          <p class="town">Newburgh</p>
+          <address>127 Broadway<br>Newburgh, NY 12550</address>
+          <a class="dir" href="https://maps.google.com/?q=127%20Broadway%2C%20Newburgh%2C%20NY%2012550" target="_blank" rel="noopener noreferrer">Directions</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="category" id="newburgh-brewing" aria-labelledby="brewery-heading">
+      <h2 id="brewery-heading">Newburgh Brewing Company</h2>
+      <div class="pills">
+        <span class="pill">Wednesday, November 25, 2026</span>
+        <span class="pill">Starts at 12:00 p.m.</span>
+        <span class="pill">First come, first served</span>
+        <span class="pill">Until supplies run out</span>
+      </div>
+      <p class="lede">Individually cooked Thanksgiving meals, served in the brewery lobby starting at 12:00 p.m. until the food is gone.</p>
+      <ul class="loc-grid">
+        <li class="loc-card">
+          <h3>Newburgh Brewing Company</h3>
+          <p class="town">Newburgh</p>
+          <address>88 South Colden Street<br>Newburgh, NY 12550</address>
+          <a class="dir" href="https://maps.google.com/?q=88%20South%20Colden%20Street%2C%20Newburgh%2C%20NY%2012550" target="_blank" rel="noopener noreferrer">Directions</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="category" id="church-at-the-bridge" aria-labelledby="bridge-heading">
+      <h2 id="bridge-heading">Church at the Bridge</h2>
+      <div class="pills">
+        <span class="pill">Wednesday, November 25, 2026</span>
+        <span class="pill">Doors open at 6:00 p.m.</span>
+        <span class="pill">6:30 p.m. to 8:00 p.m.</span>
+        <span class="pill">Free</span>
+      </div>
+      <p class="lede">Free Thanksgiving dinner until 8:00 p.m. All are welcome. Bring family and friends.</p>
+      <ul class="loc-grid">
+        <li class="loc-card">
+          <h3>Church at the Bridge</h3>
+          <p class="town">Newburgh</p>
+          <address>90 Broadway<br>Newburgh, NY 12550</address>
+          <a class="dir" href="tel:+18455228046">(845) 522-8046</a>
+          <a class="dir" href="https://maps.google.com/?q=90%20Broadway%2C%20Newburgh%2C%20NY%2012550" target="_blank" rel="noopener noreferrer">Directions</a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <p>Questions about this directory: <a href="mailto:Moakes@orangecountyny.gov">Meg Oakes, Moakes@orangecountyny.gov</a> · Call <a href="tel:211">211</a> for local help.</p>
+    <p><a href="index.html" data-keep-query>Back to directory</a> · <a href="#main">Back to top</a> · <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=eNJirltrzk6qebofSu9Xq7x3SBdK4UNDrceMkQ1YzENUREZXQVlBNFowSUw1MFU0U01UM05ENkVERi4u" target="_blank" rel="noopener noreferrer">Share feedback</a></p>
+  </div>
+</footer>
+<script>
+const BW_KEY = "oc-food-lowbw-v1";
+if (new URLSearchParams(location.search).get("bw") === "1" || localStorage.getItem(BW_KEY) === "1") {
+  document.body.classList.add("low-bw");
+}
+const qs = location.search;
+if (qs) {
+  document.querySelectorAll("[data-keep-query]").forEach((a) => {
+    a.href = a.getAttribute("href").split("?")[0] + qs;
+  });
+}
+</script>
+</body>
+</html>

@@ -1,9 +1,10 @@
 /* Orange County Food Assistance — offline cache */
-const CACHE = "oc-food-v10";
+const CACHE = "oc-food-v28";
 const PRECACHE = [
   "./",
   "./index.html",
   "./benefits.html",
+  "./thanksgiving.html",
   "./sw.js",
   "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
   "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",

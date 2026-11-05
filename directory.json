@@ -1,10 +1,10 @@
 {
   "meta": {
-    "title": "Orange County Food Assistance",
+    "title": "Orange County Food Assistance Directory",
     "subtitle": "County-Wide Food Assistance Directory",
-    "updated": "9.22.26",
+    "updated": "11.5.26",
     "contactName": "Meg Oakes",
-    "contactEmail": "moakes@orangecountygov.com",
+    "contactEmail": "Moakes@orangecountyny.gov",
     "disclaimer": "Information is subject to change due to increases in utilization. Please call the location before you go to confirm availability, hours, and documentation requirements. Most pantries ask for ID, proof of address, and that you bring your own bags."
   },
   "programs": [
@@ -2760,7 +2760,7 @@
       "schedule": "Tuesdays, June\u2013October, 10:00AM\u20132:00PM",
       "contact": "Meg Oakes",
       "phone": null,
-      "email": "moakes@orangecountygov.com",
+      "email": "Moakes@orangecountyny.gov",
       "website": "http://www.healthyorange.com/farmers-markets/",
       "accepts": [
         "SNAP EBT",

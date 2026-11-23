@@ -12,6 +12,24 @@
 
   gtag('config', 'G-3NSNSP7D0Z');
 </script>
+<!-- PostHog (cookieless, no session recording) -->
+<script>
+(function () {
+  var host = location.hostname;
+  if (host === "localhost" || host === "127.0.0.1" || location.protocol === "file:") return;
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init("phc_n5zA2Th4K5AFNg9P4eEHaNDNZ3zvv5rkEfVQuJqMgr32", {
+    api_host: "https://us.i.posthog.com",
+    defaults: "2026-08-30",
+    persistence: "memory",
+    disable_session_recording: true,
+    autocapture: true,
+    capture_pageview: true,
+    person_profiles: "identified_only"
+  });
+  posthog.register({ site: "food-assistance-directory" });
+})();
+</script>
 <title>Orange County Food Assistance Directory</title>
 <meta name="author" content="Dayquan Crandell" />
 <meta name="creator" content="Dayquan Crandell · Orange County Department of Health Epidemiology" />
@@ -1090,6 +1108,7 @@ body.map-fullscreen .feedback-fab {
     <p data-i18n="source">Source: County-Wide Food Assistance Directory Programs by Town, Orange County NY — <strong>Last updated 11.5.26</strong>.</p>
     <p data-i18n="contact">Questions about this directory: <a href="mailto:Moakes@orangecountyny.gov">Meg Oakes, Moakes@orangecountyny.gov</a> · Call <a href="tel:211">211</a> for local help.</p>
     <p data-i18n="favNote">My places are saved only on this device/browser.</p>
+    <p>This site uses privacy-friendly, cookieless analytics to understand which data is most used.</p>
     <p><a href="#top" data-i18n="top">Back to top</a></p>
   </div>
 </footer>
@@ -4448,8 +4467,18 @@ function renderMap() {
   setTimeout(() => state.map.invalidateSize(), 80);
 }
 
+
+function trackEvent(event, properties) {
+  try {
+    if (window.posthog && typeof window.posthog.capture === "function") {
+      window.posthog.capture(event, properties);
+    }
+  } catch (err) {}
+}
+
 function setView(view) {
   state.view = view;
+  trackEvent("view_changed", { view: view });
   document.body.classList.toggle("view-map", view === "map");
   document.getElementById("view-list").setAttribute("aria-pressed", view === "list" ? "true" : "false");
   document.getElementById("view-map").setAttribute("aria-pressed", view === "map" ? "true" : "false");
@@ -4560,6 +4589,7 @@ async function shareList() {
 
 async function searchNearAddress(query) {
   const q = query.trim();
+  if (q) trackEvent("search_used", { query_length: q.length, kind: "near_address" });
   const status = document.getElementById("loc-search-status");
   const btn = document.getElementById("loc-search-btn");
   status.classList.remove("is-error");
@@ -4731,13 +4761,19 @@ function wireFilters() {
     document.getElementById(id).addEventListener("input", render);
     document.getElementById(id).addEventListener("change", render);
   });
+  document.getElementById("q").addEventListener("change", () => {
+    trackEvent("search_used", { query_length: document.getElementById("q").value.length });
+  });
+  document.getElementById("radius").addEventListener("change", () => {
+    trackEvent("filter_changed", { filter: "radius" });
+  });
   wireMultiselects();
   document.getElementById("view-list").addEventListener("click", () => setView("list"));
   document.getElementById("view-map").addEventListener("click", () => setView("map"));
   document.getElementById("map-back")?.addEventListener("click", () => setView("list"));
   document.getElementById("map-filters-btn")?.addEventListener("click", () => setToolbarSheetOpen(true));
   document.getElementById("share-btn").addEventListener("click", shareList);
-  document.getElementById("print-btn").addEventListener("click", () => window.print());
+  document.getElementById("print-btn").addEventListener("click", () => { trackEvent("data_downloaded", { format: "print" }); window.print(); });
   document.getElementById("lang-select").addEventListener("change", (e) => {
     state.lang = e.target.value || "en";
     localStorage.setItem(LANG_KEY, state.lang);
